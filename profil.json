@@ -1,0 +1,29 @@
+{
+  "network": [
+    {
+      "tipe": "Profesional & Kepemimpinan",
+      "nama_kegiatan": "Founder AIFORA GROUP",
+      "platform_atau_tempat": "Ekosistem Inovasi AIFORA",
+      "tahun": "2026 - Sekarang",
+      "deskripsi": "Pendiri dan penggerak utama AIFORA GROUP. Memimpin dan menaungi berbagai cabang pengembangan ekosistem AIFORA, berfokus pada rekayasa teknologi dan solusi cerdas."
+    }
+  ],
+  "portofolio": [
+    {
+      "judul": "AIFORA Ecosystem Platform",
+      "kategori": "Web Development / Landing Page",
+      "konteks_masalah": "Kebutuhan akan identitas digital dan platform utama untuk mempresentasikan visi, misi, dan inovasi dari AIFORA GROUP secara profesional kepada publik.",
+      "solusi_teknis": "Membangun antarmuka website yang responsif dan modern, di-hosting secara efisien menggunakan infrastruktur GitHub Pages.",
+      "link": "https://khohar25.github.io/aifora/"
+    },
+    {
+      "judul": "Website Katalog UMKM Kripik Tempe Kharisma",
+      "kategori": "Web Development / Profil Bisnis",
+      "konteks_masalah": "Kebutuhan digitalisasi bisnis UMKM lokal untuk memperluas jangkauan pasar dan menampilkan katalog produk secara online.",
+      "solusi_teknis": "Pengembangan website statis yang ringan dan cepat untuk company profile, memastikan aksesibilitas yang mudah dan daya tarik visual bagi calon pelanggan.",
+      "link": "https://khohar25.github.io/kripiktempekharisma/"
+    }
+  ],
+  "innovation_lab": [],
+  "library": []
+}

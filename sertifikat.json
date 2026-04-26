@@ -1,0 +1,590 @@
+[
+  {
+    "nama_penghargaan": "Piagam: Medali Emas Bidang Komputer",
+    "pemberi_penghargaan": "Kompetisi Sains Pelajar Nasional (KSPN) - Gantari",
+    "tahun": "2023",
+    "deskripsi": "Meraih medali emas tingkat nasional."
+  },
+  {
+    "nama_penghargaan": "Piagam: Medali Emas Astronomi (Predikat A+)",
+    "pemberi_penghargaan": "Olimpiade Nasional Sains dan Bahasa (ONSB) - Braindicator",
+    "tahun": "2023",
+    "deskripsi": "Meraih medali emas dengan predikat A+ tingkat nasional."
+  },
+  {
+    "nama_penghargaan": "Piagam: Medali Emas Sosiologi (Predikat A+)",
+    "pemberi_penghargaan": "Olimpiade Nasional Sains dan Bahasa (ONSB) - Braindicator",
+    "tahun": "2023",
+    "deskripsi": "Meraih medali emas dengan predikat A+ tingkat nasional."
+  },
+  {
+    "nama_penghargaan": "Piagam: Medali Emas Bidang Geografi",
+    "pemberi_penghargaan": "Olimpiade Sains Nasional Indonesia - Pythagoras",
+    "tahun": "2023",
+    "deskripsi": "Meraih medali emas tingkat nasional."
+  },
+  {
+    "nama_penghargaan": "Piagam: Medali Perak Bidang Biologi",
+    "pemberi_penghargaan": "Kompetisi Biologi Brainteach",
+    "tahun": "2023",
+    "deskripsi": "Meraih medali perak kompetisi biologi."
+  },
+  {
+    "nama_penghargaan": "Piagam: Peringkat 7 Jawa Timur Bidang Matematika",
+    "pemberi_penghargaan": "Olimpiade Sains Nasional Indonesia - Pythagoras",
+    "tahun": "2023",
+    "deskripsi": "Meraih Peringkat 7 di tingkat provinsi."
+  },
+  {
+    "nama_penghargaan": "Piagam: Peringkat 8 Jawa Timur Bidang Fisika",
+    "pemberi_penghargaan": "Olimpiade Sains Tingkat Nasional - Saintech.id",
+    "tahun": "2023",
+    "deskripsi": "Meraih Peringkat 8 di tingkat provinsi."
+  },
+  {
+    "nama_penghargaan": "Piagam: Peringkat 8 Jawa Timur Bidang Biologi",
+    "pemberi_penghargaan": "Kompetisi Sains Pelajar Nasional (KSPN) - Gantari",
+    "tahun": "2023",
+    "deskripsi": "Meraih Peringkat 8 di tingkat provinsi."
+  },
+  {
+    "nama_penghargaan": "Piagam: Harapan 1 Jawa Timur Bidang Matematika",
+    "pemberi_penghargaan": "Olimpiade Sains Siswa Dalton (OSSD)",
+    "tahun": "2023",
+    "deskripsi": "Meraih Harapan 1 di tingkat provinsi."
+  },
+  {
+    "nama_penghargaan": "Piagam: Juara Harapan 1 Matematika",
+    "pemberi_penghargaan": "Kompetisi Sains Madrasah (KSM) MTsN 2 Ngawi",
+    "tahun": "2021",
+    "deskripsi": "Meraih Harapan 1 tingkat MTs."
+  },
+  {
+    "nama_penghargaan": "Piagam: Juara Harapan 1 Matematika Terintegrasi",
+    "pemberi_penghargaan": "Kompetisi Sains Madrasah Online (KSMO) MTsN 2 Ngawi",
+    "tahun": "2020",
+    "deskripsi": "Meraih Harapan 1 tingkat MTs secara online."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Fisika",
+    "pemberi_penghargaan": "Pekan Olimpiade Nasional (PON 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Biologi",
+    "pemberi_penghargaan": "Pekan Olimpiade Nasional (PON 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Matematika",
+    "pemberi_penghargaan": "Pekan Olimpiade Nasional (PON 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang PKN",
+    "pemberi_penghargaan": "Pekan Olimpiade Nasional (PON 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sejarah",
+    "pemberi_penghargaan": "Pekan Olimpiade Nasional (PON 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sosiologi",
+    "pemberi_penghargaan": "Pekan Olimpiade Nasional (PON 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Bahasa Inggris",
+    "pemberi_penghargaan": "Pekan Olimpiade Nasional (PON 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Bahasa Indonesia",
+    "pemberi_penghargaan": "Pekan Olimpiade Nasional (PON 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Fisika",
+    "pemberi_penghargaan": "Olimpiade Pelajar Sains Indonesia (OPSI 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Geografi",
+    "pemberi_penghargaan": "Olimpiade Pelajar Sains Indonesia (OPSI 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Statistika",
+    "pemberi_penghargaan": "Olimpiade Pelajar Sains Indonesia (OPSI 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Biologi",
+    "pemberi_penghargaan": "Kompetisi Siswa Braindicator (KSB 2022)",
+    "tahun": "2022",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Geografi",
+    "pemberi_penghargaan": "Kompetisi Siswa Braindicator (KSB 2022)",
+    "tahun": "2022",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Informatika",
+    "pemberi_penghargaan": "Kompetisi Siswa Braindicator (KSB 2022)",
+    "tahun": "2022",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sejarah",
+    "pemberi_penghargaan": "Kompetisi Siswa Braindicator (KSB 2022)",
+    "tahun": "2022",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "Kompetisi Siswa Braindicator (KSB 2022)",
+    "tahun": "2022",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Fisika",
+    "pemberi_penghargaan": "Olimpiade Nasional Matematika, Ilmu Pengetahuan dan Bahasa (ONMIPASA 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sejarah",
+    "pemberi_penghargaan": "Olimpiade Nasional Matematika, Ilmu Pengetahuan dan Bahasa (ONMIPASA 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "Olimpiade Nasional Matematika, Ilmu Pengetahuan dan Bahasa (ONMIPASA 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Kimia",
+    "pemberi_penghargaan": "Olimpiade Nasional Matematika, Ilmu Pengetahuan dan Bahasa (ONMIPASA 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Geografi",
+    "pemberi_penghargaan": "Olimpiade Nasional Sains dan Bahasa (ONSB 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sejarah",
+    "pemberi_penghargaan": "Olimpiade Nasional Sains dan Bahasa (ONSB 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sosiologi",
+    "pemberi_penghargaan": "Olimpiade Nasional Sains dan Bahasa (ONSB 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "Olimpiade Nasional Sains dan Bahasa (ONSB 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Bahasa Jepang",
+    "pemberi_penghargaan": "Olimpiade Nasional Sains dan Bahasa (ONSB 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Informatika",
+    "pemberi_penghargaan": "National Olympiad of Outstanding Student (NOOS 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Matematika",
+    "pemberi_penghargaan": "National Olympiad of Outstanding Student (NOOS 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Bahasa Inggris",
+    "pemberi_penghargaan": "National Olympiad of Outstanding Student (NOOS 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "National Olympiad of Outstanding Student (NOOS 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Geografi",
+    "pemberi_penghargaan": "Olimpiade Sains Siswa Indonesia (OSSI 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sejarah",
+    "pemberi_penghargaan": "Olimpiade Sains Siswa Indonesia (OSSI 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sosiologi",
+    "pemberi_penghargaan": "Olimpiade Sains Siswa Indonesia (OSSI 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Matematika",
+    "pemberi_penghargaan": "Olimpiade Sains Siswa Indonesia (OSSI 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Bahasa Inggris",
+    "pemberi_penghargaan": "Olimpiade Sains Siswa Indonesia (OSSI 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "Olimpiade Sains Siswa Indonesia (OSSI 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sosiologi",
+    "pemberi_penghargaan": "Olimpiade Sains Seluruh Indonesia (OSSI 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Informatika",
+    "pemberi_penghargaan": "Olimpiade Nasional Prestasi Akademik (ONPA 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sosiologi",
+    "pemberi_penghargaan": "Olimpiade Nasional Prestasi Akademik (ONPA 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Statistika",
+    "pemberi_penghargaan": "Olimpiade Nasional Prestasi Akademik (ONPA 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Informatika",
+    "pemberi_penghargaan": "Kompetisi Sains Se Indonesia (KSSI 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Kebumian",
+    "pemberi_penghargaan": "Kompetisi Sains Se Indonesia (KSSI 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Bahasa Arab",
+    "pemberi_penghargaan": "Kompetisi Sains Se Indonesia (KSSI 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Informatika",
+    "pemberi_penghargaan": "Nusantara Sains Festival (NUSSAFEST 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Matematika",
+    "pemberi_penghargaan": "Nusantara Sains Festival (NUSSAFEST 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sejarah",
+    "pemberi_penghargaan": "Nusantara Sains Festival (NUSSAFEST 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Bahasa Inggris",
+    "pemberi_penghargaan": "Nusantara Sains Festival (NUSSAFEST 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Kedokteran",
+    "pemberi_penghargaan": "Olimpiade Siswa Tingkat Nasional (OSTN 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Kedokteran",
+    "pemberi_penghargaan": "Semarak Sains Nasional (SSN 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Matematika",
+    "pemberi_penghargaan": "Semarak Sains Nasional (SSN 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Kedokteran Dasar",
+    "pemberi_penghargaan": "Festival Sains Nasional (FESANAS 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sejarah",
+    "pemberi_penghargaan": "Festival Sains Nasional (FESANAS 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "Festival Sains Nasional (FESANAS 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Kedokteran Dasar",
+    "pemberi_penghargaan": "Olimpiade Pelajar Nasional (OPN 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Matematika",
+    "pemberi_penghargaan": "Olimpiade Pelajar Nasional (OPN 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Kedokteran Dasar",
+    "pemberi_penghargaan": "Festival Sains Nasional (FSN 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang PKN",
+    "pemberi_penghargaan": "Festival Sains Nasional (FSN 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Bahasa Arab",
+    "pemberi_penghargaan": "Festival Sains Nasional (FSN 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "Festival Sains Nasional (FSN 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Akuntansi",
+    "pemberi_penghargaan": "Festival Sains Nasional (FSN 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Matematika",
+    "pemberi_penghargaan": "Kompetisi Sains Pelajar Se-Indonesia (KSPI 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sejarah",
+    "pemberi_penghargaan": "Kompetisi Sains Pelajar Se-Indonesia (KSPI 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "Kompetisi Sains Pelajar Se-Indonesia (KSPI 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Bahasa Inggris",
+    "pemberi_penghargaan": "Olimpiade Sains Nasional (OLIMNAS 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "Olimpiade Sains Nasional (OLIMNAS 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Akuntansi",
+    "pemberi_penghargaan": "Olimpiade Sains Nasional (OLIMNAS 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "Indonesian Student Science Competition (ISSC 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "Indonesian Olympiad of Science (IOS 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta",
+    "pemberi_penghargaan": "Forsmawi Integrated Olympiad (FIO 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Ekonomi",
+    "pemberi_penghargaan": "Pekan Olimpiade Ilmu Sosial",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Geografi",
+    "pemberi_penghargaan": "Pekan Olimpiade Ilmu Sosial",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sejarah",
+    "pemberi_penghargaan": "Pekan Olimpiade Ilmu Sosial",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Biologi",
+    "pemberi_penghargaan": "Olimpiade Sains Hardiknas (OSH 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Ekonomi",
+    "pemberi_penghargaan": "Olimpiade Sains Hardiknas (OSH 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Geografi",
+    "pemberi_penghargaan": "Olimpiade Sains Hardiknas (OSH 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Kebumian",
+    "pemberi_penghargaan": "Olimpiade Sains Hardiknas (OSH 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Kedokteran",
+    "pemberi_penghargaan": "Olimpiade Sains Hardiknas (OSH 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Informatika",
+    "pemberi_penghargaan": "Olimpiade Sains Hardiknas (OSH 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Kimia",
+    "pemberi_penghargaan": "Olimpiade Sains Hardiknas (OSH 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Matematika",
+    "pemberi_penghargaan": "Olimpiade Sains Hardiknas (OSH 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sejarah",
+    "pemberi_penghargaan": "Olimpiade Sains Hardiknas (OSH 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Sosiologi",
+    "pemberi_penghargaan": "Olimpiade Sains Hardiknas (OSH 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "Olimpiade Sains Hardiknas (OSH 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Akuntansi",
+    "pemberi_penghargaan": "Olimpiade Sains Hardiknas (OSH 2024)",
+    "tahun": "2024",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Geografi",
+    "pemberi_penghargaan": "Pekan Olimpiade Sains Nasional (POSN 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
+    "pemberi_penghargaan": "Olimpiade Sains Siswa Nasional (OSSAN 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Matematika",
+    "pemberi_penghargaan": "Olimpiade Sains Siswa Nasional (OSSAN 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  },
+  {
+    "nama_penghargaan": "Sertifikat: Peserta Bidang Ekonomi",
+    "pemberi_penghargaan": "Olimpiade Sains Siswa Nasional (OSSAN 2023)",
+    "tahun": "2023",
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+  }
+]

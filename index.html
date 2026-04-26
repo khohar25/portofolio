@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Khohar Muhamad Fatahurrohman</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <i class="fas fa-bars mobile-nav-toggle desktop-hide" id="mobile-nav-toggle"></i>
+
+    <header id="header">
+        <div style="display: flex; flex-direction: column; height: 100%;">
+
+            <div class="profile">
+                <img src="aku.jpeg" alt="Khohar Muhamad Fatahurrohman" class="img-fluid rounded-circle">
+                <h1 class="text-light"><a href="index.html">Khohar M.F.</a></h1>
+                <div class="social-links mt-3 text-center">
+                    <a href="https://github.com/khohar25" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog"><i class="fab fa-blogger"></i></a>
+                    <a href="mailto:khoharrohman@gmail.com" title="Email Saya"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork"><i class="fas fa-briefcase"></i></a>
+                    <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <nav id="navbar" class="nav-menu navbar">
+                <ul>
+                    <li><a href="#hero" class="nav-link scrollto active"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                    <li><a href="#about" class="nav-link scrollto"><i class="fas fa-user"></i> <span>Profil</span></a></li>
+                    <li><a href="#track-record" class="nav-link scrollto"><i class="fas fa-file-alt"></i> <span>Rekam Jejak</span></a></li>
+                    <li><a href="#portfolio" class="nav-link scrollto"><i class="fas fa-laptop-code"></i> <span>Proyek Web</span></a></li>
+                    <li><a href="#lab" class="nav-link scrollto"><i class="fas fa-flask"></i> <span>Riset</span></a></li>
+                    <li><a href="#library" class="nav-link scrollto"><i class="fas fa-book-open"></i> <span>Pustaka</span></a></li>
+                </ul>
+            </nav>
+
+            <div class="theme-switch-wrapper text-center mt-auto" style="margin-top: 2rem;">
+                <button id="theme-toggle" aria-label="Toggle Dark Mode" style="background: none; border: none; color: var(--sidebar-text); font-size: 1.5rem; cursor: pointer; transition: 0.3s;">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-footer text-center" style="margin-top: 1rem; font-size: 0.8rem; color: #6f7180;">
+                <p>&copy; 2026 Khohar M.F.</p>
+            </div>
+
+        </div>
+    </header>
+
+    <main id="main">
+
+        <section id="hero">
+            <div class="hero-content-wrapper">
+                <div class="hero-text-box">
+                    <h1 class="animate-text-1">"MY REMINDER"</h1>
+                    <p class="animate-text-2">"Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal. Saya tidak sedang berlomba dengan siapa pun. Apa yang orang lain bisa belum tentu saya bisa, begitu juga sebaliknya. Saat ini, saya hanya fokus pada progres diri sendiri."</p>
+                </div>
+                
+                <div class="hero-img-box">
+                    <img src="bg.png" alt="Khohar Muhamad Fatahurrohman" class="animate-img">
+                </div>
+            </div>
+        </section>
+
+        <div style="margin: 3rem auto; text-align: center;">
+            <span class="reveal" style="display: inline-block; width: 60px; height: 5px; background-color: var(--accent-color); border-radius: 10px; opacity: 0.5;"></span>
+        </div>
+
+        <section id="about" class="section reveal">
+            <div class="container">
+                <h2 class="section-title">Profil & Perjalanan</h2>
+                
+                <div class="about-wrapper">
+                    <div class="profile-card">
+                        <div class="about-text">
+                            <p>Saya adalah pengembang web dan mahasiswa di Politeknik Negeri Malang. Sebagai penggerak di balik AIFORA GROUP, saya memegang prinsip untuk terus fokus pada progres kapasitas diri melalui rekayasa perangkat lunak, AI, dan IoT secara mandiri.</p>
+                            <p>Dengan latar belakang kepemimpinan di tingkat organisasi dan mentalitas kompetitif dari berbagai olimpiade sains, saya menerapkan pendekatan komputasional yang terstruktur untuk mengkaji teknologi masa depan.</p>
+                            <p>Saya memiliki minat yang besar dalam dunia literasi dan kepenulisan. Bagi saya, teknologi dan tulisan adalah dua hal yang saling melengkapi.</p>
+                            
+                            <div class="tech-stack" style="margin-top: 2rem;">
+                                <h4>Tech Stack & Tools:</h4>
+                                <div class="tech-icons">
+                                    <i class="fab fa-html5" title="HTML5"></i>
+                                    <i class="fab fa-css3-alt" title="CSS3"></i>
+                                    <i class="fab fa-js" title="JavaScript"></i>
+                                    <i class="fab fa-python" title="Python"></i>
+                                    <i class="fab fa-github" title="GitHub"></i>
+                                    <i class="fas fa-database" title="Database"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="education-section">
+                        <h3 class="sub-heading"><i class="fas fa-graduation-cap"></i> Riwayat Pendidikan</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4>Politeknik Negeri Malang, Malang, Jawa Timur</h4>
+                                <p>D4 Teknik Informatika | 2025 - Saat Ini</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4>SMKS Trisakti Ngawi, Ngawi, Jawa Timur</h4>
+                                <p>Teknik Komputer dan Jaringan | 2022 - 2025</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4>MTsN 2 Ngawi, Ngawi, Jawa Timur</h4>
+                                <p>2019 - 2022</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4>SDN Beberan 1 Ciruas, Serang, Banten</h4>
+                                <p>2014 - 2019</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4>TKS Telaga Sakinah Ciruas, Serang, Banten</h4>
+                                <p>2012 - 2014</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="sub-heading" style="margin-top: 3rem;"><i class="fas fa-network-wired"></i> Jejaring Profesional</h3>
+                <div class="about-grid" id="network-container"></div>
+            </div>
+        </section>
+
+        <section id="track-record" class="section bg-alt reveal">
+            <div class="container">
+                <h2 class="section-title">Rekam Jejak & Pengembangan Diri</h2>
+                <p class="section-subtitle">Daftar pengalaman dalam kepemimpinan, kompetisi, dan literasi teknologi. (Klik kategori untuk detail)</p>
+                
+                <div class="track-record-grid">
+                    
+                    <div class="track-accordion">
+                        <div class="accordion-header">
+                            <h3><i class="fas fa-trophy" style="color: #f59e0b;"></i> Penghargaan & Medali</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content scrollable-list" id="juara-container"></div>
+                    </div>
+
+                    <div class="track-accordion">
+                        <div class="accordion-header">
+                            <h3><i class="fas fa-medal" style="color: #3b82f6;"></i> Partisipasi Sains</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content scrollable-list" id="peserta-sains-container"></div>
+                    </div>
+
+                    <div class="track-accordion">
+                        <div class="accordion-header">
+                            <h3><i class="fas fa-users" style="color: #10b981;"></i> Organisasi & Kepanduan</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content scrollable-list" id="organisasi-container"></div>
+                    </div>
+
+                    <div class="track-accordion">
+                        <div class="accordion-header">
+                            <h3><i class="fas fa-flag" style="color: #ef4444;"></i> Event & Kegiatan</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content scrollable-list" id="event-container"></div>
+                    </div>
+
+                    <div class="track-accordion">
+                        <div class="accordion-header">
+                            <h3><i class="fas fa-laptop-code" style="color: #8b5cf6;"></i> Seminar & Webinar</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content scrollable-list" id="seminar-container"></div>
+                    </div>
+
+                    <div class="track-accordion">
+                        <div class="accordion-header">
+                            <h3><i class="fas fa-clipboard-list" style="color: #14b8a6;"></i> Pelatihan & Panitia</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content scrollable-list" id="pelatihan-container"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section reveal">
+            <div class="container">
+                <h2 class="section-title">Case Studies & Proyek Web</h2>
+                <div class="portfolio-grid" id="portfolio-container"></div>
+            </div>
+        </section>
+
+        <section id="lab" class="section bg-alt reveal">
+            <div class="container">
+                <h2 class="section-title">Innovation Lab <i class="fas fa-flask"></i></h2>
+                <p class="section-subtitle">Eksplorasi teknologi dan riset arsitektur masa depan.</p>
+                <div class="lab-grid" id="lab-container"></div>
+            </div>
+        </section>
+
+        <section id="library" class="section reveal">
+            <div class="container">
+                <h2 class="section-title">Creative & Literary Works <i class="fas fa-book-open"></i></h2>
+                <p class="section-subtitle">Koleksi buku, novel, dan tulisan kreatif lainnya.</p>
+                <div class="portfolio-grid" id="library-container"></div>
+            </div>
+        </section>
+
+        <footer class="footer reveal">
+            <div class="social-links-footer text-center">
+                <a href="https://github.com/khohar25" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog"><i class="fab fa-blogger"></i></a>
+                <a href="mailto:khoharrohman@gmail.com" title="Email Saya"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork"><i class="fas fa-briefcase"></i></a>
+                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2026 Khohar Muhamad Fatahurrohman.</p>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Hamburger Menu
+        document.getElementById('mobile-nav-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('mobile-nav-active');
+            this.classList.toggle('fa-bars');
+            this.classList.toggle('fa-times');
+        });
+
+        // 1. LOGIKA ANIMASI SCROLL (Mendeteksi elemen saat masuk layar)
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        };
+        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // 2. LOGIKA ACCORDION REKAM JEJAK
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const parent = header.parentElement;
+                
+                // Opsional: Jika ingin membuka satu, yang lain otomatis tertutup
+                // document.querySelectorAll('.track-accordion').forEach(acc => {
+                //     if(acc !== parent) acc.classList.remove('active');
+                // });
+
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
