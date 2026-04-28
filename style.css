@@ -443,7 +443,7 @@ a {
 .scrollable-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
 .scrollable-list::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
 
-/* --- DESAIN LIST CARD INTERAKTIF (AKORDEON) --- */
+/* --- DESAIN LIST CARD INTERAKTIF --- */
 .list-card {
     background: var(--card-bg); 
     border: 1px solid var(--border-color);
@@ -543,8 +543,6 @@ a {
 
 
 /* --- MEDIA QUERY KHUSUS RESPONSIVE --- */
-
-/* REVISI: Batas ukuran diturunin jadi 991px biar laptop aman */
 @media (max-width: 991px) {
     #header { left: -300px; }
     #main { margin-left: 0; }
@@ -638,18 +636,33 @@ a {
     padding: 0 1.5rem; 
 }
 
-/* SAAT KOTAK DIKLIK DAN AKTIF */
+/* SAAT KOTAK DIKLIK DAN AKTIF (DIBUAT BISA DI-SCROLL) */
 .track-accordion.active .accordion-content { 
-    max-height: 2000px; /* Buka konten ke bawah */
+    max-height: 450px; /* Batas tinggi maksimal agar bisa di-scroll */
+    overflow-y: auto;  /* INI KUNCINYA: Memunculkan scroll vertikal */
     padding: 1.5rem;
     border-top: 1px solid var(--border-color);
 }
 
+/* Putar ikon panah saat terbuka */
 .track-accordion.active .accordion-header i.fa-chevron-down { 
-    transform: rotate(180deg); /* Putar ikon panah ke atas */
+    transform: rotate(180deg); 
     color: var(--accent-color);
 }
 
 .track-accordion:hover { 
     border-color: var(--accent-color); 
+}
+
+/* Mempercantik tampilan Scrollbar di dalam Accordion */
+.track-accordion.active .accordion-content::-webkit-scrollbar { 
+    width: 6px; 
+}
+.track-accordion.active .accordion-content::-webkit-scrollbar-track { 
+    background: var(--bg-alt); 
+    border-radius: 10px; 
+}
+.track-accordion.active .accordion-content::-webkit-scrollbar-thumb { 
+    background: var(--accent-color); 
+    border-radius: 10px; 
 }
