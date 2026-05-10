@@ -11,26 +11,24 @@
     <style>
         :root { --primary: #149ddd; --bg-dark: #0f172a; --card-bg: rgba(30, 41, 59, 0.7); --text-main: #f8fafc; }
         body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
-        .admin-container { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2rem; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); width: 100%; max-width: 450px; text-align: center; }
-        h2 { margin: 0 0 1rem 0; font-size: 1.5rem; }
+        .admin-container { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2rem; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); width: 100%; max-width: 450px; }
+        h2 { margin: 0 0 1rem 0; font-size: 1.5rem; text-align: center; }
         
-        /* Tab Menu */
         .tabs { display: flex; background: rgba(0,0,0,0.2); border-radius: 10px; margin-bottom: 1.5rem; overflow: hidden; }
         .tab-btn { flex: 1; padding: 12px; background: transparent; border: none; color: #888; font-weight: 600; cursor: pointer; transition: 0.3s; }
         .tab-btn.active { background: var(--primary); color: white; }
-        
         .tab-content { display: none; text-align: left; }
         .tab-content.active { display: block; }
 
-        /* Mode AI */
         .upload-zone { border: 2px dashed var(--primary); border-radius: 12px; padding: 2rem 1rem; text-align: center; position: relative; cursor: pointer; margin-bottom: 1rem; background: rgba(20,157,221,0.05); }
         .upload-zone input[type="file"] { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer; }
         
-        /* Mode Manual */
-        select, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; margin-bottom: 1rem; font-family: 'Inter', sans-serif; }
-        textarea { height: 150px; font-family: monospace; font-size: 0.9rem; resize: vertical; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 0.85rem; color: #aaa; margin-bottom: 4px; }
+        input[type="text"], textarea { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; font-family: 'Inter', sans-serif; box-sizing: border-box; }
+        textarea { height: 110px; resize: vertical; line-height: 1.5; }
         
-        button.action-btn { background: var(--primary); color: white; border: none; padding: 14px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; transition: 0.3s; }
+        button.action-btn { background: var(--primary); color: white; border: none; padding: 14px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; transition: 0.3s; margin-top: 10px; }
         button.action-btn:hover { background: #0c82b8; }
         button.action-btn:disabled { background: #475569; cursor: not-allowed; }
         
@@ -43,164 +41,130 @@
         <h2>Pusat Kendali Data</h2>
         
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('ai')"><i class="fas fa-robot"></i> Mode AI</button>
-            <button class="tab-btn" onclick="switchTab('manual')"><i class="fas fa-keyboard"></i> Manual</button>
+            <button class="tab-btn active" onclick="switchTab('ai')"><i class="fas fa-camera"></i> Gambar/PDF</button>
+            <button class="tab-btn" onclick="switchTab('manual')"><i class="fas fa-keyboard"></i> Ketik Manual</button>
         </div>
 
         <div id="tab-ai" class="tab-content active">
-            <p style="font-size:0.85rem; color:#aaa; margin-bottom:1rem; text-align:center;">Upload gambar/PDF sertifikat. AI akan memilahnya otomatis.</p>
+            <p style="font-size:0.85rem; color:#aaa; margin-bottom:1rem; text-align:center;">Sistem akan memilah dan mengetik otomatis.</p>
             <div class="upload-zone">
                 <i class="fas fa-cloud-upload-alt" style="font-size:2rem; color:#149ddd; margin-bottom:10px;"></i>
                 <div id="fileName" style="font-weight:bold;">Pilih File / Drop ke Sini</div>
                 <input type="file" id="fileUpload" accept="image/*,application/pdf" onchange="document.getElementById('fileName').innerText = this.files[0].name;">
             </div>
-            <button class="action-btn" id="btnUpload" onclick="prosesAI()"><i class="fas fa-magic"></i> Ekstrak & Simpan</button>
+            <button class="action-btn" id="btnUpload" onclick="prosesData('gambar')"><i class="fas fa-magic"></i> Ekstrak AI</button>
         </div>
 
         <div id="tab-manual" class="tab-content">
-            <p style="font-size:0.85rem; color:#aaa; margin-bottom:1rem; text-align:center;">Pilih tabel dan masukkan data mentah Anda.</p>
+            <p style="font-size:0.85rem; color:#aaa; margin-bottom:1rem; text-align:center;">Lempar semua catatan ke kotak deskripsi, AI akan membedahnya.</p>
             
-            <label style="font-size:0.85rem; color:#aaa;">Pilih Laci (Tabel Tujuan):</label>
-            <select id="tabelPilihan" onchange="ubahTemplate()">
-                <option value="portofolio">Portofolio (Proyek Web)</option>
-                <option value="organisasi">Organisasi & Event</option>
-                <option value="sertifikat">Sertifikat (Penghargaan)</option>
-                <option value="webinar">Webinar & Pelatihan</option>
-                <option value="sertifikasi">Sertifikasi IT (IBM, dll)</option>
-                <option value="network">Jejaring Profesional</option>
-                <option value="lab">Innovation Lab</option>
-                <option value="library">Library (Karya Tulis)</option>
-            </select>
-
-            <label style="font-size:0.85rem; color:#aaa;">Isi Data:</label>
-            <textarea id="dataManual"></textarea>
+            <div class="form-group">
+                <label>Judul Pencapaian / Proyek (Wajib)</label>
+                <input type="text" id="m_judul" placeholder="Cth: Aplikasi Virtual Power Plant / Juara 1 Desain">
+            </div>
+            <div class="form-group">
+                <label>Peran / Kategori (Wajib)</label>
+                <input type="text" id="m_peran" placeholder="Cth: Proyek Web / Peserta / Sertifikasi">
+            </div>
+            <div class="form-group">
+                <label>Penyelenggara / Klien</label>
+                <input type="text" id="m_instansi" placeholder="Cth: Kampus / PT Maju Jaya">
+            </div>
+            <div class="form-group">
+                <label>Tahun</label>
+                <input type="text" id="m_tahun" placeholder="Cth: 2026">
+            </div>
+            <div class="form-group">
+                <label>Deskripsi (Bisa campur Tech Stack & Link!)</label>
+                <textarea id="m_deskripsi" placeholder="Cth: Aplikasi ini mengatasi masalah lemotnya server. Dibangun pakai ESP32 dan Python. Cek di https://proyek.com"></textarea>
+            </div>
             
-            <button class="action-btn" id="btnManual" onclick="prosesManual()"><i class="fas fa-save"></i> Simpan Langsung</button>
+            <button class="action-btn" id="btnManual" onclick="prosesData('teks')"><i class="fas fa-brain"></i> Kirim ke AI Router</button>
         </div>
 
         <div id="status-box"></div>
     </div>
 
     <script>
-        // MASUKKAN URL & API KEY ANDA DI SINI UNTUK MODE MANUAL:
-        const SUPABASE_URL = 'https://xwwlegzacxevmlmtceqh.supabase.co';
-        const SUPABASE_KEY = 'sb_publishable_XOx2kuvillkXt606CwAtiw_Vax_EvQL';
-
-        // 1. Logika Pindah Tab
         function switchTab(tabId) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
             event.currentTarget.classList.add('active');
             document.getElementById(`tab-${tabId}`).classList.add('active');
             tampilkanStatus('none');
-            
-            if(tabId === 'manual') ubahTemplate();
         }
 
-        // 2. Template Otomatis Mode Manual (Agar Fatah tidak lupa nama kolomnya)
-        const templateData = {
-            "portofolio": '{\n  "judul": "",\n  "kategori": "",\n  "konteks_masalah": "",\n  "solusi_teknis": "",\n  "link": ""\n}',
-            "organisasi": '{\n  "nama_organisasi": "",\n  "peran": "",\n  "tahun": "",\n  "deskripsi": ""\n}',
-            "sertifikat": '{\n  "nama_penghargaan": "",\n  "pemberi_penghargaan": "",\n  "tahun": "",\n  "deskripsi": ""\n}',
-            "webinar": '{\n  "judul_acara": "",\n  "penyelenggara": "",\n  "tahun": "",\n  "keterangan": ""\n}',
-            "sertifikasi": '{\n  "nama_sertifikasi": "",\n  "penerbit": "",\n  "tanggal_terbit": "",\n  "link_kredensial": ""\n}',
-            "network": '{\n  "tipe": "",\n  "nama_kegiatan": "",\n  "platform_atau_tempat": "",\n  "tahun": "",\n  "deskripsi": ""\n}',
-            "lab": '{\n  "judul_riset": "",\n  "status": "",\n  "deskripsi": ""\n}',
-            "library": '{\n  "judul": "",\n  "kategori": "",\n  "deskripsi": "",\n  "link": ""\n}'
-        };
-
-        function ubahTemplate() {
-            const tabel = document.getElementById('tabelPilihan').value;
-            document.getElementById('dataManual').value = templateData[tabel];
-        }
-
-        // 3. Helper Status UI
         function tampilkanStatus(pesan, warna = '#149ddd') {
             const sb = document.getElementById('status-box');
             if (pesan === 'none') { sb.style.display = 'none'; return; }
-            sb.style.display = 'block';
-            sb.style.background = warna + '20';
-            sb.style.color = warna;
-            sb.style.border = `1px solid ${warna}`;
+            sb.style.display = 'block'; sb.style.background = warna + '20';
+            sb.style.color = warna; sb.style.border = `1px solid ${warna}`;
             sb.innerHTML = pesan;
         }
 
-        // 4. LOGIKA EKSEKUSI MODE MANUAL (Kirim langsung ke Supabase tanpa AI)
-        async function prosesManual() {
-            const tabel = document.getElementById('tabelPilihan').value;
-            const dataText = document.getElementById('dataManual').value;
-            const btn = document.getElementById('btnManual');
+        async function prosesData(mode) {
+            const statusBox = document.getElementById('status-box');
+            let payload = {};
 
-            try {
-                // Pastikan format yang diketik adalah JSON yang valid
-                const dataJSON = JSON.parse(dataText);
+            if (mode === 'gambar') {
+                const fileInput = document.getElementById('fileUpload').files[0];
+                if (!fileInput) return tampilkanStatus("❌ Pilih file dulu!", '#e74c3c');
                 
-                btn.disabled = true;
-                tampilkanStatus('<i class="fas fa-spinner fa-spin"></i> Menyimpan ke Database...', '#149ddd');
+                document.getElementById('btnUpload').disabled = true;
+                tampilkanStatus('<i class="fas fa-spinner fa-spin"></i> Menyiapkan file...', '#149ddd');
 
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/${tabel}`, {
-                    method: 'POST',
-                    headers: {
-                        'apikey': SUPABASE_KEY,
-                        'Authorization': `Bearer ${SUPABASE_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
-                    },
-                    body: JSON.stringify(dataJSON)
-                });
-
-                if (!response.ok) throw new Error("Gagal menyimpan data.");
-
-                tampilkanStatus('✅ Berhasil disimpan!', '#2ecc71');
-                ubahTemplate(); // Reset form
-
-            } catch (error) {
-                tampilkanStatus('❌ Format JSON salah atau Gagal menyimpan.', '#e74c3c');
-            } finally {
-                btn.disabled = false;
-            }
-        }
-
-        // 5. LOGIKA EKSEKUSI MODE AI (Sama seperti sebelumnya)
-        async function prosesAI() {
-            const fileInput = document.getElementById('fileUpload').files[0];
-            const btn = document.getElementById('btnUpload');
-            
-            if (!fileInput) return tampilkanStatus("❌ Pilih file dulu!", '#e74c3c');
-            
-            btn.disabled = true;
-            tampilkanStatus('<i class="fas fa-spinner fa-spin"></i> Memproses...', '#149ddd');
-
-            try {
-                let fileToProcess = fileInput;
-                if (fileInput.type.startsWith('image/')) {
-                    fileToProcess = await browserImageCompression(fileInput, { maxSizeMB: 0.3, maxWidthOrHeight: 1920 });
-                } else if (fileInput.type === 'application/pdf' && fileInput.size > 5 * 1024 * 1024) {
-                    throw new Error("PDF maksimal 5MB.");
-                }
-                
-                const reader = new FileReader();
-                reader.readAsDataURL(fileToProcess);
-                reader.onloadend = async function() {
-                    const response = await fetch('/api/ekstrak', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ imageBase64: reader.result.split(',')[1], mimeType: fileToProcess.type })
-                    });
-                    const result = await response.json();
-                    
-                    if (result.success) {
-                        tampilkanStatus(`✅ ${result.message}`, '#2ecc71');
-                        document.getElementById('fileName').innerText = "Pilih File / Drop ke Sini";
-                    } else {
-                        tampilkanStatus(`❌ ${result.error}`, '#e74c3c');
+                try {
+                    let fileToProcess = fileInput;
+                    if (fileInput.type.startsWith('image/')) {
+                        fileToProcess = await browserImageCompression(fileInput, { maxSizeMB: 0.3, maxWidthOrHeight: 1920 });
                     }
-                    btn.disabled = false;
+                    const base64String = await new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(fileToProcess);
+                        reader.onloadend = () => resolve(reader.result.split(',')[1]);
+                    });
+                    payload = { imageBase64: base64String, mimeType: fileToProcess.type };
+                } catch (err) {
+                    return tampilkanStatus("❌ Gagal membaca file.", '#e74c3c');
+                }
+            } 
+            else if (mode === 'teks') {
+                const judul = document.getElementById('m_judul').value;
+                const peran = document.getElementById('m_peran').value;
+                if (!judul || !peran) return tampilkanStatus("❌ Judul dan Peran wajib diisi!", '#e74c3c');
+
+                document.getElementById('btnManual').disabled = true;
+                tampilkanStatus('<i class="fas fa-spinner fa-spin"></i> AI sedang membedah teks...', '#149ddd');
+
+                const gabunganTeks = `Judul: ${judul}\nPeran/Kategori: ${peran}\nInstansi: ${document.getElementById('m_instansi').value}\nTahun: ${document.getElementById('m_tahun').value}\nDeskripsi Campuran: ${document.getElementById('m_deskripsi').value}`;
+                payload = { manualText: gabunganTeks };
+            }
+
+            try {
+                tampilkanStatus('<i class="fas fa-spinner fa-spin"></i> AI sedang mengirim ke Supabase...', '#149ddd');
+                const response = await fetch('/api/ekstrak', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    tampilkanStatus(`✅ ${result.message}`, '#2ecc71');
+                    if(mode === 'teks') {
+                        document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
+                    } else {
+                        document.getElementById('fileName').innerText = "Pilih File / Drop ke Sini";
+                        document.getElementById('fileUpload').value = "";
+                    }
+                } else {
+                    tampilkanStatus(`❌ ${result.error}`, '#e74c3c');
                 }
             } catch (error) {
-                tampilkanStatus(`❌ ${error.message}`, '#e74c3c');
-                btn.disabled = false;
+                tampilkanStatus(`❌ Terjadi kesalahan jaringan.`, '#e74c3c');
+            } finally {
+                document.getElementById('btnUpload').disabled = false;
+                document.getElementById('btnManual').disabled = false;
             }
         }
     </script>
