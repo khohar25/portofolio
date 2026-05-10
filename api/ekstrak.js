@@ -42,7 +42,9 @@ module.exports = async function handler(req, res) {
             return res.status(400).json({ error: "Data kosong." });
         }
 
-        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
+        // --- REVISI ADA DI BARIS INI: gemini-1.5-flash-latest ---
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`;
+        
         const geminiResponse = await fetch(geminiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -51,7 +53,6 @@ module.exports = async function handler(req, res) {
 
         const geminiData = await geminiResponse.json();
         
-        // --- BAGIAN YANG DIREVISI UNTUK MENANGKAP ERROR ASLI GOOGLE ---
         if (!geminiData.candidates || geminiData.candidates.length === 0) {
             const pesanErrorAsli = geminiData.error ? geminiData.error.message : "Format respon Google berubah.";
             throw new Error(`Ditolak Google: ${pesanErrorAsli}`);
