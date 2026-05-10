@@ -1,19 +1,37 @@
-/* =========================================
-   AIFORA FUTURISTIC THEME - V2.0
-   ========================================= */
+/* ==========================================================================
+   AIFORA PORTFOLIO THEME - CSS UTAMA
+   ========================================================================== */
 
+/* --- 1. VARIABEL & TEMA (DARK/LIGHT MODE) --- */
 :root {
-    --bg-dark: #070b14;
-    --bg-gradient: radial-gradient(circle at 10% 20%, #111a2e 0%, #070b14 100%);
-    --primary: #149ddd;
-    --primary-glow: rgba(20, 157, 221, 0.5);
-    --secondary: #38bdf8;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --glass-bg: rgba(17, 25, 40, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    /* Tema Terang (Default) */
+    --bg-color: #f8f9fa;
+    --text-color: #272829;
+    --text-muted: #6f7180;
+    --sidebar-bg: #040b14;
+    --sidebar-text: #a8a9b4;
+    --accent-color: #149ddd;
+    --accent-hover: #37b3ed;
+    --card-bg: #ffffff;
+    --border-color: #eaeaec;
+    --shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
 }
 
+[data-theme="dark"] {
+    /* Tema Gelap (Cyber/Modern) */
+    --bg-color: #0b1120;
+    --text-color: #f8fafc;
+    --text-muted: #94a3b8;
+    --sidebar-bg: #040b14;
+    --sidebar-text: #a8a9b4;
+    --accent-color: #149ddd;
+    --accent-hover: #37b3ed;
+    --card-bg: #1e293b;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 2. RESET & PENGATURAN UMUM --- */
 * {
     margin: 0;
     padding: 0;
@@ -26,282 +44,430 @@ html {
 
 body {
     font-family: 'Inter', sans-serif;
-    background: var(--bg-gradient);
-    background-attachment: fixed;
-    color: var(--text-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
     line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
     overflow-x: hidden;
 }
 
-/* --- NAVBAR (Navigasi Kaca) --- */
-.navbar {
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+/* --- 3. SIDEBAR NAVIGASI (#header) --- */
+#header {
     position: fixed;
     top: 0;
-    width: 100%;
-    padding: 1rem 5%;
-    background: rgba(7, 11, 20, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--glass-border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    transition: all 0.5s;
+    z-index: 9997;
+    background: var(--sidebar-bg);
+    padding: 0 15px;
+    overflow-y: auto;
 }
 
-.nav-logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
-
-.nav-logo span {
-    color: var(--primary);
-}
-
-.nav-links a {
-    color: var(--text-main);
-    text-decoration: none;
-    margin-left: 1.5rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover, .nav-links a.admin-link:hover {
-    color: var(--primary);
-}
-
-/* --- HERO SECTION --- */
-.hero-section {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
-    position: relative;
-}
-
-.hero-content {
-    z-index: 2;
-    margin-top: 60px;
-    animation: fadeIn 1.2s ease-out;
-}
-
-/* Styling Foto Profil */
-.profile-img-container {
-    width: 160px;
-    height: 160px;
-    margin: 0 auto 1.5rem auto;
-    border-radius: 50%;
-    padding: 4px;
-    background: linear-gradient(135deg, var(--primary), #8b5cf6);
-    box-shadow: 0 0 25px var(--primary-glow);
-}
-
-.profile-img {
-    width: 100%;
-    height: 100%;
+.profile img {
+    margin: 15px auto;
+    display: block;
+    width: 120px;
+    height: 120px;
+    border: 8px solid #2c2f3f;
     object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid var(--bg-dark);
 }
 
-/* Efek Glitch Teks */
-.glitch {
-    font-size: 3.5rem;
-    font-weight: 800;
-    position: relative;
-    color: white;
-    text-shadow: 0 0 10px var(--primary-glow);
-    margin-bottom: 0.5rem;
+.profile h1 {
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    text-align: center;
 }
 
-.hero-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
+.profile h1 a, .profile h1 a:hover {
+    color: #fff;
 }
 
-.hero-tags span {
+.social-links a {
     display: inline-block;
-    background: rgba(20, 157, 221, 0.1);
-    border: 1px solid var(--primary);
-    color: var(--secondary);
-    padding: 6px 15px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    margin: 0 5px;
+    background: #212431;
+    color: #fff;
+    line-height: 1;
+    padding: 8px 0;
+    margin-right: 4px;
+    border-radius: 50%;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
 }
 
-/* --- MAIN CONTENT & GLASS SECTION --- */
-.main-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+.social-links a:hover {
+    background: var(--accent-color);
+    color: #fff;
 }
 
-.glass-section {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 3rem;
-    margin-bottom: 3rem;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+.nav-menu {
+    padding: 30px 0 0 0;
 }
 
-.section-title {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-    color: white;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 15px;
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    margin-bottom: 15px;
+}
+
+.nav-menu a, .nav-menu a:focus {
     display: flex;
     align-items: center;
-    gap: 12px;
+    color: var(--sidebar-text);
+    padding: 12px 15px;
+    font-size: 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: 0.3s;
 }
 
-.section-title i {
-    color: var(--primary);
+.nav-menu a i, .nav-menu a:focus i {
+    font-size: 20px;
+    padding-right: 12px;
+    color: #6f7180;
+    transition: 0.3s;
 }
 
-.sub-section-title {
-    font-size: 1.2rem;
-    color: var(--secondary);
-    margin-bottom: 1.5rem;
+.nav-menu a:hover, .nav-menu .active, .nav-menu .active:focus {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
 }
 
-/* --- KARTU (CARD GRID) --- */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+.nav-menu a:hover i, .nav-menu .active i, .nav-menu .active:focus i {
+    color: var(--accent-color);
 }
 
-.card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
+/* --- 4. MAIN CONTENT & MOBILE LAYOUT --- */
+#main {
+    margin-left: 300px;
+    transition: margin-left 0.5s;
+}
+
+.mobile-nav-toggle {
+    position: fixed;
+    right: 15px;
+    top: 15px;
+    z-index: 9998;
+    border: 0;
+    font-size: 24px;
+    transition: all 0.4s;
+    outline: none !important;
+    background-color: var(--accent-color);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.desktop-hide {
+    display: none;
+}
+
+@media (max-width: 1199px) {
+    #header { left: -300px; }
+    #main { margin-left: 0; }
+    .desktop-hide { display: inline-flex; }
+    .mobile-nav-active #header { left: 0; }
+    .mobile-nav-active { overflow: hidden; }
+}
+
+/* --- 5. HERO SECTION ("MY REMINDER") --- */
+#hero {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg-color);
+    display: flex;
+    align-items: center;
     position: relative;
     overflow: hidden;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.06);
-    border-color: var(--primary);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px var(--primary-glow) inset;
+.hero-content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
 }
 
-.card h3 {
-    font-size: 1.2rem;
-    color: var(--text-main);
-    margin-bottom: 0.5rem;
+.hero-text-box {
+    flex: 1;
+    min-width: 300px;
+    padding-right: 30px;
+    z-index: 2;
 }
 
-.card .meta {
-    font-size: 0.85rem;
-    color: var(--secondary);
-    background: rgba(20, 157, 221, 0.1);
-    padding: 4px 10px;
-    border-radius: 6px;
-    display: inline-block;
-    margin-bottom: 1rem;
+.hero-text-box h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--text-color);
 }
 
-.card p {
-    font-size: 0.95rem;
+.hero-text-box p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 15px;
+    line-height: 1.8;
+}
+
+.hero-img-box {
+    flex: 1;
+    min-width: 300px;
+    text-align: right;
+}
+
+.hero-img-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+@media (max-width: 992px) {
+    .hero-content-wrapper { flex-direction: column; text-align: center; margin-top: 60px; }
+    .hero-text-box { padding-right: 0; margin-bottom: 40px; }
+    .hero-text-box p { border-left: none; padding-left: 0; }
+    .hero-img-box { text-align: center; }
+}
+
+/* --- 6. BAGIAN UMUM (SECTIONS) --- */
+.section {
+    padding: 60px 0;
+    overflow: hidden;
+}
+
+.bg-alt {
+    background: rgba(20, 157, 221, 0.03);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    color: var(--text-color);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--accent-color);
+    bottom: 0;
+    left: 0;
+}
+
+.section-subtitle {
+    margin-bottom: 40px;
     color: var(--text-muted);
 }
 
-/* --- TIMELINE (Untuk Organisasi & Webinar) --- */
-.dual-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 3rem;
+.sub-heading {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.timeline-container {
-    border-left: 2px solid var(--primary);
+/* --- 7. ABOUT & TIMELINE PENDIDIKAN --- */
+.about-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.tech-icons i {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-right: 15px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.tech-icons i:hover {
+    transform: scale(1.2);
+}
+
+.timeline {
+    border-left: 2px solid var(--accent-color);
     padding-left: 20px;
     margin-left: 10px;
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 25px;
 }
 
-.timeline-item::before {
-    content: '';
+.timeline-dot {
     position: absolute;
     left: -27px;
     top: 5px;
     width: 12px;
     height: 12px;
-    background: var(--bg-dark);
-    border: 2px solid var(--primary);
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--primary-glow);
+    background: var(--bg-color);
+    border: 2px solid var(--accent-color);
 }
 
 .timeline-item h4 {
-    color: var(--text-main);
     font-size: 1.1rem;
-    margin-bottom: 4px;
-}
-
-.timeline-item span {
-    color: var(--primary);
-    font-size: 0.85rem;
-    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-color);
 }
 
 .timeline-item p {
+    font-size: 0.9rem;
     color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+    .about-wrapper { grid-template-columns: 1fr; }
+}
+
+/* --- 8. ACCORDION (REKAM JEJAK) --- */
+.track-record-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.track-accordion {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.accordion-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: var(--card-bg);
+}
+
+.accordion-header h3 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.accordion-header i.fa-chevron-down {
+    transition: transform 0.3s ease;
+    color: var(--text-muted);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    background: rgba(0,0,0,0.02);
+}
+
+.track-accordion.active .accordion-header i.fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.track-accordion.active .accordion-content {
+    max-height: 1500px;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- 9. GRID UNTUK PORTOFOLIO, LAB, LIBRARY --- */
+.portfolio-grid, .lab-grid, .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* --- 10. ANIMASI SCROLL (REVEAL) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* --- FOOTER --- */
 .footer {
+    padding: 30px;
     text-align: center;
-    padding: 2rem;
-    border-top: 1px solid var(--glass-border);
-    margin-top: 2rem;
-    color: var(--text-muted);
+    background: var(--card-bg);
+    border-top: 1px solid var(--border-color);
 }
 
-.footer-socials {
-    margin-top: 1rem;
-}
-
-.footer-socials a {
+.social-links-footer a {
+    font-size: 1.5rem;
     color: var(--text-muted);
-    font-size: 1.2rem;
     margin: 0 10px;
-    transition: color 0.3s;
+    transition: 0.3s;
 }
 
-.footer-socials a:hover {
-    color: var(--primary);
+.social-links-footer a:hover {
+    color: var(--accent-color);
 }
 
-/* Animasi */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsif untuk HP */
-@media (max-width: 768px) {
-    .glitch { font-size: 2.5rem; }
-    .hero-tags span { margin-bottom: 10px; }
-    .glass-section { padding: 1.5rem; }
-    .dual-grid { grid-template-columns: 1fr; gap: 2rem; }
+.footer p {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
 }
