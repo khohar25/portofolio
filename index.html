@@ -3,29 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portofolio Digital Khohar Muhamad Fatahurrohman - Pengembang Web, AI Enthusiast, dan IT Student.">
     <title>Portofolio | Khohar Muhamad Fatahurrohman</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <i class="fas fa-bars mobile-nav-toggle desktop-hide" id="mobile-nav-toggle"></i>
+    <i class="fas fa-bars mobile-nav-toggle desktop-hide" id="mobile-nav-toggle" aria-label="Buka navigasi menu"></i>
 
     <header id="header">
-        <div style="display: flex; flex-direction: column; height: 100%;">
+        <div class="sidebar-wrapper" style="display: flex; flex-direction: column; height: 100%;">
 
             <div class="profile">
-                <img src="aku.jpeg" alt="Khohar Muhamad Fatahurrohman" class="img-fluid rounded-circle">
+                <img src="aku.jpeg" alt="Foto Profil Khohar Muhamad Fatahurrohman" class="img-fluid rounded-circle" loading="lazy">
                 <h1 class="text-light"><a href="index.html">Khohar M.F.</a></h1>
                 <div class="social-links mt-3 text-center">
-                    <a href="https://github.com/khohar25" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog"><i class="fab fa-blogger"></i></a>
+                    <a href="https://github.com/khohar25" target="_blank" title="GitHub" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog" rel="noopener noreferrer"><i class="fab fa-blogger"></i></a>
                     <a href="mailto:khoharrohman@gmail.com" title="Email Saya"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork"><i class="fas fa-briefcase"></i></a>
-                    <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork" rel="noopener noreferrer"><i class="fas fa-briefcase"></i></a>
+                    <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
 
@@ -63,7 +67,7 @@
                 </div>
                 
                 <div class="hero-img-box">
-                    <img src="bg.png" alt="Khohar Muhamad Fatahurrohman" class="animate-img">
+                    <img src="bg.png" alt="Latar Belakang My Reminder" class="animate-img" loading="lazy">
                 </div>
             </div>
         </section>
@@ -218,11 +222,11 @@
 
         <footer class="footer reveal">
             <div class="social-links-footer text-center">
-                <a href="https://github.com/khohar25" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog"><i class="fab fa-blogger"></i></a>
+                <a href="https://github.com/khohar25" target="_blank" title="GitHub" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog" rel="noopener noreferrer"><i class="fab fa-blogger"></i></a>
                 <a href="mailto:khoharrohman@gmail.com" title="Email Saya"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork"><i class="fas fa-briefcase"></i></a>
-                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork" rel="noopener noreferrer"><i class="fas fa-briefcase"></i></a>
+                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
             </div>
             <p>&copy; 2026 Khohar Muhamad Fatahurrohman.</p>
         </footer>
@@ -231,14 +235,14 @@
 
     <script src="script.js"></script>
     <script>
-        // Hamburger Menu
+        // Hamburger Menu Logic
         document.getElementById('mobile-nav-toggle').addEventListener('click', function() {
             document.body.classList.toggle('mobile-nav-active');
             this.classList.toggle('fa-bars');
             this.classList.toggle('fa-times');
         });
 
-        // 1. LOGIKA ANIMASI SCROLL (Mendeteksi elemen saat masuk layar)
+        // Logika Animasi Scroll Bawaan
         const revealCallback = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -249,16 +253,10 @@
         const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.15 });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // 2. LOGIKA ACCORDION REKAM JEJAK
+        // Logika Accordion Rekam Jejak
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => {
                 const parent = header.parentElement;
-                
-                // Opsional: Jika ingin membuka satu, yang lain otomatis tertutup
-                // document.querySelectorAll('.track-accordion').forEach(acc => {
-                //     if(acc !== parent) acc.classList.remove('active');
-                // });
-
                 parent.classList.toggle('active');
             });
         });
