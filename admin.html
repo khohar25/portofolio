@@ -17,9 +17,9 @@
 <body>
     <div class="card">
         <h2>AIFORA AI Router</h2>
-        <p style="font-size: 0.85rem; color: #888;">Upload sertifikat/dokumen. AI akan otomatis memilah dan mengisinya ke Database.</p>
+        <p style="font-size: 0.85rem; color: #888;">Upload sertifikat (Gambar/PDF). AI akan otomatis memilah dan mengisinya ke Database.</p>
         
-        <input type="file" id="fileUpload" accept="image/*">
+        <input type="file" id="fileUpload" accept="image/*,application/pdf">
         <button id="btnUpload" onclick="prosesData()">Ekstrak & Simpan</button>
         <div id="status"></div>
     </div>
@@ -32,19 +32,31 @@
             if (!fileInput) return statusEl.innerText = "Pilih file dulu!";
             
             try {
-                // 1. KOMPRESI GAMBAR
-                statusEl.innerText = "Mengecilkan ukuran gambar...";
-                const compressedFile = await browserImageCompression(fileInput, { maxSizeMB: 0.3, maxWidthOrHeight: 1920 });
+                let fileToProcess = fileInput;
+
+                // LOGIKA BARU: Cek apakah file itu gambar atau PDF
+                if (fileInput.type.startsWith('image/')) {
+                    statusEl.innerText = "Mengecilkan ukuran gambar...";
+                    fileToProcess = await browserImageCompression(fileInput, { maxSizeMB: 0.3, maxWidthOrHeight: 1920 });
+                } else if (fileInput.type === 'application/pdf') {
+                    // Cek ukuran PDF agar tidak bikin Vercel timeout (Maksimal 5MB)
+                    if (fileInput.size > 5 * 1024 * 1024) {
+                        return statusEl.innerHTML = `<span style="color: #e74c3c;">❌ PDF terlalu besar! Maks 5MB.</span>`;
+                    }
+                    statusEl.innerText = "Membaca file PDF...";
+                } else {
+                    return statusEl.innerHTML = `<span style="color: #e74c3c;">❌ Format tidak didukung. Hanya Gambar dan PDF.</span>`;
+                }
                 
-                // 2. UBAH KE FORMAT BASE64
+                // UBAH KE FORMAT BASE64
                 statusEl.innerText = "Menerjemahkan untuk AI...";
                 const reader = new FileReader();
-                reader.readAsDataURL(compressedFile);
+                reader.readAsDataURL(fileToProcess);
                 reader.onloadend = async function() {
                     const base64data = reader.result.split(',')[1];
-                    const mimeType = compressedFile.type;
+                    const mimeType = fileToProcess.type;
 
-                    // 3. KIRIM KE BACKEND VERCEL
+                    // KIRIM KE BACKEND VERCEL
                     statusEl.innerText = "Robot AI sedang berpikir dan mengetik ke Database...";
                     const response = await fetch('/api/ekstrak', {
                         method: 'POST',
@@ -61,6 +73,7 @@
                     }
                 }
             } catch (error) {
+                console.error(error);
                 statusEl.innerHTML = `<span style="color: #e74c3c;">❌ Terjadi kesalahan proses.</span>`;
             }
         }
