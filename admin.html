@@ -3,61 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khohar Rohman Admin Area</title>
+    <title>AIFORA | Pusat Kendali AI</title>
+    
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.1/dist/browser-image-compression.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: #e0e0e0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: #1e1e1e; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); text-align: center; max-width: 400px; width: 100%; border-top: 4px solid #149ddd; }
-        input[type="file"] { margin: 20px 0; display: block; width: 100%; }
-        button { background: #149ddd; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
-        button:hover { background: #0e7ba8; }
-        #status { margin-top: 15px; font-size: 0.9rem; color: #a8a9b4; }
+        :root {
+            --primary: #149ddd; /* Warna biru khas portofolio Anda */
+            --primary-hover: #0c82b8;
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            /* Latar belakang gradient yang elegan */
+            background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Desain Kartu Glassmorphism */
+        .admin-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .header-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 15px rgba(20, 157, 221, 0.4));
+        }
+
+        h2 { margin: 0 0 0.5rem 0; font-weight: 700; font-size: 1.6rem; letter-spacing: -0.5px; }
+        p.subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; }
+        
+        /* Area Upload Drag & Drop */
+        .upload-zone {
+            border: 2px dashed rgba(20, 157, 221, 0.4);
+            border-radius: 16px;
+            padding: 2rem 1rem;
+            background: rgba(20, 157, 221, 0.03);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-zone:hover {
+            background: rgba(20, 157, 221, 0.08);
+            border-color: var(--primary);
+        }
+
+        .upload-zone i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
+        .upload-zone span { display: block; font-size: 0.95rem; font-weight: 600; color: var(--text-main); }
+        .upload-zone small { display: block; font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; }
+        
+        /* Input file disembunyikan agar terlihat transparan di atas zona klik */
+        input[type="file"] {
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer;
+        }
+
+        /* Notifikasi Nama File */
+        .file-info {
+            display: none;
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            border: 1px solid rgba(255,255,255,0.1);
+            word-break: break-all;
+        }
+
+        /* Tombol Eksekusi */
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button:hover:not(:disabled) { 
+            background: var(--primary-hover); 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 20px rgba(20, 157, 221, 0.3); 
+        }
+
+        button:disabled { 
+            background: #475569; 
+            cursor: not-allowed; 
+            opacity: 0.8;
+        }
+
+        /* Kotak Status Animasi */
+        #status-box {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            display: none;
+            line-height: 1.5;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .status-info { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; }
+        .status-success { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #6ee7b7; }
+        .status-error { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; }
+        
+        /* Animasi Loading Muter */
+        .spinner {
+            display: none;
+            width: 18px; height: 18px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2>Khohar Rohman</h2>
-        <p style="font-size: 0.85rem; color: #888;">Upload sertifikat (Gambar/PDF). AI akan otomatis memilah dan mengisinya ke Database.</p>
+
+    <div class="admin-container">
+        <i class="fas fa-brain header-icon"></i>
+        <h2>AIFORA AI Router</h2>
+        <p class="subtitle">Unggah sertifikat atau kredensial Anda. Sistem AI akan otomatis memilah dan menyinkronkan data ke Database utama.</p>
         
-        <input type="file" id="fileUpload" accept="image/*,application/pdf">
-        <button id="btnUpload" onclick="prosesData()">Ekstrak & Simpan</button>
-        <div id="status"></div>
+        <div class="upload-zone">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <span>Pilih File Gambar atau PDF</span>
+            <small>Maksimal ukuran file PDF 5MB</small>
+            <input type="file" id="fileUpload" accept="image/*,application/pdf" onchange="tampilkanNamaFile()">
+        </div>
+
+        <div class="file-info" id="fileInfo">
+            <i class="fas fa-file-alt"></i> <span id="fileNameText">namafile.jpg</span>
+        </div>
+
+        <button id="btnUpload" onclick="prosesData()">
+            <span id="btnText">Ekstrak & Simpan ke Server</span>
+            <div class="spinner" id="btnSpinner"></div>
+        </button>
+
+        <div id="status-box"></div>
     </div>
 
     <script>
+        // UX Feedback: Menampilkan nama file saat dipilih
+        function tampilkanNamaFile() {
+            const input = document.getElementById('fileUpload');
+            const fileInfo = document.getElementById('fileInfo');
+            const fileNameText = document.getElementById('fileNameText');
+            
+            if (input.files.length > 0) {
+                fileNameText.textContent = input.files[0].name;
+                fileInfo.style.display = 'block';
+                tampilkanStatus('', 'none'); // Sembunyikan error lama jika ada
+            }
+        }
+
+        // Fungsi Helper untuk mengatur notifikasi UI
+        function tampilkanStatus(pesan, tipe) {
+            const statusBox = document.getElementById('status-box');
+            if (tipe === 'none') {
+                statusBox.style.display = 'none';
+                return;
+            }
+            statusBox.style.display = 'block';
+            statusBox.className = ''; // Reset class
+            statusBox.classList.add(`status-${tipe}`);
+            
+            let icon = '';
+            if (tipe === 'info') icon = '<i class="fas fa-sync-alt fa-spin"></i> ';
+            if (tipe === 'success') icon = '<i class="fas fa-check-circle"></i> ';
+            if (tipe === 'error') icon = '<i class="fas fa-exclamation-triangle"></i> ';
+            
+            statusBox.innerHTML = icon + pesan;
+        }
+
+        // Fungsi Eksekusi Utama
         async function prosesData() {
             const fileInput = document.getElementById('fileUpload').files[0];
-            const statusEl = document.getElementById('status');
+            const btn = document.getElementById('btnUpload');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
             
-            if (!fileInput) return statusEl.innerText = "Pilih file dulu!";
+            if (!fileInput) return tampilkanStatus("Harap pilih file terlebih dahulu!", "error");
             
+            // Ubah UI Tombol ke Mode Loading
+            btn.disabled = true;
+            btnText.textContent = "Memproses...";
+            btnSpinner.style.display = "block";
+            tampilkanStatus("Menyiapkan dokumen...", "info");
+
             try {
                 let fileToProcess = fileInput;
 
-                // LOGIKA BARU: Cek apakah file itu gambar atau PDF
+                // Logika Pengecekan Format
                 if (fileInput.type.startsWith('image/')) {
-                    statusEl.innerText = "Mengecilkan ukuran gambar...";
+                    tampilkanStatus("Mengecilkan resolusi gambar agar cepat diproses...", "info");
                     fileToProcess = await browserImageCompression(fileInput, { maxSizeMB: 0.3, maxWidthOrHeight: 1920 });
                 } else if (fileInput.type === 'application/pdf') {
-                    // Cek ukuran PDF agar tidak bikin Vercel timeout (Maksimal 5MB)
                     if (fileInput.size > 5 * 1024 * 1024) {
-                        return statusEl.innerHTML = `<span style="color: #e74c3c;">❌ PDF terlalu besar! Maks 5MB.</span>`;
+                        throw new Error("File PDF melebihi batas 5MB.");
                     }
-                    statusEl.innerText = "Membaca file PDF...";
+                    tampilkanStatus("Menganalisis dokumen PDF...", "info");
                 } else {
-                    return statusEl.innerHTML = `<span style="color: #e74c3c;">❌ Format tidak didukung. Hanya Gambar dan PDF.</span>`;
+                    throw new Error("Format file tidak diizinkan. Hanya menerima Gambar dan PDF.");
                 }
                 
-                // UBAH KE FORMAT BASE64
-                statusEl.innerText = "Menerjemahkan untuk AI...";
+                // Menerjemahkan File untuk dikirim via API
+                tampilkanStatus("Menghubungkan ke Gemini AI Engine...", "info");
                 const reader = new FileReader();
                 reader.readAsDataURL(fileToProcess);
+                
                 reader.onloadend = async function() {
                     const base64data = reader.result.split(',')[1];
                     const mimeType = fileToProcess.type;
 
-                    // KIRIM KE BACKEND VERCEL
-                    statusEl.innerText = "Robot AI sedang berpikir dan mengetik ke Database...";
+                    tampilkanStatus("AI sedang mengekstrak teks dan menyimpan ke Database...", "info");
+                    
                     const response = await fetch('/api/ekstrak', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -65,16 +263,30 @@
                     });
 
                     const result = await response.json();
+                    
                     if (result.success) {
-                        statusEl.innerHTML = `<span style="color: #2ecc71;">✅ Sukses! ${result.message}</span>`;
-                        document.getElementById('fileUpload').value = ""; // Reset form
+                        tampilkanStatus(`Berhasil! Data telah tersimpan di sistem.`, "success");
+                        // Reset Form setelah sukses
+                        document.getElementById('fileUpload').value = "";
+                        document.getElementById('fileInfo').style.display = "none";
                     } else {
-                        statusEl.innerHTML = `<span style="color: #e74c3c;">❌ Error: ${result.error}</span>`;
+                        tampilkanStatus(result.error, "error");
                     }
+                    
+                    // Kembalikan Tombol ke Normal
+                    kembalikanTombol();
                 }
             } catch (error) {
                 console.error(error);
-                statusEl.innerHTML = `<span style="color: #e74c3c;">❌ Terjadi kesalahan proses.</span>`;
+                tampilkanStatus(error.message || "Terjadi kesalahan internal pada sistem.", "error");
+                kembalikanTombol();
+            }
+
+            // Fungsi Helper untuk memulihkan tombol
+            function kembalikanTombol() {
+                btn.disabled = false;
+                btnText.textContent = "Ekstrak & Simpan ke Server";
+                btnSpinner.style.display = "none";
             }
         }
     </script>
