@@ -1,10 +1,9 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     if (req.method !== 'POST') return res.status(405).json({ error: 'Hanya menerima POST' });
 
     try {
         const { imageBase64, mimeType, manualText } = req.body;
 
-        // 1. SUPER PROMPT: INSTRUKSI RAHASIA UNTUK GEMINI AI
         const basePrompt = `Kamu adalah Asisten AI canggih untuk ekstraksi data portofolio IT.
         Tugasmu: Analisis input (gambar atau teks) ini dan tentukan masuk ke HANYA SATU tabel yang paling relevan.
         Ekstrak datanya dan WAJIB gunakan nama kolom (key JSON) yang PERSIS seperti panduan ini:
@@ -43,7 +42,6 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: "Data kosong." });
         }
 
-        // 2. MENGIRIM KE GEMINI 1.5 FLASH
         const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
         const geminiResponse = await fetch(geminiUrl, {
             method: 'POST',
@@ -61,7 +59,6 @@ export default async function handler(req, res) {
         aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
         const finalData = JSON.parse(aiText);
 
-        // 3. MENYIMPAN HASIL KE SUPABASE
         const supabaseUrl = process.env.SUPABASE_URL;
         const supabaseKey = process.env.SUPABASE_KEY;
         
