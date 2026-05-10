@@ -7,190 +7,100 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.1/dist/browser-image-compression.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         :root { --primary: #149ddd; --bg-dark: #0f172a; --card-bg: rgba(30, 41, 59, 0.7); --text-main: #f8fafc; }
         body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
         .admin-container { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2rem; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); width: 100%; max-width: 450px; }
-        h2 { margin: 0 0 1rem 0; font-size: 1.5rem; text-align: center; }
-        
-        /* Tab Menu */
         .tabs { display: flex; background: rgba(0,0,0,0.2); border-radius: 10px; margin-bottom: 1.5rem; overflow: hidden; }
-        .tab-btn { flex: 1; padding: 12px; background: transparent; border: none; color: #888; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .tab-btn { flex: 1; padding: 12px; background: transparent; border: none; color: #888; font-weight: 600; cursor: pointer; }
         .tab-btn.active { background: var(--primary); color: white; }
-        .tab-content { display: none; text-align: left; }
+        .tab-content { display: none; }
         .tab-content.active { display: block; }
-
-        /* Mode Upload Gambar */
-        .upload-zone { border: 2px dashed var(--primary); border-radius: 12px; padding: 2rem 1rem; text-align: center; position: relative; cursor: pointer; margin-bottom: 1rem; background: rgba(20,157,221,0.05); }
-        .upload-zone input[type="file"] { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer; }
-        
-        /* Mode Manual Form */
+        .upload-zone { border: 2px dashed var(--primary); border-radius: 12px; padding: 2rem; text-align: center; position: relative; margin-bottom: 1rem; }
+        .upload-zone input { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer; }
         .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 0.85rem; color: #aaa; margin-bottom: 4px; }
-        input[type="text"], textarea { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; font-family: 'Inter', sans-serif; box-sizing: border-box; }
-        textarea { height: 110px; resize: vertical; line-height: 1.5; }
-        
-        button.action-btn { background: var(--primary); color: white; border: none; padding: 14px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; transition: 0.3s; margin-top: 10px; }
-        button.action-btn:hover { background: #0c82b8; }
-        button.action-btn:disabled { background: #475569; cursor: not-allowed; }
-        
-        #status-box { margin-top: 1rem; padding: 1rem; border-radius: 8px; display: none; text-align: center; font-size: 0.9rem; word-break: break-word; }
+        input, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; box-sizing: border-box; }
+        button { background: var(--primary); color: white; border: none; padding: 14px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; }
+        #status-box { margin-top: 1rem; padding: 10px; border-radius: 8px; display: none; font-size: 0.85rem; text-align: center; }
     </style>
 </head>
 <body>
-
     <div class="admin-container">
-        <h2>Pusat Kendali Data</h2>
-        
+        <h2 style="text-align:center;">Pusat Kendali Data</h2>
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('ai')"><i class="fas fa-camera"></i> Gambar/PDF</button>
-            <button class="tab-btn" onclick="switchTab('manual')"><i class="fas fa-keyboard"></i> Ketik Manual</button>
+            <button class="tab-btn active" onclick="switchTab('ai')">Gambar/PDF</button>
+            <button class="tab-btn" onclick="switchTab('manual')">Ketik Manual</button>
         </div>
-
         <div id="tab-ai" class="tab-content active">
-            <p style="font-size:0.85rem; color:#aaa; margin-bottom:1rem; text-align:center;">Sistem akan memilah dan mengetik otomatis.</p>
             <div class="upload-zone">
-                <i class="fas fa-cloud-upload-alt" style="font-size:2rem; color:#149ddd; margin-bottom:10px;"></i>
-                <div id="fileName" style="font-weight:bold;">Pilih File / Drop ke Sini</div>
+                <i class="fas fa-cloud-upload-alt"></i>
+                <div id="fileName">Pilih Sertifikat</div>
                 <input type="file" id="fileUpload" accept="image/*,application/pdf" onchange="document.getElementById('fileName').innerText = this.files[0].name;">
             </div>
-            <button class="action-btn" id="btnUpload" onclick="prosesData('gambar')"><i class="fas fa-magic"></i> Ekstrak AI</button>
+            <button id="btnUpload" onclick="prosesData('gambar')">Ekstrak AI (G-3.1)</button>
         </div>
-
         <div id="tab-manual" class="tab-content">
-            <p style="font-size:0.85rem; color:#aaa; margin-bottom:1rem; text-align:center;">Lempar semua catatan ke kotak deskripsi, AI akan membedahnya.</p>
-            
-            <div class="form-group">
-                <label>Judul Pencapaian / Proyek (Wajib)</label>
-                <input type="text" id="m_judul" placeholder="Cth: Aplikasi Virtual Power Plant / Juara 1 Desain">
-            </div>
-            <div class="form-group">
-                <label>Peran / Kategori (Wajib)</label>
-                <input type="text" id="m_peran" placeholder="Cth: Proyek Web / Peserta / Sertifikasi">
-            </div>
-            <div class="form-group">
-                <label>Penyelenggara / Klien</label>
-                <input type="text" id="m_instansi" placeholder="Cth: Kampus / Kemenkominfo">
-            </div>
-            <div class="form-group">
-                <label>Tahun</label>
-                <input type="text" id="m_tahun" placeholder="Cth: 2026">
-            </div>
-            <div class="form-group">
-                <label>Deskripsi (Bisa campur Tech Stack & Link!)</label>
-                <textarea id="m_deskripsi" placeholder="Cth: Aplikasi ini mengatasi masalah lemotnya server. Dibangun pakai ESP32 dan Python. Cek di https://proyek.com"></textarea>
-            </div>
-            
-            <button class="action-btn" id="btnManual" onclick="prosesData('teks')"><i class="fas fa-brain"></i> Kirim ke AI Router</button>
+            <div class="form-group"><input type="text" id="m_judul" placeholder="Judul/Kegiatan"></div>
+            <div class="form-group"><input type="text" id="m_peran" placeholder="Sebagai Apa"></div>
+            <div class="form-group"><input type="text" id="m_instansi" placeholder="Instansi"></div>
+            <div class="form-group"><input type="text" id="m_tahun" placeholder="Tahun"></div>
+            <div class="form-group"><textarea id="m_deskripsi" placeholder="Deskripsi, Tech Stack, atau Link..."></textarea></div>
+            <button id="btnManual" onclick="prosesData('teks')">Kirim ke AI Router</button>
         </div>
-
         <div id="status-box"></div>
     </div>
 
     <script>
-        // Logika Ganti Tab
         function switchTab(tabId) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             event.currentTarget.classList.add('active');
             document.getElementById(`tab-${tabId}`).classList.add('active');
-            tampilkanStatus('none');
         }
 
-        // Logika Menampilkan Status/Error
-        function tampilkanStatus(pesan, warna = '#149ddd') {
-            const sb = document.getElementById('status-box');
-            if (pesan === 'none') { sb.style.display = 'none'; return; }
-            sb.style.display = 'block'; 
-            sb.style.background = warna + '20';
-            sb.style.color = warna; 
-            sb.style.border = `1px solid ${warna}`;
-            sb.innerHTML = pesan;
+        function tampilkanStatus(pesan, warna) {
+            const s = document.getElementById('status-box');
+            s.style.display = 'block'; s.style.color = warna; s.style.border = `1px solid ${warna}`;
+            s.innerHTML = pesan;
         }
 
-        // Fungsi Eksekusi Utama
         async function prosesData(mode) {
             let payload = {};
-
-            // Persiapan Data Mode Gambar
             if (mode === 'gambar') {
-                const fileInput = document.getElementById('fileUpload').files[0];
-                if (!fileInput) return tampilkanStatus("❌ Pilih file terlebih dahulu!", '#e74c3c');
-                
-                document.getElementById('btnUpload').disabled = true;
-                tampilkanStatus('<i class="fas fa-spinner fa-spin"></i> Menyiapkan file...', '#149ddd');
-
+                const file = document.getElementById('fileUpload').files[0];
+                if (!file) return alert("Pilih file!");
+                tampilkanStatus("Mengompres & Mengirim...", "#149ddd");
                 try {
-                    let fileToProcess = fileInput;
-                    if (fileInput.type.startsWith('image/')) {
-                        fileToProcess = await browserImageCompression(fileInput, { maxSizeMB: 0.3, maxWidthOrHeight: 1920 });
-                    }
-                    const base64String = await new Promise((resolve) => {
-                        const reader = new FileReader();
-                        reader.readAsDataURL(fileToProcess);
-                        reader.onloadend = () => resolve(reader.result.split(',')[1]);
-                    });
-                    payload = { imageBase64: base64String, mimeType: fileToProcess.type };
-                } catch (err) {
-                    document.getElementById('btnUpload').disabled = false;
-                    return tampilkanStatus("❌ Gagal membaca file.", '#e74c3c');
-                }
-            } 
-            // Persiapan Data Mode Ketik Manual
-            else if (mode === 'teks') {
-                const judul = document.getElementById('m_judul').value;
-                const peran = document.getElementById('m_peran').value;
-                if (!judul || !peran) return tampilkanStatus("❌ Judul dan Peran wajib diisi!", '#e74c3c');
-
-                document.getElementById('btnManual').disabled = true;
-                tampilkanStatus('<i class="fas fa-spinner fa-spin"></i> Merakit teks untuk AI...', '#149ddd');
-
-                const gabunganTeks = `Judul: ${judul}\nPeran/Kategori: ${peran}\nInstansi: ${document.getElementById('m_instansi').value}\nTahun: ${document.getElementById('m_tahun').value}\nDeskripsi Campuran: ${document.getElementById('m_deskripsi').value}`;
-                payload = { manualText: gabunganTeks };
+                    // KOMPRESI EKSTREM (Max 100KB) agar tidak kena Payload Too Large
+                    const compressed = await browserImageCompression(file, { maxSizeMB: 0.1, maxWidthOrHeight: 1024 });
+                    const reader = new FileReader();
+                    reader.readAsDataURL(compressed);
+                    reader.onloadend = async () => {
+                        payload = { imageBase64: reader.result.split(',')[1], mimeType: compressed.type };
+                        kirimKeAPI(payload, mode);
+                    };
+                    return;
+                } catch(e) { tampilkanStatus("Gagal baca file", "red"); }
+            } else {
+                payload = { manualText: `Judul: ${document.getElementById('m_judul').value}\nPeran: ${document.getElementById('m_peran').value}\nInstansi: ${document.getElementById('m_instansi').value}\nTahun: ${document.getElementById('m_tahun').value}\nDeskripsi: ${document.getElementById('m_deskripsi').value}` };
+                kirimKeAPI(payload, mode);
             }
+        }
 
-            // Mengirim ke Backend Vercel
+        async function kirimKeAPI(payload, mode) {
             try {
-                tampilkanStatus('<i class="fas fa-spinner fa-spin"></i> AI sedang memproses ke Database...', '#149ddd');
-                const response = await fetch('/api/ekstrak', {
+                const res = await fetch('/api/ekstrak', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-                
-                // Menerima response sebagai teks murni terlebih dahulu (PENTING untuk deteksi error Vercel)
-                const textResult = await response.text(); 
-                
-                try {
-                    // Mencoba mengubah teks menjadi JSON
-                    const result = JSON.parse(textResult);
-                    
-                    if (result.success) {
-                        tampilkanStatus(`✅ ${result.message}`, '#2ecc71');
-                        // Bersihkan form setelah sukses
-                        if(mode === 'teks') {
-                            document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
-                        } else {
-                            document.getElementById('fileName').innerText = "Pilih File / Drop ke Sini";
-                            document.getElementById('fileUpload').value = "";
-                        }
-                    } else {
-                        tampilkanStatus(`❌ ${result.error}`, '#e74c3c');
-                    }
-                } catch (jsonError) {
-                    // Jika Vercel crash dan melempar halaman HTML/Error bukan JSON
-                    console.error("Respon Server:", textResult);
-                    tampilkanStatus(`❌ Server Error (Cek log Console F12). Respon: ${textResult.substring(0, 60)}...`, '#e74c3c');
-                }
-
-            } catch (error) {
-                tampilkanStatus(`❌ Kesalahan jaringan / Backend tidak merespon: ${error.message}`, '#e74c3c');
-            } finally {
-                // Aktifkan kembali tombol
-                document.getElementById('btnUpload').disabled = false;
-                document.getElementById('btnManual').disabled = false;
-            }
+                const text = await res.text();
+                const json = JSON.parse(text);
+                if (json.success) {
+                    tampilkanStatus(`✅ ${json.message}`, "#2ecc71");
+                    if(mode === 'teks') document.querySelectorAll('input, textarea').forEach(i => i.value = '');
+                } else { tampilkanStatus(`❌ ${json.error}`, "#e74c3c"); }
+            } catch (e) { tampilkanStatus("❌ Error Jaringan/Server", "#e74c3c"); }
         }
     </script>
 </body>
