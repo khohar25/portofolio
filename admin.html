@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIFORA Admin Area</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.1/dist/browser-image-compression.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: #e0e0e0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: #1e1e1e; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); text-align: center; max-width: 400px; width: 100%; border-top: 4px solid #149ddd; }
+        input[type="file"] { margin: 20px 0; display: block; width: 100%; }
+        button { background: #149ddd; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
+        button:hover { background: #0e7ba8; }
+        #status { margin-top: 15px; font-size: 0.9rem; color: #a8a9b4; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>AIFORA AI Router</h2>
+        <p style="font-size: 0.85rem; color: #888;">Upload sertifikat/dokumen. AI akan otomatis memilah dan mengisinya ke Database.</p>
+        
+        <input type="file" id="fileUpload" accept="image/*">
+        <button id="btnUpload" onclick="prosesData()">Ekstrak & Simpan</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        async function prosesData() {
+            const fileInput = document.getElementById('fileUpload').files[0];
+            const statusEl = document.getElementById('status');
+            
+            if (!fileInput) return statusEl.innerText = "Pilih file dulu!";
+            
+            try {
+                // 1. KOMPRESI GAMBAR
+                statusEl.innerText = "Mengecilkan ukuran gambar...";
+                const compressedFile = await browserImageCompression(fileInput, { maxSizeMB: 0.3, maxWidthOrHeight: 1920 });
+                
+                // 2. UBAH KE FORMAT BASE64
+                statusEl.innerText = "Menerjemahkan untuk AI...";
+                const reader = new FileReader();
+                reader.readAsDataURL(compressedFile);
+                reader.onloadend = async function() {
+                    const base64data = reader.result.split(',')[1];
+                    const mimeType = compressedFile.type;
+
+                    // 3. KIRIM KE BACKEND VERCEL
+                    statusEl.innerText = "Robot AI sedang berpikir dan mengetik ke Database...";
+                    const response = await fetch('/api/ekstrak', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ imageBase64: base64data, mimeType: mimeType })
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        statusEl.innerHTML = `<span style="color: #2ecc71;">✅ Sukses! ${result.message}</span>`;
+                        document.getElementById('fileUpload').value = ""; // Reset form
+                    } else {
+                        statusEl.innerHTML = `<span style="color: #e74c3c;">❌ Error: ${result.error}</span>`;
+                    }
+                }
+            } catch (error) {
+                statusEl.innerHTML = `<span style="color: #e74c3c;">❌ Terjadi kesalahan proses.</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
