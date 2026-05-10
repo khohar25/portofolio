@@ -51,8 +51,10 @@ module.exports = async function handler(req, res) {
 
         const geminiData = await geminiResponse.json();
         
+        // --- BAGIAN YANG DIREVISI UNTUK MENANGKAP ERROR ASLI GOOGLE ---
         if (!geminiData.candidates || geminiData.candidates.length === 0) {
-            throw new Error("Gagal mendapatkan respon dari AI.");
+            const pesanErrorAsli = geminiData.error ? geminiData.error.message : "Format respon Google berubah.";
+            throw new Error(`Ditolak Google: ${pesanErrorAsli}`);
         }
 
         let aiText = geminiData.candidates[0].content.parts[0].text;
