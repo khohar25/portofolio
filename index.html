@@ -26,8 +26,23 @@
 </head>
 <body>
 
+    <div class="sky-container notranslate">
+        <div class="celestial-body"></div>
+        <div class="stars-layer"></div>
+        <div class="cloud-layer c1"></div>
+        <div class="cloud-layer c2"></div>
+        <div class="cloud-layer c3"></div>
+    </div>
+
     <div class="top-controls">
-        <div id="google_translate_element"></div>
+        <div id="google_translate_element" style="display: none;"></div>
+        
+        <button id="lang-toggle" onclick="toggleLanguage()" aria-label="Ubah Bahasa" class="notranslate">
+            <i class="fas fa-language"></i> <span>ID / EN</span>
+        </button>
+
+        <div style="width: 1px; height: 20px; background-color: var(--border-color); margin: 0 10px;"></div>
+        
         <button id="theme-toggle" aria-label="Toggle Dark Mode">
             <i class="fas fa-moon"></i>
         </button>
@@ -39,7 +54,7 @@
         <div class="sidebar-wrapper" style="display: flex; flex-direction: column; height: 100%;">
             <div class="profile">
                 <img src="aku.jpeg" alt="Foto Profil Khohar Muhamad Fatahurrohman" class="img-fluid rounded-circle" loading="lazy">
-                <h1 class="text-light"><a href="index.html">Khohar M.F.</a></h1>
+                <h1 class="text-light notranslate"><a href="index.html">Khohar M.F.</a></h1>
                 <div class="social-links mt-3 text-center">
                     <a href="https://github.com/khohar25" target="_blank" title="GitHub" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
                     <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog" rel="noopener noreferrer"><i class="fab fa-blogger"></i></a>
@@ -70,18 +85,10 @@
     <main id="main">
 
         <section id="hero">
-            <div class="sky-container">
-                <div class="celestial-body"></div>
-                <div class="stars-layer"></div>
-                <div class="cloud-layer c1"></div>
-                <div class="cloud-layer c2"></div>
-                <div class="cloud-layer c3"></div>
-            </div>
-            
             <div class="hero-content-wrapper">
                 <div class="hero-text-box reveal">
                     <h1 class="animate-text-1 notranslate">"MY REMINDER"</h1>
-                    <p class="animate-text-2">"Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal..."</p>
+                    <p class="animate-text-2">"Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal. Saya tidak sedang berlomba dengan siapa pun. Apa yang orang lain bisa belum tentu saya bisa, begitu juga sebaliknya. Saat ini, saya hanya fokus pada progres diri sendiri."</p>
                 </div>
                 
                 <div class="hero-img-box reveal">
@@ -161,50 +168,27 @@
                 
                 <div class="track-record-grid">
                     <div class="track-accordion">
-                        <div class="accordion-header">
-                            <h3><i class="fas fa-trophy" style="color: #f59e0b;"></i> Penghargaan & Medali</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+                        <div class="accordion-header"><h3><i class="fas fa-trophy" style="color: #f59e0b;"></i> Penghargaan & Medali</h3><i class="fas fa-chevron-down"></i></div>
                         <div class="accordion-content" id="juara-container"></div>
                     </div>
-
                     <div class="track-accordion">
-                        <div class="accordion-header">
-                            <h3><i class="fas fa-medal" style="color: #3b82f6;"></i> Partisipasi Sains</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+                        <div class="accordion-header"><h3><i class="fas fa-medal" style="color: #3b82f6;"></i> Partisipasi Sains</h3><i class="fas fa-chevron-down"></i></div>
                         <div class="accordion-content" id="peserta-sains-container"></div>
                     </div>
-
                     <div class="track-accordion">
-                        <div class="accordion-header">
-                            <h3><i class="fas fa-users" style="color: #10b981;"></i> Organisasi & Kepanduan</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+                        <div class="accordion-header"><h3><i class="fas fa-users" style="color: #10b981;"></i> Organisasi & Kepanduan</h3><i class="fas fa-chevron-down"></i></div>
                         <div class="accordion-content" id="organisasi-container"></div>
                     </div>
-
                     <div class="track-accordion">
-                        <div class="accordion-header">
-                            <h3><i class="fas fa-flag" style="color: #ef4444;"></i> Event & Kegiatan</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+                        <div class="accordion-header"><h3><i class="fas fa-flag" style="color: #ef4444;"></i> Event & Kegiatan</h3><i class="fas fa-chevron-down"></i></div>
                         <div class="accordion-content" id="event-container"></div>
                     </div>
-
                     <div class="track-accordion">
-                        <div class="accordion-header">
-                            <h3><i class="fas fa-laptop-code" style="color: #8b5cf6;"></i> Seminar & Webinar</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+                        <div class="accordion-header"><h3><i class="fas fa-laptop-code" style="color: #8b5cf6;"></i> Seminar & Webinar</h3><i class="fas fa-chevron-down"></i></div>
                         <div class="accordion-content" id="seminar-container"></div>
                     </div>
-
                     <div class="track-accordion">
-                        <div class="accordion-header">
-                            <h3><i class="fas fa-clipboard-list" style="color: #14b8a6;"></i> Pelatihan & Panitia</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+                        <div class="accordion-header"><h3><i class="fas fa-clipboard-list" style="color: #14b8a6;"></i> Pelatihan & Panitia</h3><i class="fas fa-chevron-down"></i></div>
                         <div class="accordion-content" id="pelatihan-container"></div>
                     </div>
                 </div>
@@ -243,7 +227,7 @@
                     <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.05rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                         Tempat saya mendokumentasikan eksplorasi rekayasa perangkat lunak, AI, IoT, serta tulisan lepas lainnya.
                     </p>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit" style="display: inline-block; background: var(--accent-color); color: white; padding: 12px 30px; border-radius: 8px; font-weight: bold; text-decoration: none;">
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit">
                         Kunjungi Blog / Artikel <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
                     </a>
                 </div>
@@ -252,11 +236,11 @@
 
         <footer class="footer reveal">
             <div class="social-links-footer text-center">
-                <a href="https://github.com/khohar25" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                <a href="https://khoharmuhamad.blogspot.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-blogger"></i></a>
+                <a href="https://github.com/khohar25" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://khoharmuhamad.blogspot.com" target="_blank"><i class="fab fa-blogger"></i></a>
                 <a href="mailto:khoharrohman@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" rel="noopener noreferrer"><i class="fas fa-briefcase"></i></a>
-                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank"><i class="fas fa-briefcase"></i></a>
+                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
             <p>&copy; 2026 Khohar Muhamad Fatahurrohman.</p>
         </footer>
@@ -265,30 +249,39 @@
 
     <script src="script.js"></script>
     <script>
-        // Logika Hamburger Menu Mobile
+        // LOGIKA TOMBOL CUSTOM GOOGLE TRANSLATE (ID / EN)
+        function toggleLanguage() {
+            var selectField = document.querySelector('.goog-te-combo');
+            if (selectField) {
+                var currentLang = selectField.value || 'id';
+                var newLang = currentLang === 'id' ? 'en' : 'id';
+                
+                selectField.value = newLang;
+                selectField.dispatchEvent(new Event('change'));
+            } else {
+                alert("Mesin bahasa sedang dimuat, tunggu sebentar...");
+            }
+        }
+
+        // Mencegah error banner google translate saat halaman di-translate
+        window.addEventListener('load', function() {
+            var bodyObj = document.getElementsByTagName('body')[0];
+            if(bodyObj) { bodyObj.style.top = '0px'; }
+        });
+
+        // Hamburger Menu & Scroll Reveal
         document.getElementById('mobile-nav-toggle').addEventListener('click', function() {
             document.body.classList.toggle('mobile-nav-active');
             this.classList.toggle('fa-bars');
             this.classList.toggle('fa-times');
         });
 
-        // Logika Reveal saat di Scroll
-        const revealCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        };
+        const revealCallback = (entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); }}); };
         const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.15 });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // Logika Accordion Rekam Jejak
         document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const parent = header.parentElement;
-                parent.classList.toggle('active');
-            });
+            header.addEventListener('click', () => { header.parentElement.classList.toggle('active'); });
         });
     </script>
 </body>
