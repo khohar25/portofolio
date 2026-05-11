@@ -37,12 +37,8 @@ module.exports = async function handler(req, res) {
             return res.status(400).json({ error: "Data kosong." });
         }
 
-        // --- MENGGUNAKAN API KEY BARU YANG FRESH ---
-        const GEMINI_API_KEY = "AIzaSyB-xSY9Q3bmOCfDTj1_pg7a5gQSBfsoUcE";
-        const SUPABASE_URL = "https://xwwlegzacxevmlmtceqh.supabase.co";
-        const SUPABASE_KEY = "sb_publishable_XOx2kuvillkXt606CwAtiw_Vax_EvQL";
-
-        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+        // MENGAMBIL KUNCI SECARA AMAN DARI VERCEL
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
         
         const geminiResponse = await fetch(geminiUrl, {
             method: 'POST',
@@ -61,11 +57,11 @@ module.exports = async function handler(req, res) {
         aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
         const finalData = JSON.parse(aiText);
 
-        const insertResponse = await fetch(`${SUPABASE_URL}/rest/v1/${finalData.tabel_tujuan}`, {
+        const insertResponse = await fetch(`${process.env.SUPABASE_URL}/rest/v1/${finalData.tabel_tujuan}`, {
             method: 'POST',
             headers: {
-                'apikey': SUPABASE_KEY,
-                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'apikey': process.env.SUPABASE_KEY,
+                'Authorization': `Bearer ${process.env.SUPABASE_KEY}`,
                 'Content-Type': 'application/json',
                 'Prefer': 'return=minimal'
             },
