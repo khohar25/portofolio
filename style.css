@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AIFORA PORTFOLIO THEME - CSS ULTIMATE (MODERN UI V2)
+   AIFORA PORTFOLIO THEME - CSS ULTIMATE (MODERN UI V2 + SKY ANIMATION)
    ========================================================================== */
 
 /* --- 1. VARIABEL & TEMA (DARK/LIGHT MODE DINAMIS) --- */
@@ -175,7 +175,7 @@ a:hover { color: var(--accent-hover); }
     .mobile-nav-active { overflow: hidden; }
 }
 
-/* --- 5. HERO SECTION ("MY REMINDER") --- */
+/* --- 5. HERO SECTION ("MY REMINDER") & ANIMASI LANGIT --- */
 #hero {
     width: 100%; min-height: 100vh; background: var(--bg-color);
     display: flex; align-items: center; position: relative; overflow: hidden;
@@ -186,6 +186,32 @@ a:hover { color: var(--accent-hover); }
     background-image: radial-gradient(var(--text-muted) 1px, transparent 1px);
     background-size: 30px 30px; opacity: 0.1; z-index: 0;
 }
+
+/* Animasi Langit (Siang & Malam) */
+.sky-container {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;
+}
+.celestial-body {
+    position: absolute; top: 15%; right: 10%; font-size: 5rem; transition: all 0.5s ease;
+}
+
+/* Mode Terang: Matahari */
+[data-theme="light"] .celestial-body::before { 
+    content: '\f185'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #fbbf24; animation: spin-slow 20s linear infinite; display: inline-block; 
+}
+
+/* Mode Gelap: Bulan & Bintang */
+[data-theme="dark"] .celestial-body::before { 
+    content: '\f186'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #e2e8f0; transform: rotate(-20deg); display: inline-block;
+}
+
+[data-theme="dark"] .sky-container {
+    background-image: radial-gradient(#fff 1px, transparent 1px), radial-gradient(#fff 1px, transparent 1px);
+    background-size: 50px 50px, 100px 100px; background-position: 0 0, 25px 25px; animation: twinkle 5s infinite; opacity: 0.3;
+}
+
+@keyframes spin-slow { 100% { transform: rotate(360deg); } }
+@keyframes twinkle { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.5; } }
 
 .hero-content-wrapper {
     display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
@@ -249,7 +275,12 @@ a:hover { color: var(--accent-hover); }
 .sub-heading { font-size: 1.5rem; color: var(--text-color); margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
 
 /* --- 7. ABOUT & TIMELINE PENDIDIKAN --- */
-.about-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+.about-wrapper { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 50px; 
+    align-items: start; /* Mengatasi tidak sejajar */
+}
 .tech-icons i {
     font-size: 2.5rem; color: var(--text-muted); margin-right: 15px; margin-top: 15px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -277,10 +308,9 @@ a:hover { color: var(--accent-hover); }
 /* --- 8. REKAM JEJAK BERUBAH JADI KARTU (GRID ACCORDION) --- */
 .track-record-grid {
     display: grid;
-    /* Ini rahasianya: otomatis membagi jadi kolom mirip kartu! */
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 25px;
-    align-items: start; /* Mencegah kartu melar ke bawah */
+    align-items: start;
 }
 
 .track-accordion {
@@ -297,7 +327,7 @@ a:hover { color: var(--accent-hover); }
 .track-accordion:hover {
     border-color: var(--accent-color);
     box-shadow: var(--shadow);
-    transform: translateY(-5px); /* Efek kartu terangkat saat disentuh */
+    transform: translateY(-5px); 
 }
 
 .accordion-header {
@@ -336,7 +366,7 @@ a:hover { color: var(--accent-hover); }
 }
 
 .track-accordion.active .accordion-content {
-    max-height: 2500px; /* Diperbesar agar isi bisa muat banyak */
+    max-height: 2500px;
     padding: 25px; border-top: 1px solid var(--border-color);
 }
 
@@ -393,7 +423,14 @@ a:hover { color: var(--accent-hover); }
 .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-/* --- FOOTER --- */
+/* --- 12. TOMBOL SUBMIT & FOOTER --- */
+.btn-submit {
+    display: inline-block; background: var(--accent-color); color: white;
+    padding: 12px 30px; border-radius: 8px; font-weight: bold; transition: 0.3s;
+    text-decoration: none; border: none; cursor: pointer;
+}
+.btn-submit:hover { background: var(--accent-hover); transform: translateY(-3px); box-shadow: var(--glow); color: white;}
+
 .footer { padding: 40px 30px; text-align: center; background: var(--card-bg); border-top: 1px solid var(--border-color); }
 .social-links-footer { margin-bottom: 20px; }
 .social-links-footer a {
