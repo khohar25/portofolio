@@ -1,23 +1,18 @@
 /* ==========================================================================
-   AIFORA PORTFOLIO THEME - CSS BERSIH & ELEGAN (FIX SEMUA BUG)
+   AIFORA PORTFOLIO THEME - CSS BERSIH (FIX 8 PLANET & TEMA)
    ========================================================================== */
 
 :root {
-    /* DEFAULT THEME BERSIH (LIGHT MODE) */
-    --bg-color: #f8f9fa; 
-    --text-color: #272829; --text-muted: #6f7180;
+    --bg-color: #f8f9fa; --text-color: #272829; --text-muted: #6f7180;
     --sidebar-bg: rgba(255, 255, 255, 0.85); --sidebar-text: #475569;
     --sidebar-heading: #1e293b; --sidebar-border: rgba(0, 0, 0, 0.05);
-    --accent-color: #149ddd; /* Warna Biru IT yang elegan */
-    --accent-hover: #37b3ed; --card-bg: #ffffff;
+    --accent-color: #149ddd; --accent-hover: #37b3ed; --card-bg: #ffffff;
     --border-color: #eaeaec; --shadow: 0px 8px 25px rgba(0, 0, 0, 0.05);
     --glow: 0px 8px 25px rgba(20, 157, 221, 0.2);
 }
 
 [data-theme="dark"] {
-    /* MALAM (DARK MODE) */
-    --bg-color: #0b1120;
-    --text-color: #f8fafc; --text-muted: #94a3b8;
+    --bg-color: #0b1120; --text-color: #f8fafc; --text-muted: #94a3b8;
     --sidebar-bg: rgba(4, 11, 20, 0.85); --sidebar-text: #a8a9b4;
     --sidebar-heading: #ffffff; --sidebar-border: rgba(255, 255, 255, 0.05);
     --accent-color: #149ddd; --accent-hover: #37b3ed; --card-bg: #1e293b;
@@ -55,21 +50,24 @@ a:hover { color: var(--accent-hover); }
 .desktop-hide { display: none; }
 @media (max-width: 1199px) { #header { left: -300px; } #main { margin-left: 0; } .desktop-hide { display: inline-flex; } .mobile-nav-active #header { left: 0; } .mobile-nav-active { overflow: hidden; } }
 
-/* --- KONTROL ATAS CUSTOM (FIX TRANSLATE) --- */
+/* --- KONTROL ATAS CUSTOM --- */
 .top-controls { position: fixed; top: 20px; right: 80px; z-index: 10000; display: flex; align-items: center; background: var(--sidebar-bg); padding: 8px 15px; border-radius: 50px; border: 1px solid var(--border-color); box-shadow: var(--shadow); backdrop-filter: blur(10px); }
 #lang-toggle, #theme-toggle { background: transparent; border: none; font-family: 'Inter', sans-serif; color: var(--text-color); font-size: 1.1rem; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
 #lang-toggle:hover, #theme-toggle:hover { color: var(--accent-color); transform: scale(1.05); }
 
-/* Sembunyikan banner Google Translate yang merusak tampilan */
+/* Membersihkan jejak Google Translate asli */
 .goog-te-banner-frame { display: none !important; }
+.skiptranslate { display: none !important; }
 body { top: 0 !important; position: static !important; }
 @media (max-width: 768px) { .top-controls { top: 15px; right: 75px; padding: 5px 12px; } #lang-toggle span { font-size: 0.9rem; } }
 
-/* --- ANIMASI LANGIT GLOBAL BERSIH (TANPA SENJA) --- */
+/* ==========================================================================
+   ANIMASI LANGIT & 8 PLANET TATA SURYA
+   ========================================================================== */
 .sky-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--bg-color); pointer-events: none; z-index: -10; overflow: hidden; transition: background-color 0.6s; }
-.celestial-body { position: absolute; top: 15%; right: 15%; font-size: 5rem; transition: 0.5s; z-index: 2; }
 
-/* Siang: Bersih, Matahari Kuning, Awan Putih Biasa */
+/* Siang: Matahari Kuning & Awan Putih Biasa */
+.celestial-body { position: absolute; top: 15%; right: 15%; font-size: 5rem; transition: 0.5s; z-index: 2; }
 [data-theme="light"] .celestial-body::before { content: '\f185'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #fbbf24; animation: spin-slow 20s linear infinite; display: inline-block; }
 .cloud-layer { position: absolute; background: white; border-radius: 50%; filter: blur(12px); opacity: 0; transition: 0.5s; z-index: 1; display: none; }
 [data-theme="light"] .cloud-layer { opacity: 0.8; display: block; }
@@ -78,19 +76,36 @@ body { top: 0 !important; position: static !important; }
 .c2 { top: 40%; left: -200px; animation: floatObj 45s linear infinite 10s; } .c2::before { width: 80px; height: 80px; box-shadow: 50px 10px 0 -10px #fff, 90px -10px 0 #fff; }
 .c3 { top: 10%; left: -250px; animation: floatObj 35s linear infinite 5s; } .c3::before { width: 90px; height: 90px; box-shadow: 45px 15px 0 -5px #fff, 100px 5px 0 #fff; }
 
-/* Malam: Bintang & Planet Keren */
+/* Malam: Bintang */
 [data-theme="dark"] .celestial-body::before { content: '\f186'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #e2e8f0; filter: drop-shadow(0 0 15px rgba(255,255,255,0.5)); transform: rotate(-20deg); display: inline-block; }
 .stars-layer { position: absolute; width: 100%; height: 100%; z-index: 1; opacity: 0; transition: 0.5s; display: none; background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent), radial-gradient(2px 2px at 150px 80px, #fff, transparent), radial-gradient(2px 2px at 80px 150px, #fff, transparent), radial-gradient(2px 2px at 250px 60px, #fff, transparent), radial-gradient(2px 2px at 300px 200px, #fff, transparent); background-repeat: repeat; background-size: 350px 350px; animation: twinkle 3s infinite alternate; }
 [data-theme="dark"] .stars-layer { opacity: 0.8; display: block; }
 
+/* 8 PLANET TATA SURYA */
 .planet { position: absolute; border-radius: 50%; opacity: 0; display: none; z-index: 1; transition: 0.5s; }
 [data-theme="dark"] .planet { opacity: 0.9; display: block; }
-.p1 { width: 80px; height: 80px; top: 25%; left: -10vw; background: radial-gradient(circle at 30% 30%, #4facfe, #00f2fe); box-shadow: inset -10px -10px 20px rgba(0,0,0,0.6), 0 0 15px rgba(79, 172, 254, 0.3); animation: floatObj 45s linear infinite; }
-.p2 { width: 120px; height: 120px; top: 65%; left: -10vw; background: radial-gradient(circle at 30% 30%, #f6d365, #fda085); box-shadow: inset -15px -15px 30px rgba(0,0,0,0.7), 0 0 20px rgba(253, 160, 133, 0.2); animation: floatObj 60s linear infinite 15s; }
+
+/* 1. Merkurius (Kecil, Abu, Cepat) */
+.p-merkurius { width: 18px; height: 18px; top: 10%; background: #a8a8a8; animation: floatObj 25s linear infinite; }
+/* 2. Venus (Kuning Oranye) */
+.p-venus { width: 30px; height: 30px; top: 25%; background: #e08926; animation: floatObj 35s linear infinite 5s; }
+/* 3. Bumi (Biru Hijau) */
+.p-bumi { width: 40px; height: 40px; top: 45%; background: radial-gradient(circle, #4facfe, #228b22); animation: floatObj 45s linear infinite 10s; }
+/* 4. Mars (Merah) */
+.p-mars { width: 25px; height: 25px; top: 75%; background: #c1440e; animation: floatObj 55s linear infinite 15s; }
+/* 5. Jupiter (Raksasa Bergaris) */
+.p-jupiter { width: 120px; height: 120px; top: 15%; background: linear-gradient(to bottom, #d39c7e, #c88b3a, #e2c092, #a6582c); box-shadow: inset -15px -15px 30px rgba(0,0,0,0.6); animation: floatObj 80s linear infinite 2s; }
+/* 6. Saturnus (Kuning Pucat + Cincin) */
+.p-saturnus { width: 90px; height: 90px; top: 60%; background: #e3d599; animation: floatObj 90s linear infinite 25s; box-shadow: inset -10px -10px 20px rgba(0,0,0,0.6);}
+.p-saturnus::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotateX(75deg); width: 160px; height: 160px; border: 15px solid rgba(200, 180, 140, 0.6); border-radius: 50%; }
+/* 7. Uranus (Biru Pucat) */
+.p-uranus { width: 60px; height: 60px; top: 85%; background: #4b70dd; animation: floatObj 70s linear infinite 35s; }
+/* 8. Neptunus (Biru Gelap) */
+.p-neptunus { width: 60px; height: 60px; top: 35%; background: #274687; animation: floatObj 65s linear infinite 40s; }
 
 @keyframes spin-slow { 100% { transform: rotate(360deg); } }
 @keyframes twinkle { 0% { opacity: 0.3; transform: scale(1); } 100% { opacity: 0.8; transform: scale(1.05); } }
-@keyframes floatObj { 0% { transform: translateX(0) rotate(0deg); } 100% { transform: translateX(120vw) rotate(360deg); } }
+@keyframes floatObj { 0% { transform: translateX(-150px) rotate(0deg); } 100% { transform: translateX(120vw) rotate(360deg); } }
 
 /* --- HERO ASTRONOT --- */
 #hero { width: 100%; min-height: 100vh; background: transparent; display: flex; align-items: center; position: relative; overflow: hidden; }
