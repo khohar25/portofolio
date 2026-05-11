@@ -37,12 +37,12 @@ module.exports = async function handler(req, res) {
             return res.status(400).json({ error: "Data kosong." });
         }
 
-        const GEMINI_API_KEY = "AIzaSyBGnK5W3d9BLJBzUUEymjcoBWrL-ooK6SY";
+        // --- MENGGUNAKAN API KEY BARU YANG FRESH ---
+        const GEMINI_API_KEY = "AIzaSyB-xSY9Q3bmOCfDTj1_pg7a5gQSBfsoUcE";
         const SUPABASE_URL = "https://xwwlegzacxevmlmtceqh.supabase.co";
         const SUPABASE_KEY = "sb_publishable_XOx2kuvillkXt606CwAtiw_Vax_EvQL";
 
-        // GANTI KE GEMINI 1.5 PRO
-        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${GEMINI_API_KEY}`;
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
         
         const geminiResponse = await fetch(geminiUrl, {
             method: 'POST',
