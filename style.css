@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AIFORA PORTFOLIO THEME - CSS BERSIH (FIX 8 PLANET & TEMA)
+   AIFORA PORTFOLIO - MURNI CSS (DESAIN & ANIMASI)
    ========================================================================== */
 
 :root {
@@ -27,11 +27,12 @@ html { scroll-behavior: smooth; }
 ::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
 
-body { font-family: 'Inter', sans-serif; background-color: transparent; color: var(--text-color); line-height: 1.6; overflow-x: hidden; top: 0 !important; }
+body { font-family: 'Inter', sans-serif; background-color: transparent; color: var(--text-color); line-height: 1.6; overflow-x: hidden; top: 0 !important; position: static !important; }
 a { color: var(--accent-color); text-decoration: none; transition: 0.3s; }
 a:hover { color: var(--accent-hover); }
 
 /* --- SIDEBAR --- */
+.sidebar-wrapper { display: flex; flex-direction: column; height: 100%; }
 #header { position: fixed; top: 0; left: 0; bottom: 0; width: 300px; transition: 0.5s; z-index: 9997; background: var(--sidebar-bg); backdrop-filter: blur(12px); padding: 0 15px; overflow-y: auto; border-right: 1px solid var(--sidebar-border); }
 .profile img { margin: 25px auto 15px auto; display: block; width: 120px; height: 120px; border: 4px solid var(--accent-color); padding: 4px; background: var(--bg-color); object-fit: cover; transition: 0.4s; border-radius: 50%; }
 .profile img:hover { transform: scale(1.05) rotate(3deg); }
@@ -45,6 +46,8 @@ a:hover { color: var(--accent-hover); }
 .nav-menu a i { font-size: 20px; padding-right: 15px; color: var(--text-muted); transition: 0.3s; }
 .nav-menu a:hover, .nav-menu .active { color: var(--accent-color); background: rgba(var(--accent-color), 0.15); transform: translateX(5px); }
 .nav-menu a:hover i, .nav-menu .active i { color: var(--accent-color); }
+.sidebar-footer { margin-top: auto; font-size: 0.8rem; color: var(--text-muted); padding-bottom: 20px; text-align: center;}
+
 #main { margin-left: 300px; transition: 0.5s; position: relative; z-index: 1;}
 .mobile-nav-toggle { position: fixed; right: 20px; top: 20px; z-index: 9998; border: 0; font-size: 24px; background-color: var(--accent-color); color: #fff; width: 45px; height: 45px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; }
 .desktop-hide { display: none; }
@@ -53,20 +56,19 @@ a:hover { color: var(--accent-hover); }
 /* --- KONTROL ATAS CUSTOM --- */
 .top-controls { position: fixed; top: 20px; right: 80px; z-index: 10000; display: flex; align-items: center; background: var(--sidebar-bg); padding: 8px 15px; border-radius: 50px; border: 1px solid var(--border-color); box-shadow: var(--shadow); backdrop-filter: blur(10px); }
 #lang-toggle, #theme-toggle { background: transparent; border: none; font-family: 'Inter', sans-serif; color: var(--text-color); font-size: 1.1rem; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+#lang-toggle span { font-weight: 600; }
 #lang-toggle:hover, #theme-toggle:hover { color: var(--accent-color); transform: scale(1.05); }
+.separator { width: 1px; height: 20px; background-color: var(--border-color); margin: 0 10px; }
 
-/* Membersihkan jejak Google Translate asli */
+#google_translate_element { width: 1px; height: 1px; overflow: hidden; opacity: 0; position: absolute; z-index: -1; }
 .goog-te-banner-frame { display: none !important; }
 .skiptranslate { display: none !important; }
 body { top: 0 !important; position: static !important; }
 @media (max-width: 768px) { .top-controls { top: 15px; right: 75px; padding: 5px 12px; } #lang-toggle span { font-size: 0.9rem; } }
 
-/* ==========================================================================
-   ANIMASI LANGIT & 8 PLANET TATA SURYA
-   ========================================================================== */
-.sky-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--bg-color); pointer-events: none; z-index: -10; overflow: hidden; transition: background-color 0.6s; }
+/* --- ANIMASI LANGIT & 8 PLANET TATA SURYA --- */
+.sky-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--bg-color); pointer-events: none; z-index: -10; overflow: hidden; transition: background-color 0.4s ease; }
 
-/* Siang: Matahari Kuning & Awan Putih Biasa */
 .celestial-body { position: absolute; top: 15%; right: 15%; font-size: 5rem; transition: 0.5s; z-index: 2; }
 [data-theme="light"] .celestial-body::before { content: '\f185'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #fbbf24; animation: spin-slow 20s linear infinite; display: inline-block; }
 .cloud-layer { position: absolute; background: white; border-radius: 50%; filter: blur(12px); opacity: 0; transition: 0.5s; z-index: 1; display: none; }
@@ -76,31 +78,20 @@ body { top: 0 !important; position: static !important; }
 .c2 { top: 40%; left: -200px; animation: floatObj 45s linear infinite 10s; } .c2::before { width: 80px; height: 80px; box-shadow: 50px 10px 0 -10px #fff, 90px -10px 0 #fff; }
 .c3 { top: 10%; left: -250px; animation: floatObj 35s linear infinite 5s; } .c3::before { width: 90px; height: 90px; box-shadow: 45px 15px 0 -5px #fff, 100px 5px 0 #fff; }
 
-/* Malam: Bintang */
 [data-theme="dark"] .celestial-body::before { content: '\f186'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #e2e8f0; filter: drop-shadow(0 0 15px rgba(255,255,255,0.5)); transform: rotate(-20deg); display: inline-block; }
 .stars-layer { position: absolute; width: 100%; height: 100%; z-index: 1; opacity: 0; transition: 0.5s; display: none; background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent), radial-gradient(2px 2px at 150px 80px, #fff, transparent), radial-gradient(2px 2px at 80px 150px, #fff, transparent), radial-gradient(2px 2px at 250px 60px, #fff, transparent), radial-gradient(2px 2px at 300px 200px, #fff, transparent); background-repeat: repeat; background-size: 350px 350px; animation: twinkle 3s infinite alternate; }
 [data-theme="dark"] .stars-layer { opacity: 0.8; display: block; }
 
-/* 8 PLANET TATA SURYA */
 .planet { position: absolute; border-radius: 50%; opacity: 0; display: none; z-index: 1; transition: 0.5s; }
 [data-theme="dark"] .planet { opacity: 0.9; display: block; }
-
-/* 1. Merkurius (Kecil, Abu, Cepat) */
 .p-merkurius { width: 18px; height: 18px; top: 10%; background: #a8a8a8; animation: floatObj 25s linear infinite; }
-/* 2. Venus (Kuning Oranye) */
 .p-venus { width: 30px; height: 30px; top: 25%; background: #e08926; animation: floatObj 35s linear infinite 5s; }
-/* 3. Bumi (Biru Hijau) */
 .p-bumi { width: 40px; height: 40px; top: 45%; background: radial-gradient(circle, #4facfe, #228b22); animation: floatObj 45s linear infinite 10s; }
-/* 4. Mars (Merah) */
 .p-mars { width: 25px; height: 25px; top: 75%; background: #c1440e; animation: floatObj 55s linear infinite 15s; }
-/* 5. Jupiter (Raksasa Bergaris) */
 .p-jupiter { width: 120px; height: 120px; top: 15%; background: linear-gradient(to bottom, #d39c7e, #c88b3a, #e2c092, #a6582c); box-shadow: inset -15px -15px 30px rgba(0,0,0,0.6); animation: floatObj 80s linear infinite 2s; }
-/* 6. Saturnus (Kuning Pucat + Cincin) */
 .p-saturnus { width: 90px; height: 90px; top: 60%; background: #e3d599; animation: floatObj 90s linear infinite 25s; box-shadow: inset -10px -10px 20px rgba(0,0,0,0.6);}
 .p-saturnus::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotateX(75deg); width: 160px; height: 160px; border: 15px solid rgba(200, 180, 140, 0.6); border-radius: 50%; }
-/* 7. Uranus (Biru Pucat) */
 .p-uranus { width: 60px; height: 60px; top: 85%; background: #4b70dd; animation: floatObj 70s linear infinite 35s; }
-/* 8. Neptunus (Biru Gelap) */
 .p-neptunus { width: 60px; height: 60px; top: 35%; background: #274687; animation: floatObj 65s linear infinite 40s; }
 
 @keyframes spin-slow { 100% { transform: rotate(360deg); } }
@@ -123,15 +114,19 @@ body { top: 0 !important; position: static !important; }
 
 /* --- SECTIONS UMUM --- */
 .section { padding: 80px 0; overflow: hidden; background: transparent;}
-.bg-alt { background: rgba(20, 157, 221, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+.bg-alt { background: rgba(var(--accent-color), 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 30px; position: relative; z-index: 1; }
 .section-title { font-size: 36px; font-weight: 800; margin-bottom: 15px; padding-bottom: 20px; position: relative; color: var(--text-color); }
 .section-title::after { content: ''; position: absolute; display: block; width: 60px; height: 4px; border-radius: 4px; background: var(--accent-color); bottom: 0; left: 0; }
 .section-subtitle { margin-bottom: 50px; color: var(--text-muted); font-size: 1.1rem; }
+.divider-line { margin: 3rem auto; text-align: center; }
+.divider-line span { display: inline-block; width: 60px; height: 5px; background-color: var(--accent-color); border-radius: 10px; opacity: 0.5; }
 
 .about-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
 .sub-heading-inline, .sub-heading { font-size: 1.5rem; color: var(--text-color); margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+.network-title { margin-top: 3rem; }
 .about-text p { margin-bottom: 15px; color: var(--text-color); }
+.tech-stack { margin-top: 2rem; }
 .tech-icons i { font-size: 2.5rem; color: var(--text-muted); margin-right: 15px; margin-top: 15px; transition: 0.3s; }
 .tech-icons i:hover { color: var(--accent-color); transform: translateY(-5px) scale(1.1); filter: drop-shadow(0 5px 10px rgba(var(--accent-color),0.3)); }
 .timeline { border-left: 2px dashed var(--border-color); padding-left: 25px; margin-left: 10px; }
@@ -170,6 +165,12 @@ body { top: 0 !important; position: static !important; }
 .list-card.active .list-desc { max-height: 800px; opacity: 1; margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--border-color); }
 .tech-tag { font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
 
+/* Artikel Custom */
+.article-card { text-align: center; padding: 50px 30px; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); }
+.article-icon { font-size: 4rem; color: var(--accent-color); margin-bottom: 20px; }
+.article-card h3 { margin-bottom: 15px; color: var(--text-color); }
+.article-card p { color: var(--text-muted); margin-bottom: 30px; }
+
 /* --- ANIMASI SCROLL & TOMBOL --- */
 .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s; }
 .reveal.active { opacity: 1; transform: translateY(0); }
@@ -178,7 +179,4 @@ body { top: 0 !important; position: static !important; }
 
 /* --- FOOTER --- */
 .footer { padding: 40px 30px; text-align: center; background: var(--card-bg); border-top: 1px solid var(--border-color); position: relative; z-index: 1;}
-.social-links-footer { margin-bottom: 20px; }
-.social-links-footer a { display: inline-block; font-size: 1.5rem; color: var(--text-muted); background: var(--bg-color); width: 45px; height: 45px; line-height: 45px; border-radius: 50%; margin: 0 8px; transition: 0.3s; border: 1px solid var(--border-color); }
-.social-links-footer a:hover { color: #fff; background: var(--accent-color); transform: translateY(-5px) rotate(360deg); border-color: var(--accent-color); box-shadow: var(--glow); }
 .footer p { margin: 0; font-size: 0.95rem; color: var(--text-muted); }
