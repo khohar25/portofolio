@@ -21,7 +21,7 @@
         .form-group { margin-bottom: 12px; }
         input, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; box-sizing: border-box; }
         button { background: var(--primary); color: white; border: none; padding: 14px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; }
-        #status-box { margin-top: 1rem; padding: 10px; border-radius: 8px; display: none; font-size: 0.85rem; text-align: center; }
+        #status-box { margin-top: 1rem; padding: 10px; border-radius: 8px; display: none; font-size: 0.85rem; text-align: center; word-break: break-word; }
     </style>
 </head>
 <body>
@@ -33,11 +33,11 @@
         </div>
         <div id="tab-ai" class="tab-content active">
             <div class="upload-zone">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <div id="fileName">Pilih Sertifikat</div>
+                <i class="fas fa-cloud-upload-alt" style="font-size:2rem; color:#149ddd; margin-bottom:10px;"></i>
+                <div id="fileName">Pilih File (Gambar/PDF)</div>
                 <input type="file" id="fileUpload" accept="image/*,application/pdf" onchange="document.getElementById('fileName').innerText = this.files[0].name;">
             </div>
-            <button id="btnUpload" onclick="prosesData('gambar')">Ekstrak AI (G-3.1)</button>
+            <button id="btnUpload" onclick="prosesData('gambar')">Ekstrak AI</button>
         </div>
         <div id="tab-manual" class="tab-content">
             <div class="form-group"><input type="text" id="m_judul" placeholder="Judul/Kegiatan"></div>
@@ -69,25 +69,43 @@
             if (mode === 'gambar') {
                 const file = document.getElementById('fileUpload').files[0];
                 if (!file) return alert("Pilih file!");
-                tampilkanStatus("Mengompres & Mengirim...", "#149ddd");
+                
+                // Pengecekan ukuran PDF agar tidak melebihi limit Vercel (Max 4MB)
+                if (file.type === 'application/pdf' && file.size > 4 * 1024 * 1024) {
+                    return tampilkanStatus("❌ Ukuran PDF maksimal 4MB!", "#e74c3c");
+                }
+
+                tampilkanStatus("Membaca file...", "#149ddd");
+                document.getElementById('btnUpload').disabled = true;
+
                 try {
-                    // KOMPRESI EKSTREM (Max 100KB) agar tidak kena Payload Too Large
-                    const compressed = await browserImageCompression(file, { maxSizeMB: 0.1, maxWidthOrHeight: 1024 });
+                    let fileToProcess = file;
+                    // Hanya lakukan kompresi jika file adalah gambar (JPG/PNG)
+                    if (file.type.startsWith('image/')) {
+                        fileToProcess = await browserImageCompression(file, { maxSizeMB: 0.1, maxWidthOrHeight: 1024 });
+                    }
+                    
                     const reader = new FileReader();
-                    reader.readAsDataURL(compressed);
+                    reader.readAsDataURL(fileToProcess);
                     reader.onloadend = async () => {
-                        payload = { imageBase64: reader.result.split(',')[1], mimeType: compressed.type };
-                        kirimKeAPI(payload, mode);
+                        payload = { imageBase64: reader.result.split(',')[1], mimeType: fileToProcess.type };
+                        await kirimKeAPI(payload, mode);
+                        document.getElementById('btnUpload').disabled = false;
                     };
-                    return;
-                } catch(e) { tampilkanStatus("Gagal baca file", "red"); }
+                } catch(e) { 
+                    tampilkanStatus("❌ Gagal membaca file.", "#e74c3c"); 
+                    document.getElementById('btnUpload').disabled = false;
+                }
             } else {
+                document.getElementById('btnManual').disabled = true;
                 payload = { manualText: `Judul: ${document.getElementById('m_judul').value}\nPeran: ${document.getElementById('m_peran').value}\nInstansi: ${document.getElementById('m_instansi').value}\nTahun: ${document.getElementById('m_tahun').value}\nDeskripsi: ${document.getElementById('m_deskripsi').value}` };
-                kirimKeAPI(payload, mode);
+                await kirimKeAPI(payload, mode);
+                document.getElementById('btnManual').disabled = false;
             }
         }
 
         async function kirimKeAPI(payload, mode) {
+            tampilkanStatus("Mengirim ke Server AI...", "#149ddd");
             try {
                 const res = await fetch('/api/ekstrak', {
                     method: 'POST',
@@ -95,12 +113,26 @@
                     body: JSON.stringify(payload)
                 });
                 const text = await res.text();
-                const json = JSON.parse(text);
-                if (json.success) {
-                    tampilkanStatus(`✅ ${json.message}`, "#2ecc71");
-                    if(mode === 'teks') document.querySelectorAll('input, textarea').forEach(i => i.value = '');
-                } else { tampilkanStatus(`❌ ${json.error}`, "#e74c3c"); }
-            } catch (e) { tampilkanStatus("❌ Error Jaringan/Server", "#e74c3c"); }
+                
+                try {
+                    const json = JSON.parse(text);
+                    if (json.success) {
+                        tampilkanStatus(`✅ ${json.message}`, "#2ecc71");
+                        if(mode === 'teks') {
+                            document.querySelectorAll('input, textarea').forEach(i => i.value = '');
+                        } else {
+                            document.getElementById('fileName').innerText = "Pilih File (Gambar/PDF)";
+                            document.getElementById('fileUpload').value = "";
+                        }
+                    } else { 
+                        tampilkanStatus(`❌ ${json.error}`, "#e74c3c"); 
+                    }
+                } catch (e) {
+                    tampilkanStatus(`❌ Server Error: ${text.substring(0, 60)}...`, "#e74c3c");
+                }
+            } catch (e) { 
+                tampilkanStatus("❌ Error Jaringan/Server", "#e74c3c"); 
+            }
         }
     </script>
 </body>
