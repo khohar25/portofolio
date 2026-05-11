@@ -26,7 +26,8 @@ const colorPalette = ['#007bff', '#2ecc71', '#9b59b6', '#e67e22', '#e74c3c', '#0
 
 // --- 2. KONFIGURASI SUPABASE ---
 const SUPABASE_URL = 'https://xwwlegzacxevmlmtceqh.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_XOx2kuvillkXt606CwAtiw_Vax_EvQL';
+// Ingat: Karena ditaruh di Frontend, wajib pakai kunci anon/public (yang berawalan eyJ...)
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3d2xlZ3phY3hldm1sbXRjZXFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MDA2NzEsImV4cCI6MjA5Mzk3NjY3MX0.C9qCfFVN9j8gtvsLVBFGh4I28gIRvJkYlp546-ssEgw';
 
 const headers = {
     'apikey': SUPABASE_KEY,
@@ -37,14 +38,16 @@ const headers = {
 // --- 3. FETCH, FILTER, & RENDER DATA DARI SUPABASE ---
 async function loadPortfolioData() {
     try {
-        const [resSertifikat, resOrganisasi, resWebinar, resPortofolio, resLab, resNetwork, resLibrary] = await Promise.all([
+        // PERUBAHAN: Menambahkan fetch untuk sertifikasi (jangan lupa cek penamaan tabel lab, network, library di Supabase kamu ya, pastikan tidak tertukar dengan laboratorium, jaringan, dll)
+        const [resSertifikat, resOrganisasi, resWebinar, resPortofolio, resLab, resNetwork, resLibrary, resSertifikasi] = await Promise.all([
             fetch(`${SUPABASE_URL}/rest/v1/sertifikat?select=*`, { headers }),
             fetch(`${SUPABASE_URL}/rest/v1/organisasi?select=*`, { headers }),
             fetch(`${SUPABASE_URL}/rest/v1/webinar?select=*`, { headers }),
             fetch(`${SUPABASE_URL}/rest/v1/portofolio?select=*`, { headers }),
             fetch(`${SUPABASE_URL}/rest/v1/lab?select=*`, { headers }),
             fetch(`${SUPABASE_URL}/rest/v1/network?select=*`, { headers }),
-            fetch(`${SUPABASE_URL}/rest/v1/library?select=*`, { headers })
+            fetch(`${SUPABASE_URL}/rest/v1/library?select=*`, { headers }),
+            fetch(`${SUPABASE_URL}/rest/v1/sertifikasi?select=*`, { headers })
         ]);
 
         const sertifikatData = await resSertifikat.json();
@@ -54,6 +57,7 @@ async function loadPortfolioData() {
         const labData = await resLab.json();
         const networkData = await resNetwork.json();
         const libraryData = await resLibrary.json();
+        const sertifikasiData = await resSertifikasi.json(); // Data baru ditangkap
 
         // --- RENDER 1 & 2: PENGHARGAAN VS PESERTA SAINS ---
         const juaraContainer = document.getElementById('juara-container');
@@ -156,6 +160,28 @@ async function loadPortfolioData() {
             });
         }
 
+        // --- PERUBAHAN: RENDER DATA SERTIFIKASI PROFESIONAL (KREDENSIAL) ---
+        if(sertifikasiData && sertifikasiData.length > 0) {
+            sertifikasiData.forEach((item, index) => {
+                let accentColor = colorPalette[(index + 2) % colorPalette.length];
+                let cardHTML = `
+                    <div class="list-card" style="--card-accent: ${accentColor};" onclick="this.classList.toggle('active')">
+                        <h4>${item.nama_sertifikasi} <i class="fas fa-chevron-down icon-chevron"></i></h4>
+                        <div class="list-meta">
+                            <span><i class="fas fa-certificate"></i> ${item.penerbit}</span>
+                            <span><i class="fas fa-calendar-alt"></i> ${item.tanggal_terbit}</span>
+                        </div>
+                        <div class="list-desc">
+                            Lisensi / Sertifikasi Profesional.
+                            ${item.link_kredensial ? `<br><br><a href="${item.link_kredensial}" target="_blank" style="color: ${accentColor}; text-decoration: none; font-weight: bold;"><i class="fas fa-external-link-alt"></i> Verifikasi Kredensial</a>` : ''}
+                        </div>
+                    </div>
+                `;
+                // Dimasukkan ke container Pelatihan & Panitia (Bisa disesuaikan kalau mau bikin ID container sendiri)
+                if(pelatihanContainer) { pelatihanContainer.innerHTML += cardHTML; } 
+            });
+        }
+
         // --- RENDER DATA JEJARING (NETWORK) ---
         const networkContainer = document.getElementById('network-container');
         if(networkData && networkData.length > 0 && networkContainer) {
@@ -200,7 +226,7 @@ async function loadPortfolioData() {
                     <div class="card" style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border-left: 4px solid ${accentColor}; box-shadow: var(--shadow);">
                         <h3 style="margin-top:0; color: var(--text-color);">${item.judul_riset}</h3>
                         <span class="tech-tag" style="color: ${accentColor}; border: 1px solid ${accentColor}; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem;">${item.status}</span>
-                        <p style="margin-top: 15px; color: var(--text-muted); font-size: 0.95rem;">${item.deskripsi}</p>
+                        <p style="margin-top: 15px; color: var(--text-muted); font-size: 0.95rem;">${item.deskripsi || item.Deskripsi || '-'}</p>
                     </div>
                 `;
             });
