@@ -36,8 +36,14 @@
     </div>
 
     <div class="top-controls notranslate">
-        <div id="google_translate_element"></div>
+        <div id="google_translate_element" style="display: none;"></div>
+        
+        <button id="lang-toggle" onclick="toggleLanguage()" aria-label="Ubah Bahasa">
+            <i class="fas fa-language"></i> <span id="lang-text" style="font-weight: 600;">ID / EN</span>
+        </button>
+
         <div style="width: 1px; height: 20px; background-color: var(--border-color); margin: 0 10px;"></div>
+        
         <button id="theme-toggle" aria-label="Toggle Dark Mode">
             <i class="fas fa-moon"></i>
         </button>
@@ -51,11 +57,11 @@
                 <img src="aku.jpeg" alt="Foto Profil Khohar Muhamad" class="img-fluid rounded-circle" loading="lazy">
                 <h1 class="text-light notranslate"><a href="index.html">Khohar M.F.</a></h1>
                 <div class="social-links mt-3 text-center">
-                    <a href="https://github.com/khohar25" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog"><i class="fab fa-blogger"></i></a>
-                    <a href="mailto:khoharrohman@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork"><i class="fas fa-briefcase"></i></a>
-                    <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/khohar25" target="_blank" title="GitHub" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog" rel="noopener noreferrer"><i class="fab fa-blogger"></i></a>
+                    <a href="mailto:khoharrohman@gmail.com" title="Email Saya"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork" rel="noopener noreferrer"><i class="fas fa-briefcase"></i></a>
+                    <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
 
@@ -88,6 +94,7 @@
                 
                 <div class="hero-img-box reveal">
                     <div class="astronaut-costume-container">
+                        <img src="aku.jpeg" alt="Khohar Muhamad" class="user-photo-base">
                         <img src="bg.png" alt="Kostum Astronot" class="helmet-overlay-frame">
                     </div>
                 </div>
@@ -228,11 +235,11 @@
 
         <footer class="footer reveal">
             <div class="social-links-footer text-center">
-                <a href="https://github.com/khohar25" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://khoharmuhamad.blogspot.com" target="_blank"><i class="fab fa-blogger"></i></a>
+                <a href="https://github.com/khohar25" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                <a href="https://khoharmuhamad.blogspot.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-blogger"></i></a>
                 <a href="mailto:khoharrohman@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank"><i class="fas fa-briefcase"></i></a>
-                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" rel="noopener noreferrer"><i class="fas fa-briefcase"></i></a>
+                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
             </div>
             <p>&copy; 2026 Khohar Muhamad Fatahurrohman.</p>
         </footer>
@@ -241,10 +248,27 @@
 
     <script src="script.js"></script>
     <script>
-        // Mencegah bug banner Google Translate
+        // LOGIKA TRANSLATE MENGGUNAKAN COOKIE
+        function toggleLanguage() {
+            let isEnglish = document.cookie.includes('googtrans=/id/en');
+            let targetLang = isEnglish ? 'id' : 'en';
+            
+            // Suntik cookie agar Google Translate me-load bahasa yang kita mau
+            document.cookie = `googtrans=/id/${targetLang}; path=/`;
+            document.cookie = `googtrans=/id/${targetLang}; path=/; domain=.${window.location.hostname}`;
+            
+            window.location.reload(); // Wajib reload untuk memicu translate otomatis
+        }
+
+        // Mencegah bug banner Google Translate & Atur Tombol
         window.addEventListener('load', function() {
             var bodyObj = document.getElementsByTagName('body')[0];
             if(bodyObj) { bodyObj.style.top = '0px'; }
+            
+            // Ubah teks tombol jika sedang mode Inggris
+            if (document.cookie.includes('googtrans=/id/en')) {
+                document.getElementById('lang-text').innerText = 'EN / ID';
+            }
             
             // Script untuk Tema toggle
             const themeToggleBtn = document.getElementById('theme-toggle');
@@ -260,16 +284,19 @@
             });
         });
 
+        // Hamburger Menu Mobile
         document.getElementById('mobile-nav-toggle').addEventListener('click', function() {
             document.body.classList.toggle('mobile-nav-active');
             this.classList.toggle('fa-bars');
             this.classList.toggle('fa-times');
         });
 
+        // Logika Reveal saat Scroll
         const revealCallback = (entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); }}); };
         const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.15 });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+        // Logika Accordion Rekam Jejak
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => { header.parentElement.classList.toggle('active'); });
         });
