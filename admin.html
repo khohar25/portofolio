@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Ngelu Bolo</title>
+    <title>AIFORA - Pusat Kendali AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
+
     <style>
         :root {
             --bg: #f0f2f5; --card: #ffffff; --primary: #149ddd; 
@@ -47,20 +51,20 @@
 <body>
 
     <div class="dashboard">
-        <h2><i class="fas fa-robot"></i> Pusat Kendali Wong Mumet</h2>
+        <h2><i class="fas fa-robot"></i> Pusat Kendali AI</h2>
 
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('auto')"><i class="fas fa-camera"></i> AI Auto-Scan (Foto)</button>
-            <button class="tab-btn" onclick="switchTab('manual')"><i class="fas fa-keyboard"></i> Ketik Manual (Form)</button>
+            <button class="tab-btn active" onclick="switchTab('auto')"><i class="fas fa-camera"></i> AI Auto-Scan</button>
+            <button class="tab-btn" onclick="switchTab('manual')"><i class="fas fa-keyboard"></i> Ketik Manual</button>
         </div>
 
         <div id="tab-auto" class="tab-content active">
             <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem; color: #64748b; border-left: 4px solid var(--primary);">
-                <i class="fas fa-info-circle"></i> Unggah foto (jpg/png). Sistem akan otomatis memperkecil ukuran file secara cerdas agar tidak ditolak server (Max Payload 4MB).
+                <i class="fas fa-info-circle"></i> Unggah <b>Foto (JPG/PNG)</b> atau dokumen <b>PDF</b>. Sistem otomatis memperkecil ukurannya agar tidak ditolak server!
             </div>
             
-            <label for="imageInput">Pilih Foto Piagam / Dokumen:</label>
-            <input type="file" id="imageInput" accept="image/png, image/jpeg, image/webp" onchange="previewAndCompressImage(event)">
+            <label for="imageInput">Pilih Piagam / Dokumen (JPG/PNG/PDF):</label>
+            <input type="file" id="imageInput" accept="image/png, image/jpeg, image/webp, application/pdf" onchange="previewAndCompressImage(event)">
             
             <img id="imgPreview" alt="Preview Gambar">
             <div id="kompresiInfo"></div>
@@ -86,8 +90,7 @@
                 <option value="pendidikan">Riwayat Pendidikan</option>
             </select>
 
-            <div id="dynamicFieldsContainer" style="margin-top: 20px;">
-                </div>
+            <div id="dynamicFieldsContainer" style="margin-top: 20px;"></div>
 
             <button class="btn-submit" id="btnManual" style="display: none;" onclick="kirimKeAI('manual')">
                 <span class="btn-text"><i class="fas fa-database"></i> Simpan ke Database</span>
@@ -99,13 +102,11 @@
     </div>
 
     <script>
-        // --- KONFIGURASI API VERCEL ---
         const VERCEL_API_URL = "https://aifora.vercel.app/api/ekstrak"; 
         
         let compressedBase64 = "";
         let compressedMimeType = "";
 
-        // --- LOGIKA TABS ---
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -114,7 +115,6 @@
             tampilkanStatus("", "");
         }
 
-        // --- SKEMA FORM DINAMIS SESUAI DATABASE ---
         const schemaDatabase = {
             'sertifikat': [
                 {id: 'nama_penghargaan', label: 'Nama Penghargaan / Lomba (Cth: Juara 1 Web Design)', type: 'text'},
@@ -178,14 +178,10 @@
             const container = document.getElementById('dynamicFieldsContainer');
             const btnManual = document.getElementById('btnManual');
             
-            container.innerHTML = ''; // Bersihkan isi sebelumnya
+            container.innerHTML = ''; 
             
-            if (!kategori) {
-                btnManual.style.display = 'none';
-                return;
-            }
+            if (!kategori) { btnManual.style.display = 'none'; return; }
 
-            // Bangun kolom input berdasarkan skema
             const fields = schemaDatabase[kategori];
             fields.forEach(field => {
                 const wrapper = document.createElement('div');
@@ -194,27 +190,18 @@
                 label.setAttribute('for', field.id);
                 
                 let inputEl;
-                if (field.type === 'textarea') {
-                    inputEl = document.createElement('textarea');
-                    inputEl.rows = 3;
-                } else {
-                    inputEl = document.createElement('input');
-                    inputEl.type = field.type;
-                }
+                if (field.type === 'textarea') { inputEl = document.createElement('textarea'); inputEl.rows = 3; } 
+                else { inputEl = document.createElement('input'); inputEl.type = field.type; }
                 
-                inputEl.id = field.id;
-                inputEl.className = 'dynamic-input';
+                inputEl.id = field.id; inputEl.className = 'dynamic-input';
                 
-                wrapper.appendChild(label);
-                wrapper.appendChild(inputEl);
-                container.appendChild(wrapper);
+                wrapper.appendChild(label); wrapper.appendChild(inputEl); container.appendChild(wrapper);
             });
-
             btnManual.style.display = 'flex';
         }
 
-        // --- LOGIKA KOMPRESI GAMBAR (CLIENT-SIDE) ---
-        function previewAndCompressImage(event) {
+        // --- MESIN KOMPRESI SUPER (GAMBAR & PDF) ---
+        async function previewAndCompressImage(event) {
             const file = event.target.files[0];
             if (!file) return;
 
@@ -222,47 +209,80 @@
             const imgPreview = document.getElementById("imgPreview");
             const infoText = document.getElementById("kompresiInfo");
             
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    // Siapkan Canvas untuk memperkecil dimensi & kualitas
-                    const canvas = document.createElement("canvas");
-                    const MAX_WIDTH = 1200; // Maksimal lebar gambar
-                    let width = img.width;
-                    let height = img.height;
+            infoText.innerHTML = "⏳ Sedang memproses file, harap tunggu...";
+            imgPreview.style.display = "none";
 
-                    if (width > MAX_WIDTH) {
-                        height = Math.round((height *= MAX_WIDTH / width));
-                        width = MAX_WIDTH;
+            // LOGIKA JIKA FILE ADALAH PDF
+            if (file.type === "application/pdf") {
+                const fileReader = new FileReader();
+                fileReader.onload = async function() {
+                    try {
+                        const typedarray = new Uint8Array(this.result);
+                        const pdf = await pdfjsLib.getDocument(typedarray).promise;
+                        
+                        // Ambil Halaman 1 dari PDF
+                        const page = await pdf.getPage(1); 
+                        
+                        // Siapkan resolusi potret yang tajam
+                        const viewport = page.getViewport({ scale: 1.5 });
+                        const canvas = document.createElement("canvas");
+                        const ctx = canvas.getContext("2d");
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+
+                        // Lukis PDF ke dalam Canvas
+                        await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+
+                        // Sulap jadi gambar JPG dan kompres
+                        const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
+                        compressedMimeType = "image/jpeg"; // Sengaja dikirim ke Vercel sebagai gambar
+                        compressedBase64 = dataUrl.split(',')[1];
+                        
+                        imgPreview.src = dataUrl;
+                        imgPreview.style.display = "block";
+                        const newSizeMB = (compressedBase64.length * 0.75 / 1024 / 1024).toFixed(2);
+                        infoText.innerHTML = `✅ <b>PDF Halaman 1</b> disulap ke Gambar: <b>${originalSize} MB</b> ➔ <b>${newSizeMB} MB</b>`;
+                        
+                    } catch (error) {
+                        console.error(error);
+                        infoText.innerHTML = "❌ Gagal membaca PDF. Pastikan file tidak rusak atau terkunci password.";
                     }
-
-                    canvas.width = width;
-                    canvas.height = height;
-                    const ctx = canvas.getContext("2d");
-                    ctx.drawImage(img, 0, 0, width, height);
-
-                    // Compress jadi JPEG dengan kualitas 70%
-                    const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
-                    
-                    // Simpan hasil kompresi untuk dikirim
-                    compressedMimeType = "image/jpeg";
-                    compressedBase64 = dataUrl.split(',')[1];
-                    
-                    // Tampilkan di UI
-                    imgPreview.src = dataUrl;
-                    imgPreview.style.display = "block";
-                    
-                    // Hitung ukuran baru berdasarkan panjang base64
-                    const newSizeMB = (compressedBase64.length * 0.75 / 1024 / 1024).toFixed(2);
-                    infoText.innerHTML = `✅ Dikompresi: <b>${originalSize} MB</b> ➔ <b>${newSizeMB} MB</b>`;
                 };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
+                fileReader.readAsArrayBuffer(file);
+            } 
+            // LOGIKA JIKA FILE ADALAH GAMBAR BIASA
+            else if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement("canvas");
+                        const MAX_WIDTH = 1200;
+                        let width = img.width; let height = img.height;
+
+                        if (width > MAX_WIDTH) { height = Math.round((height *= MAX_WIDTH / width)); width = MAX_WIDTH; }
+
+                        canvas.width = width; canvas.height = height;
+                        const ctx = canvas.getContext("2d");
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
+                        compressedMimeType = "image/jpeg";
+                        compressedBase64 = dataUrl.split(',')[1];
+                        
+                        imgPreview.src = dataUrl;
+                        imgPreview.style.display = "block";
+                        const newSizeMB = (compressedBase64.length * 0.75 / 1024 / 1024).toFixed(2);
+                        infoText.innerHTML = `✅ Foto Dikompresi: <b>${originalSize} MB</b> ➔ <b>${newSizeMB} MB</b>`;
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                infoText.innerHTML = "❌ Format file tidak didukung! Harus JPG/PNG/PDF.";
+            }
         }
 
-        // --- FUNGSI UTAMA: KIRIM KE AI ---
         async function kirimKeAI(tipe) {
             let payload = {};
             const btn = tipe === 'gambar' ? document.getElementById('btnUpload') : document.getElementById('btnManual');
@@ -270,66 +290,45 @@
             const spinner = btn.querySelector('.spinner');
 
             if (tipe === 'gambar') {
-                if (!compressedBase64) return tampilkanStatus("❌ Pilih atau tunggu proses kompresi gambar selesai!", "error");
+                if (!compressedBase64) return tampilkanStatus("❌ Pilih file dan tunggu preview muncul dulu!", "error");
                 payload = { imageBase64: compressedBase64, mimeType: compressedMimeType };
             } else {
                 const kategori = document.getElementById('pilihKategori').value;
                 if (!kategori) return tampilkanStatus("❌ Pilih kategori tabel dulu!", "error");
                 
-                // Ambil semua input dinamis dan rakit menjadi teks
                 let teksRangkuman = `Tabel Tujuan (WAJIB): ${kategori}\n`;
                 const inputs = document.querySelectorAll('.dynamic-input');
                 inputs.forEach(input => {
                     const labelText = input.previousElementSibling.innerText;
                     teksRangkuman += `${labelText}: ${input.value}\n`;
                 });
-                
                 payload = { manualText: teksRangkuman };
             }
 
-            // Animasi Tombol Loading
-            btn.disabled = true;
-            btnText.style.display = 'none';
-            spinner.style.display = 'block';
+            btn.disabled = true; btnText.style.display = 'none'; spinner.style.display = 'block';
             tampilkanStatus("Sedang diproses AI & disetor ke Database...", "success", false);
 
             try {
                 const response = await fetch(VERCEL_API_URL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    method: "POST", headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
                 });
 
                 const result = await response.json();
-
                 if (response.ok) {
                     tampilkanStatus(`✅ SUKSES: ${result.message}`, "success");
-                    if(tipe === 'manual') {
-                        // Kosongkan form setelah sukses
-                        document.querySelectorAll('.dynamic-input').forEach(input => input.value = '');
-                    }
+                    if(tipe === 'manual') document.querySelectorAll('.dynamic-input').forEach(i => i.value = '');
                 } else {
                     tampilkanStatus(`❌ GAGAL: ${result.error}`, "error");
                 }
-            } catch (error) {
-                tampilkanStatus(`❌ ERROR KONEKSI: ${error.message}`, "error");
-            } finally {
-                // Kembalikan Tombol
-                btn.disabled = false;
-                btnText.style.display = 'block';
-                spinner.style.display = 'none';
-            }
+            } catch (error) { tampilkanStatus(`❌ ERROR KONEKSI: ${error.message}`, "error"); } 
+            finally { btn.disabled = false; btnText.style.display = 'block'; spinner.style.display = 'none'; }
         }
 
         function tampilkanStatus(pesan, tipe, isFinal = true) {
             const statusDiv = document.getElementById("statusMessage");
-            statusDiv.innerHTML = pesan;
-            statusDiv.className = tipe;
-            statusDiv.style.display = "block";
-            
-            if (isFinal) {
-                setTimeout(() => { statusDiv.style.display = 'none'; }, 8000); // Hilang dalam 8 detik
-            }
+            statusDiv.innerHTML = pesan; statusDiv.className = tipe; statusDiv.style.display = "block";
+            if (isFinal) setTimeout(() => { statusDiv.style.display = 'none'; }, 8000); 
         }
     </script>
 </body>
