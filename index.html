@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 
@@ -29,20 +28,16 @@
     <div class="sky-container notranslate">
         <div class="celestial-body"></div>
         <div class="stars-layer"></div>
+        <div class="planet p1"></div>
+        <div class="planet p2"></div>
         <div class="cloud-layer c1"></div>
         <div class="cloud-layer c2"></div>
         <div class="cloud-layer c3"></div>
     </div>
 
-    <div class="top-controls">
-        <div id="google_translate_element" style="display: none;"></div>
-        
-        <button id="lang-toggle" onclick="toggleLanguage()" aria-label="Ubah Bahasa" class="notranslate">
-            <i class="fas fa-language"></i> <span>ID / EN</span>
-        </button>
-
+    <div class="top-controls notranslate">
+        <div id="google_translate_element"></div>
         <div style="width: 1px; height: 20px; background-color: var(--border-color); margin: 0 10px;"></div>
-        
         <button id="theme-toggle" aria-label="Toggle Dark Mode">
             <i class="fas fa-moon"></i>
         </button>
@@ -56,11 +51,11 @@
                 <img src="aku.jpeg" alt="Foto Profil Khohar Muhamad Fatahurrohman" class="img-fluid rounded-circle" loading="lazy">
                 <h1 class="text-light notranslate"><a href="index.html">Khohar M.F.</a></h1>
                 <div class="social-links mt-3 text-center">
-                    <a href="https://github.com/khohar25" target="_blank" title="GitHub" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog" rel="noopener noreferrer"><i class="fab fa-blogger"></i></a>
-                    <a href="mailto:khoharrohman@gmail.com" title="Email Saya"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork" rel="noopener noreferrer"><i class="fas fa-briefcase"></i></a>
-                    <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/khohar25" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog"><i class="fab fa-blogger"></i></a>
+                    <a href="mailto:khoharrohman@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork"><i class="fas fa-briefcase"></i></a>
+                    <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
 
@@ -94,7 +89,6 @@
                 <div class="hero-img-box reveal">
                     <div class="astronaut-costume-container">
                         <img src="aku.jpeg" alt="Khohar Muhamad" class="user-photo-base">
-                        
                         <img src="bg.png" alt="Kostum Astronot" class="helmet-overlay-frame">
                     </div>
                 </div>
@@ -220,14 +214,13 @@
             <div class="container">
                 <h2 class="section-title">Artikel & Publikasi <i class="fas fa-newspaper"></i></h2>
                 <p class="section-subtitle">Pemikiran, kajian komputasional, dan catatan perjalanan.</p>
-                
                 <div class="card" style="text-align: center; padding: 50px 30px; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
                     <i class="fab fa-blogger" style="font-size: 4rem; color: #f57c00; margin-bottom: 20px;"></i>
                     <h3 style="margin-bottom: 15px; color: var(--text-color);">Blog / Artikel Resmi Khohar Muhamad</h3>
                     <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.05rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                         Tempat saya mendokumentasikan eksplorasi rekayasa perangkat lunak, AI, IoT, serta tulisan lepas lainnya.
                     </p>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit">
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit" style="text-decoration: none;">
                         Kunjungi Blog / Artikel <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
                     </a>
                 </div>
@@ -249,27 +242,25 @@
 
     <script src="script.js"></script>
     <script>
-        // LOGIKA TOMBOL CUSTOM GOOGLE TRANSLATE (ID / EN)
-        function toggleLanguage() {
-            var selectField = document.querySelector('.goog-te-combo');
-            if (selectField) {
-                var currentLang = selectField.value || 'id';
-                var newLang = currentLang === 'id' ? 'en' : 'id';
-                
-                selectField.value = newLang;
-                selectField.dispatchEvent(new Event('change'));
-            } else {
-                alert("Mesin bahasa sedang dimuat, tunggu sebentar...");
-            }
-        }
-
-        // Mencegah error banner google translate saat halaman di-translate
+        // Mencegah bug banner Google Translate
         window.addEventListener('load', function() {
             var bodyObj = document.getElementsByTagName('body')[0];
             if(bodyObj) { bodyObj.style.top = '0px'; }
+            
+            // Script untuk Tema toggle dari CSS Custom
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            themeToggleBtn.addEventListener('click', () => {
+                let currentTheme = document.documentElement.getAttribute('data-theme');
+                if (currentTheme === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+            });
         });
 
-        // Hamburger Menu & Scroll Reveal
         document.getElementById('mobile-nav-toggle').addEventListener('click', function() {
             document.body.classList.toggle('mobile-nav-active');
             this.classList.toggle('fa-bars');
