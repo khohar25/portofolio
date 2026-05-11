@@ -102,6 +102,7 @@
     </div>
 
     <script>
+        // PERBAIKAN: Menggunakan Jalur Pintas agar tidak nyasar dan error "Failed to fetch"
         const VERCEL_API_URL = "/api/ekstrak"; 
         
         let compressedBase64 = "";
@@ -115,12 +116,13 @@
             tampilkanStatus("", "");
         }
 
+        // PERBAIKAN: Update label di bagian sertifikat agar jadi pengingat
         const schemaDatabase = {
             'sertifikat': [
                 {id: 'nama_penghargaan', label: 'Nama Penghargaan / Lomba (Cth: Juara 1 Web Design)', type: 'text'},
                 {id: 'pemberi_penghargaan', label: 'Penyelenggara / Pemberi', type: 'text'},
                 {id: 'tahun', label: 'Tahun', type: 'number'},
-                {id: 'deskripsi', label: 'Deskripsi Singkat', type: 'textarea'}
+                {id: 'deskripsi', label: 'Deskripsi (Sertakan Lokasi & Tanggal Lengkap jika ada)', type: 'textarea'}
             ],
             'sertifikasi': [
                 {id: 'nama_sertifikasi', label: 'Nama Sertifikasi / Lisensi', type: 'text'},
