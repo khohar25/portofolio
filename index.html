@@ -24,10 +24,10 @@
         }
     </script>
     <style>
-        /* Styling khusus agar tombol translate rapi menyatu dengan tema */
-        .goog-te-gadget-simple { background-color: transparent !important; border: 1px solid var(--border-color) !important; padding: 8px 15px !important; border-radius: 8px !important; font-family: 'Inter', sans-serif !important; transition: 0.3s;}
+        /* Styling khusus agar tombol translate rapi di sidebar */
+        .goog-te-gadget-simple { background-color: transparent !important; border: 1px solid var(--sidebar-border) !important; padding: 8px 15px !important; border-radius: 8px !important; font-family: 'Inter', sans-serif !important; transition: 0.3s;}
         .goog-te-menu-value span { color: var(--sidebar-text) !important; font-weight: 500; }
-        .goog-te-gadget-icon { display: none; } /* Sembunyikan icon default google */
+        .goog-te-gadget-icon { display: none; } /* Sembunyikan icon default */
         .goog-te-gadget-simple:hover { border-color: var(--accent-color) !important; }
         body { top: 0 !important; } /* Mencegah bug margin top dari Google Translate */
         .skiptranslate iframe { display: none !important; } /* Sembunyikan banner atas Google */
@@ -60,7 +60,7 @@
                     <li><a href="#portfolio" class="nav-link scrollto"><i class="fas fa-laptop-code"></i> <span>Proyek Web</span></a></li>
                     <li><a href="#lab" class="nav-link scrollto"><i class="fas fa-flask"></i> <span>Riset</span></a></li>
                     <li><a href="#library" class="nav-link scrollto"><i class="fas fa-book-open"></i> <span>Pustaka</span></a></li>
-                    <li><a href="#artikel" class="nav-link scrollto"><i class="fas fa-newspaper"></i> <span>Artikel & Blog</span></a></li>
+                    <li><a href="#artikel" class="nav-link scrollto"><i class="fas fa-newspaper"></i> <span>Artikel</span></a></li>
                 </ul>
             </nav>
 
@@ -82,15 +82,20 @@
     <main id="main">
 
         <section id="hero">
-            <div class="sky-container"><div class="celestial-body"></div></div>
+            <div class="sky-container"><div class="sky-elements"></div><div class="celestial-body"></div></div>
+            
             <div class="hero-content-wrapper">
-                <div class="hero-text-box">
+                <div class="hero-text-box reveal">
                     <h1 class="animate-text-1">"MY REMINDER"</h1>
-                    <p class="animate-text-2">"Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal. Saya tidak sedang berlomba dengan siapa pun. Apa yang orang lain bisa belum tentu saya bisa, begitu juga sebaliknya. Saat ini, saya hanya fokus pada progres diri sendiri."</p>
+                    <p class="animate-text-2">"Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal..."</p>
                 </div>
                 
-                <div class="hero-img-box">
-                    <img src="astronot.png" alt="Eksplorasi Astronot" class="animate-img" loading="lazy">
+                <div class="hero-img-box reveal">
+                    <div class="astronaut-costume-container">
+                        <img src="aku.jpeg" alt="Khohar Muhamad Fatahurrohman" class="user-photo-base">
+                        
+                        <img src="https://i.imgur.com/vHqB3qB.png" alt="Astronaut Helmet Frame" class="helmet-overlay-frame">
+                    </div>
                 </div>
             </div>
         </section>
@@ -101,14 +106,13 @@
 
         <section id="about" class="section reveal">
             <div class="container">
-                <h2 class="section-title">Profil & Perjalanan</h2>
-                
                 <div class="about-wrapper">
                     <div class="profile-card">
+                        <h3 class="sub-heading-inline"><i class="fas fa-user-tie"></i> Biografi Singkat</h3>
                         <div class="about-text">
                             <p>Saya adalah pengembang web dan mahasiswa di Politeknik Negeri Malang. Sebagai penggerak di balik AIFORA GROUP, saya memegang prinsip untuk terus fokus pada progres kapasitas diri melalui rekayasa perangkat lunak, AI, dan IoT secara mandiri.</p>
                             <p>Dengan latar belakang kepemimpinan di tingkat organisasi dan mentalitas kompetitif dari berbagai olimpiade sains, saya menerapkan pendekatan komputasional yang terstruktur untuk mengkaji teknologi masa depan.</p>
-                            <p>Saya memiliki minat yang besar dalam dunia literasi dan kepenulisan. Bagi saya, teknologi dan tulisan adalah dua hal yang saling melengkapi.</p>
+                            <p>Saya memiliki minat yang besar dalam dunia literasi dan kepenulisan.</p>
                             
                             <div class="tech-stack" style="margin-top: 2rem;">
                                 <h4>Tech Stack & Tools:</h4>
@@ -125,32 +129,27 @@
                     </div>
 
                     <div class="education-section">
-                        <h3 class="sub-heading"><i class="fas fa-graduation-cap"></i> Riwayat Pendidikan</h3>
+                        <h3 class="sub-heading-inline"><i class="fas fa-graduation-cap"></i> Riwayat Pendidikan</h3>
                         <div class="timeline">
                             <div class="timeline-item">
                                 <div class="timeline-dot"></div>
-                                <h4>Politeknik Negeri Malang, Malang, Jawa Timur</h4>
+                                <h4>Politeknik Negeri Malang, Malang</h4>
                                 <p>D4 Teknik Informatika | 2025 - Saat Ini</p>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-dot"></div>
-                                <h4>SMKS Trisakti Ngawi, Ngawi, Jawa Timur</h4>
+                                <h4>SMKS Trisakti Ngawi, Ngawi</h4>
                                 <p>Teknik Komputer dan Jaringan | 2022 - 2025</p>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-dot"></div>
-                                <h4>MTsN 2 Ngawi, Ngawi, Jawa Timur</h4>
+                                <h4>MTsN 2 Ngawi, Ngawi</h4>
                                 <p>2019 - 2022</p>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-dot"></div>
-                                <h4>SDN Beberan 1 Ciruas, Serang, Banten</h4>
+                                <h4>SDN Beberan 1 Ciruas, Serang</h4>
                                 <p>2014 - 2019</p>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <h4>TKS Telaga Sakinah Ciruas, Serang, Banten</h4>
-                                <p>2012 - 2014</p>
                             </div>
                         </div>
                     </div>
@@ -165,57 +164,23 @@
             <div class="container">
                 <h2 class="section-title">Rekam Jejak & Pengembangan Diri</h2>
                 <p class="section-subtitle">Daftar pengalaman dalam kepemimpinan, kompetisi, dan literasi teknologi. (Klik kategori untuk detail)</p>
-                
                 <div class="track-record-grid">
-                    
                     <div class="track-accordion">
-                        <div class="accordion-header">
-                            <h3><i class="fas fa-trophy" style="color: #f59e0b;"></i> Penghargaan & Medali</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="accordion-content scrollable-list" id="juara-container"></div>
+                        <div class="accordion-header"><h3><i class="fas fa-trophy" style="color: #f59e0b;"></i> Penghargaan</h3><i class="fas fa-chevron-down"></i></div>
+                        <div class="accordion-content" id="juara-container"></div>
                     </div>
-
                     <div class="track-accordion">
-                        <div class="accordion-header">
-                            <h3><i class="fas fa-medal" style="color: #3b82f6;"></i> Partisipasi Sains</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="accordion-content scrollable-list" id="peserta-sains-container"></div>
+                        <div class="accordion-header"><h3><i class="fas fa-medal" style="color: #3b82f6;"></i> Partisipasi Sains</h3><i class="fas fa-chevron-down"></i></div>
+                        <div class="accordion-content" id="peserta-sains-container"></div>
                     </div>
-
                     <div class="track-accordion">
-                        <div class="accordion-header">
-                            <h3><i class="fas fa-users" style="color: #10b981;"></i> Organisasi & Kepanduan</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="accordion-content scrollable-list" id="organisasi-container"></div>
+                        <div class="accordion-header"><h3><i class="fas fa-users" style="color: #10b981;"></i> Organisasi</h3><i class="fas fa-chevron-down"></i></div>
+                        <div class="accordion-content" id="organisasi-container"></div>
                     </div>
-
                     <div class="track-accordion">
-                        <div class="accordion-header">
-                            <h3><i class="fas fa-flag" style="color: #ef4444;"></i> Event & Kegiatan</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="accordion-content scrollable-list" id="event-container"></div>
+                        <div class="accordion-header"><h3><i class="fas fa-clipboard-list" style="color: #14b8a6;"></i> Pelatihan</h3><i class="fas fa-chevron-down"></i></div>
+                        <div class="accordion-content" id="pelatihan-container"></div>
                     </div>
-
-                    <div class="track-accordion">
-                        <div class="accordion-header">
-                            <h3><i class="fas fa-laptop-code" style="color: #8b5cf6;"></i> Seminar & Webinar</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="accordion-content scrollable-list" id="seminar-container"></div>
-                    </div>
-
-                    <div class="track-accordion">
-                        <div class="accordion-header">
-                            <h3><i class="fas fa-clipboard-list" style="color: #14b8a6;"></i> Pelatihan & Panitia</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="accordion-content scrollable-list" id="pelatihan-container"></div>
-                    </div>
-
                 </div>
             </div>
         </section>
@@ -230,15 +195,13 @@
         <section id="lab" class="section bg-alt reveal">
             <div class="container">
                 <h2 class="section-title">Innovation Lab <i class="fas fa-flask"></i></h2>
-                <p class="section-subtitle">Eksplorasi teknologi dan riset arsitektur masa depan.</p>
                 <div class="lab-grid" id="lab-container"></div>
             </div>
         </section>
 
         <section id="library" class="section reveal">
             <div class="container">
-                <h2 class="section-title">Creative & Literary Works <i class="fas fa-book-open"></i></h2>
-                <p class="section-subtitle">Koleksi buku, novel, dan tulisan kreatif lainnya.</p>
+                <h2 class="section-title"> Creative Works <i class="fas fa-book-open"></i></h2>
                 <div class="portfolio-grid" id="library-container"></div>
             </div>
         </section>
@@ -246,28 +209,21 @@
         <section id="artikel" class="section bg-alt reveal">
             <div class="container">
                 <h2 class="section-title">Artikel & Publikasi <i class="fas fa-newspaper"></i></h2>
-                <p class="section-subtitle">Pemikiran, kajian komputasional, dan catatan perjalanan.</p>
-                
-                <div class="card" style="text-align: center; padding: 50px 30px; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
+                <div class="card" style="text-align: center; padding: 50px 30px; background: var(--card-bg); border-radius: 16px;">
                     <i class="fab fa-blogger" style="font-size: 4rem; color: #f57c00; margin-bottom: 20px;"></i>
-                    <h3 style="margin-bottom: 15px; color: var(--text-color);">Blog Resmi Khohar Muhamad</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.05rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                        Tempat saya mendokumentasikan eksplorasi rekayasa perangkat lunak, AI, kajian fiksi ilmiah, serta tulisan-tulisan lepas lainnya.
-                    </p>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit" style="display: inline-block; background: var(--accent-color); color: white; padding: 12px 30px; border-radius: 8px; font-weight: bold; transition: 0.3s; text-decoration: none;">
-                        Kunjungi Blog <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
-                    </a>
+                    <h3 style="margin-bottom: 15px;">Blog Resmi Khohar Muhamad</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.05rem;">Tempat saya mendokumentasikan eksplorasi rekayasa perangkat lunak, AI, IoT, serta kajian tulisan fiksi ilmiah.</p>
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit">Kunjungi Blog &rarr;</a>
                 </div>
             </div>
         </section>
 
         <footer class="footer reveal">
             <div class="social-links-footer text-center">
-                <a href="https://github.com/khohar25" target="_blank" title="GitHub" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog" rel="noopener noreferrer"><i class="fab fa-blogger"></i></a>
-                <a href="mailto:khoharrohman@gmail.com" title="Email Saya"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork" rel="noopener noreferrer"><i class="fas fa-briefcase"></i></a>
-                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/khohar25" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://khoharmuhamad.blogspot.com" target="_blank"><i class="fab fa-blogger"></i></a>
+                <a href="mailto:khoharrohman@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
             <p>&copy; 2026 Khohar Muhamad Fatahurrohman.</p>
         </footer>
