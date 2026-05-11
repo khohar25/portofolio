@@ -56,7 +56,9 @@ module.exports = async function handler(req, res) {
         aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
         const finalData = JSON.parse(aiText);
 
-        const supabaseUrl = process.env.SUPABASE_URL;
+        // --- URL SUPABASE LANGSUNG DITANAM DI SINI ---
+        const supabaseUrl = "https://xwwlegzacxevmlmtceqh.supabase.co";
+        // Kunci Supabase tetap ambil dari brankas
         const supabaseKey = process.env.SUPABASE_KEY;
 
         const insertResponse = await fetch(`${supabaseUrl}/rest/v1/${finalData.tabel_tujuan}`, {
