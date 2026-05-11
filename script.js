@@ -1,30 +1,6 @@
-// --- 1. LOGIKA THEME TOGGLE (Dark/Light Mode) ---
-const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = themeToggle.querySelector('i');
+// --- 1. KONFIGURASI SUPABASE ---
+// (Bagian Tema/Dark Mode sudah dipindahkan ke index.html agar tidak bentrok)
 
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    if (currentTheme === 'dark') themeIcon.className = 'fas fa-sun';
-}
-
-themeToggle.addEventListener('click', () => {
-    let theme = document.documentElement.getAttribute('data-theme');
-    if (theme === 'light' || !theme) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeIcon.className = 'fas fa-sun';
-        localStorage.setItem('theme', 'dark');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeIcon.className = 'fas fa-moon';
-        localStorage.setItem('theme', 'light');
-    }
-});
-
-// Palet warna untuk border kartu
-const colorPalette = ['#007bff', '#2ecc71', '#9b59b6', '#e67e22', '#e74c3c', '#0ea5e9', '#f43f5e'];
-
-// --- 2. KONFIGURASI SUPABASE ---
 const SUPABASE_URL = 'https://xwwlegzacxevmlmtceqh.supabase.co';
 // Ingat: Karena ditaruh di Frontend, wajib pakai kunci anon/public (yang berawalan eyJ...)
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3d2xlZ3phY3hldm1sbXRjZXFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MDA2NzEsImV4cCI6MjA5Mzk3NjY3MX0.C9qCfFVN9j8gtvsLVBFGh4I28gIRvJkYlp546-ssEgw';
@@ -35,10 +11,12 @@ const headers = {
     'Content-Type': 'application/json'
 };
 
-// --- 3. FETCH, FILTER, & RENDER DATA DARI SUPABASE ---
+// Palet warna untuk border kartu
+const colorPalette = ['#007bff', '#2ecc71', '#9b59b6', '#e67e22', '#e74c3c', '#0ea5e9', '#f43f5e'];
+
+// --- 2. FETCH, FILTER, & RENDER DATA DARI SUPABASE ---
 async function loadPortfolioData() {
     try {
-        // PERUBAHAN: Menambahkan fetch untuk sertifikasi (jangan lupa cek penamaan tabel lab, network, library di Supabase kamu ya, pastikan tidak tertukar dengan laboratorium, jaringan, dll)
         const [resSertifikat, resOrganisasi, resWebinar, resPortofolio, resLab, resNetwork, resLibrary, resSertifikasi] = await Promise.all([
             fetch(`${SUPABASE_URL}/rest/v1/sertifikat?select=*`, { headers }),
             fetch(`${SUPABASE_URL}/rest/v1/organisasi?select=*`, { headers }),
@@ -57,7 +35,7 @@ async function loadPortfolioData() {
         const labData = await resLab.json();
         const networkData = await resNetwork.json();
         const libraryData = await resLibrary.json();
-        const sertifikasiData = await resSertifikasi.json(); // Data baru ditangkap
+        const sertifikasiData = await resSertifikasi.json(); 
 
         // --- RENDER 1 & 2: PENGHARGAAN VS PESERTA SAINS ---
         const juaraContainer = document.getElementById('juara-container');
@@ -160,7 +138,7 @@ async function loadPortfolioData() {
             });
         }
 
-        // --- PERUBAHAN: RENDER DATA SERTIFIKASI PROFESIONAL (KREDENSIAL) ---
+        // --- RENDER DATA SERTIFIKASI PROFESIONAL (KREDENSIAL) ---
         if(sertifikasiData && sertifikasiData.length > 0) {
             sertifikasiData.forEach((item, index) => {
                 let accentColor = colorPalette[(index + 2) % colorPalette.length];
@@ -177,7 +155,6 @@ async function loadPortfolioData() {
                         </div>
                     </div>
                 `;
-                // Dimasukkan ke container Pelatihan & Panitia (Bisa disesuaikan kalau mau bikin ID container sendiri)
                 if(pelatihanContainer) { pelatihanContainer.innerHTML += cardHTML; } 
             });
         }
