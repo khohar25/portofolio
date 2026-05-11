@@ -1,15 +1,13 @@
 /* ==========================================================================
-   AIFORA PORTFOLIO THEME - CSS ULTIMATE (MODERN UI V2 + SKY ANIMATION)
+   AIFORA PORTFOLIO THEME - CSS ULTIMATE (MODERN UI V3 + ASTRONOT FULL)
    ========================================================================== */
 
 /* --- 1. VARIABEL & TEMA (DARK/LIGHT MODE DINAMIS) --- */
 :root {
-    /* Tema Terang */
     --bg-color: #f8f9fa;
     --text-color: #272829;
     --text-muted: #6f7180;
     
-    /* Variabel Sidebar Terang */
     --sidebar-bg: rgba(255, 255, 255, 0.85); 
     --sidebar-text: #475569;
     --sidebar-heading: #1e293b;
@@ -24,12 +22,10 @@
 }
 
 [data-theme="dark"] {
-    /* Tema Gelap (Cyber/Modern) */
     --bg-color: #0b1120;
     --text-color: #f8fafc;
     --text-muted: #94a3b8;
     
-    /* Variabel Sidebar Gelap */
     --sidebar-bg: rgba(4, 11, 20, 0.85); 
     --sidebar-text: #a8a9b4;
     --sidebar-heading: #ffffff;
@@ -54,11 +50,19 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-color); }
-::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
 
 body {
     font-family: 'Inter', sans-serif;
@@ -69,13 +73,22 @@ body {
     overflow-x: hidden;
 }
 
-a { color: var(--accent-color); text-decoration: none; transition: 0.3s; }
-a:hover { color: var(--accent-hover); }
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
 
 /* --- 3. SIDEBAR NAVIGASI DINAMIS (#header) --- */
 #header {
     position: fixed;
-    top: 0; left: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
     width: 300px;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 9997;
@@ -90,18 +103,26 @@ a:hover { color: var(--accent-hover); }
 .profile img {
     margin: 25px auto 15px auto;
     display: block;
-    width: 120px; height: 120px;
+    width: 120px;
+    height: 120px;
     border: 4px solid var(--accent-color); 
     padding: 4px;
     background: var(--bg-color);
     object-fit: cover;
     transition: transform 0.4s ease;
+    border-radius: 50%;
 }
 
-.profile img:hover { transform: scale(1.05) rotate(3deg); }
+.profile img:hover {
+    transform: scale(1.05) rotate(3deg);
+}
 
 .profile h1 {
-    font-size: 24px; margin: 0; padding: 0; font-weight: 700; text-align: center;
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    text-align: center;
 }
 
 .profile h1 a, .profile h1 a:hover {
@@ -112,8 +133,13 @@ a:hover { color: var(--accent-hover); }
     display: inline-block;
     background: transparent;
     color: var(--sidebar-text);
-    line-height: 1; padding: 10px 0; margin-right: 4px; border-radius: 50%;
-    text-align: center; width: 40px; height: 40px;
+    line-height: 1;
+    padding: 10px 0;
+    margin-right: 4px;
+    border-radius: 50%;
+    text-align: center;
+    width: 40px;
+    height: 40px;
     transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid var(--sidebar-border);
 }
@@ -126,19 +152,36 @@ a:hover { color: var(--accent-hover); }
     box-shadow: var(--glow);
 }
 
-.nav-menu { padding: 30px 0 0 0; }
-.nav-menu ul { list-style: none; padding: 0; margin: 0; }
-.nav-menu li { margin-bottom: 8px; }
+.nav-menu {
+    padding: 30px 0 0 0;
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    margin-bottom: 8px;
+}
 
 .nav-menu a, .nav-menu a:focus {
-    display: flex; align-items: center;
+    display: flex;
+    align-items: center;
     color: var(--sidebar-text);
-    padding: 12px 15px; font-size: 15px; border-radius: 8px; font-weight: 500;
+    padding: 12px 15px;
+    font-size: 15px;
+    border-radius: 8px;
+    font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .nav-menu a i, .nav-menu a:focus i {
-    font-size: 20px; padding-right: 15px; color: var(--text-muted); transition: 0.3s;
+    font-size: 20px;
+    padding-right: 15px;
+    color: var(--text-muted);
+    transition: 0.3s;
 }
 
 .nav-menu a:hover, .nav-menu .active, .nav-menu .active:focus {
@@ -153,19 +196,35 @@ a:hover { color: var(--accent-hover); }
 
 /* --- 4. MAIN CONTENT & MOBILE LAYOUT --- */
 #main {
-    margin-left: 300px; transition: margin-left 0.5s;
+    margin-left: 300px;
+    transition: margin-left 0.5s;
 }
 
 .mobile-nav-toggle {
-    position: fixed; right: 20px; top: 20px; z-index: 9998; border: 0;
-    font-size: 24px; transition: all 0.4s; outline: none !important;
-    background-color: var(--accent-color); color: #fff;
-    width: 45px; height: 45px; display: inline-flex; align-items: center;
-    justify-content: center; border-radius: 50%; cursor: pointer;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    z-index: 9998;
+    border: 0;
+    font-size: 24px;
+    transition: all 0.4s;
+    outline: none !important;
+    background-color: var(--accent-color);
+    color: #fff;
+    width: 45px;
+    height: 45px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    border-radius: 50%;
+    cursor: pointer;
     box-shadow: var(--shadow);
 }
 
-.desktop-hide { display: none; }
+.desktop-hide {
+    display: none;
+}
 
 @media (max-width: 1199px) {
     #header { left: -300px; }
@@ -175,135 +234,345 @@ a:hover { color: var(--accent-hover); }
     .mobile-nav-active { overflow: hidden; }
 }
 
-/* --- 5. HERO SECTION ("MY REMINDER") & ANIMASI LANGIT --- */
+/* --- 5. HERO SECTION: KOSTUM ASTRONOT & ANIMASI LANGIT --- */
 #hero {
-    width: 100%; min-height: 100vh; background: var(--bg-color);
-    display: flex; align-items: center; position: relative; overflow: hidden;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg-color);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
 #hero::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-image: radial-gradient(var(--text-muted) 1px, transparent 1px);
-    background-size: 30px 30px; opacity: 0.1; z-index: 0;
+    background-size: 30px 30px;
+    opacity: 0.1;
+    z-index: 0;
 }
 
-/* Animasi Langit (Siang & Malam) */
+/* WADAH ANIMASI LANGIT */
 .sky-container {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
 }
+
 .celestial-body {
-    position: absolute; top: 15%; right: 10%; font-size: 5rem; transition: all 0.5s ease;
+    position: absolute;
+    top: 15%; right: 10%;
+    font-size: 5rem;
+    transition: 0.5s ease;
+    z-index: 1;
 }
 
-/* Mode Terang: Matahari */
+/* --- Mode Terang: Matahari & Awan --- */
 [data-theme="light"] .celestial-body::before { 
-    content: '\f185'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #fbbf24; animation: spin-slow 20s linear infinite; display: inline-block; 
+    content: '\f185'; 
+    font-family: 'Font Awesome 6 Free'; 
+    font-weight: 900; 
+    color: #fbbf24; 
+    animation: spin-slow 20s linear infinite; 
+    display: inline-block; 
 }
 
-/* Mode Gelap: Bulan & Bintang */
+[data-theme="light"] .sky-elements {
+    position: absolute; 
+    width: 100%; height: 100%;
+    background: transparent;
+}
+
+[data-theme="light"] .sky-elements::before,
+[data-theme="light"] .sky-elements::after {
+    content: ''; 
+    position: absolute; 
+    background: white; 
+    border-radius: 50%; 
+    animation: cloud-float infinite linear; 
+    opacity: 0.8;
+}
+
+[data-theme="light"] .sky-elements::before {
+    width: 100px; height: 100px; 
+    top: 10%; left: -150px;
+    box-shadow: 60px 20px 0 -10px white, 110px 0px 0 white, 170px 15px 0 -10px white;
+    animation-duration: 40s;
+}
+
+[data-theme="light"] .sky-elements::after {
+    width: 80px; height: 80px; 
+    top: 25%; left: -200px;
+    box-shadow: 50px 10px 0 -10px white, 90px -10px 0 white;
+    animation-duration: 55s; 
+    animation-delay: -5s;
+}
+
+/* --- Mode Gelap: Bulan & Bintang Berkedip --- */
 [data-theme="dark"] .celestial-body::before { 
-    content: '\f186'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #e2e8f0; transform: rotate(-20deg); display: inline-block;
+    content: '\f186'; 
+    font-family: 'Font Awesome 6 Free'; 
+    font-weight: 900; 
+    color: #e2e8f0; 
+    transform: rotate(-20deg); 
+    display: inline-block;
 }
 
-[data-theme="dark"] .sky-container {
-    background-image: radial-gradient(#fff 1px, transparent 1px), radial-gradient(#fff 1px, transparent 1px);
-    background-size: 50px 50px, 100px 100px; background-position: 0 0, 25px 25px; animation: twinkle 5s infinite; opacity: 0.3;
+[data-theme="dark"] .sky-elements {
+    position: absolute; 
+    width: 100%; height: 100%;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 40px 60px, 130px 270px;
+    animation: twinkle 4s infinite alternate; 
+    opacity: 0.6;
 }
 
 @keyframes spin-slow { 100% { transform: rotate(360deg); } }
-@keyframes twinkle { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.5; } }
+@keyframes cloud-float { from { transform: translateX(0); } to { transform: translateX(calc(100vw + 400px)); } }
+@keyframes twinkle { 0% { opacity: 0.3; } 100% { opacity: 0.7; } }
 
 .hero-content-wrapper {
-    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-    width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 30px; z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    z-index: 1;
 }
 
-.hero-text-box { flex: 1; min-width: 300px; padding-right: 30px; }
+.hero-text-box {
+    flex: 1;
+    min-width: 300px;
+    padding-right: 30px;
+}
+
 .hero-text-box h1 {
-    font-size: 4rem; font-weight: 800; margin-bottom: 20px;
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 20px;
     background: linear-gradient(135deg, var(--text-color), var(--accent-color));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
 }
 
 .hero-text-box p {
-    font-size: 1.15rem; color: var(--text-muted); font-style: italic;
-    border-left: 4px solid var(--accent-color); padding-left: 20px; line-height: 1.8;
-    background: rgba(20, 157, 221, 0.03); padding-top: 10px; padding-bottom: 10px;
-    border-radius: 0 10px 10px 0;
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    font-style: italic;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 20px;
+    line-height: 1.8;
 }
 
-.hero-img-box { flex: 1; min-width: 300px; text-align: right; }
-.hero-img-box img {
-    max-width: 90%; height: auto; border-radius: 20px;
+.hero-img-box {
+    flex: 1;
+    min-width: 300px;
+    text-align: right;
+}
+
+/* --- LOGIKA CSS UTAMA KOSTUM ASTRONOT --- */
+.astronaut-costume-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px; /* Atur ukuran maksimal kostum */
+    height: auto;
+    animation: float 5s ease-in-out infinite; /* Animasi melayang di wadah utama */
+}
+
+/* Foto Asli (Base di Belakang) */
+.user-photo-base {
+    position: absolute;
+    /* Menyesuaikan posisi muka agar pas di visor helm placeholder */
+    top: 28%; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 25%; 
+    height: auto; 
+    border-radius: 50%; /* Bulatkan foto agar tidak keluar frame helm */
+    z-index: 1; 
+    object-fit: cover;
+}
+
+/* Frame Helm PNG (Overlay di Depan) */
+.helmet-overlay-frame {
+    position: relative; 
+    display: block; 
+    width: 100%; 
+    height: auto;
+    z-index: 2; 
+    pointer-events: none; 
     filter: drop-shadow(0px 15px 30px rgba(0,0,0,0.15));
-    animation: float 5s ease-in-out infinite;
 }
 
-[data-theme="dark"] .hero-img-box img { filter: drop-shadow(0px 15px 30px rgba(20, 157, 221, 0.15)); }
+[data-theme="dark"] .helmet-overlay-frame { 
+    filter: drop-shadow(0px 15px 30px rgba(20, 157, 221, 0.15)); 
+}
 
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
+@keyframes float { 
+    0%, 100% { transform: translateY(0px); } 
+    50% { transform: translateY(-20px); } 
 }
 
 @media (max-width: 992px) {
-    .hero-content-wrapper { flex-direction: column; text-align: center; margin-top: 60px; }
+    .hero-content-wrapper { flex-direction: column; text-align: center; margin-top: 60px;}
     .hero-text-box { padding-right: 0; margin-bottom: 40px; }
     .hero-text-box h1 { font-size: 3rem; }
-    .hero-text-box p { border-left: none; padding: 20px; border-radius: 10px; }
-    .hero-img-box { text-align: center; }
-    .hero-img-box img { max-width: 100%; }
+    .astronaut-costume-container { max-width: 300px; }
 }
 
 /* --- 6. BAGIAN UMUM (SECTIONS) --- */
-.section { padding: 80px 0; overflow: hidden; }
-.bg-alt { background: rgba(20, 157, 221, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 30px; }
+.section {
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.bg-alt {
+    background: rgba(20, 157, 221, 0.02);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
 
 .section-title {
-    font-size: 36px; font-weight: 800; margin-bottom: 15px; padding-bottom: 20px;
-    position: relative; color: var(--text-color);
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+    position: relative;
+    color: var(--text-color);
 }
 
 .section-title::after {
-    content: ''; position: absolute; display: block; width: 60px; height: 4px;
-    border-radius: 4px; background: var(--accent-color); bottom: 0; left: 0;
+    content: '';
+    position: absolute;
+    display: block;
+    width: 60px;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--accent-color);
+    bottom: 0;
+    left: 0;
 }
 
-.section-subtitle { margin-bottom: 50px; color: var(--text-muted); font-size: 1.1rem; }
-.sub-heading { font-size: 1.5rem; color: var(--text-color); margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
-
-/* --- 7. ABOUT & TIMELINE PENDIDIKAN --- */
-.about-wrapper { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 50px; 
-    align-items: start; /* Mengatasi tidak sejajar */
+.section-subtitle {
+    margin-bottom: 50px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
 }
+
+/* --- 7. ABOUT & TIMELINE (SEJAJAR) --- */
+.about-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start; /* Mengatasi Profil dan Timeline tidak sejajar ke atas */
+}
+
+/* Judul inline baru di dalam grid agar sejajar horizontal */
+.sub-heading-inline {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sub-heading {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.about-text p {
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
 .tech-icons i {
-    font-size: 2.5rem; color: var(--text-muted); margin-right: 15px; margin-top: 15px;
+    font-size: 2.5rem;
+    color: var(--text-muted);
+    margin-right: 15px;
+    margin-top: 15px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .tech-icons i:hover {
-    color: var(--accent-color); transform: translateY(-5px) scale(1.1);
+    color: var(--accent-color);
+    transform: translateY(-5px) scale(1.1);
     filter: drop-shadow(0 5px 10px rgba(20,157,221,0.3));
 }
 
-.timeline { border-left: 2px dashed var(--border-color); padding-left: 25px; margin-left: 10px; }
-.timeline-item {
-    position: relative; margin-bottom: 30px; padding: 20px; background: var(--card-bg);
-    border-radius: 12px; border: 1px solid var(--border-color); transition: 0.3s;
+.timeline {
+    border-left: 2px dashed var(--border-color);
+    padding-left: 25px;
+    margin-left: 10px;
 }
-.timeline-item:hover { transform: translateX(10px); border-color: var(--accent-color); box-shadow: var(--shadow); }
-.timeline-dot {
-    position: absolute; left: -33px; top: 25px; width: 14px; height: 14px;
-    border-radius: 50%; background: var(--accent-color); box-shadow: 0 0 0 4px var(--bg-color);
-}
-.timeline-item h4 { font-size: 1.1rem; margin-bottom: 5px; color: var(--text-color); }
-.timeline-item p { font-size: 0.95rem; color: var(--text-muted); margin: 0; }
 
-@media (max-width: 768px) { .about-wrapper { grid-template-columns: 1fr; } }
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: 0.3s;
+}
+
+.timeline-item:hover {
+    transform: translateX(10px);
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow);
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -33px;
+    top: 25px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    box-shadow: 0 0 0 4px var(--bg-color);
+}
+
+.timeline-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.timeline-item p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .about-wrapper { grid-template-columns: 1fr; }
+}
 
 /* --- 8. REKAM JEJAK BERUBAH JADI KARTU (GRID ACCORDION) --- */
 .track-record-grid {
@@ -340,106 +609,215 @@ a:hover { color: var(--accent-hover); }
     transition: 0.3s;
 }
 
-.accordion-header:hover { background: rgba(20, 157, 221, 0.03); }
-
-.accordion-header h3 {
-    font-size: 1.15rem; margin: 0; color: var(--text-color);
-    display: flex; align-items: center; gap: 15px;
+.accordion-header:hover {
+    background: rgba(20, 157, 221, 0.03);
 }
 
-.accordion-header h3 i { font-size: 1.4rem; }
+.accordion-header h3 {
+    font-size: 1.15rem;
+    margin: 0;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.accordion-header h3 i {
+    font-size: 1.4rem;
+}
 
 .accordion-header i.fa-chevron-down {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    color: var(--text-muted); background: rgba(0,0,0,0.05); padding: 8px; border-radius: 50%;
+    color: var(--text-muted);
+    background: rgba(0,0,0,0.05);
+    padding: 8px;
+    border-radius: 50%;
 }
 
-[data-theme="dark"] .accordion-header i.fa-chevron-down { background: rgba(255,255,255,0.05); }
+[data-theme="dark"] .accordion-header i.fa-chevron-down {
+    background: rgba(255,255,255,0.05);
+}
 
 .accordion-content {
-    max-height: 0; overflow: hidden; background: var(--bg-color);
+    max-height: 0;
+    overflow: hidden;
+    background: var(--bg-color);
     transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
 }
 
 .track-accordion.active .accordion-header i.fa-chevron-down {
-    transform: rotate(180deg); background: var(--accent-color); color: white;
+    transform: rotate(180deg);
+    background: var(--accent-color);
+    color: white;
 }
 
 .track-accordion.active .accordion-content {
     max-height: 2500px;
-    padding: 25px; border-top: 1px solid var(--border-color);
+    padding: 25px;
+    border-top: 1px solid var(--border-color);
 }
 
-/* --- 9. STYLING KARTU JS (CARD & LIST-CARD) --- */
+/* --- 9. STYLING KARTU JS & DAFTAR (YANG KEMARIN TERHAPUS) --- */
+.portfolio-grid, .lab-grid, .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
 .card, .list-card {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    position: relative; overflow: hidden;
+    position: relative;
+    overflow: hidden;
 }
 
-.card:hover { transform: translateY(-8px) !important; box-shadow: var(--shadow) !important; }
+.card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: var(--shadow) !important;
+}
 
+/* Styling List Rekam Jejak Dinamis */
 .list-card {
-    background: var(--card-bg); border: 1px solid var(--border-color);
-    border-radius: 12px; padding: 20px; margin-bottom: 15px; cursor: pointer;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
     border-left: 4px solid var(--card-accent, var(--accent-color));
 }
 
 .list-card:hover {
-    transform: translateX(8px); box-shadow: var(--shadow); border-color: var(--card-accent, var(--accent-color));
+    transform: translateX(8px);
+    box-shadow: var(--shadow);
+    border-color: var(--card-accent, var(--accent-color));
 }
 
 .list-card h4 {
-    margin: 0 0 10px 0; color: var(--text-color); display: flex;
-    justify-content: space-between; align-items: center; line-height: 1.4;
+    margin: 0 0 10px 0;
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1.4;
 }
 
-.list-card h4 i.icon-chevron { font-size: 0.9rem; color: var(--text-muted); transition: 0.3s; }
-.list-card.active h4 i.icon-chevron { transform: rotate(180deg); color: var(--accent-color); }
+.list-card h4 i.icon-chevron {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: 0.3s;
+}
+
+.list-card.active h4 i.icon-chevron {
+    transform: rotate(180deg);
+    color: var(--accent-color);
+}
 
 .list-meta {
-    display: flex; gap: 15px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0; flex-wrap: wrap;
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0;
+    flex-wrap: wrap;
 }
 
-.list-meta span i { color: var(--accent-color); margin-right: 5px; }
+.list-meta span i {
+    color: var(--accent-color);
+    margin-right: 5px;
+}
 
 .list-desc {
-    max-height: 0; overflow: hidden; opacity: 0; transition: all 0.4s ease;
-    font-size: 0.95rem; color: var(--text-color); margin-top: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s ease;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    margin-top: 0;
 }
 
 .list-card.active .list-desc {
-    max-height: 800px; opacity: 1; margin-top: 15px; padding-top: 15px;
+    max-height: 800px;
+    opacity: 1;
+    margin-top: 15px;
+    padding-top: 15px;
     border-top: 1px dashed var(--border-color);
 }
 
-.tech-tag { font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
-
-/* --- 10. GRID UNTUK PORTOFOLIO, LAB, LIBRARY --- */
-.portfolio-grid, .lab-grid, .about-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;
+.tech-tag {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
-/* --- 11. ANIMASI SCROLL (REVEAL) --- */
-.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
-.reveal.active { opacity: 1; transform: translateY(0); }
+/* --- 10. ANIMASI SCROLL & TOMBOL --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
 
-/* --- 12. TOMBOL SUBMIT & FOOTER --- */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .btn-submit {
-    display: inline-block; background: var(--accent-color); color: white;
-    padding: 12px 30px; border-radius: 8px; font-weight: bold; transition: 0.3s;
-    text-decoration: none; border: none; cursor: pointer;
+    display: inline-block;
+    background: var(--accent-color);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
 }
-.btn-submit:hover { background: var(--accent-hover); transform: translateY(-3px); box-shadow: var(--glow); color: white;}
 
-.footer { padding: 40px 30px; text-align: center; background: var(--card-bg); border-top: 1px solid var(--border-color); }
-.social-links-footer { margin-bottom: 20px; }
+.btn-submit:hover {
+    background: var(--accent-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--glow);
+    color: white;
+}
+
+/* --- 11. FOOTER --- */
+.footer {
+    padding: 40px 30px;
+    text-align: center;
+    background: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+.social-links-footer {
+    margin-bottom: 20px;
+}
+
 .social-links-footer a {
-    display: inline-block; font-size: 1.5rem; color: var(--text-muted); background: var(--bg-color);
-    width: 45px; height: 45px; line-height: 45px; border-radius: 50%; margin: 0 8px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid var(--border-color);
+    display: inline-block;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    background: var(--bg-color);
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 50%;
+    margin: 0 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--border-color);
 }
+
 .social-links-footer a:hover {
-    color: #fff; background: var(--accent-color); transform: translateY(-5px) rotate(360deg);
-    border-color: var(--accent-color); box-shadow: var(--glow);
+    color: #fff;
+    background: var(--accent-color);
+    transform: translateY(-5px) rotate(360deg);
+    border-color: var(--accent-color);
+    box-shadow: var(--glow);
 }
-.footer p { margin: 0; font-size: 0.95rem; color: var(--text-muted); }
+
+.footer p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
