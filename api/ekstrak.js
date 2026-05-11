@@ -4,6 +4,7 @@ module.exports = async function handler(req, res) {
     try {
         const { imageBase64, mimeType, manualText } = req.body;
 
+        // PROMPT AI TERBARU (Sudah di-update untuk membaca Tanggal & Lokasi)
         const basePrompt = `Kamu adalah Asisten AI canggih untuk ekstraksi data portofolio IT.
         Tugasmu: Analisis input (gambar atau teks) ini dan tentukan masuk ke HANYA SATU tabel yang paling relevan.
         Ekstrak datanya dan WAJIB gunakan nama kolom (key JSON) yang PERSIS seperti panduan ini (perhatikan huruf besar/kecilnya):
@@ -20,6 +21,7 @@ module.exports = async function handler(req, res) {
         9. 'pendidikan' -> instansi, lokasi, jenjang_prodi, tahun
 
         ATURAN:
+        - KHUSUS TABEL 'sertifikat': Jika di gambar/teks terdapat informasi Tanggal, Bulan, Tahun lengkap dan Lokasi, WAJIB gabungkan di awal isi 'deskripsi'. (Contoh format: "Diselenggarakan di Jakarta, 12 Mei 2026. Meraih juara...")
         - Jika manual teks, pecah info Tech Stack ke 'solusi_teknis' dan Link ke 'link'.
         - Kembalikan HANYA JSON murni tanpa markdown.
         
@@ -37,7 +39,7 @@ module.exports = async function handler(req, res) {
             return res.status(400).json({ error: "Data kosong." });
         }
 
-        // Kunci Gemini tetap aman di dalam brankas Vercel
+        // Panggil AI Gemini (Kunci aman di Vercel Env)
         const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
         
         const geminiResponse = await fetch(geminiUrl, {
@@ -53,14 +55,16 @@ module.exports = async function handler(req, res) {
             throw new Error(`Ditolak Google: ${msg}`);
         }
 
+        // Bersihkan hasil format JSON dari AI
         let aiText = geminiData.candidates[0].content.parts[0].text;
         aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
         const finalData = JSON.parse(aiText);
 
-        // --- URL DAN KEY SUPABASE DITANAM PERMANEN ---
+        // --- URL DAN KEY SUPABASE MILIKMU ---
         const supabaseUrl = "https://xwwlegzacxevmlmtceqh.supabase.co";
         const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3d2xlZ3phY3hldm1sbXRjZXFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MDA2NzEsImV4cCI6MjA5Mzk3NjY3MX0.C9qCfFVN9j8gtvsLVBFGh4I28gIRvJkYlp546-ssEgw";
 
+        // Kirim ke Brankas Database
         const insertResponse = await fetch(`${supabaseUrl}/rest/v1/${finalData.tabel_tujuan}`, {
             method: 'POST',
             headers: {
