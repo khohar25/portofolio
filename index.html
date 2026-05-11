@@ -23,23 +23,20 @@
             }, 'google_translate_element');
         }
     </script>
-    <style>
-        /* Styling khusus agar tombol translate rapi di sidebar */
-        .goog-te-gadget-simple { background-color: transparent !important; border: 1px solid var(--sidebar-border) !important; padding: 8px 15px !important; border-radius: 8px !important; font-family: 'Inter', sans-serif !important; transition: 0.3s;}
-        .goog-te-menu-value span { color: var(--sidebar-text) !important; font-weight: 500; }
-        .goog-te-gadget-icon { display: none; } /* Sembunyikan icon default */
-        .goog-te-gadget-simple:hover { border-color: var(--accent-color) !important; }
-        body { top: 0 !important; } /* Mencegah bug margin top dari Google Translate */
-        .skiptranslate iframe { display: none !important; } /* Sembunyikan banner atas Google */
-    </style>
 </head>
 <body>
+
+    <div class="top-controls">
+        <div id="google_translate_element"></div>
+        <button id="theme-toggle" aria-label="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
 
     <i class="fas fa-bars mobile-nav-toggle desktop-hide" id="mobile-nav-toggle" aria-label="Buka navigasi menu"></i>
 
     <header id="header">
         <div class="sidebar-wrapper" style="display: flex; flex-direction: column; height: 100%;">
-
             <div class="profile">
                 <img src="aku.jpeg" alt="Foto Profil Khohar Muhamad Fatahurrohman" class="img-fluid rounded-circle" loading="lazy">
                 <h1 class="text-light"><a href="index.html">Khohar M.F.</a></h1>
@@ -64,37 +61,34 @@
                 </ul>
             </nav>
 
-            <div id="google_translate_element" style="margin: 20px 15px; text-align: center;"></div>
-
-            <div class="theme-switch-wrapper text-center mt-auto" style="margin-top: 1rem;">
-                <button id="theme-toggle" aria-label="Toggle Dark Mode" style="background: rgba(255,255,255,0.05); border: 1px solid var(--sidebar-border); color: var(--sidebar-text); font-size: 1.2rem; cursor: pointer; transition: 0.3s; padding: 10px 20px; border-radius: 30px;">
-                    <i class="fas fa-moon"></i> Tema
-                </button>
-            </div>
-            
-            <div class="sidebar-footer text-center" style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-muted);">
+            <div class="sidebar-footer text-center" style="margin-top: auto; font-size: 0.8rem; color: var(--text-muted); padding-bottom: 20px;">
                 <p>&copy; 2026 Khohar M.F.</p>
             </div>
-
         </div>
     </header>
 
     <main id="main">
 
         <section id="hero">
-            <div class="sky-container"><div class="sky-elements"></div><div class="celestial-body"></div></div>
+            <div class="sky-container">
+                <div class="celestial-body"></div>
+                <div class="stars-layer"></div>
+                <div class="cloud-layer c1"></div>
+                <div class="cloud-layer c2"></div>
+                <div class="cloud-layer c3"></div>
+            </div>
             
             <div class="hero-content-wrapper">
                 <div class="hero-text-box reveal">
-                    <h1 class="animate-text-1">"MY REMINDER"</h1>
+                    <h1 class="animate-text-1 notranslate">"MY REMINDER"</h1>
                     <p class="animate-text-2">"Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal..."</p>
                 </div>
                 
                 <div class="hero-img-box reveal">
                     <div class="astronaut-costume-container">
-                        <img src="aku.jpeg" alt="Khohar Muhamad Fatahurrohman" class="user-photo-base">
+                        <img src="aku.jpeg" alt="Khohar Muhamad" class="user-photo-base">
                         
-                        <img src="https://i.imgur.com/vHqB3qB.png" alt="Astronaut Helmet Frame" class="helmet-overlay-frame">
+                        <img src="bg.png" alt="Kostum Astronot" class="helmet-overlay-frame">
                     </div>
                 </div>
             </div>
@@ -164,21 +158,53 @@
             <div class="container">
                 <h2 class="section-title">Rekam Jejak & Pengembangan Diri</h2>
                 <p class="section-subtitle">Daftar pengalaman dalam kepemimpinan, kompetisi, dan literasi teknologi. (Klik kategori untuk detail)</p>
+                
                 <div class="track-record-grid">
                     <div class="track-accordion">
-                        <div class="accordion-header"><h3><i class="fas fa-trophy" style="color: #f59e0b;"></i> Penghargaan</h3><i class="fas fa-chevron-down"></i></div>
+                        <div class="accordion-header">
+                            <h3><i class="fas fa-trophy" style="color: #f59e0b;"></i> Penghargaan & Medali</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                         <div class="accordion-content" id="juara-container"></div>
                     </div>
+
                     <div class="track-accordion">
-                        <div class="accordion-header"><h3><i class="fas fa-medal" style="color: #3b82f6;"></i> Partisipasi Sains</h3><i class="fas fa-chevron-down"></i></div>
+                        <div class="accordion-header">
+                            <h3><i class="fas fa-medal" style="color: #3b82f6;"></i> Partisipasi Sains</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                         <div class="accordion-content" id="peserta-sains-container"></div>
                     </div>
+
                     <div class="track-accordion">
-                        <div class="accordion-header"><h3><i class="fas fa-users" style="color: #10b981;"></i> Organisasi</h3><i class="fas fa-chevron-down"></i></div>
+                        <div class="accordion-header">
+                            <h3><i class="fas fa-users" style="color: #10b981;"></i> Organisasi & Kepanduan</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                         <div class="accordion-content" id="organisasi-container"></div>
                     </div>
+
                     <div class="track-accordion">
-                        <div class="accordion-header"><h3><i class="fas fa-clipboard-list" style="color: #14b8a6;"></i> Pelatihan</h3><i class="fas fa-chevron-down"></i></div>
+                        <div class="accordion-header">
+                            <h3><i class="fas fa-flag" style="color: #ef4444;"></i> Event & Kegiatan</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content" id="event-container"></div>
+                    </div>
+
+                    <div class="track-accordion">
+                        <div class="accordion-header">
+                            <h3><i class="fas fa-laptop-code" style="color: #8b5cf6;"></i> Seminar & Webinar</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content" id="seminar-container"></div>
+                    </div>
+
+                    <div class="track-accordion">
+                        <div class="accordion-header">
+                            <h3><i class="fas fa-clipboard-list" style="color: #14b8a6;"></i> Pelatihan & Panitia</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                         <div class="accordion-content" id="pelatihan-container"></div>
                     </div>
                 </div>
@@ -201,7 +227,7 @@
 
         <section id="library" class="section reveal">
             <div class="container">
-                <h2 class="section-title"> Creative Works <i class="fas fa-book-open"></i></h2>
+                <h2 class="section-title">Creative Works <i class="fas fa-book-open"></i></h2>
                 <div class="portfolio-grid" id="library-container"></div>
             </div>
         </section>
@@ -209,21 +235,28 @@
         <section id="artikel" class="section bg-alt reveal">
             <div class="container">
                 <h2 class="section-title">Artikel & Publikasi <i class="fas fa-newspaper"></i></h2>
-                <div class="card" style="text-align: center; padding: 50px 30px; background: var(--card-bg); border-radius: 16px;">
+                <p class="section-subtitle">Pemikiran, kajian komputasional, dan catatan perjalanan.</p>
+                
+                <div class="card" style="text-align: center; padding: 50px 30px; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
                     <i class="fab fa-blogger" style="font-size: 4rem; color: #f57c00; margin-bottom: 20px;"></i>
-                    <h3 style="margin-bottom: 15px;">Blog Resmi Khohar Muhamad</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.05rem;">Tempat saya mendokumentasikan eksplorasi rekayasa perangkat lunak, AI, IoT, serta kajian tulisan fiksi ilmiah.</p>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit">Kunjungi Blog &rarr;</a>
+                    <h3 style="margin-bottom: 15px; color: var(--text-color);">Blog / Artikel Resmi Khohar Muhamad</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.05rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Tempat saya mendokumentasikan eksplorasi rekayasa perangkat lunak, AI, IoT, serta tulisan lepas lainnya.
+                    </p>
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit" style="display: inline-block; background: var(--accent-color); color: white; padding: 12px 30px; border-radius: 8px; font-weight: bold; text-decoration: none;">
+                        Kunjungi Blog / Artikel <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
                 </div>
             </div>
         </section>
 
         <footer class="footer reveal">
             <div class="social-links-footer text-center">
-                <a href="https://github.com/khohar25" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://khoharmuhamad.blogspot.com" target="_blank"><i class="fab fa-blogger"></i></a>
+                <a href="https://github.com/khohar25" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                <a href="https://khoharmuhamad.blogspot.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-blogger"></i></a>
                 <a href="mailto:khoharrohman@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" rel="noopener noreferrer"><i class="fas fa-briefcase"></i></a>
+                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
             </div>
             <p>&copy; 2026 Khohar Muhamad Fatahurrohman.</p>
         </footer>
@@ -232,14 +265,14 @@
 
     <script src="script.js"></script>
     <script>
-        // Hamburger Menu Logic
+        // Logika Hamburger Menu Mobile
         document.getElementById('mobile-nav-toggle').addEventListener('click', function() {
             document.body.classList.toggle('mobile-nav-active');
             this.classList.toggle('fa-bars');
             this.classList.toggle('fa-times');
         });
 
-        // Logika Animasi Scroll Bawaan
+        // Logika Reveal saat di Scroll
         const revealCallback = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
