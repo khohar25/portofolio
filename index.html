@@ -8,18 +8,8 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
-
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'id', 
-                includedLanguages: 'en,id', 
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
 </head>
 <body>
 
@@ -42,15 +32,15 @@
     </div>
 
     <div class="top-controls notranslate">
-        <div id="google_translate_element" style="width: 1px; height: 1px; overflow: hidden; opacity: 0; position: absolute; z-index: -1;"></div>
+        <div id="google_translate_element"></div>
         
-        <button id="lang-toggle" onclick="ubahBahasa()" aria-label="Ubah Bahasa">
-            <i class="fas fa-language"></i> <span id="lang-text" style="font-weight: 600;">ID / EN</span>
+        <button id="lang-toggle" aria-label="Ubah Bahasa">
+            <i class="fas fa-language"></i> <span id="lang-text">ID / EN</span>
         </button>
 
-        <div style="width: 1px; height: 20px; background-color: var(--border-color); margin: 0 10px;"></div>
+        <div class="separator"></div>
         
-        <button id="theme-toggle" onclick="ubahTema()" aria-label="Toggle Dark Mode">
+        <button id="theme-toggle" aria-label="Toggle Dark Mode">
             <i class="fas fa-moon" id="theme-icon"></i>
         </button>
     </div>
@@ -58,16 +48,16 @@
     <i class="fas fa-bars mobile-nav-toggle desktop-hide" id="mobile-nav-toggle" aria-label="Buka navigasi menu"></i>
 
     <header id="header">
-        <div class="sidebar-wrapper" style="display: flex; flex-direction: column; height: 100%;">
+        <div class="sidebar-wrapper">
             <div class="profile">
-                <img src="aku.jpeg" alt="Foto Profil Khohar Muhamad" class="img-fluid rounded-circle" loading="lazy">
+                <img src="aku.jpeg" alt="Foto Profil" class="img-fluid rounded-circle" loading="lazy">
                 <h1 class="text-light notranslate"><a href="index.html">Khohar M.F.</a></h1>
                 <div class="social-links mt-3 text-center">
-                    <a href="https://github.com/khohar25" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog"><i class="fab fa-blogger"></i></a>
-                    <a href="mailto:khoharrohman@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork"><i class="fas fa-briefcase"></i></a>
-                    <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/khohar25" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank"><i class="fab fa-blogger"></i></a>
+                    <a href="mailto:khoharrohman@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank"><i class="fas fa-briefcase"></i></a>
+                    <a href="https://www.linkedin.com/in/khoharrohman" target="_blank"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
 
@@ -83,14 +73,13 @@
                 </ul>
             </nav>
 
-            <div class="sidebar-footer text-center" style="margin-top: auto; font-size: 0.8rem; color: var(--text-muted); padding-bottom: 20px;">
+            <div class="sidebar-footer">
                 <p>&copy; 2026 Khohar M.F.</p>
             </div>
         </div>
     </header>
 
     <main id="main">
-
         <section id="hero">
             <div class="hero-content-wrapper">
                 <div class="hero-text-box reveal">
@@ -106,9 +95,7 @@
             </div>
         </section>
 
-        <div style="margin: 3rem auto; text-align: center;">
-            <span class="reveal" style="display: inline-block; width: 60px; height: 5px; background-color: var(--accent-color); border-radius: 10px; opacity: 0.5;"></span>
-        </div>
+        <div class="divider-line"><span class="reveal"></span></div>
 
         <section id="about" class="section reveal">
             <div class="container">
@@ -120,7 +107,7 @@
                             <p>Dengan latar belakang kepemimpinan di tingkat organisasi dan mentalitas kompetitif dari berbagai olimpiade sains, saya menerapkan pendekatan komputasional yang terstruktur untuk mengkaji teknologi masa depan.</p>
                             <p>Saya memiliki minat yang besar dalam dunia literasi dan kepenulisan.</p>
                             
-                            <div class="tech-stack" style="margin-top: 2rem;">
+                            <div class="tech-stack">
                                 <h4>Tech Stack & Tools:</h4>
                                 <div class="tech-icons">
                                     <i class="fab fa-html5" title="HTML5"></i>
@@ -144,8 +131,7 @@
                         </div>
                     </div>
                 </div>
-
-                <h3 class="sub-heading" style="margin-top: 3rem;"><i class="fas fa-network-wired"></i> Jejaring Profesional</h3>
+                <h3 class="sub-heading network-title"><i class="fas fa-network-wired"></i> Jejaring Profesional</h3>
                 <div class="about-grid" id="network-container"></div>
             </div>
         </section>
@@ -153,8 +139,6 @@
         <section id="track-record" class="section bg-alt reveal">
             <div class="container">
                 <h2 class="section-title">Rekam Jejak & Pengembangan Diri</h2>
-                <p class="section-subtitle">Daftar pengalaman dalam kepemimpinan, kompetisi, dan literasi teknologi. (Klik kategori untuk detail)</p>
-                
                 <div class="track-record-grid">
                     <div class="track-accordion"><div class="accordion-header"><h3><i class="fas fa-trophy" style="color: #f59e0b;"></i> Penghargaan & Medali</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="juara-container"></div></div>
                     <div class="track-accordion"><div class="accordion-header"><h3><i class="fas fa-medal" style="color: #3b82f6;"></i> Partisipasi Sains</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="peserta-sains-container"></div></div>
@@ -173,81 +157,21 @@
         <section id="artikel" class="section bg-alt reveal">
             <div class="container">
                 <h2 class="section-title">Artikel & Publikasi <i class="fas fa-newspaper"></i></h2>
-                <div class="card" style="text-align: center; padding: 50px 30px; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color);">
-                    <i class="fab fa-blogger" style="font-size: 4rem; color: #f57c00; margin-bottom: 20px;"></i>
-                    <h3 style="margin-bottom: 15px; color: var(--text-color);">Blog / Artikel Resmi Khohar Muhamad</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 30px;">Tempat saya mendokumentasikan eksplorasi rekayasa perangkat lunak, AI, IoT, serta tulisan lepas lainnya.</p>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit" style="text-decoration: none;">Kunjungi Blog / Artikel <i class="fas fa-arrow-right"></i></a>
+                <div class="card article-card">
+                    <i class="fab fa-blogger article-icon"></i>
+                    <h3>Blog / Artikel Resmi Khohar Muhamad</h3>
+                    <p>Tempat saya mendokumentasikan eksplorasi rekayasa perangkat lunak, AI, IoT, serta tulisan lepas lainnya.</p>
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit">Kunjungi Blog / Artikel <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
 
         <footer class="footer reveal">
-            <div class="social-links-footer text-center">
-                <a href="https://github.com/khohar25" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://khoharmuhamad.blogspot.com" target="_blank"><i class="fab fa-blogger"></i></a>
-                <a href="mailto:khoharrohman@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank"><i class="fas fa-briefcase"></i></a>
-                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank"><i class="fab fa-linkedin"></i></a>
-            </div>
             <p>&copy; 2026 Khohar Muhamad Fatahurrohman.</p>
         </footer>
-
     </main>
 
     <script src="script.js"></script>
-    <script>
-        // FUNGSI GANTI TEMA ANTI MACET
-        function ubahTema() {
-            let currentTheme = document.documentElement.getAttribute('data-theme');
-            let newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            document.getElementById('theme-icon').className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            localStorage.setItem('savedTheme', newTheme); // Simpan pilihan tema
-        }
-
-        // FUNGSI GANTI BAHASA ANTI MACET
-        function ubahBahasa() {
-            var combo = document.querySelector('.goog-te-combo');
-            if (!combo) {
-                alert("Sistem bahasa sedang dimuat. Harap tunggu sebentar lalu klik lagi.");
-                return;
-            }
-            // Switch value
-            combo.value = combo.value === 'en' ? 'id' : 'en';
-            combo.dispatchEvent(new Event('change'));
-            
-            // Ubah teks tombol
-            document.getElementById('lang-text').innerText = combo.value === 'en' ? 'EN / ID' : 'ID / EN';
-        }
-
-        // INIT SAAT HALAMAN DIMUAT
-        window.addEventListener('load', function() {
-            var bodyObj = document.getElementsByTagName('body')[0];
-            if(bodyObj) { bodyObj.style.top = '0px'; } // Cegah banner Google
-            
-            // Terapkan tema yang tersimpan
-            let savedTheme = localStorage.getItem('savedTheme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            document.getElementById('theme-icon').className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        });
-
-        // MENU MOBILE
-        document.getElementById('mobile-nav-toggle').addEventListener('click', function() {
-            document.body.classList.toggle('mobile-nav-active');
-            this.classList.toggle('fa-bars');
-            this.classList.toggle('fa-times');
-        });
-
-        // REVEAL ANIMASI
-        const revealCallback = (entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); }}); };
-        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.15 });
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        // ACCORDION
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => { header.parentElement.classList.toggle('active'); });
-        });
-    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
