@@ -56,10 +56,11 @@ module.exports = async function handler(req, res) {
         aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
         const finalData = JSON.parse(aiText);
 
-        // --- URL SUPABASE LANGSUNG DITANAM DI SINI ---
+        // --- URL DAN KEY SUPABASE LANGSUNG DITANAM ---
         const supabaseUrl = "https://xwwlegzacxevmlmtceqh.supabase.co";
-        // Kunci Supabase tetap ambil dari brankas
-        const supabaseKey = process.env.SUPABASE_KEY;
+        
+        // GANTI TEKS DI BAWAH INI DENGAN KUNCI YANG DEPANNYA eyJ... (Pastikan tanda kutip ganda " tetap ada di awal dan akhir)
+        const supabaseKey = "PASTE_KUNCI_EYJ_DI_SINI";
 
         const insertResponse = await fetch(`${supabaseUrl}/rest/v1/${finalData.tabel_tujuan}`, {
             method: 'POST',
