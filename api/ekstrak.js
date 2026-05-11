@@ -37,6 +37,7 @@ module.exports = async function handler(req, res) {
             return res.status(400).json({ error: "Data kosong." });
         }
 
+        // Kunci Gemini tetap aman di dalam brankas Vercel
         const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
         
         const geminiResponse = await fetch(geminiUrl, {
@@ -56,11 +57,9 @@ module.exports = async function handler(req, res) {
         aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
         const finalData = JSON.parse(aiText);
 
-        // --- URL DAN KEY SUPABASE LANGSUNG DITANAM ---
+        // --- URL DAN KEY SUPABASE DITANAM PERMANEN ---
         const supabaseUrl = "https://xwwlegzacxevmlmtceqh.supabase.co";
-        
-        // GANTI TEKS DI BAWAH INI DENGAN KUNCI YANG DEPANNYA eyJ... (Pastikan tanda kutip ganda " tetap ada di awal dan akhir)
-        const supabaseKey = "PASTE_KUNCI_EYJ_DI_SINI";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3d2xlZ3phY3hldm1sbXRjZXFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MDA2NzEsImV4cCI6MjA5Mzk3NjY3MX0.C9qCfFVN9j8gtvsLVBFGh4I28gIRvJkYlp546-ssEgw";
 
         const insertResponse = await fetch(`${supabaseUrl}/rest/v1/${finalData.tabel_tujuan}`, {
             method: 'POST',
