@@ -6,8 +6,6 @@
     <meta name="description" content="Portofolio Digital Khohar Muhamad Fatahurrohman - Pengembang Web, AI Enthusiast, dan IT Student.">
     <title>Portofolio | Khohar Muhamad Fatahurrohman</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -28,24 +26,32 @@
     <div class="sky-container notranslate">
         <div class="celestial-body"></div>
         <div class="stars-layer"></div>
-        <div class="planet p1"></div>
-        <div class="planet p2"></div>
+        
+        <div class="planet p-merkurius"></div>
+        <div class="planet p-venus"></div>
+        <div class="planet p-bumi"></div>
+        <div class="planet p-mars"></div>
+        <div class="planet p-jupiter"></div>
+        <div class="planet p-saturnus"></div>
+        <div class="planet p-uranus"></div>
+        <div class="planet p-neptunus"></div>
+
         <div class="cloud-layer c1"></div>
         <div class="cloud-layer c2"></div>
         <div class="cloud-layer c3"></div>
     </div>
 
     <div class="top-controls notranslate">
-        <div id="google_translate_element" style="position: absolute; top: -9999px; left: -9999px; opacity: 0; pointer-events: none;"></div>
+        <div id="google_translate_element" style="width: 1px; height: 1px; overflow: hidden; opacity: 0; position: absolute; z-index: -1;"></div>
         
-        <button id="lang-toggle" onclick="toggleLanguage()" aria-label="Ubah Bahasa">
+        <button id="lang-toggle" onclick="ubahBahasa()" aria-label="Ubah Bahasa">
             <i class="fas fa-language"></i> <span id="lang-text" style="font-weight: 600;">ID / EN</span>
         </button>
 
         <div style="width: 1px; height: 20px; background-color: var(--border-color); margin: 0 10px;"></div>
         
-        <button id="theme-toggle" aria-label="Toggle Dark Mode">
-            <i class="fas fa-moon"></i>
+        <button id="theme-toggle" onclick="ubahTema()" aria-label="Toggle Dark Mode">
+            <i class="fas fa-moon" id="theme-icon"></i>
         </button>
     </div>
 
@@ -191,57 +197,54 @@
 
     <script src="script.js"></script>
     <script>
-        // LOGIKA INSTAN TRANSLATE (TIDAK PERLU RELOAD)
-        function toggleLanguage() {
-            var combo = document.querySelector('.goog-te-combo');
-            if (!combo) {
-                alert("Sistem penerjemah sedang dimuat, tunggu sebentar lalu klik lagi.");
-                return;
-            }
-            
-            // Cek status saat ini dan ganti
-            var currentLang = combo.value;
-            var targetLang = (currentLang === 'en') ? 'id' : 'en';
-            
-            combo.value = targetLang;
-            combo.dispatchEvent(new Event('change')); // Perintahkan Google berubah
-            
-            // Update teks tombol kita
-            document.getElementById('lang-text').innerText = (targetLang === 'en') ? 'EN / ID' : 'ID / EN';
+        // FUNGSI GANTI TEMA ANTI MACET
+        function ubahTema() {
+            let currentTheme = document.documentElement.getAttribute('data-theme');
+            let newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            document.getElementById('theme-icon').className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('savedTheme', newTheme); // Simpan pilihan tema
         }
 
-        // Mencegah bug banner atas Google Translate
+        // FUNGSI GANTI BAHASA ANTI MACET
+        function ubahBahasa() {
+            var combo = document.querySelector('.goog-te-combo');
+            if (!combo) {
+                alert("Sistem bahasa sedang dimuat. Harap tunggu sebentar lalu klik lagi.");
+                return;
+            }
+            // Switch value
+            combo.value = combo.value === 'en' ? 'id' : 'en';
+            combo.dispatchEvent(new Event('change'));
+            
+            // Ubah teks tombol
+            document.getElementById('lang-text').innerText = combo.value === 'en' ? 'EN / ID' : 'ID / EN';
+        }
+
+        // INIT SAAT HALAMAN DIMUAT
         window.addEventListener('load', function() {
             var bodyObj = document.getElementsByTagName('body')[0];
-            if(bodyObj) { bodyObj.style.top = '0px'; }
+            if(bodyObj) { bodyObj.style.top = '0px'; } // Cegah banner Google
             
-            // Script untuk Tema toggle
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            themeToggleBtn.addEventListener('click', () => {
-                let currentTheme = document.documentElement.getAttribute('data-theme');
-                if (currentTheme === 'light') {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
-                }
-            });
+            // Terapkan tema yang tersimpan
+            let savedTheme = localStorage.getItem('savedTheme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.getElementById('theme-icon').className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
         });
 
-        // Hamburger Menu Mobile
+        // MENU MOBILE
         document.getElementById('mobile-nav-toggle').addEventListener('click', function() {
             document.body.classList.toggle('mobile-nav-active');
             this.classList.toggle('fa-bars');
             this.classList.toggle('fa-times');
         });
 
-        // Logika Reveal saat Scroll
+        // REVEAL ANIMASI
         const revealCallback = (entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); }}); };
         const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.15 });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // Logika Accordion Rekam Jejak
+        // ACCORDION
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => { header.parentElement.classList.toggle('active'); });
         });
