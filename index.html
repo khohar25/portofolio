@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portofolio Digital Khohar Muhamad Fatahurrohman - Pengembang Web, AI Enthusiast, dan IT Student.">
     <title>Portofolio | Khohar Muhamad Fatahurrohman</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -12,7 +15,11 @@
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'id', includedLanguages: 'en,id', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+            new google.translate.TranslateElement({
+                pageLanguage: 'id', 
+                includedLanguages: 'en,id', 
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
         }
     </script>
 </head>
@@ -29,7 +36,7 @@
     </div>
 
     <div class="top-controls notranslate">
-        <div id="google_translate_element" style="display: none;"></div>
+        <div id="google_translate_element" style="position: absolute; top: -9999px; left: -9999px; opacity: 0; pointer-events: none;"></div>
         
         <button id="lang-toggle" onclick="toggleLanguage()" aria-label="Ubah Bahasa">
             <i class="fas fa-language"></i> <span id="lang-text" style="font-weight: 600;">ID / EN</span>
@@ -47,14 +54,14 @@
     <header id="header">
         <div class="sidebar-wrapper" style="display: flex; flex-direction: column; height: 100%;">
             <div class="profile">
-                <img src="aku.jpeg" alt="Foto Profil" class="img-fluid rounded-circle" loading="lazy">
+                <img src="aku.jpeg" alt="Foto Profil Khohar Muhamad" class="img-fluid rounded-circle" loading="lazy">
                 <h1 class="text-light notranslate"><a href="index.html">Khohar M.F.</a></h1>
                 <div class="social-links mt-3 text-center">
-                    <a href="https://github.com/khohar25" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank"><i class="fab fa-blogger"></i></a>
-                    <a href="mailto:khoharrohman@gmail.com"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank"><i class="fas fa-briefcase"></i></a>
-                    <a href="https://www.linkedin.com/in/khoharrohman" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/khohar25" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" title="Blog"><i class="fab fa-blogger"></i></a>
+                    <a href="mailto:khoharrohman@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank" title="Upwork"><i class="fas fa-briefcase"></i></a>
+                    <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
 
@@ -77,6 +84,7 @@
     </header>
 
     <main id="main">
+
         <section id="hero">
             <div class="hero-content-wrapper">
                 <div class="hero-text-box reveal">
@@ -130,6 +138,7 @@
                         </div>
                     </div>
                 </div>
+
                 <h3 class="sub-heading" style="margin-top: 3rem;"><i class="fas fa-network-wired"></i> Jejaring Profesional</h3>
                 <div class="about-grid" id="network-container"></div>
             </div>
@@ -138,6 +147,8 @@
         <section id="track-record" class="section bg-alt reveal">
             <div class="container">
                 <h2 class="section-title">Rekam Jejak & Pengembangan Diri</h2>
+                <p class="section-subtitle">Daftar pengalaman dalam kepemimpinan, kompetisi, dan literasi teknologi. (Klik kategori untuk detail)</p>
+                
                 <div class="track-record-grid">
                     <div class="track-accordion"><div class="accordion-header"><h3><i class="fas fa-trophy" style="color: #f59e0b;"></i> Penghargaan & Medali</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="juara-container"></div></div>
                     <div class="track-accordion"><div class="accordion-header"><h3><i class="fas fa-medal" style="color: #3b82f6;"></i> Partisipasi Sains</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="peserta-sains-container"></div></div>
@@ -160,43 +171,77 @@
                     <i class="fab fa-blogger" style="font-size: 4rem; color: #f57c00; margin-bottom: 20px;"></i>
                     <h3 style="margin-bottom: 15px; color: var(--text-color);">Blog / Artikel Resmi Khohar Muhamad</h3>
                     <p style="color: var(--text-muted); margin-bottom: 30px;">Tempat saya mendokumentasikan eksplorasi rekayasa perangkat lunak, AI, IoT, serta tulisan lepas lainnya.</p>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit">Kunjungi Blog / Artikel <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit" style="text-decoration: none;">Kunjungi Blog / Artikel <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
 
         <footer class="footer reveal">
+            <div class="social-links-footer text-center">
+                <a href="https://github.com/khohar25" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://khoharmuhamad.blogspot.com" target="_blank"><i class="fab fa-blogger"></i></a>
+                <a href="mailto:khoharrohman@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2?mp_source=share" target="_blank"><i class="fas fa-briefcase"></i></a>
+                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
             <p>&copy; 2026 Khohar Muhamad Fatahurrohman.</p>
         </footer>
+
     </main>
 
     <script src="script.js"></script>
     <script>
-        // LOGIKA TRANSLATE KUSTOM
+        // LOGIKA INSTAN TRANSLATE (TIDAK PERLU RELOAD)
         function toggleLanguage() {
-            let isEnglish = document.cookie.includes('googtrans=/id/en');
-            let targetLang = isEnglish ? 'id' : 'en';
-            document.cookie = `googtrans=/id/${targetLang}; path=/`;
-            document.cookie = `googtrans=/id/${targetLang}; path=/; domain=.${window.location.hostname}`;
-            window.location.reload();
+            var combo = document.querySelector('.goog-te-combo');
+            if (!combo) {
+                alert("Sistem penerjemah sedang dimuat, tunggu sebentar lalu klik lagi.");
+                return;
+            }
+            
+            // Cek status saat ini dan ganti
+            var currentLang = combo.value;
+            var targetLang = (currentLang === 'en') ? 'id' : 'en';
+            
+            combo.value = targetLang;
+            combo.dispatchEvent(new Event('change')); // Perintahkan Google berubah
+            
+            // Update teks tombol kita
+            document.getElementById('lang-text').innerText = (targetLang === 'en') ? 'EN / ID' : 'ID / EN';
         }
 
+        // Mencegah bug banner atas Google Translate
         window.addEventListener('load', function() {
             var bodyObj = document.getElementsByTagName('body')[0];
             if(bodyObj) { bodyObj.style.top = '0px'; }
-            if (document.cookie.includes('googtrans=/id/en')) { document.getElementById('lang-text').innerText = 'EN / ID'; }
+            
+            // Script untuk Tema toggle
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            themeToggleBtn.addEventListener('click', () => {
+                let currentTheme = document.documentElement.getAttribute('data-theme');
+                if (currentTheme === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+            });
         });
 
+        // Hamburger Menu Mobile
         document.getElementById('mobile-nav-toggle').addEventListener('click', function() {
             document.body.classList.toggle('mobile-nav-active');
             this.classList.toggle('fa-bars');
             this.classList.toggle('fa-times');
         });
 
+        // Logika Reveal saat Scroll
         const revealCallback = (entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); }}); };
         const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.15 });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+        // Logika Accordion Rekam Jejak
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => { header.parentElement.classList.toggle('active'); });
         });
