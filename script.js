@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AIFORA PORTFOLIO - MURNI JAVASCRIPT (LOGIKA UI & SUPABASE DATABASE)
+   AIFORA PORTFOLIO - MURNI JAVASCRIPT (LOGIKA UI & SUPABASE)
    ========================================================================== */
 
 // --- 1. INISIALISASI GOOGLE TRANSLATE ---
@@ -11,10 +11,9 @@ window.googleTranslateElementInit = function() {
     }, 'google_translate_element');
 };
 
-// Pastikan semua DOM siap sebelum menjalankan logic
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 2. LOGIKA TEMA (DARK/LIGHT MODE) ---
+    // --- 2. LOGIKA TEMA (DARK/LIGHT) ---
     const themeBtn = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     
@@ -32,19 +31,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. LOGIKA BAHASA (TRANSLATE) ---
+    // --- 3. LOGIKA BAHASA (MURNI COOKIE, TANPA ALERT ERROR) ---
     const langBtn = document.getElementById('lang-toggle');
     const langText = document.getElementById('lang-text');
 
-    if (document.cookie.includes('/en')) {
-        if(langText) langText.innerText = 'EN / ID';
+    // Cek apakah cookie saat ini bahasa Inggris
+    let currentCookie = document.cookie;
+    let isEnglish = currentCookie.includes('/en') || currentCookie.includes('%2Fen');
+
+    if (isEnglish && langText) {
+        langText.innerText = 'EN / ID';
     }
 
     if(langBtn) {
         langBtn.addEventListener('click', () => {
-            let isEnglish = document.cookie.includes('/en');
             let targetLang = isEnglish ? 'id' : 'en';
 
+            // Suntik cookie Google Translate
             document.cookie = `googtrans=/id/${targetLang}; path=/`;
             document.cookie = `googtrans=/auto/${targetLang}; path=/`;
             
@@ -52,16 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (domain !== 'localhost' && domain !== '127.0.0.1') {
                  document.cookie = `googtrans=/id/${targetLang}; path=/; domain=.${domain}`;
             }
+            
+            // Langsung reload agar Google memuat bahasa baru
             window.location.reload();
         });
     }
 
     // --- 4. LOGIKA UI LAINNYA ---
-    // Mencegah banner google
     var bodyObj = document.getElementsByTagName('body')[0];
     if(bodyObj) { bodyObj.style.top = '0px'; }
 
-    // Mobile Menu
     const mobileToggle = document.getElementById('mobile-nav-toggle');
     if(mobileToggle) {
         mobileToggle.addEventListener('click', function() {
@@ -71,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Reveal saat Scroll
     const revealCallback = (entries, observer) => { 
         entries.forEach(entry => { 
             if (entry.isIntersecting) { entry.target.classList.add('active'); }
@@ -80,14 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // Accordion Rekam Jejak
     document.querySelectorAll('.accordion-header').forEach(header => {
         header.addEventListener('click', () => { 
             header.parentElement.classList.toggle('active'); 
         });
     });
 
-    // Panggil fungsi database
+    // Panggil API Supabase
     loadPortfolioData();
 });
 
