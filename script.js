@@ -1,3 +1,7 @@
+/* ==========================================================================
+   AIFORA PORTFOLIO - JS MURNI (ROUTING KEBAL BADAI & LOGIKA DATA)
+   ========================================================================== */
+
 // --- 1. INIT GOOGLE TRANSLATE ---
 window.googleTranslateElementInit = function() {
     new google.translate.TranslateElement({
@@ -9,42 +13,41 @@ window.googleTranslateElementInit = function() {
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 2. SISTEM ROUTING (MULTI-LAYER SPA) ---
-    // Ini yang bikin menunya ganti halaman, bukan numpuk manjang ke bawah!
+    // --- 2. SISTEM ROUTING (MULTI-LAYER SPA) YANG BENAR ---
     const navLinks = document.querySelectorAll('.nav-layer');
     const sections = document.querySelectorAll('.section-layer');
 
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            let targetId = this.getAttribute('href');
+            e.preventDefault(); // Mencegah browser melompat kasar
+            let targetId = this.getAttribute('href'); // Ambil href (ex: #about)
             
-            if (targetId.startsWith('#')) {
-                e.preventDefault();
-                let sectionId = targetId.substring(1);
+            if (targetId && targetId.startsWith('#')) {
+                let sectionId = targetId.substring(1); // Ambil nama ID (ex: about)
                 
-                // Ubah status aktif di Menu Kiri
+                // 1. Ubah indikator menu yang aktif di sebelah kiri
                 navLinks.forEach(nav => nav.classList.remove('active'));
                 this.classList.add('active');
 
-                // Sembunyikan semua Halaman/Section
+                // 2. Sembunyikan semua Halaman/Layer
                 sections.forEach(sec => {
                     sec.classList.remove('active-layer');
                 });
                 
-                // Munculkan Halaman/Section yang diklik saja
+                // 3. Munculkan Halaman/Layer yang diklik
                 const targetSection = document.getElementById(sectionId);
                 if (targetSection) {
                     targetSection.classList.add('active-layer');
-                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll mulus ke atas
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll mulus ke atas halaman
                 }
 
-                // Kalau dibuka di HP, otomatis tutup menu sidebar setelah diklik
+                // 4. KHUSUS HP: Tutup menu otomatis setelah diklik
                 if (document.body.classList.contains('mobile-nav-active')) {
                     document.body.classList.remove('mobile-nav-active');
                     const mobileNavToggle = document.getElementById('mobile-nav-toggle');
                     if(mobileNavToggle){
-                        mobileNavToggle.classList.toggle('fa-bars');
-                        mobileNavToggle.classList.toggle('fa-times');
+                        mobileNavToggle.classList.remove('fa-times');
+                        mobileNavToggle.classList.add('fa-bars');
                     }
                 }
             }
@@ -74,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     langBtn?.addEventListener('click', () => {
         const combo = document.querySelector('.goog-te-combo');
         if (!combo) {
-            console.log("Menunggu mesin bahasa...");
+            console.log("Menunggu mesin bahasa Google...");
             return;
         }
         let target = combo.value === 'en' ? 'id' : 'en';
@@ -83,27 +86,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if(langText) langText.innerText = target === 'en' ? 'EN / ID' : 'ID / EN';
     });
 
-    // --- 5. UI MISC ---
-    document.getElementById('mobile-nav-toggle')?.addEventListener('click', function() {
-        document.body.classList.toggle('mobile-nav-active');
-        this.classList.toggle('fa-bars');
-        this.classList.toggle('fa-times');
-    });
+    // --- 5. UI MOBILE TOGGLE ---
+    const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+    if (mobileNavToggle) {
+        mobileNavToggle.addEventListener('click', function() {
+            document.body.classList.toggle('mobile-nav-active');
+            this.classList.toggle('fa-bars');
+            this.classList.toggle('fa-times');
+        });
+    }
 
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
+    // Accordion
     document.querySelectorAll('.accordion-header').forEach(header => {
         header.addEventListener('click', () => header.parentElement.classList.toggle('active'));
     });
 
-    // Panggil Supabase
+    // Mulai Panggil Data
     loadPortfolioData();
 });
 
-// --- 6. SUPABASE DATA ---
+// --- 6. SUPABASE DATA (LOGIKA TETAP SAMA DAN AMAN) ---
 const SUPABASE_URL = 'https://xwwlegzacxevmlmtceqh.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3d2xlZ3phY3hldm1sbXRjZXFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MDA2NzEsImV4cCI6MjA5Mzk3NjY3MX0.C9qCfFVN9j8gtvsLVBFGh4I28gIRvJkYlp546-ssEgw';
 const headers = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' };
@@ -213,7 +215,7 @@ async function loadPortfolioData() {
             networkData.forEach((item, index) => {
                 let accentColor = colorPalette[index % colorPalette.length];
                 networkContainer.innerHTML += `
-                    <div class="card" style="border-top: 4px solid ${accentColor}; padding: 1.5rem; background: var(--card-bg); border-radius: 12px; box-shadow: var(--shadow);">
+                    <div class="card" style="border-top: 4px solid ${accentColor}; padding: 1.5rem; background: var(--card-bg); border-radius: 12px; box-shadow: var(--shadow); backdrop-filter: blur(10px);">
                         <span class="tech-tag" style="color:${accentColor}; border: 1px solid ${accentColor}; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem;">${item.tipe}</span>
                         <h3 style="margin: 15px 0 5px 0; color: var(--text-color);">${item.nama_kegiatan}</h3>
                         <p style="margin:0; font-size: 0.9rem;"><strong>${item.platform_atau_tempat}</strong> | ${item.tahun}</p>
@@ -227,7 +229,7 @@ async function loadPortfolioData() {
             portofolioData.forEach((item, index) => {
                 let accentColor = colorPalette[index % colorPalette.length];
                 portfolioContainer.innerHTML += `
-                    <div class="card" style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border-left: 4px solid ${accentColor}; box-shadow: var(--shadow);">
+                    <div class="card" style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border-left: 4px solid ${accentColor}; box-shadow: var(--shadow); backdrop-filter: blur(10px);">
                         <h3 style="margin-top:0; color: var(--text-color);">${item.judul}</h3>
                         <span class="tech-tag" style="background: rgba(20,157,221,0.1); color: var(--accent-color); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem;">${item.kategori}</span>
                         <div style="margin-top: 15px;"><p style="font-size: 0.95rem; margin-bottom: 8px;"><strong style="color:var(--text-color);">Masalah:</strong> <span style="color:var(--text-muted);">${item.konteks_masalah || '-'}</span></p><p style="font-size: 0.95rem;"><strong style="color:var(--text-color);">Solusi:</strong> <span style="color:var(--text-muted);">${item.solusi_teknis || '-'}</span></p></div>
@@ -241,7 +243,7 @@ async function loadPortfolioData() {
             labData.forEach((item, index) => {
                 let accentColor = colorPalette[(index + 2) % colorPalette.length];
                 labContainer.innerHTML += `
-                    <div class="card" style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border-left: 4px solid ${accentColor}; box-shadow: var(--shadow);">
+                    <div class="card" style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border-left: 4px solid ${accentColor}; box-shadow: var(--shadow); backdrop-filter: blur(10px);">
                         <h3 style="margin-top:0; color: var(--text-color);">${item.judul_riset}</h3>
                         <span class="tech-tag" style="color: ${accentColor}; border: 1px solid ${accentColor}; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem;">${item.status}</span>
                         <p style="margin-top: 15px; color: var(--text-muted); font-size: 0.95rem;">${item.deskripsi || item.Deskripsi || '-'}</p>
@@ -254,7 +256,7 @@ async function loadPortfolioData() {
             libraryData.forEach((item, index) => {
                 let accentColor = colorPalette[(index + 3) % colorPalette.length];
                 libraryContainer.innerHTML += `
-                    <div class="card" style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border-top: 4px solid ${accentColor}; box-shadow: var(--shadow);">
+                    <div class="card" style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border-top: 4px solid ${accentColor}; box-shadow: var(--shadow); backdrop-filter: blur(10px);">
                         <h3 style="margin-top:0; color: var(--text-color);">${item.judul}</h3>
                         <span class="tech-tag" style="color: ${accentColor}; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; background: rgba(0,0,0,0.05);">${item.kategori}</span>
                         <p style="margin-top: 15px; color: var(--text-muted); font-size: 0.95rem;">${item.deskripsi}</p>
