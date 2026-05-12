@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AIFORA PORTFOLIO - JS MURNI (SCROLLSPY & LOGIKA DATA)
+   AIFORA PORTFOLIO - JS MURNI (SCROLL PAKSA & ANTI MACET)
    ========================================================================== */
 
 window.googleTranslateElementInit = function() {
@@ -12,10 +12,42 @@ window.googleTranslateElementInit = function() {
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. SCROLLSPY (Highlight menu kiri saat scroll ke bawah) ---
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('.section');
 
+    // --- 1. LOGIKA SCROLL PAKSA & SCROLLSPY ---
+    
+    // A. Paksa layar meluncur saat menu diklik
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            let targetId = this.getAttribute('href');
+            
+            if (targetId && targetId.startsWith('#')) {
+                e.preventDefault(); // Matikan fungsi klik bawaan browser yang suka macet
+                let targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    // Paksa scroll ke target dengan mulus
+                    window.scrollTo({
+                        top: targetSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Tutup menu kalau dibuka dari HP
+                if (document.body.classList.contains('mobile-nav-active')) {
+                    document.body.classList.remove('mobile-nav-active');
+                    const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+                    if(mobileNavToggle){
+                        mobileNavToggle.classList.remove('fa-times');
+                        mobileNavToggle.classList.add('fa-bars');
+                    }
+                }
+            }
+        });
+    });
+
+    // B. Deteksi saat layar digulir (ScrollSpy) untuk nyalain warna menu
     window.addEventListener('scroll', () => {
         let current = '';
         sections.forEach(section => {
@@ -28,22 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
+            if (link.getAttribute('href').includes(current) && current !== '') {
                 link.classList.add('active');
-            }
-        });
-    });
-
-    // Menutup menu mobile saat link diklik
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (document.body.classList.contains('mobile-nav-active')) {
-                document.body.classList.remove('mobile-nav-active');
-                const mobileNavToggle = document.getElementById('mobile-nav-toggle');
-                if(mobileNavToggle){
-                    mobileNavToggle.classList.remove('fa-times');
-                    mobileNavToggle.classList.add('fa-bars');
-                }
             }
         });
     });
