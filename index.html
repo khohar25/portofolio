@@ -28,16 +28,9 @@
 
     <div class="top-controls notranslate">
         <div id="google_translate_element" style="display:none!important;"></div>
-        
-        <button id="lang-toggle" aria-label="Ubah Bahasa">
-            <i class="fas fa-language"></i> <span id="lang-text">ID / EN</span>
-        </button>
-
+        <button id="lang-toggle" aria-label="Ubah Bahasa"><i class="fas fa-language"></i> <span id="lang-text">ID / EN</span></button>
         <div class="separator"></div>
-        
-        <button id="theme-toggle" aria-label="Toggle Dark Mode">
-            <i class="fas fa-moon" id="theme-icon"></i>
-        </button>
+        <button id="theme-toggle" aria-label="Toggle Dark Mode"><i class="fas fa-moon" id="theme-icon"></i></button>
     </div>
 
     <i class="fas fa-bars mobile-nav-toggle desktop-hide" id="mobile-nav-toggle"></i>
@@ -57,13 +50,13 @@
             </div>
             <nav id="navbar" class="nav-menu navbar">
                 <ul>
-                    <li><a href="#hero" class="nav-link active"><i class="fas fa-home"></i> <span>Home</span></a></li>
-                    <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> <span>Profil</span></a></li>
-                    <li><a href="#track-record" class="nav-link"><i class="fas fa-file-alt"></i> <span>Rekam Jejak</span></a></li>
-                    <li><a href="#portfolio" class="nav-link"><i class="fas fa-laptop-code"></i> <span>Proyek Web</span></a></li>
-                    <li><a href="#lab" class="nav-link"><i class="fas fa-flask"></i> <span>Riset</span></a></li>
-                    <li><a href="#library" class="nav-link"><i class="fas fa-book-open"></i> <span>Pustaka</span></a></li>
-                    <li><a href="#artikel" class="nav-link"><i class="fas fa-newspaper"></i> <span>Artikel</span></a></li>
+                    <li><a href="#hero" class="nav-layer active"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                    <li><a href="#about" class="nav-layer"><i class="fas fa-user"></i> <span>Profil</span></a></li>
+                    <li><a href="#track-record" class="nav-layer"><i class="fas fa-file-alt"></i> <span>Rekam Jejak</span></a></li>
+                    <li><a href="#portfolio" class="nav-layer"><i class="fas fa-laptop-code"></i> <span>Proyek Web</span></a></li>
+                    <li><a href="#lab" class="nav-layer"><i class="fas fa-flask"></i> <span>Riset</span></a></li>
+                    <li><a href="#library" class="nav-layer"><i class="fas fa-book-open"></i> <span>Pustaka</span></a></li>
+                    <li><a href="#artikel" class="nav-layer"><i class="fas fa-newspaper"></i> <span>Artikel</span></a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
@@ -73,13 +66,14 @@
     </header>
 
     <main id="main">
-        <section id="hero">
+        
+        <section id="hero" class="section-layer active-layer">
             <div class="hero-content-wrapper">
-                <div class="hero-text-box reveal">
+                <div class="hero-text-box">
                     <h1 class="animate-text-1 notranslate">"MY REMINDER"</h1>
                     <p class="animate-text-2">"Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal. Saya tidak sedang berlomba dengan siapa pun. Apa yang orang lain bisa belum tentu saya bisa, begitu juga sebaliknya. Saat ini, saya hanya fokus pada progres diri sendiri."</p>
                 </div>
-                <div class="hero-img-box reveal">
+                <div class="hero-img-box">
                     <div class="astronaut-costume-container">
                         <img src="bg.png" alt="Kostum Astronot" class="helmet-overlay-frame">
                     </div>
@@ -87,9 +81,7 @@
             </div>
         </section>
 
-        <div class="divider-line"><span></span></div>
-
-        <section id="about" class="section reveal">
+        <section id="about" class="section-layer">
             <div class="container">
                 <div class="about-wrapper">
                     <div class="profile-card">
@@ -104,14 +96,41 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="education-section">
                         <h3 class="sub-heading-inline"><i class="fas fa-graduation-cap"></i> Riwayat Pendidikan</h3>
                         <div class="timeline">
-                            <div class="timeline-item"><div class="timeline-dot"></div><h4>Politeknik Negeri Malang</h4><p>D4 Teknik Informatika | 2025 - Saat Ini</p></div>
-                            <div class="timeline-item"><div class="timeline-dot"></div><h4>SMKS Trisakti Ngawi</h4><p>Teknik Komputer dan Jaringan | 2022 - 2025</p></div>
-                            <div class="timeline-item"><div class="timeline-dot"></div><h4>MTsN 2 Ngawi</h4><p>2019 - 2022</p></div>
-                            <div class="timeline-item"><div class="timeline-dot"></div><h4>SDN Beberan 1 Ciruas</h4><p>2014 - 2019</p></div>
-                            <div class="timeline-item"><div class="timeline-dot"></div><h4>TK / PAUD (Isi Nama TK-mu)</h4><p>2012 - 2014</p></div>
+                            
+                            <div class="timeline-item"><div class="timeline-dot"></div>
+                                <h4>Politeknik Negeri Malang</h4>
+                                <p><strong>D4 Teknik Informatika</strong> | 2025 - Saat Ini</p>
+                                <p class="edu-desc"><i class="fas fa-map-marker-alt"></i> Jl. Soekarno Hatta No.9, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur</p>
+                            </div>
+                            
+                            <div class="timeline-item"><div class="timeline-dot"></div>
+                                <h4>SMKS Trisakti Ngawi</h4>
+                                <p><strong>Teknik Komputer dan Jaringan</strong> | 2022 - 2025</p>
+                                <p class="edu-desc"><i class="fas fa-map-marker-alt"></i> Jl. Kenari No. 7A, Beran, Kec. Ngawi, Kab. Ngawi, Jawa Timur</p>
+                            </div>
+
+                            <div class="timeline-item"><div class="timeline-dot"></div>
+                                <h4>MTsN 2 Ngawi</h4>
+                                <p>2019 - 2022</p>
+                                <p class="edu-desc"><i class="fas fa-map-marker-alt"></i> Jl. Raya Babadan Pangkur, Kec. Pangkur, Kab. Ngawi, Jawa Timur</p>
+                            </div>
+
+                            <div class="timeline-item"><div class="timeline-dot"></div>
+                                <h4>SDN Beberan 1 Ciruas</h4>
+                                <p>2014 - 2019</p>
+                                <p class="edu-desc"><i class="fas fa-map-marker-alt"></i> Beberan, Kec. Ciruas, Kab. Serang, Banten</p>
+                            </div>
+
+                            <div class="timeline-item"><div class="timeline-dot"></div>
+                                <h4>TKS Telaga Sakinah Ciruas</h4>
+                                <p>2012 - 2014</p>
+                                <p class="edu-desc"><i class="fas fa-map-marker-alt"></i> Kec. Ciruas, Kab. Serang, Banten</p>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -120,67 +139,37 @@
             </div>
         </section>
 
-        <section id="track-record" class="section bg-alt">
+        <section id="track-record" class="section-layer">
             <div class="container">
                 <h2 class="section-title">Rekam Jejak & Pengembangan Diri</h2>
                 <div class="track-record-grid">
-                    <div class="track-accordion">
-                        <div class="accordion-header"><h3><i class="fas fa-trophy" style="color: #f59e0b;"></i> Penghargaan & Medali</h3><i class="fas fa-chevron-down"></i></div>
-                        <div class="accordion-content" id="juara-container"></div>
-                    </div>
-                    <div class="track-accordion">
-                        <div class="accordion-header"><h3><i class="fas fa-medal" style="color: #3b82f6;"></i> Partisipasi Sains</h3><i class="fas fa-chevron-down"></i></div>
-                        <div class="accordion-content" id="peserta-sains-container"></div>
-                    </div>
-                    <div class="track-accordion">
-                        <div class="accordion-header"><h3><i class="fas fa-users" style="color: #10b981;"></i> Organisasi & Kepanduan</h3><i class="fas fa-chevron-down"></i></div>
-                        <div class="accordion-content" id="organisasi-container"></div>
-                    </div>
-                    <div class="track-accordion">
-                        <div class="accordion-header"><h3><i class="fas fa-flag" style="color: #ef4444;"></i> Event & Kegiatan</h3><i class="fas fa-chevron-down"></i></div>
-                        <div class="accordion-content" id="event-container"></div>
-                    </div>
-                    <div class="track-accordion">
-                        <div class="accordion-header"><h3><i class="fas fa-laptop-code" style="color: #8b5cf6;"></i> Seminar & Webinar</h3><i class="fas fa-chevron-down"></i></div>
-                        <div class="accordion-content" id="seminar-container"></div>
-                    </div>
-                    <div class="track-accordion">
-                        <div class="accordion-header"><h3><i class="fas fa-clipboard-list" style="color: #14b8a6;"></i> Pelatihan & Panitia</h3><i class="fas fa-chevron-down"></i></div>
-                        <div class="accordion-content" id="pelatihan-container"></div>
-                    </div>
+                    <div class="track-accordion"><div class="accordion-header"><h3>Penghargaan</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="juara-container"></div></div>
+                    <div class="track-accordion"><div class="accordion-header"><h3>Partisipasi Sains</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="peserta-sains-container"></div></div>
+                    <div class="track-accordion"><div class="accordion-header"><h3>Organisasi</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="organisasi-container"></div></div>
+                    <div class="track-accordion"><div class="accordion-header"><h3>Event</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="event-container"></div></div>
+                    <div class="track-accordion"><div class="accordion-header"><h3>Seminar</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="seminar-container"></div></div>
+                    <div class="track-accordion"><div class="accordion-header"><h3>Pelatihan</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="pelatihan-container"></div></div>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio" class="section"><div class="container"><h2 class="section-title">Case Studies & Proyek Web</h2><div class="portfolio-grid" id="portfolio-container"></div></div></section>
-        <section id="lab" class="section bg-alt"><div class="container"><h2 class="section-title">Innovation Lab <i class="fas fa-flask"></i></h2><div class="lab-grid" id="lab-container"></div></div></section>
-        <section id="library" class="section"><div class="container"><h2 class="section-title">Creative Works <i class="fas fa-book-open"></i></h2><div class="portfolio-grid" id="library-container"></div></div></section>
+        <section id="portfolio" class="section-layer"><div class="container"><h2 class="section-title">Case Studies & Proyek Web</h2><div class="portfolio-grid" id="portfolio-container"></div></div></section>
+        <section id="lab" class="section-layer"><div class="container"><h2 class="section-title">Innovation Lab <i class="fas fa-flask"></i></h2><div class="lab-grid" id="lab-container"></div></div></section>
+        <section id="library" class="section-layer"><div class="container"><h2 class="section-title">Creative Works <i class="fas fa-book-open"></i></h2><div class="portfolio-grid" id="library-container"></div></div></section>
 
-        <section id="artikel" class="section bg-alt">
+        <section id="artikel" class="section-layer">
             <div class="container">
                 <h2 class="section-title">Artikel & Publikasi <i class="fas fa-newspaper"></i></h2>
                 <p class="section-subtitle">Pemikiran, kajian komputasional, dan catatan perjalanan.</p>
                 <div class="article-card">
                     <i class="fab fa-blogger article-icon"></i>
                     <h3>Blog / Artikel Resmi Khohar Muhamad</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.05rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                        Tempat saya mendokumentasikan eksplorasi rekayasa perangkat lunak, AI, IoT, serta tulisan lepas lainnya.
-                    </p>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit">Kunjungi Blog / Artikel <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
+                    <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.05rem; max-width: 600px; margin-left: auto; margin-right: auto;">Tempat saya mendokumentasikan eksplorasi rekayasa perangkat lunak, AI, IoT, serta tulisan lepas lainnya.</p>
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit">Kunjungi Blog / Artikel <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
 
-        <footer class="footer">
-            <div class="social-links-footer text-center">
-                <a href="https://github.com/khohar25" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                <a href="https://khoharmuhamad.blogspot.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-blogger"></i></a>
-                <a href="mailto:khoharrohman@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2" target="_blank" rel="noopener noreferrer"><i class="fas fa-briefcase"></i></a>
-                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-            </div>
-            <p>&copy; 2026 Khohar Muhamad Fatahurrohman.</p>
-        </footer>
     </main>
 
     <script src="script.js"></script>
