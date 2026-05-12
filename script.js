@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AIFORA PORTFOLIO - JS MURNI (INSTAN SPA & FADE IN ELEGAN)
+   AIFORA PORTFOLIO - JS MURNI (SCROLLSPY & LOGIKA DATA)
    ========================================================================== */
 
 window.googleTranslateElementInit = function() {
@@ -12,45 +12,43 @@ window.googleTranslateElementInit = function() {
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- SISTEM ROUTING INSTAN (ANTI NYANGKUT) ---
-    const navLinks = document.querySelectorAll('.nav-layer');
-    const sections = document.querySelectorAll('.section-layer');
+    // --- 1. SCROLLSPY (Highlight menu kiri saat scroll ke bawah) ---
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
 
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= (sectionTop - sectionHeight / 3)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(current)) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Menutup menu mobile saat link diklik
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault(); 
-            let targetId = this.getAttribute('href'); 
-            
-            if (targetId && targetId.startsWith('#')) {
-                let sectionId = targetId.substring(1); 
-                
-                navLinks.forEach(nav => nav.classList.remove('active'));
-                this.classList.add('active');
-
-                // Hilangkan semua halaman seketika
-                sections.forEach(sec => {
-                    sec.classList.remove('active-layer');
-                });
-                
-                // Munculkan hanya halaman yang dituju
-                const targetSection = document.getElementById(sectionId);
-                if (targetSection) {
-                    targetSection.classList.add('active-layer');
-                    window.scrollTo(0, 0); // Pindah ke atas INSTAN tanpa animasi scroll
-                }
-
-                if (document.body.classList.contains('mobile-nav-active')) {
-                    document.body.classList.remove('mobile-nav-active');
-                    const mobileNavToggle = document.getElementById('mobile-nav-toggle');
-                    if(mobileNavToggle){
-                        mobileNavToggle.classList.remove('fa-times');
-                        mobileNavToggle.classList.add('fa-bars');
-                    }
+        link.addEventListener('click', () => {
+            if (document.body.classList.contains('mobile-nav-active')) {
+                document.body.classList.remove('mobile-nav-active');
+                const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+                if(mobileNavToggle){
+                    mobileNavToggle.classList.remove('fa-times');
+                    mobileNavToggle.classList.add('fa-bars');
                 }
             }
         });
     });
 
+    // --- 2. THEME LOGIC ---
     const themeBtn = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     let savedTheme = localStorage.getItem('savedTheme') || 'light';
@@ -66,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('savedTheme', newTheme);
     });
 
+    // --- 3. LANGUAGE LOGIC (INSTAN) ---
     const langBtn = document.getElementById('lang-toggle');
     const langText = document.getElementById('lang-text');
 
@@ -78,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(langText) langText.innerText = target === 'en' ? 'EN / ID' : 'ID / EN';
     });
 
+    // --- 4. UI MISC ---
     const mobileNavToggle = document.getElementById('mobile-nav-toggle');
     if (mobileNavToggle) {
         mobileNavToggle.addEventListener('click', function() {
@@ -87,6 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
     document.querySelectorAll('.accordion-header').forEach(header => {
         header.addEventListener('click', () => header.parentElement.classList.toggle('active'));
     });
@@ -94,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPortfolioData();
 });
 
-// --- SUPABASE DATA ---
+// --- 5. SUPABASE DATA ---
 const SUPABASE_URL = 'https://xwwlegzacxevmlmtceqh.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3d2xlZ3phY3hldm1sbXRjZXFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MDA2NzEsImV4cCI6MjA5Mzk3NjY3MX0.C9qCfFVN9j8gtvsLVBFGh4I28gIRvJkYlp546-ssEgw';
 const headers = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' };
