@@ -1,10 +1,12 @@
 /* ==========================================================================
-   AIFORA PORTFOLIO - CSS BERSIH (PEMBUNUH LOGO GOOGLE)
+   AIFORA PORTFOLIO - CSS TEMA LOGIKA BARU (SIANG + KETETAPAN PLANET)
    ========================================================================== */
 
 :root {
-    --bg-color: #f8f9fa; --text-color: #272829; --text-muted: #6f7180;
-    --sidebar-bg: rgba(255, 255, 255, 0.85); --sidebar-text: #475569;
+    /* MODE LIGHT: Diubah jadi Biru Langit Siang yang Cerah */
+    --bg-color: #a3d8f4; 
+    --text-color: #272829; --text-muted: #6f7180;
+    --sidebar-bg: rgba(255, 255, 255, 0.95); --sidebar-text: #475569;
     --sidebar-heading: #1e293b; --sidebar-border: rgba(0, 0, 0, 0.05);
     --accent-color: #149ddd; --accent-hover: #37b3ed; --card-bg: #ffffff;
     --border-color: #eaeaec; --shadow: 0px 8px 25px rgba(0, 0, 0, 0.05);
@@ -12,8 +14,10 @@
 }
 
 [data-theme="dark"] {
-    --bg-color: #0b1120; --text-color: #f8fafc; --text-muted: #94a3b8;
-    --sidebar-bg: rgba(4, 11, 20, 0.85); --sidebar-text: #a8a9b4;
+    /* MODE DARK: Tetap Space / Kosmos */
+    --bg-color: #0b1120; 
+    --text-color: #f8fafc; --text-muted: #94a3b8;
+    --sidebar-bg: rgba(4, 11, 20, 0.95); --sidebar-text: #a8a9b4;
     --sidebar-heading: #ffffff; --sidebar-border: rgba(255, 255, 255, 0.05);
     --accent-color: #149ddd; --accent-hover: #37b3ed; --card-bg: #1e293b;
     --border-color: rgba(255, 255, 255, 0.05); --shadow: 0px 8px 25px rgba(0, 0, 0, 0.3);
@@ -44,14 +48,13 @@ a:hover { color: var(--accent-hover); }
 .nav-menu li { margin-bottom: 8px; list-style: none; }
 .nav-menu a { display: flex; align-items: center; color: var(--sidebar-text); padding: 12px 15px; border-radius: 8px; font-weight: 500; transition: 0.3s; }
 .nav-menu a i { font-size: 20px; padding-right: 15px; color: var(--text-muted); transition: 0.3s; }
-.nav-menu a:hover, .nav-menu .active { color: var(--accent-color); background: rgba(var(--accent-color), 0.15); transform: translateX(5px); }
+.nav-menu a:hover, .nav-menu .active { color: var(--accent-color); background: rgba(20, 157, 221, 0.15); transform: translateX(5px); }
 .nav-menu a:hover i, .nav-menu .active i { color: var(--accent-color); }
 .sidebar-footer { margin-top: auto; font-size: 0.8rem; color: var(--text-muted); padding-bottom: 20px; text-align: center;}
 
 #main { margin-left: 300px; transition: 0.5s; position: relative; z-index: 1;}
-.mobile-nav-toggle { position: fixed; right: 20px; top: 20px; z-index: 9998; border: 0; font-size: 24px; background-color: var(--accent-color); color: #fff; width: 45px; height: 45px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; }
+.mobile-nav-toggle { position: fixed; right: 20px; top: 20px; z-index: 9998; border: 0; font-size: 24px; background-color: var(--accent-color); color: #fff; width: 45px; height: 45px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; box-shadow: var(--shadow); }
 .desktop-hide { display: none; }
-@media (max-width: 1199px) { #header { left: -300px; } #main { margin-left: 0; } .desktop-hide { display: inline-flex; } .mobile-nav-active #header { left: 0; } .mobile-nav-active { overflow: hidden; } }
 
 /* --- KONTROL ATAS CUSTOM --- */
 .top-controls { position: fixed; top: 20px; right: 80px; z-index: 10000; display: flex; align-items: center; background: var(--sidebar-bg); padding: 8px 15px; border-radius: 50px; border: 1px solid var(--border-color); box-shadow: var(--shadow); backdrop-filter: blur(10px); }
@@ -60,42 +63,41 @@ a:hover { color: var(--accent-hover); }
 #lang-toggle:hover, #theme-toggle:hover { color: var(--accent-color); transform: scale(1.05); }
 .separator { width: 1px; height: 20px; background-color: var(--border-color); margin: 0 10px; }
 
-/* ==========================================================================
-   PENJARA MUTLAK UNTUK WIDGET GOOGLE TRANSLATE 
-   ========================================================================== */
-#google_translate_element {
-    position: absolute !important;
-    top: -10000px !important;
-    left: -10000px !important;
-    width: 1px !important;
-    height: 1px !important;
-    z-index: -9999 !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-}
+#google_translate_element { width: 1px; height: 1px; overflow: hidden; opacity: 0; position: absolute; z-index: -1; }
 .goog-te-banner-frame { display: none !important; }
-.skiptranslate > iframe { display: none !important; }
+.skiptranslate { display: none !important; }
+body { top: 0 !important; position: static !important; }
 
-@media (max-width: 768px) { .top-controls { top: 15px; right: 75px; padding: 5px 12px; } #lang-toggle span { font-size: 0.9rem; } }
-
-/* --- ANIMASI LANGIT & 8 PLANET TATA SURYA --- */
+/* --- LOGIKA ANIMASI LANGIT & PLANET (BENTROK FIX) --- */
 .sky-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--bg-color); pointer-events: none; z-index: -10; overflow: hidden; transition: background-color 0.4s ease; }
+.cloud-layer, .planet, .astronaut-costume-container { will-change: transform; }
 
+/* Siang: Matahari */
 .celestial-body { position: absolute; top: 15%; right: 15%; font-size: 5rem; transition: 0.5s; z-index: 2; }
 [data-theme="light"] .celestial-body::before { content: '\f185'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #fbbf24; animation: spin-slow 20s linear infinite; display: inline-block; }
+
+/* Awan Siang: Dipertahankan, dibuat sedikit lebih transparan agar planet kelihatan */
 .cloud-layer { position: absolute; background: white; border-radius: 50%; filter: blur(12px); opacity: 0; transition: 0.5s; z-index: 1; display: none; }
-[data-theme="light"] .cloud-layer { opacity: 0.8; display: block; }
+[data-theme="light"] .cloud-layer { opacity: 0.6; display: block; }
 .cloud-layer::before, .cloud-layer::after { content: ''; position: absolute; background: #fff; border-radius: 50%; opacity: 0.9; }
 .c1 { top: 20%; left: -300px; animation: floatObj 30s linear infinite; } .c1::before { width: 100px; height: 100px; box-shadow: 60px 20px 0 -10px #fff, 110px 0px 0 #fff, 170px 15px 0 -10px #fff; }
 .c2 { top: 40%; left: -200px; animation: floatObj 45s linear infinite 10s; } .c2::before { width: 80px; height: 80px; box-shadow: 50px 10px 0 -10px #fff, 90px -10px 0 #fff; }
 .c3 { top: 10%; left: -250px; animation: floatObj 35s linear infinite 5s; } .c3::before { width: 90px; height: 90px; box-shadow: 45px 15px 0 -5px #fff, 100px 5px 0 #fff; }
 
+/* Malam: Moon & Bintang */
 [data-theme="dark"] .celestial-body::before { content: '\f186'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #e2e8f0; filter: drop-shadow(0 0 15px rgba(255,255,255,0.5)); transform: rotate(-20deg); display: inline-block; }
 .stars-layer { position: absolute; width: 100%; height: 100%; z-index: 1; opacity: 0; transition: 0.5s; display: none; background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent), radial-gradient(2px 2px at 150px 80px, #fff, transparent), radial-gradient(2px 2px at 80px 150px, #fff, transparent), radial-gradient(2px 2px at 250px 60px, #fff, transparent), radial-gradient(2px 2px at 300px 200px, #fff, transparent); background-repeat: repeat; background-size: 350px 350px; animation: twinkle 3s infinite alternate; }
 [data-theme="dark"] .stars-layer { opacity: 0.8; display: block; }
 
-.planet { position: absolute; border-radius: 50%; opacity: 0; display: none; z-index: 1; transition: 0.5s; }
-[data-theme="dark"] .planet { opacity: 0.9; display: block; }
+/* LOGIKA PLANET BARU: PLANET MUNCUL DI KEDUA TEMA */
+.planet { position: absolute; border-radius: 50%; display: block; opacity: 0.9; z-index: 1; transition: transform 0.5s ease; }
+
+/* Di HP: Matikan Filter/Shadow agar tidak delay */
+@media (max-width: 768px) {
+    .planet, .helmet-overlay-frame { filter: none !important; box-shadow: none !important; }
+}
+
+/* 8 Planet Tata Surya */
 .p-merkurius { width: 18px; height: 18px; top: 10%; background: #a8a8a8; animation: floatObj 25s linear infinite; }
 .p-venus { width: 30px; height: 30px; top: 25%; background: #e08926; animation: floatObj 35s linear infinite 5s; }
 .p-bumi { width: 40px; height: 40px; top: 45%; background: radial-gradient(circle, #4facfe, #228b22); animation: floatObj 45s linear infinite 10s; }
@@ -108,7 +110,7 @@ a:hover { color: var(--accent-hover); }
 
 @keyframes spin-slow { 100% { transform: rotate(360deg); } }
 @keyframes twinkle { 0% { opacity: 0.3; transform: scale(1); } 100% { opacity: 0.8; transform: scale(1.05); } }
-@keyframes floatObj { 0% { transform: translateX(-150px) rotate(0deg); } 100% { transform: translateX(120vw) rotate(360deg); } }
+@keyframes floatObj { 0% { transform: translate3d(-150px, 0, 0) rotate(0deg); } 100% { transform: translate3d(120vw, 0, 0) rotate(360deg); } }
 
 /* --- HERO ASTRONOT --- */
 #hero { width: 100%; min-height: 100vh; background: transparent; display: flex; align-items: center; position: relative; overflow: hidden; }
@@ -121,7 +123,7 @@ a:hover { color: var(--accent-hover); }
 .astronaut-costume-container { position: relative; display: inline-block; width: 100%; max-width: 450px; height: auto; animation: floatAstro 5s ease-in-out infinite; }
 .helmet-overlay-frame { position: relative; display: block; width: 100%; height: auto; filter: drop-shadow(0px 15px 30px rgba(0,0,0,0.15)); }
 [data-theme="dark"] .helmet-overlay-frame { filter: drop-shadow(0px 15px 30px rgba(20, 157, 221, 0.15)); }
-@keyframes floatAstro { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+@keyframes floatAstro { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -20px, 0); } }
 @media (max-width: 992px) { .hero-content-wrapper { flex-direction: column; text-align: center; margin-top: 60px; } .hero-text-box { padding-right: 0; margin-bottom: 40px; } .hero-text-box h1 { font-size: 3rem; } .astronaut-costume-container { max-width: 300px; } }
 
 /* --- SECTIONS UMUM --- */
@@ -142,8 +144,8 @@ a:hover { color: var(--accent-hover); }
 .tech-icons i { font-size: 2.5rem; color: var(--text-muted); margin-right: 15px; margin-top: 15px; transition: 0.3s; }
 .tech-icons i:hover { color: var(--accent-color); transform: translateY(-5px) scale(1.1); filter: drop-shadow(0 5px 10px rgba(var(--accent-color),0.3)); }
 .timeline { border-left: 2px dashed var(--border-color); padding-left: 25px; margin-left: 10px; }
-.timeline-item { position: relative; margin-bottom: 30px; padding: 20px; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); transition: 0.3s; }
-.timeline-item:hover { transform: translateX(10px); border-color: var(--accent-color); box-shadow: var(--shadow); }
+.timeline-item { position: relative; margin-bottom: 30px; padding: 20px; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); transition: 0.3s; box-shadow: var(--shadow); }
+.timeline-item:hover { transform: translateX(10px); border-color: var(--accent-color); }
 .timeline-dot { position: absolute; left: -33px; top: 25px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent-color); box-shadow: 0 0 0 4px var(--bg-color); }
 .timeline-item h4 { font-size: 1.1rem; margin-bottom: 5px; color: var(--text-color); }
 .timeline-item p { font-size: 0.95rem; color: var(--text-muted); margin: 0; }
@@ -151,8 +153,8 @@ a:hover { color: var(--accent-hover); }
 
 /* --- REKAM JEJAK --- */
 .track-record-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; align-items: start; }
-.track-accordion { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; }
-.track-accordion:hover { border-color: var(--accent-color); box-shadow: var(--shadow); transform: translateY(-5px); }
+.track-accordion { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; box-shadow: var(--shadow); }
+.track-accordion:hover { border-color: var(--accent-color); transform: translateY(-5px); }
 .accordion-header { padding: 22px 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: var(--card-bg); transition: 0.3s; }
 .accordion-header:hover { background: rgba(var(--accent-color), 0.03); }
 .accordion-header h3 { font-size: 1.15rem; margin: 0; color: var(--text-color); display: flex; align-items: center; gap: 15px; }
@@ -166,8 +168,8 @@ a:hover { color: var(--accent-hover); }
 .portfolio-grid, .lab-grid, .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
 .card, .list-card { transition: 0.3s !important; position: relative; overflow: hidden; }
 .card:hover { transform: translateY(-8px) !important; box-shadow: var(--shadow) !important; }
-.list-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 15px; cursor: pointer; border-left: 4px solid var(--card-accent, var(--accent-color)); }
-.list-card:hover { transform: translateX(8px); box-shadow: var(--shadow); border-color: var(--card-accent, var(--accent-color)); }
+.list-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 15px; cursor: pointer; border-left: 4px solid var(--card-accent, var(--accent-color)); box-shadow: var(--shadow); }
+.list-card:hover { transform: translateX(8px); border-color: var(--card-accent, var(--accent-color)); }
 .list-card h4 { margin: 0 0 10px 0; color: var(--text-color); display: flex; justify-content: space-between; align-items: center; line-height: 1.4; }
 .list-card h4 i.icon-chevron { font-size: 0.9rem; color: var(--text-muted); transition: 0.3s; }
 .list-card.active h4 i.icon-chevron { transform: rotate(180deg); color: var(--accent-color); }
@@ -177,17 +179,18 @@ a:hover { color: var(--accent-hover); }
 .list-card.active .list-desc { max-height: 800px; opacity: 1; margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--border-color); }
 .tech-tag { font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
 
-.article-card { text-align: center; padding: 50px 30px; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); }
+.article-card { text-align: center; padding: 50px 30px; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); box-shadow: var(--shadow); }
 .article-icon { font-size: 4rem; color: var(--accent-color); margin-bottom: 20px; }
 .article-card h3 { margin-bottom: 15px; color: var(--text-color); }
 .article-card p { color: var(--text-muted); margin-bottom: 30px; }
 
-/* --- ANIMASI SCROLL & TOMBOL --- */
 .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 .btn-submit { display: inline-block; background: var(--accent-color); color: white; padding: 12px 30px; border-radius: 8px; font-weight: bold; transition: 0.3s; border: none; cursor: pointer; text-decoration: none;}
 .btn-submit:hover { background: var(--accent-hover); transform: translateY(-3px); box-shadow: var(--glow); color: white; }
 
-/* --- FOOTER --- */
 .footer { padding: 40px 30px; text-align: center; background: var(--card-bg); border-top: 1px solid var(--border-color); position: relative; z-index: 1;}
+.social-links-footer { margin-bottom: 20px; }
+.social-links-footer a { display: inline-block; font-size: 1.5rem; color: var(--text-muted); background: var(--bg-color); width: 45px; height: 45px; line-height: 45px; border-radius: 50%; margin: 0 8px; transition: 0.3s; border: 1px solid var(--border-color); }
+.social-links-footer a:hover { color: #fff; background: var(--accent-color); transform: translateY(-5px) rotate(360deg); border-color: var(--accent-color); box-shadow: var(--glow); }
 .footer p { margin: 0; font-size: 0.95rem; color: var(--text-muted); }
