@@ -6,7 +6,7 @@
     <title>Portofolio | Khohar Muhamad Fatahurrohman</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -50,13 +50,13 @@
             </div>
             <nav id="navbar" class="nav-menu navbar">
                 <ul>
-                    <li><a href="#hero" class="nav-layer active"><i class="fas fa-home"></i> <span>Home</span></a></li>
-                    <li><a href="#about" class="nav-layer"><i class="fas fa-user"></i> <span>Profil</span></a></li>
-                    <li><a href="#track-record" class="nav-layer"><i class="fas fa-file-alt"></i> <span>Rekam Jejak</span></a></li>
-                    <li><a href="#portfolio" class="nav-layer"><i class="fas fa-laptop-code"></i> <span>Proyek Web</span></a></li>
-                    <li><a href="#lab" class="nav-layer"><i class="fas fa-flask"></i> <span>Riset</span></a></li>
-                    <li><a href="#library" class="nav-layer"><i class="fas fa-book-open"></i> <span>Pustaka</span></a></li>
-                    <li><a href="#artikel" class="nav-layer"><i class="fas fa-newspaper"></i> <span>Artikel</span></a></li>
+                    <li><a href="#hero" class="nav-link scrollto active"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                    <li><a href="#about" class="nav-link scrollto"><i class="fas fa-user"></i> <span>Profil</span></a></li>
+                    <li><a href="#track-record" class="nav-link scrollto"><i class="fas fa-file-alt"></i> <span>Rekam Jejak</span></a></li>
+                    <li><a href="#portfolio" class="nav-link scrollto"><i class="fas fa-laptop-code"></i> <span>Proyek Web</span></a></li>
+                    <li><a href="#lab" class="nav-link scrollto"><i class="fas fa-flask"></i> <span>Riset</span></a></li>
+                    <li><a href="#library" class="nav-link scrollto"><i class="fas fa-book-open"></i> <span>Pustaka</span></a></li>
+                    <li><a href="#artikel" class="nav-link scrollto"><i class="fas fa-newspaper"></i> <span>Artikel</span></a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
@@ -67,13 +67,13 @@
 
     <main id="main">
         
-        <section id="hero" class="section-layer active-layer">
+        <section id="hero" class="section">
             <div class="hero-content-wrapper">
-                <div class="hero-text-box">
+                <div class="hero-text-box reveal">
                     <h1 class="animate-text-1 notranslate">"MY REMINDER"</h1>
                     <p class="animate-text-2">"Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal. Saya tidak sedang berlomba dengan siapa pun. Apa yang orang lain bisa belum tentu saya bisa, begitu juga sebaliknya. Saat ini, saya hanya fokus pada progres diri sendiri."</p>
                 </div>
-                <div class="hero-img-box">
+                <div class="hero-img-box reveal">
                     <div class="astronaut-costume-container">
                         <img src="bg.png" alt="Kostum Astronot" class="helmet-overlay-frame">
                     </div>
@@ -81,7 +81,9 @@
             </div>
         </section>
 
-        <section id="about" class="section-layer">
+        <div class="divider-line"><span class="reveal"></span></div>
+
+        <section id="about" class="section reveal">
             <div class="container">
                 <div class="about-wrapper">
                     <div class="profile-card">
@@ -133,7 +135,7 @@
             </div>
         </section>
 
-        <section id="track-record" class="section-layer">
+        <section id="track-record" class="section bg-alt reveal">
             <div class="container">
                 <h2 class="section-title">Rekam Jejak & Pengembangan Diri</h2>
                 <div class="track-record-grid">
@@ -147,11 +149,11 @@
             </div>
         </section>
 
-        <section id="portfolio" class="section-layer"><div class="container"><h2 class="section-title">Case Studies & Proyek Web</h2><div class="portfolio-grid" id="portfolio-container"></div></div></section>
-        <section id="lab" class="section-layer"><div class="container"><h2 class="section-title">Innovation Lab <i class="fas fa-flask"></i></h2><div class="lab-grid" id="lab-container"></div></div></section>
-        <section id="library" class="section-layer"><div class="container"><h2 class="section-title">Creative Works <i class="fas fa-book-open"></i></h2><div class="portfolio-grid" id="library-container"></div></div></section>
+        <section id="portfolio" class="section reveal"><div class="container"><h2 class="section-title">Case Studies & Proyek Web</h2><div class="portfolio-grid" id="portfolio-container"></div></div></section>
+        <section id="lab" class="section bg-alt reveal"><div class="container"><h2 class="section-title">Innovation Lab <i class="fas fa-flask"></i></h2><div class="lab-grid" id="lab-container"></div></div></section>
+        <section id="library" class="section reveal"><div class="container"><h2 class="section-title">Creative Works <i class="fas fa-book-open"></i></h2><div class="portfolio-grid" id="library-container"></div></div></section>
 
-        <section id="artikel" class="section-layer">
+        <section id="artikel" class="section bg-alt reveal">
             <div class="container">
                 <h2 class="section-title">Artikel & Publikasi <i class="fas fa-newspaper"></i></h2>
                 <p class="section-subtitle">Pemikiran, kajian komputasional, dan catatan perjalanan.</p>
@@ -164,9 +166,20 @@
             </div>
         </section>
 
+        <footer class="footer reveal">
+            <div class="social-links-footer text-center">
+                <a href="https://github.com/khohar25" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://khoharmuhamad.blogspot.com" target="_blank"><i class="fab fa-blogger"></i></a>
+                <a href="mailto:khoharrohman@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2" target="_blank"><i class="fas fa-briefcase"></i></a>
+                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2026 Khohar Muhamad Fatahurrohman.</p>
+        </footer>
+
     </main>
 
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
