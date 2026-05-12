@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AIFORA PORTFOLIO - CSS FINAL (LAYER ANIMATION & GLASSMORPHISM)
+   AIFORA PORTFOLIO - CSS SCROLL MANJANG ELEGANT
    ========================================================================== */
 
 :root {
@@ -27,7 +27,8 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: auto; }
+/* KEMBALI SCROLL SMOOTH */
+html { scroll-behavior: smooth; }
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-color); }
 ::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 10px; }
@@ -71,31 +72,6 @@ a:hover { color: var(--accent-hover); }
 .goog-te-banner-frame { display: none !important; }
 .skiptranslate > iframe { display: none !important; }
 
-/* ==========================================================================
-   SISTEM LAYER SPA (ANIMASI FADE-IN ELEGAN) 
-   ========================================================================== */
-.section-layer { 
-    display: none !important; 
-    padding: 80px 0; 
-    min-height: 100vh; 
-}
-
-/* Memunculkan layer dengan transisi mulus */
-.section-layer.active-layer { 
-    display: block !important; 
-    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
-}
-
-/* Khusus hero tetap flex */
-#hero.section-layer.active-layer { 
-    display: flex !important; 
-}
-
-@keyframes fadeUp { 
-    0% { opacity: 0; transform: translateY(30px); } 
-    100% { opacity: 1; transform: translateY(0); } 
-}
-
 /* --- ANIMASI LANGIT --- */
 .sky-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--bg-color); pointer-events: none; z-index: -10; overflow: hidden; transition: background-color 0.5s ease; }
 .cloud-layer, .planet, .astronaut-costume-container { will-change: transform; }
@@ -133,7 +109,7 @@ a:hover { color: var(--accent-hover); }
 @keyframes floatObj { 0% { transform: translate3d(-150px, 0, 0) rotate(0deg); } 100% { transform: translate3d(120vw, 0, 0) rotate(360deg); } }
 
 /* --- HERO ASTRONOT --- */
-#hero { width: 100%; min-height: 100vh; background: transparent; align-items: center; position: relative; overflow: hidden; }
+#hero { width: 100%; min-height: 100vh; background: transparent; display: flex; align-items: center; position: relative; overflow: hidden; }
 .hero-content-wrapper { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 30px; z-index: 1; }
 .hero-text-box { flex: 1; min-width: 300px; padding-right: 30px; }
 .hero-text-box h1 { font-size: 4rem; font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, var(--text-color), var(--accent-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
@@ -147,11 +123,16 @@ a:hover { color: var(--accent-hover); }
 @keyframes floatAstro { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -20px, 0); } }
 @media (max-width: 992px) { .hero-content-wrapper { flex-direction: column; text-align: center; margin-top: 60px; } .hero-text-box { padding-right: 0; margin-bottom: 40px; background: var(--sidebar-bg); padding: 20px; border-radius: 12px; backdrop-filter: blur(10px); } .hero-text-box h1 { font-size: 3rem; } .astronaut-costume-container { max-width: 300px; } .hero-text-box p { border-left: none; padding-left: 0;} }
 
-/* --- SECTIONS UMUM (KARTU KACA) --- */
+/* --- SECTIONS UMUM --- */
+.section { padding: 80px 0; overflow: hidden; background: transparent;}
+.bg-alt { background: rgba(255, 255, 255, 0.1); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+[data-theme="dark"] .bg-alt { background: rgba(0, 0, 0, 0.1); }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 30px; position: relative; z-index: 1; }
 .section-title { font-size: 36px; font-weight: 800; margin-bottom: 15px; padding-bottom: 20px; position: relative; color: var(--text-color); }
 .section-title::after { content: ''; position: absolute; display: block; width: 60px; height: 4px; border-radius: 4px; background: var(--accent-color); bottom: 0; left: 0; }
 .section-subtitle { margin-bottom: 50px; color: var(--text-color); font-size: 1.1rem; }
+.divider-line { margin: 3rem auto; text-align: center; }
+.divider-line span { display: inline-block; width: 60px; height: 5px; background-color: var(--accent-color); border-radius: 10px; opacity: 0.5; }
 
 .about-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
 .sub-heading-inline { font-size: 1.5rem; color: var(--text-color); margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
@@ -201,3 +182,14 @@ a:hover { color: var(--accent-hover); }
 .article-card h3 { margin-bottom: 15px; color: var(--text-color); }
 .btn-submit { display: inline-block; background: var(--accent-color); color: white; padding: 12px 30px; border-radius: 8px; font-weight: bold; transition: 0.3s; border: none; cursor: pointer; text-decoration: none;}
 .btn-submit:hover { background: var(--accent-hover); transform: translateY(-3px); box-shadow: var(--glow); color: white; }
+
+/* KEMBALI MENGGUNAKAN REVEAL ANIMATION SAAT DI-SCROLL */
+.reveal { opacity: 0; transform: translateY(40px); transition: 0.8s; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+.footer { padding: 40px 30px; text-align: center; background: var(--card-bg); border-top: 1px solid var(--border-color); position: relative; z-index: 1; margin-top: 50px; backdrop-filter: blur(10px);}
+.social-links-footer { margin-bottom: 20px; }
+.social-links-footer a { display: inline-block; font-size: 1.5rem; color: var(--text-muted); background: rgba(0,0,0,0.05); width: 45px; height: 45px; line-height: 45px; border-radius: 50%; margin: 0 8px; transition: 0.3s; border: 1px solid var(--border-color); }
+[data-theme="dark"] .social-links-footer a { background: rgba(255,255,255,0.05); }
+.social-links-footer a:hover { color: #fff; background: var(--accent-color); transform: translateY(-5px) rotate(360deg); border-color: var(--accent-color); box-shadow: var(--glow); }
+.footer p { margin: 0; font-size: 0.95rem; color: var(--text-muted); }
