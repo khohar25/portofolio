@@ -1,815 +1,408 @@
 <!DOCTYPE html>
-
 <html lang="id">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Ajeng Nopo Bolo?</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-
     <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
 
-
-
     <style>
-
         :root {
-
             --bg: #f0f2f5; --card: #ffffff; --primary: #149ddd; 
-
             --primary-hover: #117baf; --text: #333; --border: #ddd;
-
         }
-
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 20px; display: flex; justify-content: center; }
-
         
-
         .dashboard { background: var(--card); max-width: 600px; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 30px; }
-
         
-
         /* HEADER UTAMA */
-
         .header-container { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed var(--border); padding-bottom: 15px; margin-bottom: 25px; }
-
         .header-container h2 { color: var(--primary); font-weight: 800; margin: 0; border: none; padding: 0; }
-
         .btn-logout { background: transparent; color: #dc2626; border: 1px solid #dc2626; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: 0.3s; }
-
         .btn-logout:hover { background: #fee2e2; }
 
-
-
         /* LAYAR LOGIN KHUSUS */
-
         .auth-screen { max-width: 400px; text-align: center; margin-top: 5vh; }
-
         .auth-screen i.fa-lock { font-size: 3rem; color: var(--primary); margin-bottom: 15px; }
-
         .auth-screen h2 { color: var(--primary); font-weight: 800; margin-bottom: 10px; border: none; }
 
-
-
         /* Tabs */
-
         .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
-
         .tab-btn { flex: 1; padding: 12px; border: none; background: #e2e8f0; color: #475569; font-weight: 600; border-radius: 8px; cursor: pointer; transition: 0.3s; }
-
         .tab-btn.active { background: var(--primary); color: white; }
-
         .tab-content { display: none; }
-
         .tab-content.active { display: block; animation: fadeIn 0.4s; }
-
         @keyframes fadeIn { from {opacity: 0; transform: translateY(5px);} to {opacity: 1; transform: translateY(0);} }
 
-
-
         /* Form Elements */
-
         label { font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; display: block; color: #475569;}
-
         input, select, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid var(--border); border-radius: 8px; font-family: 'Inter', sans-serif; box-sizing: border-box; transition: border 0.3s;}
-
         input:focus, select:focus, textarea:focus { border-color: var(--primary); outline: none; }
-
         
-
         .btn-submit { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 10px;}
-
         .btn-submit:hover { background: var(--primary-hover); }
-
         .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
 
-
-
         /* Spinner & Status */
-
         .spinner { display: none; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite; }
-
         @keyframes spin { to { transform: rotate(360deg); } }
-
         #statusMessage, #login-msg { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; font-weight: 600; text-align: center; }
-
         .success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
-
         .error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
 
-
-
         /* Preview Image */
-
         #imgPreview { max-width: 100%; border-radius: 8px; margin-bottom: 15px; display: none; border: 2px dashed var(--border); padding: 5px; }
-
         #kompresiInfo { font-size: 0.8rem; color: #16a34a; text-align: center; margin-bottom: 15px; font-weight: 600; }
-
     </style>
-
 </head>
-
 <body>
 
-
-
     <div id="login-screen" class="dashboard auth-screen">
-
         <i class="fas fa-lock"></i>
-
         <h2>Niki Kulo Kunci Bolo</h2>
-
         <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 25px;">Ajeng Nopo Bolo? Kok Pean Dugi Mriki</p>
-
         
-
         <form id="login-form">
-
             <input type="email" id="login-email" placeholder="Email Admin AIFORA" required>
-
             <input type="password" id="login-password" placeholder="Password Rahasia" required>
-
             <button type="submit" class="btn-submit" id="btn-login-auth">BUKA AKSES <i class="fas fa-unlock"></i></button>
-
         </form>
-
         <div id="login-msg" class="error"></div>
-
     </div>
-
-
-
 
 
     <div id="admin-panel" class="dashboard" style="display: none;">
-
         
-
         <div class="header-container">
-
             <h2><i class="fas fa-robot"></i> Dekengane Tiang Alit </h2>
-
             <button onclick="handleLogout()" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Keluar</button>
-
         </div>
-
-
 
         <div class="tabs">
-
             <button class="tab-btn active" onclick="switchTab('auto')"><i class="fas fa-camera"></i> AI Auto-Scan</button>
-
             <button class="tab-btn" onclick="switchTab('manual')"><i class="fas fa-keyboard"></i> Ketik Manual</button>
-
         </div>
-
-
 
         <div id="tab-auto" class="tab-content active">
-
             <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem; color: #64748b; border-left: 4px solid var(--primary);">
-
                 <i class="fas fa-info-circle"></i> Unggah <b>Foto (JPG/PNG)</b> atau dokumen <b>PDF</b>. Sistem otomatis memperkecil ukurannya agar tidak ditolak server!
-
             </div>
-
             
-
             <label for="imageInput">Pilih Piagam / Dokumen (JPG/PNG/PDF):</label>
-
             <input type="file" id="imageInput" accept="image/png, image/jpeg, image/webp, application/pdf" onchange="previewAndCompressImage(event)">
-
             
-
             <img id="imgPreview" alt="Preview Gambar">
-
             <div id="kompresiInfo"></div>
 
-
-
             <button class="btn-submit" id="btnUpload" onclick="kirimKeAI('gambar')">
-
                 <span class="btn-text"><i class="fas fa-paper-plane"></i> Analisis & Simpan</span>
-
                 <div class="spinner"></div>
-
             </button>
-
         </div>
 
-
-
         <div id="tab-manual" class="tab-content">
-
             <label for="pilihKategori">Pilih Kategori Laci / Tabel:</label>
-
             <select id="pilihKategori" onchange="renderDynamicForm()">
-
                 <option value="">-- Pilih Kategori --</option>
-
                 <option value="sertifikat">Penghargaan / Juara / Lomba</option>
-
                 <option value="sertifikasi">Sertifikasi Profesional (Lisensi)</option>
-
                 <option value="webinar">Seminar / Webinar / Kuliah Tamu</option>
-
                 <option value="organisasi">Organisasi / Kepanitiaan / Kepanduan</option>
-
                 <option value="portofolio">Proyek Web / Case Study</option>
-
                 <option value="jaringan">Jejaring Profesional (Event Luar)</option>
-
                 <option value="laboratorium">Riset / Innovation Lab</option>
-
                 <option value="perpustakaan">Pustaka / Karya Tulis</option>
-
                 <option value="pendidikan">Riwayat Pendidikan</option>
-
             </select>
-
-
 
             <div id="dynamicFieldsContainer" style="margin-top: 20px;"></div>
 
-
-
             <button class="btn-submit" id="btnManual" style="display: none;" onclick="kirimKeAI('manual')">
-
                 <span class="btn-text"><i class="fas fa-database"></i> Simpan ke Database</span>
-
                 <div class="spinner"></div>
-
             </button>
-
         </div>
 
-
-
         <div id="statusMessage"></div>
-
     </div>
 
-
-
     <script>
-
         // ==========================================================
-
         // SISTEM KEAMANAN SUPABASE AUTH (ANTI CTRL+U)
-
         // ==========================================================
-
         const SUPABASE_URL = 'https://xwwlegzacxevmlmtceqh.supabase.co';
-
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3d2xlZ3phY3hldm1sbXRjZXFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MDA2NzEsImV4cCI6MjA5Mzk3NjY3MX0.C9qCfFVN9j8gtvsLVBFGh4I28gIRvJkYlp546-ssEgw';
-
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-
-
         const loginScreen = document.getElementById('login-screen');
-
         const adminPanel = document.getElementById('admin-panel');
 
-
-
         // Cek apakah sudah login
-
         async function checkSession() {
-
             const { data: { session } } = await _supabase.auth.getSession();
-
             if (session) {
-
                 loginScreen.style.display = 'none';
-
                 adminPanel.style.display = 'block';
-
             }
-
         }
-
         checkSession();
 
-
-
         // Proses Login
-
         document.getElementById('login-form').addEventListener('submit', async (e) => {
-
             e.preventDefault();
-
             const email = document.getElementById('login-email').value;
-
             const password = document.getElementById('login-password').value;
-
             const msgError = document.getElementById('login-msg');
-
             const btn = document.getElementById('btn-login-auth');
 
-
-
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memverifikasi...';
-
             
-
             const { error } = await _supabase.auth.signInWithPassword({ email, password });
 
-
-
             if (error) {
-
                 msgError.style.display = 'block';
-
                 msgError.innerHTML = "❌ " + error.message;
-
                 btn.innerHTML = 'BUKA AKSES <i class="fas fa-unlock"></i>';
-
             } else {
-
                 window.location.reload();
-
             }
-
         });
 
-
-
         // Proses Logout
-
         async function handleLogout() {
-
             await _supabase.auth.signOut();
-
             window.location.reload();
-
         }
 
-
-
         // ==========================================================
-
         // LOGIKA APLIKASI PUSAT KENDALI AI (VERCEL API)
-
         // ==========================================================
-
-        const VERCEL_API_URL = "/api/ekstrak"; 
-
+        const VERCEL_API_URL = "https://portofolio-xi-self.vercel.app/api/ekstrak"; 
         
-
         let compressedBase64 = "";
-
         let compressedMimeType = "";
 
-
-
         function switchTab(tabId) {
-
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-
             document.getElementById(`tab-${tabId}`).classList.add('active');
-
             event.currentTarget.classList.add('active');
-
             tampilkanStatus("", "");
-
         }
-
-
 
         const schemaDatabase = {
-
             'sertifikat': [
-
                 {id: 'nama_penghargaan', label: 'Nama Penghargaan / Lomba (Cth: Juara 1 Web Design)', type: 'text'},
-
                 {id: 'pemberi_penghargaan', label: 'Penyelenggara / Pemberi', type: 'text'},
-
                 {id: 'tahun', label: 'Tahun', type: 'number'},
-
                 {id: 'deskripsi', label: 'Deskripsi (Sertakan Lokasi & Tanggal Lengkap jika ada)', type: 'textarea'}
-
             ],
-
             'sertifikasi': [
-
                 {id: 'nama_sertifikasi', label: 'Nama Sertifikasi / Lisensi', type: 'text'},
-
                 {id: 'penerbit', label: 'Penerbit (Cth: Google, IBM)', type: 'text'},
-
                 {id: 'tanggal_terbit', label: 'Tanggal / Bulan Terbit', type: 'text'},
-
                 {id: 'link_kredensial', label: 'Link Kredensial (Opsional)', type: 'text'}
-
             ],
-
             'webinar': [
-
                 {id: 'judul_acara', label: 'Judul Webinar / Seminar', type: 'text'},
-
                 {id: 'penyelenggara', label: 'Penyelenggara Acara', type: 'text'},
-
                 {id: 'tahun', label: 'Tahun', type: 'number'},
-
                 {id: 'keterangan', label: 'Keterangan (Cth: Sebagai Peserta)', type: 'textarea'}
-
             ],
-
             'organisasi': [
-
                 {id: 'nama_organisasi', label: 'Nama Organisasi / Divisi', type: 'text'},
-
                 {id: 'peran', label: 'Peran / Jabatan (Cth: Ketua, Anggota, Panitia)', type: 'text'},
-
                 {id: 'tahun', label: 'Tahun Menjabat', type: 'text'},
-
                 {id: 'deskripsi', label: 'Deskripsi Tugas / Pencapaian', type: 'textarea'}
-
             ],
-
             'portofolio': [
-
                 {id: 'judul', label: 'Judul Proyek / Case Study', type: 'text'},
-
                 {id: 'kategori', label: 'Kategori (Cth: Web App, IoT)', type: 'text'},
-
                 {id: 'konteks_masalah', label: 'Masalah yang Diselesaikan', type: 'textarea'},
-
                 {id: 'solusi_teknis', label: 'Solusi & Tech Stack (Cth: React, Python)', type: 'textarea'},
-
                 {id: 'link', label: 'Link Proyek (Opsional)', type: 'text'}
-
             ],
-
             'jaringan': [
-
                 {id: 'tipe', label: 'Tipe (Cth: Bootcamp, Komunitas, Event)', type: 'text'},
-
                 {id: 'nama_kegiatan', label: 'Nama Kegiatan / Jaringan', type: 'text'},
-
                 {id: 'platform_atau_tempat', label: 'Platform / Tempat', type: 'text'},
-
                 {id: 'tahun', label: 'Tahun', type: 'text'},
-
                 {id: 'deskripsi', label: 'Deskripsi Pengalaman', type: 'textarea'}
-
             ],
-
             'laboratorium': [
-
                 {id: 'judul_riset', label: 'Judul Riset / Inovasi', type: 'text'},
-
                 {id: 'status', label: 'Status (Cth: Berjalan, Selesai, Draft)', type: 'text'},
-
                 {id: 'Deskripsi', label: 'Deskripsi Riset', type: 'textarea'}
-
             ],
-
             'perpustakaan': [
-
                 {id: 'judul', label: 'Judul Buku / Tulisan', type: 'text'},
-
                 {id: 'kategori', label: 'Kategori (Cth: Novel Sci-Fi, Artikel)', type: 'text'},
-
                 {id: 'deskripsi', label: 'Sinopsis / Deskripsi', type: 'textarea'},
-
                 {id: 'link', label: 'Link Baca (Opsional)', type: 'text'}
-
             ],
-
             'pendidikan': [
-
                 {id: 'instansi', label: 'Nama Instansi (Cth: Polinema)', type: 'text'},
-
                 {id: 'lokasi', label: 'Lokasi (Cth: Malang)', type: 'text'},
-
                 {id: 'jenjang_prodi', label: 'Jenjang / Prodi (Cth: D4 Teknik Informatika)', type: 'text'},
-
                 {id: 'tahun', label: 'Tahun (Cth: 2025 - Sekarang)', type: 'text'}
-
             ]
-
         };
 
-
-
         function renderDynamicForm() {
-
             const kategori = document.getElementById('pilihKategori').value;
-
             const container = document.getElementById('dynamicFieldsContainer');
-
             const btnManual = document.getElementById('btnManual');
-
             
-
             container.innerHTML = ''; 
-
             
-
             if (!kategori) { btnManual.style.display = 'none'; return; }
 
-
-
             const fields = schemaDatabase[kategori];
-
             fields.forEach(field => {
-
                 const wrapper = document.createElement('div');
-
                 const label = document.createElement('label');
-
                 label.innerText = field.label;
-
                 label.setAttribute('for', field.id);
-
                 
-
                 let inputEl;
-
                 if (field.type === 'textarea') { inputEl = document.createElement('textarea'); inputEl.rows = 3; } 
-
                 else { inputEl = document.createElement('input'); inputEl.type = field.type; }
-
                 
-
                 inputEl.id = field.id; inputEl.className = 'dynamic-input';
-
                 
-
                 wrapper.appendChild(label); wrapper.appendChild(inputEl); container.appendChild(wrapper);
-
             });
-
             btnManual.style.display = 'flex';
-
         }
 
-
-
         async function previewAndCompressImage(event) {
-
             const file = event.target.files[0];
-
             if (!file) return;
 
-
-
             const originalSize = (file.size / 1024 / 1024).toFixed(2);
-
             const imgPreview = document.getElementById("imgPreview");
-
             const infoText = document.getElementById("kompresiInfo");
-
             
-
             infoText.innerHTML = "⏳ Sedang memproses file, harap tunggu...";
-
             imgPreview.style.display = "none";
 
-
-
             if (file.type === "application/pdf") {
-
                 const fileReader = new FileReader();
-
                 fileReader.onload = async function() {
-
                     try {
-
                         const typedarray = new Uint8Array(this.result);
-
                         const pdf = await pdfjsLib.getDocument(typedarray).promise;
-
                         const page = await pdf.getPage(1); 
-
                         
-
                         const viewport = page.getViewport({ scale: 1.5 });
-
                         const canvas = document.createElement("canvas");
-
                         const ctx = canvas.getContext("2d");
-
                         canvas.height = viewport.height;
-
                         canvas.width = viewport.width;
-
-
 
                         await page.render({ canvasContext: ctx, viewport: viewport }).promise;
 
-
-
                         const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
-
                         compressedMimeType = "image/jpeg"; 
-
                         compressedBase64 = dataUrl.split(',')[1];
-
                         
-
                         imgPreview.src = dataUrl;
-
                         imgPreview.style.display = "block";
-
                         const newSizeMB = (compressedBase64.length * 0.75 / 1024 / 1024).toFixed(2);
-
                         infoText.innerHTML = `✅ <b>PDF Halaman 1</b> disulap ke Gambar: <b>${originalSize} MB</b> ➔ <b>${newSizeMB} MB</b>`;
-
                         
-
                     } catch (error) {
-
                         console.error(error);
-
                         infoText.innerHTML = "❌ Gagal membaca PDF. Pastikan file tidak rusak atau terkunci password.";
-
                     }
-
                 };
-
                 fileReader.readAsArrayBuffer(file);
-
             } 
-
             else if (file.type.startsWith("image/")) {
-
                 const reader = new FileReader();
-
                 reader.onload = function(e) {
-
                     const img = new Image();
-
                     img.onload = function() {
-
                         const canvas = document.createElement("canvas");
-
                         const MAX_WIDTH = 1200;
-
                         let width = img.width; let height = img.height;
-
-
 
                         if (width > MAX_WIDTH) { height = Math.round((height *= MAX_WIDTH / width)); width = MAX_WIDTH; }
 
-
-
                         canvas.width = width; canvas.height = height;
-
                         const ctx = canvas.getContext("2d");
-
                         ctx.drawImage(img, 0, 0, width, height);
 
-
-
                         const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
-
                         compressedMimeType = "image/jpeg";
-
                         compressedBase64 = dataUrl.split(',')[1];
-
                         
-
                         imgPreview.src = dataUrl;
-
                         imgPreview.style.display = "block";
-
                         const newSizeMB = (compressedBase64.length * 0.75 / 1024 / 1024).toFixed(2);
-
                         infoText.innerHTML = `✅ Foto Dikompresi: <b>${originalSize} MB</b> ➔ <b>${newSizeMB} MB</b>`;
-
                     };
-
                     img.src = e.target.result;
-
                 };
-
                 reader.readAsDataURL(file);
-
             } else {
-
                 infoText.innerHTML = "❌ Format file tidak didukung! Harus JPG/PNG/PDF.";
-
             }
-
         }
-
-
 
         async function kirimKeAI(tipe) {
-
             let payload = {};
-
             const btn = tipe === 'gambar' ? document.getElementById('btnUpload') : document.getElementById('btnManual');
-
             const btnText = btn.querySelector('.btn-text');
-
             const spinner = btn.querySelector('.spinner');
 
-
-
             if (tipe === 'gambar') {
-
                 if (!compressedBase64) return tampilkanStatus("❌ Pilih file dan tunggu preview muncul dulu!", "error");
-
                 payload = { imageBase64: compressedBase64, mimeType: compressedMimeType };
-
             } else {
-
                 const kategori = document.getElementById('pilihKategori').value;
-
                 if (!kategori) return tampilkanStatus("❌ Pilih kategori tabel dulu!", "error");
-
                 
-
                 let teksRangkuman = `Tabel Tujuan (WAJIB): ${kategori}\n`;
-
                 const inputs = document.querySelectorAll('.dynamic-input');
-
                 inputs.forEach(input => {
-
                     const labelText = input.previousElementSibling.innerText;
-
                     teksRangkuman += `${labelText}: ${input.value}\n`;
-
                 });
-
                 payload = { manualText: teksRangkuman };
-
             }
 
-
-
             btn.disabled = true; btnText.style.display = 'none'; spinner.style.display = 'block';
-
             tampilkanStatus("Sedang diproses AI & disetor ke Database...", "success", false);
 
-
-
             try {
-
                 const response = await fetch(VERCEL_API_URL, {
-
                     method: "POST", headers: { "Content-Type": "application/json" },
-
                     body: JSON.stringify(payload)
-
                 });
 
-
-
                 const result = await response.json();
-
                 if (response.ok) {
-
                     tampilkanStatus(`✅ SUKSES: ${result.message}`, "success");
-
                     if(tipe === 'manual') document.querySelectorAll('.dynamic-input').forEach(i => i.value = '');
-
                 } else {
-
                     tampilkanStatus(`❌ GAGAL: ${result.error}`, "error");
-
                 }
-
             } catch (error) { tampilkanStatus(`❌ ERROR KONEKSI: ${error.message}`, "error"); } 
-
             finally { btn.disabled = false; btnText.style.display = 'block'; spinner.style.display = 'none'; }
-
         }
-
-
 
         function tampilkanStatus(pesan, tipe, isFinal = true) {
-
             const statusDiv = document.getElementById("statusMessage");
-
             statusDiv.innerHTML = pesan; statusDiv.className = tipe; statusDiv.style.display = "block";
-
             if (isFinal) setTimeout(() => { statusDiv.style.display = 'none'; }, 8000); 
-
         }
-
     </script>
-
 </body>
-
 </html>
