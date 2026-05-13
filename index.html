@@ -27,7 +27,6 @@
     </div>
 
     <div class="top-controls notranslate">
-        <div id="google_translate_element" style="display:none!important;"></div>
         <button id="lang-toggle" aria-label="Ubah Bahasa"><i class="fas fa-language"></i> <span id="lang-text">ID / EN</span></button>
         <div class="separator"></div>
         <button id="theme-toggle" aria-label="Toggle Dark Mode"><i class="fas fa-moon" id="theme-icon"></i></button>
@@ -50,13 +49,13 @@
             </div>
             <nav id="navbar" class="nav-menu navbar">
                 <ul>
-                    <li><a href="#hero" class="nav-link scrollto active"><i class="fas fa-home"></i> <span>Home</span></a></li>
-                    <li><a href="#about" class="nav-link scrollto"><i class="fas fa-user"></i> <span>Profil</span></a></li>
-                    <li><a href="#track-record" class="nav-link scrollto"><i class="fas fa-file-alt"></i> <span>Rekam Jejak</span></a></li>
-                    <li><a href="#portfolio" class="nav-link scrollto"><i class="fas fa-laptop-code"></i> <span>Proyek Web</span></a></li>
-                    <li><a href="#lab" class="nav-link scrollto"><i class="fas fa-flask"></i> <span>Riset</span></a></li>
-                    <li><a href="#library" class="nav-link scrollto"><i class="fas fa-book-open"></i> <span>Pustaka</span></a></li>
-                    <li><a href="#artikel" class="nav-link scrollto"><i class="fas fa-newspaper"></i> <span>Artikel</span></a></li>
+                    <li><a href="#hero" class="nav-link scrollto active"><i class="fas fa-home"></i> <span data-id="Home" data-en="Home">Home</span></a></li>
+                    <li><a href="#about" class="nav-link scrollto"><i class="fas fa-user"></i> <span data-id="Profil" data-en="Profile">Profil</span></a></li>
+                    <li><a href="#track-record" class="nav-link scrollto"><i class="fas fa-file-alt"></i> <span data-id="Rekam Jejak" data-en="Track Record">Rekam Jejak</span></a></li>
+                    <li><a href="#portfolio" class="nav-link scrollto"><i class="fas fa-laptop-code"></i> <span data-id="Proyek Web" data-en="Web Projects">Proyek Web</span></a></li>
+                    <li><a href="#lab" class="nav-link scrollto"><i class="fas fa-flask"></i> <span data-id="Riset" data-en="Research">Riset</span></a></li>
+                    <li><a href="#library" class="nav-link scrollto"><i class="fas fa-book-open"></i> <span data-id="Pustaka" data-en="Library">Pustaka</span></a></li>
+                    <li><a href="#artikel" class="nav-link scrollto"><i class="fas fa-newspaper"></i> <span data-id="Artikel" data-en="Articles">Artikel</span></a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
@@ -71,7 +70,11 @@
             <div class="hero-content-wrapper">
                 <div class="hero-text-box reveal">
                     <h1 class="animate-text-1 notranslate">"MY REMINDER"</h1>
-                    <p class="animate-text-2">"Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal. Saya tidak sedang berlomba dengan siapa pun. Apa yang orang lain bisa belum tentu saya bisa, begitu juga sebaliknya. Saat ini, saya hanya fokus pada progres diri sendiri."</p>
+                    <p class="animate-text-2" 
+                       data-id='"Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal. Saya tidak sedang berlomba dengan siapa pun. Apa yang orang lain bisa belum tentu saya bisa, begitu juga sebaliknya. Saat ini, saya hanya fokus pada progres diri sendiri."'
+                       data-en='"The more I study independently, the more I realize how shallow my knowledge is. I am not racing anyone. What others can do, I may not be able to, and vice versa. Currently, I am only focusing on my own progress."'>
+                       "Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal. Saya tidak sedang berlomba dengan siapa pun. Apa yang orang lain bisa belum tentu saya bisa, begitu juga sebaliknya. Saat ini, saya hanya fokus pada progres diri sendiri."
+                    </p>
                 </div>
                 <div class="hero-img-box reveal">
                     <div class="astronaut-costume-container">
@@ -88,33 +91,33 @@
                 
                 <div class="about-wrapper" style="margin-bottom: 50px;">
                     <div class="profile-card">
-                        <h3 class="sub-heading-inline"><i class="fas fa-user-tie"></i> Biografi Singkat</h3>
+                        <h3 class="sub-heading-inline"><i class="fas fa-user-tie"></i> <span data-id="Biografi Singkat" data-en="Short Biography">Biografi Singkat</span></h3>
                         <div class="about-text">
                             <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: var(--shadow); backdrop-filter: blur(10px); text-align: justify; transition: 0.3s;" onmouseover="this.style.transform='translateX(8px)'; this.style.borderColor='#2ecc71';" onmouseout="this.style.transform='translateX(0)'; this.style.borderColor='var(--border-color)';">
-                                <p style="margin: 0; color: var(--text-color); font-weight: 500;">Saya adalah Khohar Muhamad Fatahurrohman, mahasiswa D4 Teknik Informatika sekaligus Founder AIFORA GROUP yang berfokus pada pengembangan teknologi berbasis Artificial Intelligence dan Web Development. Saya memiliki ketertarikan besar pada dunia teknologi digital, khususnya dalam menciptakan solusi yang mampu membantu UMKM berkembang lebih modern, efektif, dan siap bersaing di era digital saat ini.</p>
+                                <p style="margin: 0; color: var(--text-color); font-weight: 500;" data-id="Saya adalah Khohar Muhamad Fatahurrohman, mahasiswa D4 Teknik Informatika sekaligus Founder AIFORA GROUP yang berfokus pada pengembangan teknologi berbasis Artificial Intelligence dan Web Development. Saya memiliki ketertarikan besar pada dunia teknologi digital, khususnya dalam menciptakan solusi yang mampu membantu UMKM berkembang lebih modern, efektif, dan siap bersaing di era digital saat ini." data-en="I am Khohar Muhamad Fatahurrohman, an Informatics Engineering student and the Founder of AIFORA GROUP, focusing on Artificial Intelligence and Web Development. I have a huge interest in the digital technology world, specifically in creating solutions that help MSMEs grow more modern, effective, and ready to compete in today's digital era.">Saya adalah Khohar Muhamad Fatahurrohman, mahasiswa D4 Teknik Informatika sekaligus Founder AIFORA GROUP yang berfokus pada pengembangan teknologi berbasis Artificial Intelligence dan Web Development. Saya memiliki ketertarikan besar pada dunia teknologi digital, khususnya dalam menciptakan solusi yang mampu membantu UMKM berkembang lebih modern, efektif, dan siap bersaing di era digital saat ini.</p>
                             </div>
                             
                             <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: var(--shadow); backdrop-filter: blur(10px); text-align: justify; transition: 0.3s;" onmouseover="this.style.transform='translateX(8px)'; this.style.borderColor='#9b59b6';" onmouseout="this.style.transform='translateX(0)'; this.style.borderColor='var(--border-color)';">
-                                <p style="margin: 0; color: var(--text-color); font-weight: 500;">Melalui AIFORA GROUP, saya aktif mengembangkan berbagai inovasi digital seperti website, sistem informasi, dan media digital yang menggabungkan kreativitas, teknologi, serta kebutuhan bisnis modern. Selain aktif di bidang pengembangan web, saya juga terus mempelajari perkembangan AI untuk menciptakan teknologi yang lebih bermanfaat dan mudah diterapkan dalam kehidupan sehari-hari.</p>
+                                <p style="margin: 0; color: var(--text-color); font-weight: 500;" data-id="Melalui AIFORA GROUP, saya aktif mengembangkan berbagai inovasi digital seperti website, sistem informasi, dan media digital yang menggabungkan kreativitas, teknologi, serta kebutuhan bisnis modern. Selain aktif di bidang pengembangan web, saya juga terus mempelajari perkembangan AI untuk menciptakan teknologi yang lebih bermanfaat dan mudah diterapkan dalam kehidupan sehari-hari." data-en="Through AIFORA GROUP, I actively develop various digital innovations such as websites, information systems, and digital media that combine creativity, technology, and modern business needs. Besides web development, I continue to study AI advancements to create technology that is more useful and easily applied in daily life.">Melalui AIFORA GROUP, saya aktif mengembangkan berbagai inovasi digital seperti website, sistem informasi, dan media digital yang menggabungkan kreativitas, teknologi, serta kebutuhan bisnis modern. Selain aktif di bidang pengembangan web, saya juga terus mempelajari perkembangan AI untuk menciptakan teknologi yang lebih bermanfaat dan mudah diterapkan dalam kehidupan sehari-hari.</p>
                             </div>
                             
                             <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; box-shadow: var(--shadow); backdrop-filter: blur(10px); text-align: justify; transition: 0.3s;" onmouseover="this.style.transform='translateX(8px)'; this.style.borderColor='#e67e22';" onmouseout="this.style.transform='translateX(0)'; this.style.borderColor='var(--border-color)';">
-                                <p style="margin: 0; color: var(--text-color); font-weight: 500;">Bagi saya, teknologi bukan hanya tentang membangun sistem, tetapi juga tentang bagaimana sebuah inovasi dapat memberikan dampak nyata bagi masyarakat. Dengan semangat belajar, kreativitas, dan konsistensi, saya terus berusaha mengembangkan kemampuan di bidang teknologi sekaligus membangun pengalaman profesional melalui berbagai project digital dan pengembangan startup yang saya jalankan.</p>
+                                <p style="margin: 0; color: var(--text-color); font-weight: 500;" data-id="Bagi saya, teknologi bukan hanya tentang membangun sistem, tetapi juga tentang bagaimana sebuah inovasi dapat memberikan dampak nyata bagi masyarakat. Dengan semangat belajar, kreativitas, dan konsistensi, saya terus berusaha mengembangkan kemampuan di bidang teknologi sekaligus membangun pengalaman profesional melalui berbagai project digital dan pengembangan startup yang saya jalankan." data-en="For me, technology is not just about building systems, but also about how an innovation can make a real impact on society. With a passion for learning, creativity, and consistency, I continue to develop my tech skills while building professional experience through various digital projects and startup development.">Bagi saya, teknologi bukan hanya tentang membangun sistem, tetapi juga tentang bagaimana sebuah inovasi dapat memberikan dampak nyata bagi masyarakat. Dengan semangat belajar, kreativitas, dan konsistensi, saya terus berusaha mengembangkan kemampuan di bidang teknologi sekaligus membangun pengalaman profesional melalui berbagai project digital dan pengembangan startup yang saya jalankan.</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="education-section">
-                        <h3 class="sub-heading-inline"><i class="fas fa-graduation-cap"></i> Riwayat Pendidikan</h3>
+                        <h3 class="sub-heading-inline"><i class="fas fa-graduation-cap"></i> <span data-id="Riwayat Pendidikan" data-en="Education History">Riwayat Pendidikan</span></h3>
                         <div class="timeline">
                             <div class="timeline-item"><div class="timeline-dot"></div>
                                 <h4>Politeknik Negeri Malang</h4>
-                                <p><strong>D4 Teknik Informatika</strong> | 2025 - Saat Ini</p>
+                                <p><strong data-id="D4 Teknik Informatika" data-en="D4 Informatics Engineering">D4 Teknik Informatika</strong> | 2025 - <span data-id="Saat Ini" data-en="Present">Saat Ini</span></p>
                                 <p class="edu-desc"><i class="fas fa-map-marker-alt"></i> Jl. Soekarno Hatta No.9, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur</p>
                             </div>
                             <div class="timeline-item"><div class="timeline-dot"></div>
                                 <h4>SMKS Trisakti Ngawi</h4>
-                                <p><strong>Teknik Komputer dan Jaringan</strong> | 2022 - 2025</p>
+                                <p><strong data-id="Teknik Komputer dan Jaringan" data-en="Computer and Network Engineering">Teknik Komputer dan Jaringan</strong> | 2022 - 2025</p>
                                 <p class="edu-desc"><i class="fas fa-map-marker-alt"></i> Jl. Kenari No. 7A, Beran, Kec. Ngawi, Kab. Ngawi, Jawa Timur</p>
                             </div>
                             <div class="timeline-item"><div class="timeline-dot"></div>
@@ -166,7 +169,7 @@
                     </div>
 
                     <div class="network-section">
-                        <h3 class="sub-heading-inline"><i class="fas fa-network-wired"></i> Jejaring Profesional</h3>
+                        <h3 class="sub-heading-inline"><i class="fas fa-network-wired"></i> <span data-id="Jejaring Profesional" data-en="Professional Networking">Jejaring Profesional</span></h3>
                         <div id="network-container" style="display: flex; flex-direction: column; gap: 15px;">
                             </div>
                     </div>
@@ -177,19 +180,19 @@
 
         <section id="track-record" class="section bg-alt reveal">
             <div class="container">
-                <h2 class="section-title">Rekam Jejak & Pengembangan Diri</h2>
+                <h2 class="section-title" data-id="Rekam Jejak & Pengembangan Diri" data-en="Track Record & Self Development">Rekam Jejak & Pengembangan Diri</h2>
                 <div class="track-record-grid">
-                    <div class="track-accordion"><div class="accordion-header"><h3>Penghargaan</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="juara-container"></div></div>
-                    <div class="track-accordion"><div class="accordion-header"><h3>Partisipasi Sains</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="peserta-sains-container"></div></div>
-                    <div class="track-accordion"><div class="accordion-header"><h3>Organisasi</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="organisasi-container"></div></div>
-                    <div class="track-accordion"><div class="accordion-header"><h3>Event</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="event-container"></div></div>
-                    <div class="track-accordion"><div class="accordion-header"><h3>Seminar</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="seminar-container"></div></div>
-                    <div class="track-accordion"><div class="accordion-header"><h3>Pelatihan</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="pelatihan-container"></div></div>
+                    <div class="track-accordion"><div class="accordion-header"><h3 data-id="Penghargaan" data-en="Awards">Penghargaan</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="juara-container"></div></div>
+                    <div class="track-accordion"><div class="accordion-header"><h3 data-id="Partisipasi Sains" data-en="Science Participation">Partisipasi Sains</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="peserta-sains-container"></div></div>
+                    <div class="track-accordion"><div class="accordion-header"><h3 data-id="Organisasi" data-en="Organizations">Organisasi</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="organisasi-container"></div></div>
+                    <div class="track-accordion"><div class="accordion-header"><h3 data-id="Event" data-en="Events">Event</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="event-container"></div></div>
+                    <div class="track-accordion"><div class="accordion-header"><h3 data-id="Seminar" data-en="Seminars">Seminar</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="seminar-container"></div></div>
+                    <div class="track-accordion"><div class="accordion-header"><h3 data-id="Pelatihan" data-en="Trainings">Pelatihan</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="pelatihan-container"></div></div>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio" class="section reveal"><div class="container"><h2 class="section-title">Case Studies & Proyek Web</h2><div class="portfolio-grid" id="portfolio-container"></div></div></section>
+        <section id="portfolio" class="section reveal"><div class="container"><h2 class="section-title" data-id="Case Studies & Proyek Web" data-en="Case Studies & Web Projects">Case Studies & Proyek Web</h2><div class="portfolio-grid" id="portfolio-container"></div></div></section>
         <section id="lab" class="section bg-alt reveal"><div class="container"><h2 class="section-title">Innovation Lab <i class="fas fa-flask"></i></h2><div class="lab-grid" id="lab-container"></div></div></section>
         <section id="library" class="section reveal"><div class="container"><h2 class="section-title">Creative Works <i class="fas fa-book-open"></i></h2><div class="portfolio-grid" id="library-container"></div></div></section>
 
@@ -197,9 +200,9 @@
             <div class="container">
                 <div class="article-card">
                     <i class="fab fa-blogger article-icon"></i>
-                    <h3>Blog / Artikel Resmi Khohar Muhamad</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 30px;">Dokumentasi eksplorasi teknologi dan catatan perjalanan profesional.</p>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit">Kunjungi Blog <i class="fas fa-arrow-right"></i></a>
+                    <h3 data-id="Blog / Artikel Resmi Khohar Muhamad" data-en="Official Blog / Articles of Khohar Muhamad">Blog / Artikel Resmi Khohar Muhamad</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 30px;" data-id="Dokumentasi eksplorasi teknologi dan catatan perjalanan profesional." data-en="Documentation of technology exploration and professional journey notes.">Dokumentasi eksplorasi teknologi dan catatan perjalanan profesional.</p>
+                    <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="btn-submit"><span data-id="Kunjungi Blog" data-en="Visit Blog">Kunjungi Blog</span> <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
@@ -218,6 +221,5 @@
     </main>
 
     <script src="script.js?v=11"></script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
