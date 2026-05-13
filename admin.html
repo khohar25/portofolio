@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIFORA - Pusat Kendali AI</title>
+    <title>Ajeng Nopo Bolo?</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
@@ -16,9 +18,20 @@
             --primary-hover: #117baf; --text: #333; --border: #ddd;
         }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 20px; display: flex; justify-content: center; }
-        .dashboard { background: var(--card); max-width: 600px; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 30px; }
-        h2 { text-align: center; color: var(--primary); margin-top: 0; font-weight: 800; border-bottom: 2px dashed var(--border); padding-bottom: 15px; margin-bottom: 25px;}
         
+        .dashboard { background: var(--card); max-width: 600px; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 30px; }
+        
+        /* HEADER UTAMA */
+        .header-container { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed var(--border); padding-bottom: 15px; margin-bottom: 25px; }
+        .header-container h2 { color: var(--primary); font-weight: 800; margin: 0; border: none; padding: 0; }
+        .btn-logout { background: transparent; color: #dc2626; border: 1px solid #dc2626; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .btn-logout:hover { background: #fee2e2; }
+
+        /* LAYAR LOGIN KHUSUS */
+        .auth-screen { max-width: 400px; text-align: center; margin-top: 5vh; }
+        .auth-screen i.fa-lock { font-size: 3rem; color: var(--primary); margin-bottom: 15px; }
+        .auth-screen h2 { color: var(--primary); font-weight: 800; margin-bottom: 10px; border: none; }
+
         /* Tabs */
         .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
         .tab-btn { flex: 1; padding: 12px; border: none; background: #e2e8f0; color: #475569; font-weight: 600; border-radius: 8px; cursor: pointer; transition: 0.3s; }
@@ -39,7 +52,7 @@
         /* Spinner & Status */
         .spinner { display: none; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        #statusMessage { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; font-weight: 600; text-align: center; }
+        #statusMessage, #login-msg { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; font-weight: 600; text-align: center; }
         .success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
         .error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
 
@@ -50,8 +63,26 @@
 </head>
 <body>
 
-    <div class="dashboard">
-        <h2><i class="fas fa-robot"></i> Pusat Kendali AI</h2>
+    <div id="login-screen" class="dashboard auth-screen">
+        <i class="fas fa-lock"></i>
+        <h2>Niki Kulo Kunci Bolo</h2>
+        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 25px;">Sistem ini diamankan oleh Supabase Auth. Silakan masuk sebagai Admin.</p>
+        
+        <form id="login-form">
+            <input type="email" id="login-email" placeholder="Email Admin AIFORA" required>
+            <input type="password" id="login-password" placeholder="Password Rahasia" required>
+            <button type="submit" class="btn-submit" id="btn-login-auth">BUKA AKSES <i class="fas fa-unlock"></i></button>
+        </form>
+        <div id="login-msg" class="error"></div>
+    </div>
+
+
+    <div id="admin-panel" class="dashboard" style="display: none;">
+        
+        <div class="header-container">
+            <h2><i class="fas fa-robot"></i> Dekengane Tiang Alit </h2>
+            <button onclick="handleLogout()" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+        </div>
 
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('auto')"><i class="fas fa-camera"></i> AI Auto-Scan</button>
@@ -102,7 +133,56 @@
     </div>
 
     <script>
-        // PERBAIKAN: Menggunakan Jalur Pintas agar tidak nyasar dan error "Failed to fetch"
+        // ==========================================================
+        // SISTEM KEAMANAN SUPABASE AUTH (ANTI CTRL+U)
+        // ==========================================================
+        const SUPABASE_URL = 'https://xwwlegzacxevmlmtceqh.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3d2xlZ3phY3hldm1sbXRjZXFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MDA2NzEsImV4cCI6MjA5Mzk3NjY3MX0.C9qCfFVN9j8gtvsLVBFGh4I28gIRvJkYlp546-ssEgw';
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        const loginScreen = document.getElementById('login-screen');
+        const adminPanel = document.getElementById('admin-panel');
+
+        // Cek apakah sudah login
+        async function checkSession() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            if (session) {
+                loginScreen.style.display = 'none';
+                adminPanel.style.display = 'block';
+            }
+        }
+        checkSession();
+
+        // Proses Login
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const msgError = document.getElementById('login-msg');
+            const btn = document.getElementById('btn-login-auth');
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memverifikasi...';
+            
+            const { error } = await _supabase.auth.signInWithPassword({ email, password });
+
+            if (error) {
+                msgError.style.display = 'block';
+                msgError.innerHTML = "❌ " + error.message;
+                btn.innerHTML = 'BUKA AKSES <i class="fas fa-unlock"></i>';
+            } else {
+                window.location.reload();
+            }
+        });
+
+        // Proses Logout
+        async function handleLogout() {
+            await _supabase.auth.signOut();
+            window.location.reload();
+        }
+
+        // ==========================================================
+        // LOGIKA APLIKASI PUSAT KENDALI AI (VERCEL API)
+        // ==========================================================
         const VERCEL_API_URL = "/api/ekstrak"; 
         
         let compressedBase64 = "";
@@ -116,7 +196,6 @@
             tampilkanStatus("", "");
         }
 
-        // PERBAIKAN: Update label di bagian sertifikat agar jadi pengingat
         const schemaDatabase = {
             'sertifikat': [
                 {id: 'nama_penghargaan', label: 'Nama Penghargaan / Lomba (Cth: Juara 1 Web Design)', type: 'text'},
@@ -202,42 +281,35 @@
             btnManual.style.display = 'flex';
         }
 
-        // --- MESIN KOMPRESI SUPER (GAMBAR & PDF) ---
         async function previewAndCompressImage(event) {
             const file = event.target.files[0];
             if (!file) return;
 
-            const originalSize = (file.size / 1024 / 1024).toFixed(2); // MB
+            const originalSize = (file.size / 1024 / 1024).toFixed(2);
             const imgPreview = document.getElementById("imgPreview");
             const infoText = document.getElementById("kompresiInfo");
             
             infoText.innerHTML = "⏳ Sedang memproses file, harap tunggu...";
             imgPreview.style.display = "none";
 
-            // LOGIKA JIKA FILE ADALAH PDF
             if (file.type === "application/pdf") {
                 const fileReader = new FileReader();
                 fileReader.onload = async function() {
                     try {
                         const typedarray = new Uint8Array(this.result);
                         const pdf = await pdfjsLib.getDocument(typedarray).promise;
-                        
-                        // Ambil Halaman 1 dari PDF
                         const page = await pdf.getPage(1); 
                         
-                        // Siapkan resolusi potret yang tajam
                         const viewport = page.getViewport({ scale: 1.5 });
                         const canvas = document.createElement("canvas");
                         const ctx = canvas.getContext("2d");
                         canvas.height = viewport.height;
                         canvas.width = viewport.width;
 
-                        // Lukis PDF ke dalam Canvas
                         await page.render({ canvasContext: ctx, viewport: viewport }).promise;
 
-                        // Sulap jadi gambar JPG dan kompres
                         const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
-                        compressedMimeType = "image/jpeg"; // Sengaja dikirim ke Vercel sebagai gambar
+                        compressedMimeType = "image/jpeg"; 
                         compressedBase64 = dataUrl.split(',')[1];
                         
                         imgPreview.src = dataUrl;
@@ -252,7 +324,6 @@
                 };
                 fileReader.readAsArrayBuffer(file);
             } 
-            // LOGIKA JIKA FILE ADALAH GAMBAR BIASA
             else if (file.type.startsWith("image/")) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
