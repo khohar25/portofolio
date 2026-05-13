@@ -46,7 +46,7 @@
         input:focus, select:focus, textarea:focus { border-color: var(--primary); outline: none; }
         
         .btn-submit { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 10px;}
-        .btn-submit:hover { background: var(--primary-hover); }
+        .btn-submit:hover:not(:disabled) { background: var(--primary-hover); }
         .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
 
         /* Spinner & Status */
@@ -56,9 +56,10 @@
         .success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
         .error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
 
-        /* Preview Image */
+        /* Preview Image & Terminal Baru */
         #imgPreview { max-width: 100%; border-radius: 8px; margin-bottom: 15px; display: none; border: 2px dashed var(--border); padding: 5px; }
         #kompresiInfo { font-size: 0.8rem; color: #16a34a; text-align: center; margin-bottom: 15px; font-weight: 600; }
+        .progress-box { background: #1e293b; color: #38bdf8; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 0.85rem; margin-top: 15px; display: none; text-align: left; max-height: 250px; overflow-y: auto; }
     </style>
 </head>
 <body>
@@ -91,7 +92,7 @@
 
         <div id="tab-auto" class="tab-content active">
             <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem; color: #64748b; border-left: 4px solid var(--primary);">
-                <i class="fas fa-info-circle"></i> Unggah <b>Foto (JPG/PNG)</b> atau dokumen <b>PDF</b>. Sistem otomatis memperkecil ukurannya agar tidak ditolak server!
+                <i class="fas fa-info-circle"></i> Unggah <b>Foto</b> atau dokumen <b>PDF</b> (Bisa banyak halaman sekaligus!). Sistem akan memproses satu per satu agar server tetap aman.
             </div>
             
             <label for="imageInput">Pilih Piagam / Dokumen (JPG/PNG/PDF):</label>
@@ -104,6 +105,8 @@
                 <span class="btn-text"><i class="fas fa-paper-plane"></i> Analisis & Simpan</span>
                 <div class="spinner"></div>
             </button>
+
+            <div id="progressTerminal" class="progress-box"></div>
         </div>
 
         <div id="tab-manual" class="tab-content">
@@ -181,12 +184,12 @@
         }
 
         // ==========================================================
-        // LOGIKA APLIKASI PUSAT KENDALI AI (VERCEL API)
+        // LOGIKA APLIKASI PUSAT KENDALI AI (VERCEL API) BATCH PROCESSING
         // ==========================================================
         const VERCEL_API_URL = "/api/ekstrak"; 
         
-        let compressedBase64 = "";
-        let compressedMimeType = "";
+        let imageQueue = []; // Wadah untuk menampung seluruh halaman PDF / Foto
+        let compressedMimeType = "image/jpeg";
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -194,6 +197,7 @@
             document.getElementById(`tab-${tabId}`).classList.add('active');
             event.currentTarget.classList.add('active');
             tampilkanStatus("", "");
+            document.getElementById("progressTerminal").style.display = "none";
         }
 
         const schemaDatabase = {
@@ -285,12 +289,12 @@
             const file = event.target.files[0];
             if (!file) return;
 
-            const originalSize = (file.size / 1024 / 1024).toFixed(2);
             const imgPreview = document.getElementById("imgPreview");
             const infoText = document.getElementById("kompresiInfo");
             
-            infoText.innerHTML = "⏳ Sedang memproses file, harap tunggu...";
+            infoText.innerHTML = "⏳ Sedang mengekstrak file, harap tunggu...";
             imgPreview.style.display = "none";
+            imageQueue = []; // Kosongkan antrean lama
 
             if (file.type === "application/pdf") {
                 const fileReader = new FileReader();
@@ -298,24 +302,34 @@
                     try {
                         const typedarray = new Uint8Array(this.result);
                         const pdf = await pdfjsLib.getDocument(typedarray).promise;
-                        const page = await pdf.getPage(1); 
+                        const totalPages = pdf.numPages;
                         
-                        const viewport = page.getViewport({ scale: 1.5 });
-                        const canvas = document.createElement("canvas");
-                        const ctx = canvas.getContext("2d");
-                        canvas.height = viewport.height;
-                        canvas.width = viewport.width;
+                        infoText.innerHTML = `⏳ Mengekstrak ${totalPages} halaman dari PDF...`;
 
-                        await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+                        // LOOPING MEMECAH PDF JADI GAMBAR
+                        for (let i = 1; i <= totalPages; i++) {
+                            const page = await pdf.getPage(i); 
+                            const viewport = page.getViewport({ scale: 1.5 });
+                            const canvas = document.createElement("canvas");
+                            const ctx = canvas.getContext("2d");
+                            canvas.height = viewport.height;
+                            canvas.width = viewport.width;
 
-                        const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
-                        compressedMimeType = "image/jpeg"; 
-                        compressedBase64 = dataUrl.split(',')[1];
-                        
-                        imgPreview.src = dataUrl;
-                        imgPreview.style.display = "block";
-                        const newSizeMB = (compressedBase64.length * 0.75 / 1024 / 1024).toFixed(2);
-                        infoText.innerHTML = `✅ <b>PDF Halaman 1</b> disulap ke Gambar: <b>${originalSize} MB</b> ➔ <b>${newSizeMB} MB</b>`;
+                            await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+
+                            const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
+                            const base64 = dataUrl.split(',')[1];
+                            
+                            // Masukkan ke dalam antrean
+                            imageQueue.push({ base64: base64, mimeType: "image/jpeg", pageNum: i });
+
+                            // Tampilkan halaman pertama saja sebagai thumbnail
+                            if (i === 1) {
+                                imgPreview.src = dataUrl;
+                                imgPreview.style.display = "block";
+                            }
+                        }
+                        infoText.innerHTML = `✅ <b>Selesai mengekstrak ${totalPages} halaman!</b> Klik Analisis untuk memproses.`;
                         
                     } catch (error) {
                         console.error(error);
@@ -340,13 +354,14 @@
                         ctx.drawImage(img, 0, 0, width, height);
 
                         const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
-                        compressedMimeType = "image/jpeg";
-                        compressedBase64 = dataUrl.split(',')[1];
+                        const base64 = dataUrl.split(',')[1];
+                        
+                        // Masukkan foto ke antrean (hanya 1 foto)
+                        imageQueue.push({ base64: base64, mimeType: "image/jpeg", pageNum: 1 });
                         
                         imgPreview.src = dataUrl;
                         imgPreview.style.display = "block";
-                        const newSizeMB = (compressedBase64.length * 0.75 / 1024 / 1024).toFixed(2);
-                        infoText.innerHTML = `✅ Foto Dikompresi: <b>${originalSize} MB</b> ➔ <b>${newSizeMB} MB</b>`;
+                        infoText.innerHTML = `✅ <b>Satu foto</b> siap diproses.`;
                     };
                     img.src = e.target.result;
                 };
@@ -357,15 +372,58 @@
         }
 
         async function kirimKeAI(tipe) {
-            let payload = {};
             const btn = tipe === 'gambar' ? document.getElementById('btnUpload') : document.getElementById('btnManual');
             const btnText = btn.querySelector('.btn-text');
             const spinner = btn.querySelector('.spinner');
+            const terminal = document.getElementById("progressTerminal");
 
             if (tipe === 'gambar') {
-                if (!compressedBase64) return tampilkanStatus("❌ Pilih file dan tunggu preview muncul dulu!", "error");
-                payload = { imageBase64: compressedBase64, mimeType: compressedMimeType };
+                if (imageQueue.length === 0) return tampilkanStatus("❌ Pilih file dan tunggu proses ekstrak selesai dulu!", "error");
+                
+                btn.disabled = true; btnText.style.display = 'none'; spinner.style.display = 'block';
+                tampilkanStatus("🚀 Memulai Batch Processing...", "success", false);
+                
+                terminal.style.display = "block";
+                terminal.innerHTML = `Memulai pemrosesan ${imageQueue.length} dokumen...<br><br>`;
+
+                let successCount = 0;
+
+                // LOOPING PENGIRIMAN KE VERCEL (SATU PER SATU)
+                for (let i = 0; i < imageQueue.length; i++) {
+                    const item = imageQueue[i];
+                    terminal.innerHTML += `⏳ [${i + 1}/${imageQueue.length}] Menganalisis hal ${item.pageNum}... `;
+                    
+                    try {
+                        const payload = { imageBase64: item.base64, mimeType: item.mimeType };
+                        const response = await fetch(VERCEL_API_URL, {
+                            method: "POST", headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(payload)
+                        });
+
+                        const result = await response.json();
+                        
+                        if (response.ok) {
+                            terminal.innerHTML += `<span style="color:#10b981;">✅ Disimpan</span><br>`;
+                            successCount++;
+                        } else {
+                            terminal.innerHTML += `<span style="color:#ef4444;">❌ Gagal (${result.error})</span><br>`;
+                        }
+                    } catch (error) {
+                        terminal.innerHTML += `<span style="color:#ef4444;">❌ Error Koneksi</span><br>`;
+                    }
+                    
+                    // Auto-scroll terminal ke bawah
+                    terminal.scrollTop = terminal.scrollHeight;
+                }
+
+                terminal.innerHTML += `<br><b>🎉 Selesai! Berhasil menyimpan ${successCount} dari ${imageQueue.length} data.</b>`;
+                tampilkanStatus(`Selesai diproses! Cek detail di kotak hitam.`, "success");
+                
+                btn.disabled = false; btnText.style.display = 'block'; spinner.style.display = 'none';
+                imageQueue = []; // Kosongkan antrean setelah sukses
+                
             } else {
+                // LOGIKA MANUAL (Ketik Sendiri)
                 const kategori = document.getElementById('pilihKategori').value;
                 if (!kategori) return tampilkanStatus("❌ Pilih kategori tabel dulu!", "error");
                 
@@ -375,27 +433,25 @@
                     const labelText = input.previousElementSibling.innerText;
                     teksRangkuman += `${labelText}: ${input.value}\n`;
                 });
-                payload = { manualText: teksRangkuman };
+                
+                btn.disabled = true; btnText.style.display = 'none'; spinner.style.display = 'block';
+                tampilkanStatus("Menyimpan ke Database...", "success", false);
+
+                try {
+                    const response = await fetch(VERCEL_API_URL, {
+                        method: "POST", headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ manualText: teksRangkuman })
+                    });
+                    const result = await response.json();
+                    if (response.ok) {
+                        tampilkanStatus(`✅ SUKSES: ${result.message}`, "success");
+                        document.querySelectorAll('.dynamic-input').forEach(i => i.value = '');
+                    } else {
+                        tampilkanStatus(`❌ GAGAL: ${result.error}`, "error");
+                    }
+                } catch (error) { tampilkanStatus(`❌ ERROR KONEKSI: ${error.message}`, "error"); } 
+                finally { btn.disabled = false; btnText.style.display = 'block'; spinner.style.display = 'none'; }
             }
-
-            btn.disabled = true; btnText.style.display = 'none'; spinner.style.display = 'block';
-            tampilkanStatus("Sedang diproses AI & disetor ke Database...", "success", false);
-
-            try {
-                const response = await fetch(VERCEL_API_URL, {
-                    method: "POST", headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-                if (response.ok) {
-                    tampilkanStatus(`✅ SUKSES: ${result.message}`, "success");
-                    if(tipe === 'manual') document.querySelectorAll('.dynamic-input').forEach(i => i.value = '');
-                } else {
-                    tampilkanStatus(`❌ GAGAL: ${result.error}`, "error");
-                }
-            } catch (error) { tampilkanStatus(`❌ ERROR KONEKSI: ${error.message}`, "error"); } 
-            finally { btn.disabled = false; btnText.style.display = 'block'; spinner.style.display = 'none'; }
         }
 
         function tampilkanStatus(pesan, tipe, isFinal = true) {
