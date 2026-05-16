@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AIFORA PORTFOLIO - CSS SCROLL MANJANG ELEGANT
+   AIFORA PORTFOLIO - CSS SCROLL MANJANG ELEGANT + NO DELAY PLANET
    ========================================================================== */
 
 :root {
@@ -81,9 +81,14 @@ a:hover { color: var(--accent-hover); }
 .cloud-layer { position: absolute; background: white; border-radius: 50%; filter: blur(12px); opacity: 0; transition: 0.5s; z-index: 1; display: none; }
 [data-theme="light"] .cloud-layer { opacity: 0.8; display: block; }
 .cloud-layer::before, .cloud-layer::after { content: ''; position: absolute; background: #fff; border-radius: 50%; opacity: 0.9; }
-.c1 { top: 20%; left: -300px; animation: floatObj 30s linear infinite; } .c1::before { width: 100px; height: 100px; box-shadow: 60px 20px 0 -10px #fff, 110px 0px 0 #fff, 170px 15px 0 -10px #fff; }
-.c2 { top: 40%; left: -200px; animation: floatObj 45s linear infinite 10s; } .c2::before { width: 80px; height: 80px; box-shadow: 50px 10px 0 -10px #fff, 90px -10px 0 #fff; }
-.c3 { top: 10%; left: -250px; animation: floatObj 35s linear infinite 5s; } .c3::before { width: 90px; height: 90px; box-shadow: 45px 15px 0 -5px #fff, 100px 5px 0 #fff; }
+
+/* AWAN TANPA DELAY */
+.c1 { top: 20%; left: -300px; animation: floatObj 30s linear infinite -5s; } 
+.c1::before { width: 100px; height: 100px; box-shadow: 60px 20px 0 -10px #fff, 110px 0px 0 #fff, 170px 15px 0 -10px #fff; }
+.c2 { top: 40%; left: -200px; animation: floatObj 45s linear infinite -20s; } 
+.c2::before { width: 80px; height: 80px; box-shadow: 50px 10px 0 -10px #fff, 90px -10px 0 #fff; }
+.c3 { top: 10%; left: -250px; animation: floatObj 35s linear infinite -15s; } 
+.c3::before { width: 90px; height: 90px; box-shadow: 45px 15px 0 -5px #fff, 100px 5px 0 #fff; }
 
 [data-theme="dark"] .celestial-body::before { content: '\f186'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #e2e8f0; filter: drop-shadow(0 0 15px rgba(255,255,255,0.5)); transform: rotate(-20deg); display: inline-block; }
 .stars-layer { position: absolute; width: 100%; height: 100%; z-index: 1; opacity: 0; transition: 0.5s; display: none; background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent), radial-gradient(2px 2px at 150px 80px, #fff, transparent), radial-gradient(2px 2px at 80px 150px, #fff, transparent), radial-gradient(2px 2px at 250px 60px, #fff, transparent), radial-gradient(2px 2px at 300px 200px, #fff, transparent); background-repeat: repeat; background-size: 350px 350px; animation: twinkle 3s infinite alternate; }
@@ -94,15 +99,16 @@ a:hover { color: var(--accent-hover); }
 
 @media (max-width: 768px) { .planet, .helmet-overlay-frame { filter: none !important; box-shadow: none !important; } .top-controls { top: 15px; right: 75px; padding: 5px 12px; } #lang-toggle span { font-size: 0.9rem; } }
 
-.p-merkurius { width: 18px; height: 18px; top: 10%; background: #a8a8a8; animation: floatObj 25s linear infinite; }
-.p-venus { width: 30px; height: 30px; top: 25%; background: #e08926; animation: floatObj 35s linear infinite 5s; }
-.p-bumi { width: 40px; height: 40px; top: 45%; background: radial-gradient(circle, #4facfe, #228b22); animation: floatObj 45s linear infinite 10s; }
-.p-mars { width: 25px; height: 25px; top: 75%; background: #c1440e; animation: floatObj 55s linear infinite 15s; }
-.p-jupiter { width: 120px; height: 120px; top: 15%; background: linear-gradient(to bottom, #d39c7e, #c88b3a, #e2c092, #a6582c); box-shadow: inset -15px -15px 30px rgba(0,0,0,0.6); animation: floatObj 80s linear infinite 2s; }
-.p-saturnus { width: 90px; height: 90px; top: 60%; background: #e3d599; animation: floatObj 90s linear infinite 25s; box-shadow: inset -10px -10px 20px rgba(0,0,0,0.6);}
+/* PLANET TANPA DELAY (LANGSUNG MUNCUL & MENYEBAR) */
+.p-merkurius { width: 18px; height: 18px; top: 10%; background: #a8a8a8; animation: floatObj 25s linear infinite -2s; }
+.p-venus { width: 30px; height: 30px; top: 25%; background: #e08926; animation: floatObj 35s linear infinite -15s; }
+.p-bumi { width: 40px; height: 40px; top: 45%; background: radial-gradient(circle, #4facfe, #228b22); animation: floatObj 45s linear infinite -25s; }
+.p-mars { width: 25px; height: 25px; top: 75%; background: #c1440e; animation: floatObj 55s linear infinite -35s; }
+.p-jupiter { width: 120px; height: 120px; top: 15%; background: linear-gradient(to bottom, #d39c7e, #c88b3a, #e2c092, #a6582c); box-shadow: inset -15px -15px 30px rgba(0,0,0,0.6); animation: floatObj 80s linear infinite -10s; }
+.p-saturnus { width: 90px; height: 90px; top: 60%; background: #e3d599; animation: floatObj 90s linear infinite -45s; box-shadow: inset -10px -10px 20px rgba(0,0,0,0.6);}
 .p-saturnus::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotateX(75deg); width: 160px; height: 160px; border: 15px solid rgba(200, 180, 140, 0.6); border-radius: 50%; }
-.p-uranus { width: 60px; height: 60px; top: 85%; background: #4b70dd; animation: floatObj 70s linear infinite 35s; }
-.p-neptunus { width: 60px; height: 60px; top: 35%; background: #274687; animation: floatObj 65s linear infinite 40s; }
+.p-uranus { width: 60px; height: 60px; top: 85%; background: #4b70dd; animation: floatObj 70s linear infinite -55s; }
+.p-neptunus { width: 60px; height: 60px; top: 35%; background: #274687; animation: floatObj 65s linear infinite -20s; }
 
 @keyframes spin-slow { 100% { transform: rotate(360deg); } }
 @keyframes twinkle { 0% { opacity: 0.3; transform: scale(1); } 100% { opacity: 0.8; transform: scale(1.05); } }
@@ -149,7 +155,6 @@ a:hover { color: var(--accent-hover); }
 .timeline-item h4 { font-size: 1.1rem; margin-bottom: 5px; color: var(--text-color); }
 .timeline-item p { margin: 0; color: var(--text-color);}
 .edu-desc { margin-top: 10px !important; font-size: 0.95rem !important; color: var(--text-muted) !important; font-weight: 500;}
-@media (max-width: 768px) { .about-wrapper { grid-template-columns: 1fr; } }
 
 .track-record-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; align-items: start; }
 .track-accordion { background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; box-shadow: var(--shadow); }
@@ -160,11 +165,6 @@ a:hover { color: var(--accent-hover); }
 .accordion-header i.fa-chevron-down { transition: 0.4s; color: var(--text-muted); background: rgba(0,0,0,0.05); padding: 8px; border-radius: 50%; }
 [data-theme="dark"] .accordion-header i.fa-chevron-down { background: rgba(255,255,255,0.05); }
 .accordion-content { max-height: 0; overflow: hidden; background: transparent; transition: max-height 0.5s ease, padding 0.5s ease; }
-
-/* KODE ASLI SEBELUM PATCH:
-.track-accordion.active .accordion-content { max-height: 2500px; padding: 25px; border-top: 1px solid var(--border-color); }
-(Ini diganti ke bawah ya)
-*/
 
 .portfolio-grid, .lab-grid, .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
 .card, .list-card { transition: 0.3s !important; position: relative; overflow: hidden; background: var(--card-bg) !important; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
@@ -214,7 +214,7 @@ html, body {
     box-sizing: inherit;
 }
 
-/* Memastikan semua gambar responsif dan tidak mendesak layar (selain foto profil yang sudah diatur) */
+/* Memastikan semua gambar responsif dan tidak mendesak layar */
 img {
     max-width: 100%;
     height: auto;
@@ -222,10 +222,10 @@ img {
 
 /* 2. Memperbaiki konten akordion agar bisa di-scroll JIKA kontennya banyak */
 .track-accordion.active .accordion-content {
-    max-height: 60vh; /* Menggantikan max-height: 2500px agar tidak kepanjangan */
+    max-height: 60vh; 
     padding: 25px;
     border-top: 1px solid var(--border-color);
-    overflow-y: auto !important; /* Menambahkan scroll vertikal */
+    overflow-y: auto !important; 
     overflow-x: hidden;
 }
 
