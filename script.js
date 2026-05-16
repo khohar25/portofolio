@@ -170,6 +170,13 @@ async function loadPortfolioData(lang = 'id') {
                 // Logika ganti bahasa database
                 let descFinal = (lang === 'en' && item.deskripsi_en) ? item.deskripsi_en : item.deskripsi;
 
+                // --- LOGIKA PATCH OTOMATIS MENGUBAH TEKS "PROGRAM STUDI FISIKA" ---
+                if (descFinal) {
+                    descFinal = descFinal.replace(/program studi Fisika/gi, 'program studi D4 Teknik Informatika, pada bidang lomba Fisika');
+                    // Jika ada teks bahasa Inggrisnya yang salah juga
+                    descFinal = descFinal.replace(/Physics study program/gi, 'D4 Informatics Engineering study program, in the Physics category');
+                }
+
                 let cardHTML = `<div class="list-card" style="--card-accent: ${accentColor};" onclick="this.classList.toggle('active')"><h4>${judulBersih} <i class="fas fa-chevron-down icon-chevron"></i></h4><div class="list-meta"><span><i class="fas fa-building"></i> ${item.pemberi_penghargaan}</span><span><i class="fas fa-calendar-alt"></i> ${item.tahun}</span></div><div class="list-desc">${descFinal || '-'}</div></div>`;
 
                 if(isJuara && juaraContainer) { juaraContainer.innerHTML += cardHTML; } else if(pesertaSainsContainer) { pesertaSainsContainer.innerHTML += cardHTML; }
