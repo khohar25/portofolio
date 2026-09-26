@@ -1,5 +1,53 @@
 [
   {
+    "nama_penghargaan": "Piagam: Medali Emas (A+) Biologi",
+    "pemberi_penghargaan": "Festival Sains & Bahasa Nasional (FSBN) - PON Indonesia",
+    "tahun": "2026",
+    "deskripsi": "Meraih Medali Emas (Predikat A+) Tingkat Nasional Bidang Biologi pada Festival Sains & Bahasa Nasional (FSBN).",
+    "deskripsi_en": "Achieved National Gold Medal (Grade A+) in Biology at Festival Sains & Bahasa Nasional (FSBN).",
+    "link": "olim/piag_Biologi - FSBN 2026.pdf"
+  },
+  {
+    "nama_penghargaan": "Piagam: Medali Emas (A+) Bahasa Inggris",
+    "pemberi_penghargaan": "Festival Akademik Nasional (FASNAS) - PUSKANTARA",
+    "tahun": "2026",
+    "deskripsi": "Meraih Medali Emas (Predikat A+) Tingkat Nasional Bidang Bahasa Inggris pada Festival Akademik Nasional (FASNAS).",
+    "deskripsi_en": "Achieved National Gold Medal (Grade A+) in English at National Academic Festival (FASNAS).",
+    "link": "olim/piag_Bahasa Inggris - FASNAS 2026.pdf"
+  },
+  {
+    "nama_penghargaan": "Piagam: Medali Emas (A+) Bahasa Inggris",
+    "pemberi_penghargaan": "Olimpiade Sains Pendidikan (OSP) - PUSKANAS",
+    "tahun": "2026",
+    "deskripsi": "Meraih Medali Emas (Predikat A+) Tingkat Nasional Bidang Bahasa Inggris pada Olimpiade Sains Pendidikan (OSP).",
+    "deskripsi_en": "Achieved National Gold Medal (Grade A+) in English at Education Science Olympiad (OSP).",
+    "link": "olim/Piagam_OSP_2026_Bahasa_Inggris.pdf"
+  },
+  {
+    "nama_penghargaan": "Piagam: Medali Emas (A+) Fisika",
+    "pemberi_penghargaan": "Indonesian Science and Medical Olympiad (ISMO) - Braindicator Indonesia",
+    "tahun": "2026",
+    "deskripsi": "Meraih Medali Emas (Predikat A+) Tingkat Nasional Bidang Fisika pada Indonesian Science and Medical Olympiad (ISMO).",
+    "deskripsi_en": "Achieved National Gold Medal (Grade A+) in Physics at Indonesian Science and Medical Olympiad (ISMO).",
+    "link": "olim/piag_Fisika - ISMO 2026.pdf"
+  },
+  {
+    "nama_penghargaan": "Piagam: Medali Emas (A+) Fisika",
+    "pemberi_penghargaan": "Olimpiade Sains Hari Pendidikan Nasional (OSPENAS) - PUSKANTARA",
+    "tahun": "2026",
+    "deskripsi": "Meraih Medali Emas (Predikat A+) Tingkat Nasional Bidang Fisika pada Olimpiade Sains Hari Pendidikan Nasional (OSPENAS).",
+    "deskripsi_en": "Achieved National Gold Medal (Grade A+) in Physics at National Education Day Science Olympiad (OSPENAS).",
+    "link": "olim/piag_Fisika - OSPENAS 2026.pdf"
+  },
+  {
+    "nama_penghargaan": "Piagam: Medali Emas (A+) Fisika",
+    "pemberi_penghargaan": "Kompetisi Sains Nasional Hari Pendidikan (KSNHP) - Braindicator Indonesia",
+    "tahun": "2026",
+    "deskripsi": "Meraih Medali Emas (Predikat A+) Tingkat Nasional Bidang Fisika pada Kompetisi Sains Nasional Hari Pendidikan (KSNHP).",
+    "deskripsi_en": "Achieved National Gold Medal (Grade A+) in Physics at National Education Day Science Competition (KSNHP).",
+    "link": "olim/piag_Fisika - KSN-HP 2026.pdf"
+  },
+  {
     "nama_penghargaan": "Piagam: Medali Emas Bidang Komputer",
     "pemberi_penghargaan": "Kompetisi Sains Pelajar Nasional (KSPN) - Gantari",
     "tahun": "2023",
@@ -9,13 +57,15 @@
     "nama_penghargaan": "Piagam: Medali Emas Astronomi (Predikat A+)",
     "pemberi_penghargaan": "Olimpiade Nasional Sains dan Bahasa (ONSB) - Braindicator",
     "tahun": "2023",
-    "deskripsi": "Meraih medali emas dengan predikat A+ tingkat nasional."
+    "deskripsi": "Meraih medali emas dengan predikat A+ tingkat nasional.",
+    "link": "olim/piag_Astronomi - ONSB 2023.pdf"
   },
   {
     "nama_penghargaan": "Piagam: Medali Emas Sosiologi (Predikat A+)",
     "pemberi_penghargaan": "Olimpiade Nasional Sains dan Bahasa (ONSB) - Braindicator",
     "tahun": "2023",
-    "deskripsi": "Meraih medali emas dengan predikat A+ tingkat nasional."
+    "deskripsi": "Meraih medali emas dengan predikat A+ tingkat nasional.",
+    "link": "olim/piag_Sosiologi - ONSB 2023.pdf"
   },
   {
     "nama_penghargaan": "Piagam: Medali Emas Bidang Geografi",
@@ -201,13 +251,15 @@
     "nama_penghargaan": "Sertifikat: Peserta Bidang Sosiologi",
     "pemberi_penghargaan": "Olimpiade Nasional Sains dan Bahasa (ONSB 2023)",
     "tahun": "2023",
-    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains.",
+    "link": "olim/piag_Sosiologi - ONSB 2023.pdf"
   },
   {
     "nama_penghargaan": "Sertifikat: Peserta Bidang Astronomi",
     "pemberi_penghargaan": "Olimpiade Nasional Sains dan Bahasa (ONSB 2023)",
     "tahun": "2023",
-    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains."
+    "deskripsi": "Berpartisipasi sebagai peserta kompetisi sains.",
+    "link": "olim/piag_Astronomi - ONSB 2023.pdf"
   },
   {
     "nama_penghargaan": "Sertifikat: Peserta Bidang Bahasa Jepang",

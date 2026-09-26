@@ -1,0 +1,20 @@
+[
+  {
+    "judul": "Membangun Ekosistem Kecerdasan Buatan Terapan untuk Masa Depan Industri",
+    "judul_en": "Building Applied Artificial Intelligence Ecosystems for Future Industry",
+    "kategori": "Artificial Intelligence",
+    "deskripsi": "Ulasan mengenai pemanfaatan AI generatif dan agen otomatis (Agentic AI) untuk membantu produktivitas tim dan percepatan talenta teknologi di Indonesia.",
+    "deskripsi_en": "Thoughts on adopting generative AI and agentic automation to boost team productivity and train modern tech talent in Indonesia.",
+    "link": "https://khohar25.github.io/artikel/",
+    "created_at": "2026-09-20"
+  },
+  {
+    "judul": "Arsitektur Web Modern: Optimalisasi Latensi Rendah di Lingkungan Cloud Vercel",
+    "judul_en": "Modern Web Architecture: Ultra-Low Latency Optimization in Vercel Cloud Environment",
+    "kategori": "Cloud & Web Engineering",
+    "deskripsi": "Catatan praktis seputar cara deploy aplikasi web di Vercel agar waktu muatnya cepat, efisien bandwidth, dan nyaman dibuka di ponsel.",
+    "deskripsi_en": "Practical notes on deploying web applications on Vercel for fast load times, edge caching, and smooth mobile experiences.",
+    "link": "https://khohar25.github.io/artikel/",
+    "created_at": "2026-09-15"
+  }
+]

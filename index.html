@@ -1,226 +1,738 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio | Khohar Muhamad Fatahurrohman</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Khohar Muhamad F. | Director & AI / Modern Web Engineer</title>
+    <meta name="description" content="Official portfolio of Khohar Muhamad Fatahurrohman — Director of PT Aigarn Akademi Artificial, D4 Informatics Engineering Student at POLINEMA, AI & Modern Web Engineer.">
+    <link rel="icon" type="image/jpeg" href="aku.jpeg">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=11">
+    
+    <!-- Custom International Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=21">
 </head>
 <body>
 
-    <div class="sky-container notranslate">
-        <div class="celestial-body"></div>
-        <div class="stars-layer"></div>
-        <div class="planet p-merkurius"></div>
-        <div class="planet p-venus"></div>
-        <div class="planet p-bumi"></div>
-        <div class="planet p-mars"></div>
-        <div class="planet p-jupiter"></div>
-        <div class="planet p-saturnus"></div>
-        <div class="planet p-uranus"></div>
-        <div class="planet p-neptunus"></div>
-        <div class="cloud-layer c1"></div>
-        <div class="cloud-layer c2"></div>
-        <div class="cloud-layer c3"></div>
-    </div>
+    <div class="ambient-glow"></div>
 
-    <div class="top-controls notranslate">
-        <button id="lang-toggle" aria-label="Ubah Bahasa"><i class="fas fa-language"></i> <span id="lang-text">ID / EN</span></button>
-        <div class="separator"></div>
-        <button id="theme-toggle" aria-label="Toggle Dark Mode"><i class="fas fa-moon" id="theme-icon"></i></button>
-    </div>
+    <!-- 1. FLOATING GLOBAL NAVBAR -->
+    <header class="site-header">
+        <nav class="nav-pill notranslate">
+            <a href="#hero" class="nav-brand">
+                <img src="aku.jpeg" alt="Khohar M.F." class="brand-avatar">
+                <span>Khohar M.F.</span>
+            </a>
 
-    <i class="fas fa-bars mobile-nav-toggle desktop-hide" id="mobile-nav-toggle"></i>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link active" data-id="Beranda" data-en="Overview">Overview</a></li>
+                <li><a href="#venture" class="nav-link" data-id="Inisiatif" data-en="Leadership">Leadership</a></li>
+                <li><a href="#projects" class="nav-link" data-id="Proyek" data-en="Engineering">Engineering</a></li>
+                <li><a href="#honors" class="nav-link" data-id="Prestasi" data-en="Honors">Honors</a></li>
+                <li><a href="#literary" class="nav-link" data-id="Fiksi" data-en="Literary">Literary</a></li>
+                <li><a href="#articles" class="nav-link" data-id="Artikel" data-en="Writing">Writing</a></li>
+                <li><a href="#about" class="nav-link" data-id="Tentang" data-en="About">About</a></li>
+            </ul>
 
-    <header id="header">
-        <div class="sidebar-wrapper">
-            <div class="profile">
-                <img src="aku.jpeg" alt="Foto Profil" class="img-fluid rounded-circle">
-                <h1 class="text-light notranslate"><a href="index.html">Khohar M.F.</a></h1>
-                <div class="social-links mt-3 text-center">
-                    <a href="https://github.com/khohar25" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://khoharmuhamad.blogspot.com" target="_blank"><i class="fab fa-blogger"></i></a>
-                    <a href="mailto:khoharrohman@gmail.com"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2" target="_blank"><i class="fas fa-briefcase"></i></a>
-                    <a href="https://www.linkedin.com/in/khoharrohman" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </div>
+            <div class="nav-controls">
+                <button id="lang-toggle" class="btn-ctrl" aria-label="Toggle Language" title="Toggle Language">
+                    <i class="fas fa-globe"></i> <span id="lang-text">EN / ID</span>
+                </button>
+                <button id="theme-toggle" class="btn-ctrl" aria-label="Toggle Theme" title="Toggle Theme">
+                    <i class="fas fa-sun" id="theme-icon"></i>
+                </button>
+                <a href="CV_Khohar_Muhamad_Fatahurrohman.pdf" target="_blank" class="btn-nav-resume" download>
+                    <i class="fas fa-file-pdf"></i> <span data-id="CV Resmi" data-en="Resume">Resume</span>
+                </a>
+                <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <nav id="navbar" class="nav-menu navbar">
-                <ul>
-                    <li><a href="#hero" class="nav-link scrollto active"><i class="fas fa-home"></i> <span data-id="Home" data-en="Home">Home</span></a></li>
-                    <li><a href="#about" class="nav-link scrollto"><i class="fas fa-user"></i> <span data-id="Profil" data-en="Profile">Profil</span></a></li>
-                    <li><a href="#track-record" class="nav-link scrollto"><i class="fas fa-file-alt"></i> <span data-id="Rekam Jejak" data-en="Track Record">Rekam Jejak</span></a></li>
-                    <li><a href="#portfolio" class="nav-link scrollto"><i class="fas fa-laptop-code"></i> <span data-id="Proyek Web" data-en="Web Projects">Proyek Web</span></a></li>
-                    <li><a href="#lab" class="nav-link scrollto"><i class="fas fa-flask"></i> <span data-id="Riset" data-en="Research">Riset</span></a></li>
-                    <li><a href="#library" class="nav-link scrollto"><i class="fas fa-book-open"></i> <span data-id="Pustaka" data-en="Library">Pustaka</span></a></li>
-                    <li><a href="#artikel" class="nav-link scrollto"><i class="fas fa-newspaper"></i> <span data-id="Artikel" data-en="Articles">Artikel</span></a></li>
-                </ul>
-            </nav>
-            <div class="sidebar-footer">
-                <p>&copy; 2026 Khohar M.F.</p>
-            </div>
-        </div>
+        </nav>
     </header>
 
-    <main id="main">
-        
-        <section id="hero" class="section">
-            <div class="hero-content-wrapper">
-                <div class="hero-text-box reveal">
-                    <h1 class="animate-text-1 notranslate">"MY REMINDER"</h1>
-                    <p class="animate-text-2" 
-                       data-id='"Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal. Saya tidak sedang berlomba dengan siapa pun. Apa yang orang lain bisa belum tentu saya bisa, begitu juga sebaliknya. Saat ini, saya hanya fokus pada progres diri sendiri."'
-                       data-en='"The more I study independently, the more I realize how shallow my knowledge is. I am not racing anyone. What others can do, I may not be able to, and vice versa. Currently, I am only focusing on my own progress."'>
-                       "Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal. Saya tidak sedang berlomba dengan siapa pun. Apa yang orang lain bisa belum tentu saya bisa, begitu juga sebaliknya. Saat ini, saya hanya fokus pada progres diri sendiri."
-                    </p>
-                </div>
-                <div class="hero-img-box reveal">
-                    <div class="astronaut-costume-container">
-                        <img src="bg.png" alt="Kostum Astronot" class="helmet-overlay-frame">
-                    </div>
-                </div>
+    <!-- MOBILE NAVIGATION DRAWER -->
+    <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+        <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop"></div>
+        <div class="mobile-drawer-content notranslate">
+            <div class="mobile-drawer-header">
+                <a href="#hero" class="nav-brand">
+                    <img src="aku.jpeg" alt="Khohar M.F." class="brand-avatar">
+                    <span>Khohar M.F.</span>
+                </a>
+                <button id="mobile-drawer-close" class="mobile-drawer-close-btn" aria-label="Close Navigation Menu">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-        </section>
+            <ul class="mobile-nav-list">
+                <li><a href="#hero" class="mobile-nav-link active"><i class="fas fa-home"></i> <span data-id="Beranda" data-en="Overview">Overview</span></a></li>
+                <li><a href="#venture" class="mobile-nav-link"><i class="fas fa-building"></i> <span data-id="Inisiatif (PT Aigarn)" data-en="Leadership">Leadership</span></a></li>
+                <li><a href="#projects" class="mobile-nav-link"><i class="fas fa-code"></i> <span data-id="Rekayasa Web" data-en="Engineering">Engineering</span></a></li>
+                <li><a href="#honors" class="mobile-nav-link"><i class="fas fa-medal"></i> <span data-id="Prestasi Olimpiade" data-en="Honors">Honors</span></a></li>
+                <li><a href="#literary" class="mobile-nav-link"><i class="fas fa-book-open"></i> <span data-id="Fiksi & Fizzo Novel" data-en="Literary">Literary</span></a></li>
+                <li><a href="#articles" class="mobile-nav-link"><i class="fas fa-feather-alt"></i> <span data-id="Tulisan & Catatan" data-en="Writing">Writing</span></a></li>
+                <li><a href="#about" class="mobile-nav-link"><i class="fas fa-user-graduate"></i> <span data-id="Pendidikan & Skill" data-en="About">About</span></a></li>
+                <li><a href="#contact" class="mobile-nav-link"><i class="fas fa-envelope"></i> <span data-id="Hubungi Saya" data-en="Contact">Contact</span></a></li>
+            </ul>
+            <div class="mobile-drawer-footer">
+                <a href="CV_Khohar_Muhamad_Fatahurrohman.pdf" target="_blank" class="btn-primary" style="width: 100%; justify-content: center;" download>
+                    <i class="fas fa-file-pdf"></i> <span data-id="Unduh CV Resmi (PDF)" data-en="Download Resume (PDF)">Download Resume (PDF)</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
-        <div class="divider-line"><span class="reveal"></span></div>
+    <main id="main">
 
-        <section id="about" class="section reveal">
+        <!-- 2. HERO SECTION -->
+        <section id="hero" class="hero-section">
             <div class="container">
-                
-                <div class="about-wrapper" style="margin-bottom: 50px;">
-                    <div class="profile-card">
-                        <h3 class="sub-heading-inline"><i class="fas fa-user-tie"></i> <span data-id="Biografi Singkat" data-en="Short Biography">Biografi Singkat</span></h3>
-                        <div class="about-text">
-                            <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: var(--shadow); backdrop-filter: blur(10px); text-align: justify; transition: 0.3s;" onmouseover="this.style.transform='translateX(8px)'; this.style.borderColor='#2ecc71';" onmouseout="this.style.transform='translateX(0)'; this.style.borderColor='var(--border-color)';">
-                                <p style="margin: 0; color: var(--text-color); font-weight: 500;" data-id="Saya adalah Khohar Muhamad Fatahurrohman, mahasiswa D4 Teknik Informatika sekaligus Founder AIFORA GROUP yang berfokus pada pengembangan teknologi berbasis Artificial Intelligence dan Web Development. Saya memiliki ketertarikan besar pada dunia teknologi digital, khususnya dalam menciptakan solusi yang mampu membantu UMKM berkembang lebih modern, efektif, dan siap bersaing di era digital saat ini." data-en="I am Khohar Muhamad Fatahurrohman, an Informatics Engineering student and the Founder of AIFORA GROUP, focusing on Artificial Intelligence and Web Development. I have a huge interest in the digital technology world, specifically in creating solutions that help MSMEs grow more modern, effective, and ready to compete in today's digital era.">Saya adalah Khohar Muhamad Fatahurrohman, mahasiswa D4 Teknik Informatika sekaligus Founder AIFORA GROUP yang berfokus pada pengembangan teknologi berbasis Artificial Intelligence dan Web Development. Saya memiliki ketertarikan besar pada dunia teknologi digital, khususnya dalam menciptakan solusi yang mampu membantu UMKM berkembang lebih modern, efektif, dan siap bersaing di era digital saat ini.</p>
-                            </div>
-                            
-                            <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: var(--shadow); backdrop-filter: blur(10px); text-align: justify; transition: 0.3s;" onmouseover="this.style.transform='translateX(8px)'; this.style.borderColor='#9b59b6';" onmouseout="this.style.transform='translateX(0)'; this.style.borderColor='var(--border-color)';">
-                                <p style="margin: 0; color: var(--text-color); font-weight: 500;" data-id="Melalui AIFORA GROUP, saya aktif mengembangkan berbagai inovasi digital seperti website, sistem informasi, dan media digital yang menggabungkan kreativitas, teknologi, serta kebutuhan bisnis modern. Selain aktif di bidang pengembangan web, saya juga terus mempelajari perkembangan AI untuk menciptakan teknologi yang lebih bermanfaat dan mudah diterapkan dalam kehidupan sehari-hari." data-en="Through AIFORA GROUP, I actively develop various digital innovations such as websites, information systems, and digital media that combine creativity, technology, and modern business needs. Besides web development, I continue to study AI advancements to create technology that is more useful and easily applied in daily life.">Melalui AIFORA GROUP, saya aktif mengembangkan berbagai inovasi digital seperti website, sistem informasi, dan media digital yang menggabungkan kreativitas, teknologi, serta kebutuhan bisnis modern. Selain aktif di bidang pengembangan web, saya juga terus mempelajari perkembangan AI untuk menciptakan teknologi yang lebih bermanfaat dan mudah diterapkan dalam kehidupan sehari-hari.</p>
-                            </div>
-                            
-                            <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; box-shadow: var(--shadow); backdrop-filter: blur(10px); text-align: justify; transition: 0.3s;" onmouseover="this.style.transform='translateX(8px)'; this.style.borderColor='#e67e22';" onmouseout="this.style.transform='translateX(0)'; this.style.borderColor='var(--border-color)';">
-                                <p style="margin: 0; color: var(--text-color); font-weight: 500;" data-id="Bagi saya, teknologi bukan hanya tentang membangun sistem, tetapi juga tentang bagaimana sebuah inovasi dapat memberikan dampak nyata bagi masyarakat. Dengan semangat belajar, kreativitas, dan konsistensi, saya terus berusaha mengembangkan kemampuan di bidang teknologi sekaligus membangun pengalaman profesional melalui berbagai project digital dan pengembangan startup yang saya jalankan." data-en="For me, technology is not just about building systems, but also about how an innovation can make a real impact on society. With a passion for learning, creativity, and consistency, I continue to develop my tech skills while building professional experience through various digital projects and startup development.">Bagi saya, teknologi bukan hanya tentang membangun sistem, tetapi juga tentang bagaimana sebuah inovasi dapat memberikan dampak nyata bagi masyarakat. Dengan semangat belajar, kreativitas, dan konsistensi, saya terus berusaha mengembangkan kemampuan di bidang teknologi sekaligus membangun pengalaman profesional melalui berbagai project digital dan pengembangan startup yang saya jalankan.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="hero-grid">
                     
-                    <div class="education-section">
-                        <h3 class="sub-heading-inline"><i class="fas fa-graduation-cap"></i> <span data-id="Riwayat Pendidikan" data-en="Education History">Riwayat Pendidikan</span></h3>
-                        <div class="timeline">
-                            <div class="timeline-item"><div class="timeline-dot"></div>
-                                <h4>Politeknik Negeri Malang</h4>
-                                <p><strong data-id="D4 Teknik Informatika" data-en="D4 Informatics Engineering">D4 Teknik Informatika</strong> | 2025 - <span data-id="Saat Ini" data-en="Present">Saat Ini</span></p>
-                                <p class="edu-desc"><i class="fas fa-map-marker-alt"></i> Jl. Soekarno Hatta No.9, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur</p>
-                            </div>
-                            <div class="timeline-item"><div class="timeline-dot"></div>
-                                <h4>SMKS Trisakti Ngawi</h4>
-                                <p><strong data-id="Teknik Komputer dan Jaringan" data-en="Computer and Network Engineering">Teknik Komputer dan Jaringan</strong> | 2022 - 2025</p>
-                                <p class="edu-desc"><i class="fas fa-map-marker-alt"></i> Jl. Kenari No. 7A, Beran, Kec. Ngawi, Kab. Ngawi, Jawa Timur</p>
-                            </div>
-                            <div class="timeline-item"><div class="timeline-dot"></div>
-                                <h4>MTsN 2 Ngawi</h4>
-                                <p>2019 - 2022</p>
-                                <p class="edu-desc"><i class="fas fa-map-marker-alt"></i> Jl. Raya Babadan Pangkur, Kec. Pangkur, Kab. Ngawi, Jawa Timur</p>
-                            </div>
-                            <div class="timeline-item"><div class="timeline-dot"></div>
-                                <h4>SDN Beberan 1 Ciruas</h4>
-                                <p>2014 - 2019</p>
-                                <p class="edu-desc"><i class="fas fa-map-marker-alt"></i> Beberan, Kec. Ciruas, Kab. Serang, Banten</p>
-                            </div>
-                            <div class="timeline-item"><div class="timeline-dot"></div>
-                                <h4>TKS Telaga Sakinah Ciruas</h4>
-                                <p>2012 - 2014</p>
-                                <p class="edu-desc"><i class="fas fa-map-marker-alt"></i> Kec. Ciruas, Kab. Serang, Banten</p>
-                            </div>
+                    <div class="hero-text-box reveal">
+                        <div class="status-badge">
+                            <span class="status-dot"></span>
+                            <span data-id="Mahasiswa TI POLINEMA &bull; Direktur PT Aigarn" data-en="Informatics Student at POLINEMA &bull; Director at PT Aigarn">Informatics Student at POLINEMA &bull; Director at PT Aigarn</span>
+                        </div>
+
+                        <h1 class="hero-title notranslate">
+                            Khohar Muhamad <span class="gradient-text">Fatahurrohman</span>
+                        </h1>
+
+                        <h2 class="hero-role-title" 
+                            data-id="Mahasiswa D4 Teknik Informatika, <strong>POLINEMA</strong> &bull; Direktur di <strong>PT Aigarn Akademi Artificial</strong>"
+                            data-en="Informatics Engineering Student at <strong>POLINEMA</strong> &bull; Director at <strong>PT Aigarn Akademi Artificial</strong>">
+                            Informatics Engineering Student at <strong>POLINEMA</strong> &bull; Director at <strong>PT Aigarn Akademi Artificial</strong>
+                        </h2>
+
+                        <p class="hero-description"
+                           data-id="Saya fokus pada rekayasa web modern, eksplorasi kecerdasan buatan terapan, dan peraih 8 Medali Emas Olimpiade Sains Nasional (Fisika, Astronomi, & Bahasa Inggris). Di samping coding, saya juga aktif menulis serial fiksi di platform Fizzo Novel."
+                           data-en="I build modern, fast web applications, explore practical applied AI workflows, and have won 8 National Science Olympiad Gold Medals in Physics, Astronomy, and English. In my spare time, I write serialized folklore novels on Fizzo.">
+                           I build modern, fast web applications, explore practical applied AI workflows, and have won 8 National Science Olympiad Gold Medals in Physics, Astronomy, and English. In my spare time, I write serialized folklore novels on Fizzo.
+                        </p>
+
+                        <div class="hero-cta-wrap">
+                            <a href="CV_Khohar_Muhamad_Fatahurrohman.pdf" target="_blank" class="btn-primary" download>
+                                <i class="fas fa-file-pdf"></i> <span data-id="Unduh CV (PDF)" data-en="Download CV (PDF)">Download CV (PDF)</span>
+                            </a>
+                            <a href="#projects" class="btn-secondary">
+                                <i class="fas fa-code-branch"></i> <span data-id="Lihat Proyek Web" data-en="View Projects">View Projects</span>
+                            </a>
+                        </div>
+
+                        <div class="hero-socials">
+                            <a href="https://github.com/khohar25" target="_blank" class="social-chip" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://khoharrohman.my.id" target="_blank" class="social-chip" title="Official Website" aria-label="Website"><i class="fas fa-globe"></i></a>
+                            <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" class="social-chip" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2" target="_blank" class="social-chip" title="Upwork" aria-label="Upwork"><i class="fas fa-briefcase"></i></a>
+                            <a href="mailto:gdmilenial@gmail.com" class="social-chip" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                            <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="social-chip" title="Blogger" aria-label="Blogger"><i class="fab fa-blogger"></i></a>
                         </div>
                     </div>
-                </div>
 
-                <div class="about-wrapper">
-                    <div class="tech-section">
-                        <h3 class="sub-heading-inline"><i class="fas fa-laptop-code"></i> Tech Stack & Credentials</h3>
-                        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; box-shadow: var(--shadow); backdrop-filter: blur(10px);">
-                            
-                            <div class="tech-icons" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 20px; text-align: center;">
-                                <div title="HTML5"><i class="fab fa-html5" style="color: #e34f26; font-size: 2.2rem;"></i></div>
-                                <div title="CSS3"><i class="fab fa-css3-alt" style="color: #1572b6; font-size: 2.2rem;"></i></div>
-                                <div title="JavaScript"><i class="fab fa-js" style="color: #f7df1e; font-size: 2.2rem;"></i></div>
-                                <div title="Python"><i class="fab fa-python" style="color: #3776ab; font-size: 2.2rem;"></i></div>
-                                <div title="Database"><i class="fas fa-database" style="color: #336791; font-size: 2.2rem;"></i></div>
-                                <div title="GitHub"><i class="fab fa-github" style="color: var(--text-color); font-size: 2.2rem;"></i></div>
-                                <div title="Artificial Intelligence"><i class="fas fa-brain" style="color: #8b5cf6; font-size: 2.2rem;"></i></div>
-                                <div title="IoT / Robotics"><i class="fas fa-microchip" style="color: #10b981; font-size: 2.2rem;"></i></div>
+                    <div class="hero-visual-box reveal">
+                        <div class="hero-visual-card">
+                            <div class="hero-avatar-wrap">
+                                <img src="aku.jpeg" alt="Khohar Muhamad F." class="hero-avatar-img">
                             </div>
-                            
-                            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px dashed var(--border-color);">
-                                <h4 style="font-size: 0.9rem; margin-bottom: 15px; color: var(--text-color); font-weight: 700;"><i class="fab fa-ibm" style="color: #052FAD;"></i> Professional Credentials:</h4>
-                                <div style="display: flex; flex-direction: column; gap: 10px;">
-                                    <div style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-muted);">
-                                        <i class="fas fa-award" style="color: #f59e0b;"></i> IBM Certified AI Practitioner
-                                    </div>
-                                    <div style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-muted);">
-                                        <i class="fas fa-award" style="color: #f59e0b;"></i> IBM Data Science Fundamentals
-                                    </div>
+                            <h3 class="hero-visual-name notranslate">Khohar M.F.</h3>
+                            <p class="hero-visual-sub">Web & Applied AI Builder</p>
+
+                            <div class="quick-stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-num">8x</div>
+                                    <div class="stat-label" data-id="Emas Sains Nasional" data-en="National Gold">National Gold</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-num">Direktur</div>
+                                    <div class="stat-label">PT Aigarn</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-num">3+</div>
+                                    <div class="stat-label" data-id="Aplikasi Live" data-en="Live Products">Live Products</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-num">4</div>
+                                    <div class="stat-label" data-id="Novel di Fizzo" data-en="Fizzo Novels">Fizzo Novels</div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="network-section">
-                        <h3 class="sub-heading-inline"><i class="fas fa-network-wired"></i> <span data-id="Jejaring Profesional" data-en="Professional Networking">Jejaring Profesional</span></h3>
-                        <div id="network-container" style="display: flex; flex-direction: column; gap: 15px;">
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. VENTURE & INITIATIVE -->
+        <section id="venture" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag" data-id="Inisiatif & Kepemimpinan" data-en="Venture & Leadership">Venture & Leadership</span>
+                    <h2 class="section-title" data-id="Inovasi & Edukasi AI Terapan" data-en="Applied AI Training & Technology Initiative">Applied AI Training & Technology Initiative</h2>
+                    <p class="section-desc" 
+                       data-id="Lembaga edukasi teknologi dan pelatihan AI terapan yang berbasis di Indonesia untuk membantu talenta muda menguasai alat digital modern."
+                       data-en="An Indonesian applied AI training initiative helping students and young builders master modern digital tools.">
+                       An Indonesian applied AI training initiative helping students and young builders master modern digital tools.
+                    </p>
+                </div>
+
+                <div class="venture-banner-card reveal">
+                    <div class="venture-info">
+                        <div class="venture-badge">
+                            <i class="fas fa-building"></i> <span data-id="Direktur (Sep 2026 - Sekarang)" data-en="Director (Sep 2026 - Present)">Director (Sep 2026 - Present)</span>
+                        </div>
+                        <h3 class="venture-title notranslate">PT Aigarn Akademi Artificial</h3>
+                        <p class="venture-desc"
+                           data-id="PT Aigarn Akademi Artificial berfokus menjembatani teori akademik dengan pemanfaatan teknologi di dunia nyata. Sebagai Direktur, saya memimpin perancangan program pelatihan praktis (Generative AI & Agentic tools), kolaborasi edukasi, serta pengembangan sistem digital internal akademi."
+                           data-en="PT Aigarn Akademi Artificial bridges academic theory and real-world technology usage. As Director, I lead practical training programs (Generative AI & Agentic tools), educational partnerships, and internal digital systems.">
+                           PT Aigarn Akademi Artificial bridges academic theory and real-world technology usage. As Director, I lead practical training programs (Generative AI & Agentic tools), educational partnerships, and internal digital systems.
+                        </p>
+                        <a href="mailto:gdmilenial@gmail.com" class="btn-primary" style="padding: 10px 20px; font-size: 0.88rem;">
+                            <i class="fas fa-envelope"></i> <span data-id="Kontak Kerjasama" data-en="Contact for Partnership">Contact for Partnership</span>
+                        </a>
+                    </div>
+
+                    <div class="venture-pillars">
+                        <div class="pillar-item">
+                            <i class="fas fa-brain pillar-icon"></i>
+                            <div class="pillar-text">
+                                <h5 data-id="Pelatihan AI Terapan" data-en="Hands-on Applied AI">Hands-on Applied AI</h5>
+                                <p data-id="Workshop langsung: pemanfaatan generative AI, prompting praktis, dan otomatisasi alur kerja." data-en="Practical workshops on generative AI tools, prompt engineering, and workflow automation.">Practical workshops on generative AI tools, prompt engineering, and workflow automation.</p>
                             </div>
+                        </div>
+
+                        <div class="pillar-item">
+                            <i class="fas fa-code pillar-icon"></i>
+                            <div class="pillar-text">
+                                <h5 data-id="Pengembangan Web Modern" data-en="Modern Web Development">Modern Web Development</h5>
+                                <p data-id="Membangun aplikasi web responsif dan cepat menggunakan ekosistem cloud seperti Vercel." data-en="Building responsive, fast-loading web applications deployed on modern cloud platforms.">Building responsive, fast-loading web applications deployed on modern cloud platforms.</p>
+                            </div>
+                        </div>
+
+                        <div class="pillar-item">
+                            <i class="fas fa-check-double pillar-icon"></i>
+                            <div class="pillar-text">
+                                <h5 data-id="Efisiensi & Kualitas Kerja" data-en="Process Quality & Efficiency">Process Quality & Efficiency</h5>
+                                <p data-id="Penerapan prinsip Lean Six Sigma dan metodologi Agile untuk eksekusi yang rapi dan terukur." data-en="Applying Lean Six Sigma principles and Agile methods for structured, reliable project delivery.">Applying Lean Six Sigma principles and Agile methods for structured, reliable project delivery.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <section id="track-record" class="section bg-alt reveal">
+        <!-- 4. ENGINEERING & LIVE PRODUCTS -->
+        <section id="projects" class="section">
             <div class="container">
-                <h2 class="section-title" data-id="Rekam Jejak & Pengembangan Diri" data-en="Track Record & Self Development">Rekam Jejak & Pengembangan Diri</h2>
-                <div class="track-record-grid">
-                    <div class="track-accordion"><div class="accordion-header"><h3 data-id="Penghargaan" data-en="Awards">Penghargaan</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="juara-container"></div></div>
-                    <div class="track-accordion"><div class="accordion-header"><h3 data-id="Partisipasi Sains" data-en="Science Participation">Partisipasi Sains</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="peserta-sains-container"></div></div>
-                    <div class="track-accordion"><div class="accordion-header"><h3 data-id="Organisasi" data-en="Organizations">Organisasi</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="organisasi-container"></div></div>
-                    <div class="track-accordion"><div class="accordion-header"><h3 data-id="Event" data-en="Events">Event</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="event-container"></div></div>
-                    <div class="track-accordion"><div class="accordion-header"><h3 data-id="Seminar" data-en="Seminars">Seminar</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="seminar-container"></div></div>
-                    <div class="track-accordion"><div class="accordion-header"><h3 data-id="Pelatihan" data-en="Trainings">Pelatihan</h3><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="pelatihan-container"></div></div>
+                <div class="section-header reveal">
+                    <span class="section-tag" data-id="Proyek Terpilih" data-en="Featured Projects">Featured Projects</span>
+                    <h2 class="section-title" data-id="Aplikasi Web yang Dideploy (Live)" data-en="Live Deployed Web Applications">Live Deployed Web Applications</h2>
+                    <p class="section-desc"
+                       data-id="Proyek web nyata yang aktif beroperasi dan dapat langsung dicoba secara daring."
+                       data-en="Real-world web projects deployed on modern cloud infrastructure and ready to explore.">
+                       Real-world web projects deployed on modern cloud infrastructure and ready to explore.
+                    </p>
+                </div>
+
+                <div class="projects-grid" id="portfolio-container">
+                    
+                    <!-- 1. TRON SISTEM -->
+                    <div class="bento-card reveal">
+                        <div class="project-card-header">
+                            <span class="project-tag">Web Application / Logistics</span>
+                            <span class="live-indicator"><span class="status-dot"></span> Live on Vercel</span>
+                        </div>
+                        <h3 class="project-title notranslate">Tron Sistem</h3>
+                        
+                        <p class="project-desc"
+                           data-id="Aplikasi web manajemen operasional dan monitoring berbasis cloud. Didesain dengan antarmuka yang bersih dan responsif, dioptimasi agar cepat diakses dan stabil saat digunakan pengguna lapangan."
+                           data-en="Cloud-based operational management and tracking web application. Designed with a clean, responsive UI, optimized for fast loading and stable performance in field use.">
+                           Cloud-based operational management and tracking web application. Designed with a clean, responsive UI, optimized for fast loading and stable performance in field use.
+                        </p>
+
+                        <div class="tech-pills-wrap">
+                            <span class="tech-pill">Next.js / React</span>
+                            <span class="tech-pill">Tailwind CSS</span>
+                            <span class="tech-pill">Vercel Edge</span>
+                            <span class="tech-pill">REST API</span>
+                        </div>
+
+                        <a href="https://tronsistem.vercel.app" target="_blank" class="project-footer-link">
+                            <span data-id="Buka Aplikasi Live" data-en="Launch Live App">Launch Live App</span> <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- 2. ZAFARSH TRANS -->
+                    <div class="bento-card reveal">
+                        <div class="project-card-header">
+                            <span class="project-tag">Fleet Showcase & Booking</span>
+                            <span class="live-indicator"><span class="status-dot"></span> Live on Vercel</span>
+                        </div>
+                        <h3 class="project-title notranslate">Zafarsh Trans</h3>
+                        
+                        <p class="project-desc"
+                           data-id="Website informasi armada dan sistem reservasi perjalanan travel antar-kota. Memudahkan calon penumpang melihat daftar rute, jadwal keberangkatan, dan menghubungi admin pemesanan secara langsung."
+                           data-en="Fleet showcase and online reservation platform for intercity transport. Helps passengers view travel routes, check schedules, and contact dispatchers directly for bookings.">
+                           Fleet showcase and online reservation platform for intercity transport. Helps passengers view travel routes, check schedules, and contact dispatchers directly for bookings.
+                        </p>
+
+                        <div class="tech-pills-wrap">
+                            <span class="tech-pill">JavaScript</span>
+                            <span class="tech-pill">Mobile-First UX</span>
+                            <span class="tech-pill">Vercel Cloud</span>
+                            <span class="tech-pill">Booking Flow</span>
+                        </div>
+
+                        <a href="https://zafarsh-trans.vercel.app" target="_blank" class="project-footer-link">
+                            <span data-id="Buka Aplikasi Live" data-en="Launch Live App">Launch Live App</span> <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- 3. KRIPIK TEMPE KHARISMA -->
+                    <div class="bento-card reveal">
+                        <div class="project-card-header">
+                            <span class="project-tag">UMKM Digital Showcase</span>
+                            <span class="live-indicator"><span class="status-dot"></span> Live on GitHub Pages</span>
+                        </div>
+                        <h3 class="project-title notranslate">Kripik Tempe Kharisma</h3>
+                        
+                        <p class="project-desc"
+                           data-id="Katalog produk dan etalase digital untuk UMKM makanan ringan khas Trenggalek. Dibuat ringan dan responsif agar memudahkan promosi oleh-oleh lokal ke pembeli online."
+                           data-en="Product catalog and digital landing page for a local snack business in Trenggalek, built lightweight and mobile-friendly to help traditional food makers reach online buyers.">
+                           Product catalog and digital landing page for a local snack business in Trenggalek, built lightweight and mobile-friendly to help traditional food makers reach online buyers.
+                        </p>
+
+                        <div class="tech-pills-wrap">
+                            <span class="tech-pill">HTML5 / CSS3</span>
+                            <span class="tech-pill">GitHub Pages</span>
+                            <span class="tech-pill">Mobile Responsive</span>
+                            <span class="tech-pill">Local MSME</span>
+                        </div>
+
+                        <a href="https://khohar25.github.io/kripiktempekharisma/" target="_blank" class="project-footer-link">
+                            <span data-id="Kunjungi Website" data-en="Visit Website">Visit Website</span> <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <section id="portfolio" class="section reveal"><div class="container"><h2 class="section-title" data-id="Case Studies & Proyek Web" data-en="Case Studies & Web Projects">Case Studies & Proyek Web</h2><div class="portfolio-grid" id="portfolio-container"></div></div></section>
-        <section id="lab" class="section bg-alt reveal"><div class="container"><h2 class="section-title">Innovation Lab <i class="fas fa-flask"></i></h2><div class="lab-grid" id="lab-container"></div></div></section>
-        <section id="library" class="section reveal"><div class="container"><h2 class="section-title">Creative Works <i class="fas fa-book-open"></i></h2><div class="portfolio-grid" id="library-container"></div></div></section>
-
-        <section id="artikel" class="section bg-alt reveal">
+        <!-- 5. HONORS & GLOBAL CREDENTIALS (OLYMPIADS + CERTIFICATIONS) -->
+        <section id="honors" class="section">
             <div class="container">
-                <div class="article-card">
-                    <i class="fab fa-blogger article-icon"></i>
-                    <h3 data-id="Blog / Artikel Resmi Khohar Muhamad" data-en="Official Blog / Articles of Khohar Muhamad">Artikel Resmi Khohar Muhamad</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 30px;" data-id="Dokumentasi eksplorasi teknologi dan catatan perjalanan profesional." data-en="Documentation of technology exploration and professional journey notes.">Dokumentasi eksplorasi teknologi dan catatan perjalanan profesional.</p>
-                    <a href="https://khohar25.github.io/artikel/" target="_blank" class="btn-submit"><span data-id="Kunjungi Blog" data-en="Visit Blog">Kunjungi Artikel</span> <i class="fas fa-arrow-right"></i></a>
+                <div class="section-header reveal">
+                    <span class="section-tag" data-id="Kredensial & Penghargaan" data-en="Recognition & Credentials">Recognition & Credentials</span>
+                    <h2 class="section-title" data-id="Prestasi Sains & Sertifikasi Global" data-en="National Olympiad Golds & Global Certifications">National Olympiad Golds & Global Certifications</h2>
+                    <p class="section-desc"
+                       data-id="Konsistensi penalaran sains analitis yang dibuktikan melalui 8 medali emas olimpiade sains nasional serta sertifikasi keprofesian internasional."
+                       data-en="Rigorous scientific reasoning proven by 8 national science olympiad gold medals alongside premier international professional certifications.">
+                       Rigorous scientific reasoning proven by 8 national science olympiad gold medals alongside premier international professional certifications.
+                    </p>
+                </div>
+
+                <div class="honor-cards-grid">
+                    
+                    <!-- 1. FSBN BIOLOGI 2026 -->
+                    <div class="honor-item-card reveal">
+                        <div class="honor-badge-row">
+                            <span class="medal-gold-chip"><i class="fas fa-medal"></i> Gold Medal (Grade A+)</span>
+                            <span class="honor-year">June 2026</span>
+                        </div>
+                        <h4 data-id="Medali Emas (A+) Biologi" data-en="Gold Medal (Grade A+) Biology">Gold Medal (Grade A+) Biology</h4>
+                        <p class="honor-issuer">Festival Sains & Bahasa Nasional (FSBN) — PON Indonesia</p>
+                        <p class="honor-desc" data-id="Meraih Medali Emas Tingkat Nasional dengan predikat A+ pada bidang lomba Biologi." data-en="Achieved National Gold Medal with Grade A+ distinction in the Biology division.">Achieved National Gold Medal with Grade A+ distinction in the Biology division.</p>
+                        <a href="olim/piag_Biologi - FSBN 2026.pdf" target="_blank" class="honor-verify-link">
+                            <i class="fas fa-file-pdf"></i> <span data-id="Verifikasi Piagam Asli" data-en="Verify Certificate PDF">Verify Certificate PDF</span>
+                        </a>
+                    </div>
+
+                    <!-- 2. FASNAS BAHASA INGGRIS 2026 -->
+                    <div class="honor-item-card reveal">
+                        <div class="honor-badge-row">
+                            <span class="medal-gold-chip"><i class="fas fa-medal"></i> Gold Medal (Grade A+)</span>
+                            <span class="honor-year">June 2026</span>
+                        </div>
+                        <h4 data-id="Medali Emas (A+) Bahasa Inggris" data-en="Gold Medal (Grade A+) English">Gold Medal (Grade A+) English</h4>
+                        <p class="honor-issuer">Festival Akademik Nasional (FASNAS) — PUSKANTARA</p>
+                        <p class="honor-desc" data-id="Meraih Medali Emas Tingkat Nasional dengan predikat A+ pada bidang Bahasa Inggris." data-en="Achieved National Gold Medal with Grade A+ distinction in the English competition.">Achieved National Gold Medal with Grade A+ distinction in the English competition.</p>
+                        <a href="olim/piag_Bahasa Inggris - FASNAS 2026.pdf" target="_blank" class="honor-verify-link">
+                            <i class="fas fa-file-pdf"></i> <span data-id="Verifikasi Piagam Asli" data-en="Verify Certificate PDF">Verify Certificate PDF</span>
+                        </a>
+                    </div>
+
+                    <!-- 3. ISMO FISIKA 2026 -->
+                    <div class="honor-item-card reveal">
+                        <div class="honor-badge-row">
+                            <span class="medal-gold-chip"><i class="fas fa-medal"></i> Gold Medal (Grade A+)</span>
+                            <span class="honor-year">May 2026</span>
+                        </div>
+                        <h4 data-id="Medali Emas (A+) Fisika" data-en="Gold Medal (Grade A+) Physics">Gold Medal (Grade A+) Physics</h4>
+                        <p class="honor-issuer">Indonesian Science and Medical Olympiad (ISMO) — Braindicator</p>
+                        <p class="honor-desc" data-id="Meraih Medali Emas Tingkat Nasional dengan predikat A+ pada bidang olimpiade Fisika." data-en="Achieved National Gold Medal with Grade A+ distinction in the Physics olympiad division.">Achieved National Gold Medal with Grade A+ distinction in the Physics olympiad division.</p>
+                        <a href="olim/piag_Fisika - ISMO 2026.pdf" target="_blank" class="honor-verify-link">
+                            <i class="fas fa-file-pdf"></i> <span data-id="Verifikasi Piagam Asli" data-en="Verify Certificate PDF">Verify Certificate PDF</span>
+                        </a>
+                    </div>
+
+                    <!-- 4. OSP BAHASA INGGRIS 2026 -->
+                    <div class="honor-item-card reveal">
+                        <div class="honor-badge-row">
+                            <span class="medal-gold-chip"><i class="fas fa-medal"></i> Gold Medal (Grade A+)</span>
+                            <span class="honor-year">May 2026</span>
+                        </div>
+                        <h4 data-id="Medali Emas (A+) Bahasa Inggris" data-en="Gold Medal (Grade A+) English">Gold Medal (Grade A+) English</h4>
+                        <p class="honor-issuer">Olimpiade Sains Pendidikan (OSP) — PUSKANAS</p>
+                        <p class="honor-desc" data-id="Meraih Medali Emas Tingkat Nasional bidang Bahasa Inggris." data-en="Awarded National Gold Medal in the Education Science Olympiad (English).">Awarded National Gold Medal in the Education Science Olympiad (English).</p>
+                        <a href="olim/Piagam_OSP_2026_Bahasa_Inggris.pdf" target="_blank" class="honor-verify-link">
+                            <i class="fas fa-file-pdf"></i> <span data-id="Verifikasi Piagam Asli" data-en="Verify Certificate PDF">Verify Certificate PDF</span>
+                        </a>
+                    </div>
+
+                    <!-- 5. OSPENAS & KSNHP FISIKA 2026 -->
+                    <div class="honor-item-card reveal">
+                        <div class="honor-badge-row">
+                            <span class="medal-gold-chip"><i class="fas fa-medal"></i> Gold Medal (Grade A+)</span>
+                            <span class="honor-year">May 2026</span>
+                        </div>
+                        <h4 data-id="Medali Emas (A+) Fisika OSPENAS" data-en="Gold Medal (Grade A+) Physics OSPENAS">Gold Medal (Grade A+) Physics OSPENAS</h4>
+                        <p class="honor-issuer">Olimpiade Sains Hari Pendidikan Nasional — PUSKANTARA</p>
+                        <p class="honor-desc" data-id="Meraih Medali Emas Fisika tingkat nasional Hari Pendidikan Nasional." data-en="Achieved National Gold Medal in Physics during National Education Day Olympiad.">Achieved National Gold Medal in Physics during National Education Day Olympiad.</p>
+                        <a href="olim/piag_Fisika - OSPENAS 2026.pdf" target="_blank" class="honor-verify-link">
+                            <i class="fas fa-file-pdf"></i> <span data-id="Verifikasi Piagam Asli" data-en="Verify Certificate PDF">Verify Certificate PDF</span>
+                        </a>
+                    </div>
+
+                    <!-- 6. ASTRONOMI ONSB 2023 -->
+                    <div class="honor-item-card reveal">
+                        <div class="honor-badge-row">
+                            <span class="medal-gold-chip"><i class="fas fa-medal"></i> Gold Medal (Grade A+)</span>
+                            <span class="honor-year">January 2023</span>
+                        </div>
+                        <h4 data-id="Medali Emas (A+) Astronomi" data-en="Gold Medal (Grade A+) Astronomy">Gold Medal (Grade A+) Astronomy</h4>
+                        <p class="honor-issuer">Olimpiade Nasional Sains dan Bahasa (ONSB) — Braindicator</p>
+                        <p class="honor-desc" data-id="Meraih Medali Emas Tingkat Nasional bidang Astronomi dengan predikat A+." data-en="National Gold Medal in Astronomy with Grade A+ distinction.">National Gold Medal in Astronomy with Grade A+ distinction.</p>
+                        <a href="olim/piag_Astronomi - ONSB 2023.pdf" target="_blank" class="honor-verify-link">
+                            <i class="fas fa-file-pdf"></i> <span data-id="Verifikasi Piagam Asli" data-en="Verify Certificate PDF">Verify Certificate PDF</span>
+                        </a>
+                    </div>
+
+                    <!-- 7. IBM SKILLSBUILD: AGENTIC AI -->
+                    <div class="honor-item-card reveal">
+                        <div class="honor-badge-row">
+                            <span style="font-size:0.78rem; font-weight:800; color:#38bdf8; background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.3); padding:3px 10px; border-radius:20px;">
+                                <i class="fab fa-ibm"></i> IBM Credential
+                            </span>
+                            <span class="honor-year">July 2026</span>
+                        </div>
+                        <h4>Make Agentic AI Work for You</h4>
+                        <p class="honor-issuer">IBM SkillsBuild</p>
+                        <p class="honor-desc" data-id="Kredensial internasional implementasi agen otonom AI (Agentic AI) dan otomatisasi industri cerdas." data-en="International credential in designing autonomous AI agents, multi-agent collaborative planning, and workflow automation.">International credential in designing autonomous AI agents, multi-agent collaborative planning, and workflow automation.</p>
+                        <a href="ibm/AI-EnabledApplicationsforCustomerService_Badge20260716-8-e2nsw8.pdf" target="_blank" class="honor-verify-link">
+                            <i class="fas fa-file-pdf"></i> <span data-id="Verifikasi Kredensial IBM" data-en="Verify IBM Credential">Verify IBM Credential</span>
+                        </a>
+                    </div>
+
+                    <!-- 8. LEAN SIX SIGMA -->
+                    <div class="honor-item-card reveal">
+                        <div class="honor-badge-row">
+                            <span style="font-size:0.78rem; font-weight:800; color:#10b981; background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); padding:3px 10px; border-radius:20px;">
+                                <i class="fas fa-award"></i> Quality Standard
+                            </span>
+                            <span class="honor-year">July 2026</span>
+                        </div>
+                        <h4>Lean Six Sigma White Belt & Yellow Belt</h4>
+                        <p class="honor-issuer">Professional Certification</p>
+                        <p class="honor-desc" data-id="Standardisasi efisiensi proses, eliminasi waste, dan perbaikan berkelanjutan (continuous improvement)." data-en="Process efficiency standardization, waste minimization, and continuous quality improvement frameworks.">Process efficiency standardization, waste minimization, and continuous quality improvement frameworks.</p>
+                        <a href="profesi sertif/Lean Six Sigma White Belt Certifed.pdf" target="_blank" class="honor-verify-link">
+                            <i class="fas fa-file-pdf"></i> <span data-id="Verifikasi Sertifikat" data-en="Verify Certificate">Verify Certificate</span>
+                        </a>
+                    </div>
+
+                    <!-- 9. SANTA CLARA UNIVERSITY MOBI -->
+                    <div class="honor-item-card reveal">
+                        <div class="honor-badge-row">
+                            <span style="font-size:0.78rem; font-weight:800; color:#e11d48; background:rgba(225,29,72,0.15); border:1px solid rgba(225,29,72,0.3); padding:3px 10px; border-radius:20px;">
+                                <i class="fas fa-university"></i> Santa Clara Univ
+                            </span>
+                            <span class="honor-year">July 2026</span>
+                        </div>
+                        <h4>Starting a Business 2025–2026</h4>
+                        <p class="honor-issuer">MOBI — Santa Clara University, USA</p>
+                        <p class="honor-desc" data-id="Fondasi perancangan model bisnis, kelayakan pasar, dan tata kelola startup teknologi bertaraf global." data-en="Executive foundation in business model structuring, market viability assessment, and global technology enterprise launch.">Executive foundation in business model structuring, market viability assessment, and global technology enterprise launch.</p>
+                        <a href="CV_Khohar_Muhamad_Fatahurrohman.pdf" target="_blank" class="honor-verify-link">
+                            <i class="fas fa-file-pdf"></i> <span data-id="Lihat di Dokumen CV" data-en="Listed on CV">Listed on CV</span>
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <footer class="footer reveal">
-            <div class="social-links-footer text-center">
-                <a href="https://github.com/khohar25" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://khoharmuhamad.blogspot.com" target="_blank"><i class="fab fa-blogger"></i></a>
-                <a href="mailto:khoharrohman@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2" target="_blank"><i class="fas fa-briefcase"></i></a>
-                <a href="https://www.linkedin.com/in/khoharrohman" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <!-- 6. LITERARY & NOVELS (FIZZO NOVEL) -->
+        <section id="literary" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag" data-id="Karya Kreatif & Publikasi Digital" data-en="Creative Works & Digital Publishing">Creative Works & Digital Publishing</span>
+                    <h2 class="section-title" data-id="Penulis Fiksi & Folklor Nusantara — Fizzo Novel" data-en="Fiction & Nusantara Folklore Author — Fizzo Novel">Fiction & Nusantara Folklore Author — Fizzo Novel</h2>
+                    <p class="section-desc"
+                       data-id="Meriset dan menulis serial fiksi naratif berbasis mitologi, seni bela diri tradisional, dan kebudayaan lokal Nusantara, menjangkau pembaca aktif di platform penerbitan digital Fizzo Novel."
+                       data-en="Researching and authoring serialized narrative fiction rooted in mythology, traditional martial arts, and Indonesian cultural folklore, reaching active readers on digital publishing platforms.">
+                       Researching and authoring serialized narrative fiction rooted in mythology, traditional martial arts, and Indonesian cultural folklore, reaching active readers on digital publishing platforms.
+                    </p>
+                </div>
+
+                <div class="literary-grid" id="library-container">
+                    
+                    <!-- 1. RAJAH KOLOCOKRO -->
+                    <div class="book-card reveal">
+                        <span class="book-genre" data-id="Mistisisme Spiritual & Tradisi Jawa" data-en="Spiritual Mysticism & Javanese Tradition">Spiritual Mysticism & Javanese Tradition</span>
+                        <h3 class="book-title notranslate">Rajah Kolocokro</h3>
+                        <p class="book-synopsis"
+                           data-id="Eksplorasi narasi mistisisme spiritual dan filosofi proteksi Jawa kuno."
+                           data-en="Narrative exploration of spiritual mysticism and ancient Javanese protection philosophy.">
+                           Narrative exploration of spiritual mysticism and ancient Javanese protection philosophy.
+                        </p>
+                        <a href="https://www.fizzo.org/page/share/?bid=7305462020474666186&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID" target="_blank" class="book-read-btn">
+                            <i class="fas fa-book-reader"></i> <span data-id="Baca di Fizzo" data-en="Read on Fizzo">Read on Fizzo</span>
+                        </a>
+                    </div>
+
+                    <!-- 2. ILMU AJIAN BRAJAMUSTI -->
+                    <div class="book-card reveal">
+                        <span class="book-genre" data-id="Fiksi Laga & Mitologi Kanuragan" data-en="Action Martial Arts & Kanuragan">Action Martial Arts & Kanuragan</span>
+                        <h3 class="book-title notranslate">Ilmu Ajian Brajamusti</h3>
+                        <p class="book-synopsis"
+                           data-id="Fiksi laga dan legenda kekuatan kanuragan tradisional."
+                           data-en="Action martial arts fiction and traditional kanuragan invulnerability legends.">
+                           Action martial arts fiction and traditional kanuragan invulnerability legends.
+                        </p>
+                        <a href="https://www.fizzo.org/page/share/?bid=7313071067822554314&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID" target="_blank" class="book-read-btn">
+                            <i class="fas fa-book-reader"></i> <span data-id="Baca di Fizzo" data-en="Read on Fizzo">Read on Fizzo</span>
+                        </a>
+                    </div>
+
+                    <!-- 3. ILMU DEBUS -->
+                    <div class="book-card reveal">
+                        <span class="book-genre" data-id="Seni Pertunjukan & Ketahanan Fisik" data-en="Extreme Performance & Physical Endurance">Extreme Performance & Physical Endurance</span>
+                        <h3 class="book-title notranslate">Ilmu Debus</h3>
+                        <p class="book-synopsis"
+                           data-id="Pengangkatan seni bela diri ekstrem dan tradisi kekebalan Nusantara."
+                           data-en="Showcasing extreme performance martial arts and traditional Nusantara invulnerability traditions.">
+                           Showcasing extreme performance martial arts and traditional Nusantara invulnerability traditions.
+                        </p>
+                        <a href="https://www.fizzo.org/page/share/?bid=7284278721647738058&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID" target="_blank" class="book-read-btn">
+                            <i class="fas fa-book-reader"></i> <span data-id="Baca di Fizzo" data-en="Read on Fizzo">Read on Fizzo</span>
+                        </a>
+                    </div>
+
+                    <!-- 4. PELET PANDANGAN PERTAMA -->
+                    <div class="book-card reveal">
+                        <span class="book-genre" data-id="Romansa Modern & Folklor Lokal" data-en="Modern Romance & Local Folklore">Modern Romance & Local Folklore</span>
+                        <h3 class="book-title notranslate">Pelet Pandangan Pertama</h3>
+                        <p class="book-synopsis"
+                           data-id="Fiksi romansa berbalut kepercayaan supranatural lokal."
+                           data-en="Contemporary romance fiction intertwined with local supernatural beliefs.">
+                           Contemporary romance fiction intertwined with local supernatural beliefs.
+                        </p>
+                        <a href="https://www.fizzo.org/page/share/?bid=7305258678230187258&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID" target="_blank" class="book-read-btn">
+                            <i class="fas fa-book-reader"></i> <span data-id="Baca di Fizzo" data-en="Read on Fizzo">Read on Fizzo</span>
+                        </a>
+                    </div>
+
+                </div>
             </div>
-            <p>&copy; 2026 Khohar Muhamad Fatahurrohman.</p>
-        </footer>
+        </section>
+
+        <!-- 7. THOUGHT LEADERSHIP & ARTICLES -->
+        <section id="articles" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag" data-id="Catatan & Tulisan" data-en="Writing & Notes">Writing & Notes</span>
+                    <h2 class="section-title" data-id="Artikel & Catatan Rekayasa" data-en="Articles & Engineering Notes">Articles & Engineering Notes</h2>
+                    <p class="section-desc"
+                       data-id="Catatan praktis seputar pengembangan web, pemanfaatan alat AI, dan pembelajaran teknologi."
+                       data-en="Practical notes on web development, applied AI tools, and software engineering insights.">
+                       Practical notes on web development, applied AI tools, and software engineering insights.
+                    </p>
+                </div>
+
+                <div class="articles-preview-grid" id="article-preview-container">
+                    
+                    <div class="article-entry-card reveal">
+                        <span class="article-cat">Artificial Intelligence</span>
+                        <h4 class="article-heading"
+                            data-id="Membangun Ekosistem Kecerdasan Buatan Terapan untuk Masa Depan Industri"
+                            data-en="Building Applied Artificial Intelligence Ecosystems for Future Industry">
+                            Membangun Ekosistem Kecerdasan Buatan Terapan untuk Masa Depan Industri
+                        </h4>
+                        <p class="article-excerpt"
+                           data-id="Ulasan mengenai pemanfaatan AI generatif dan agen otomatis (Agentic AI) untuk membantu produktivitas tim dan percepatan talenta teknologi di Indonesia."
+                           data-en="Thoughts on adopting generative AI and agentic automation to boost team productivity and train modern tech talent in Indonesia.">
+                           Thoughts on adopting generative AI and agentic automation to boost team productivity and train modern tech talent in Indonesia.
+                        </p>
+                        <a href="https://khohar25.github.io/artikel/" target="_blank" class="project-footer-link">
+                            <span data-id="Baca Selengkapnya" data-en="Read Article">Read Article</span> <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="article-entry-card reveal">
+                        <span class="article-cat">Cloud Engineering</span>
+                        <h4 class="article-heading"
+                            data-id="Arsitektur Web Modern: Optimalisasi Latensi Rendah di Lingkungan Cloud Vercel"
+                            data-en="Modern Web Architecture: Ultra-Low Latency Optimization in Vercel Cloud Environment">
+                            Arsitektur Web Modern: Optimalisasi Latensi Rendah di Lingkungan Cloud Vercel
+                        </h4>
+                        <p class="article-excerpt"
+                           data-id="Catatan praktis seputar cara deploy aplikasi web di Vercel agar waktu muatnya cepat, efisien bandwidth, dan nyaman dibuka di ponsel."
+                           data-en="Practical notes on deploying web applications on Vercel for fast load times, edge caching, and smooth mobile experiences.">
+                           Practical notes on deploying web applications on Vercel for fast load times, edge caching, and smooth mobile experiences.
+                        </p>
+                        <a href="https://khohar25.github.io/artikel/" target="_blank" class="project-footer-link">
+                            <span data-id="Baca Selengkapnya" data-en="Read Article">Read Article</span> <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div style="text-align: center;" class="reveal">
+                    <a href="https://khohar25.github.io/artikel/" target="_blank" class="btn-secondary">
+                        <i class="fas fa-book"></i> <span data-id="Kunjungi Seluruh Artikel" data-en="Browse All Articles">Browse All Articles</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. ABOUT & CORE COMPETENCIES -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag" data-id="Tentang & Latar Belakang" data-en="Background & Skills">Background & Skills</span>
+                    <h2 class="section-title" data-id="Pendidikan & Keahlian" data-en="Education & Skills">Education & Skills</h2>
+                </div>
+
+                <div class="projects-grid">
+                    
+                    <!-- EDUCATION -->
+                    <div class="bento-card reveal">
+                        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 20px; color: var(--text-primary);">
+                            <i class="fas fa-graduation-cap" style="color: var(--accent);"></i> <span data-id="Riwayat Pendidikan" data-en="Education">Education</span>
+                        </h3>
+                        <div style="display: flex; flex-direction: column; gap: 20px;">
+                            <div style="border-left: 2px solid var(--accent); padding-left: 15px;">
+                                <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary);">Politeknik Negeri Malang (POLINEMA)</h4>
+                                <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600;">D4 Teknik Informatika &bull; 2025 - Sekarang</p>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;"><i class="fas fa-map-marker-alt"></i> Malang, Jawa Timur</p>
+                            </div>
+                            <div style="border-left: 2px solid var(--border-subtle); padding-left: 15px;">
+                                <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary);">SMKS Trisakti Ngawi</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 600;">Teknik Komputer dan Jaringan (TKJ) &bull; 2022 - 2025</p>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;"><i class="fas fa-map-marker-alt"></i> Ngawi, Jawa Timur</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TECH STACK -->
+                    <div class="bento-card reveal">
+                        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 20px; color: var(--text-primary);">
+                            <i class="fas fa-layer-group" style="color: var(--accent);"></i> <span data-id="Keahlian & Tools" data-en="Skills & Tools">Skills & Tools</span>
+                        </h3>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <div>
+                                <h5 style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">AI & Data</h5>
+                                <div class="tech-pills-wrap" style="margin-bottom: 0;">
+                                    <span class="tech-pill">Generative AI</span>
+                                    <span class="tech-pill">Agentic Workflows</span>
+                                    <span class="tech-pill">Prompt Engineering</span>
+                                    <span class="tech-pill">Python</span>
+                                    <span class="tech-pill">SQL / Supabase</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Web & Cloud</h5>
+                                <div class="tech-pills-wrap" style="margin-bottom: 0;">
+                                    <span class="tech-pill">HTML5 / CSS3</span>
+                                    <span class="tech-pill">JavaScript ES6+</span>
+                                    <span class="tech-pill">React / Next.js Basics</span>
+                                    <span class="tech-pill">Vercel Deployment</span>
+                                    <span class="tech-pill">Git / GitHub</span>
+                                    <span class="tech-pill">REST APIs</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Methodologies</h5>
+                                <div class="tech-pills-wrap" style="margin-bottom: 0;">
+                                    <span class="tech-pill">Lean Six Sigma</span>
+                                    <span class="tech-pill">Agile / Scrum</span>
+                                    <span class="tech-pill">Continuous Improvement</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- PRINCIPLE QUOTE -->
+                <div class="statement-card reveal">
+                    <p class="statement-quote"
+                       data-id='"Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal. Saya tidak sedang berlomba dengan siapa pun. Apa yang orang lain bisa belum tentu saya bisa, begitu juga sebaliknya. Saat ini, saya hanya fokus pada progres diri sendiri."'
+                       data-en='"The more I study independently, the more I realize how shallow my knowledge is. I am not racing anyone. What others can do, I may not be able to, and vice versa. Currently, I am only focusing on my own progress."'>
+                       "Semakin banyak hal yang saya kaji secara mandiri, semakin saya menyadari bahwa ilmu yang saya miliki masih sangat dangkal. Saya tidak sedang berlomba dengan siapa pun. Apa yang orang lain bisa belum tentu saya bisa, begitu juga sebaliknya. Saat ini, saya hanya fokus pada progres diri sendiri."
+                    </p>
+                    <span class="statement-author">&mdash; Khohar Muhamad F. (Guiding Principle)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. CONTACT & ADVISORY -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="contact-card reveal">
+                    <h3 data-id="Hubungi Saya" data-en="Get in Touch">Get in Touch</h3>
+                    <p data-id="Terbuka untuk kolaborasi proyek web, diskusi AI terapan, atau obrolan santai seputar teknologi."
+                       data-en="Open for web development projects, applied AI collaboration, or general tech discussions.">
+                       Open for web development projects, applied AI collaboration, or general tech discussions.
+                    </p>
+                    
+                    <div class="contact-button-row">
+                        <a href="mailto:gdmilenial@gmail.com" class="btn-primary">
+                            <i class="fas fa-envelope"></i> <span>gdmilenial@gmail.com</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" class="btn-secondary">
+                            <i class="fab fa-linkedin"></i> <span>LinkedIn</span>
+                        </a>
+                        <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2" target="_blank" class="btn-secondary">
+                            <i class="fas fa-briefcase"></i> <span>Upwork</span>
+                        </a>
+                    </div>
+
+                    <div class="contact-meta-info">
+                        <span><i class="fas fa-map-marker-alt"></i> Ngawi / Malang, Jawa Timur</span>
+                        <span><i class="fas fa-globe"></i> khoharrohman.my.id</span>
+                        <span><i class="fas fa-clock"></i> GMT+7 (WIB)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
-    <script src="script.js?v=11"></script>
+    <!-- 10. SITE FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Khohar Muhamad Fatahurrohman. Dibuat dengan kode bersih & rapi.</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=21"></script>
 </body>
 </html>
