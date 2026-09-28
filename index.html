@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom International Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=23">
+    <link rel="stylesheet" href="style.css?v=24">
 
     <!-- Immediate Theme Initialization (Zero-FOUC for Preloader) -->
     <script>
@@ -69,12 +69,18 @@
     <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
     <div id="lightning-flash" class="lightning-flash"></div>
 
-    <!-- 1. FLOATING GLOBAL NAVBAR -->
+    <!-- 1. FLOATING GLOBAL NAVBAR (GENSHIN TRAVELER HUD DOCK) -->
     <header class="site-header">
-        <nav class="nav-pill notranslate">
+        <nav class="nav-pill genshin-hud-pill notranslate">
             <a href="#hero" class="nav-brand">
-                <img src="aku.jpeg" alt="Khohar M.F." class="brand-avatar">
-                <span>Khohar M.F.</span>
+                <div class="brand-avatar-wrap">
+                    <img src="aku.jpeg" alt="Khohar M.F." class="brand-avatar">
+                    <span class="brand-ar-pip">AR 24</span>
+                </div>
+                <div class="brand-meta">
+                    <span class="brand-name">Khohar M.F.</span>
+                    <span class="brand-subtitle">TRAVELER &bull; DIRECTOR</span>
+                </div>
             </a>
 
             <ul class="nav-menu">
@@ -88,54 +94,67 @@
             </ul>
 
             <div class="nav-controls">
-                <button id="lang-toggle" class="btn-ctrl" aria-label="Toggle Language" title="Toggle Language">
+                <button id="lang-toggle" class="btn-ctrl genshin-ctrl-btn" aria-label="Toggle Language" title="Toggle Language">
                     <i class="fas fa-globe"></i> <span id="lang-text">EN / ID</span>
                 </button>
-                <button id="theme-toggle" class="btn-ctrl" aria-label="Toggle Theme" title="Toggle Theme">
+                <button id="theme-toggle" class="btn-ctrl genshin-ctrl-btn" aria-label="Toggle Theme" title="Toggle Theme">
                     <i class="fas fa-sun" id="theme-icon"></i>
                 </button>
-                <button id="ambient-toggle" class="btn-ctrl" aria-label="Toggle Atmosphere" title="Ganti Suasana Animasi">
+                <button id="ambient-toggle" class="btn-ctrl genshin-ctrl-btn" aria-label="Toggle Atmosphere" title="Ganti Suasana Animasi">
                     <i class="fas fa-wand-magic-sparkles" id="ambient-icon"></i> <span id="ambient-text" class="ambient-badge">Ethereal</span>
                 </button>
-                <a href="CV_Khohar_Muhamad_Fatahurrohman.pdf" target="_blank" class="btn-nav-resume" download>
+                <a href="CV_Khohar_Muhamad_Fatahurrohman.pdf" target="_blank" class="btn-nav-resume genshin-gold-btn" download>
                     <i class="fas fa-file-pdf"></i> <span data-id="CV Resmi" data-en="Resume">Resume</span>
                 </a>
-                <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+                <button id="mobile-menu-toggle" class="mobile-menu-btn genshin-menu-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </nav>
     </header>
 
-    <!-- MOBILE NAVIGATION DRAWER -->
+    <!-- MOBILE NAVIGATION DRAWER (GENSHIN PAIMON / TRAVELER ARCHIVE HUD) -->
     <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
         <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop"></div>
-        <div class="mobile-drawer-content notranslate">
-            <div class="mobile-drawer-header">
-                <a href="#hero" class="nav-brand">
-                    <img src="aku.jpeg" alt="Khohar M.F." class="brand-avatar">
-                    <span>Khohar M.F.</span>
-                </a>
+        <div class="mobile-drawer-content genshin-drawer-content notranslate">
+            <!-- Traveler Card Header -->
+            <div class="traveler-card-header">
+                <div class="traveler-avatar-box">
+                    <img src="aku.jpeg" alt="Khohar M.F." class="traveler-avatar">
+                    <span class="traveler-rank-pill">AR 24</span>
+                </div>
+                <div class="traveler-details">
+                    <h4 class="traveler-title">Khohar Muhamad F.</h4>
+                    <p class="traveler-role"><i class="fas fa-crown gold-icon"></i> Director at PT Aigarn</p>
+                    <div class="traveler-vision-tag">
+                        <span class="vision-orb anemo"></span>
+                        <span>Vision: Anemo &bull; Applied AI</span>
+                    </div>
+                </div>
                 <button id="mobile-drawer-close" class="mobile-drawer-close-btn" aria-label="Close Navigation Menu">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
+
+            <!-- Traveler Archive Navigation List -->
             <ul class="mobile-nav-list">
-                <li><a href="#hero" class="mobile-nav-link active"><i class="fas fa-home"></i> <span data-id="Beranda" data-en="Overview">Overview</span></a></li>
-                <li><a href="#venture" class="mobile-nav-link"><i class="fas fa-building"></i> <span data-id="Inisiatif (PT Aigarn)" data-en="Leadership">Leadership</span></a></li>
-                <li><a href="#projects" class="mobile-nav-link"><i class="fas fa-code"></i> <span data-id="Rekayasa Web" data-en="Engineering">Engineering</span></a></li>
-                <li><a href="#honors" class="mobile-nav-link"><i class="fas fa-medal"></i> <span data-id="Prestasi Olimpiade" data-en="Honors">Honors</span></a></li>
-                <li><a href="#literary" class="mobile-nav-link"><i class="fas fa-book-open"></i> <span data-id="Fiksi & Fizzo Novel" data-en="Literary">Literary</span></a></li>
-                <li><a href="#articles" class="mobile-nav-link"><i class="fas fa-feather-alt"></i> <span data-id="Tulisan & Catatan" data-en="Writing">Writing</span></a></li>
-                <li><a href="#about" class="mobile-nav-link"><i class="fas fa-user-graduate"></i> <span data-id="Pendidikan & Skill" data-en="About">About</span></a></li>
-                <li><a href="#contact" class="mobile-nav-link"><i class="fas fa-envelope"></i> <span data-id="Hubungi Saya" data-en="Contact">Contact</span></a></li>
+                <li><a href="#hero" class="mobile-nav-link active"><span class="nav-icon-box anemo"><i class="fas fa-home"></i></span> <span class="nav-title" data-id="Beranda" data-en="Overview">Overview</span> <span class="nav-diamond">◆</span></a></li>
+                <li><a href="#venture" class="mobile-nav-link"><span class="nav-icon-box geo"><i class="fas fa-building"></i></span> <span class="nav-title" data-id="Inisiatif (PT Aigarn)" data-en="Leadership">Leadership</span> <span class="nav-diamond">◆</span></a></li>
+                <li><a href="#projects" class="mobile-nav-link"><span class="nav-icon-box electro"><i class="fas fa-code"></i></span> <span class="nav-title" data-id="Rekayasa Web & AI" data-en="Engineering">Engineering</span> <span class="nav-diamond">◆</span></a></li>
+                <li><a href="#honors" class="mobile-nav-link"><span class="nav-icon-box gold"><i class="fas fa-medal"></i></span> <span class="nav-title" data-id="Prestasi Olimpiade" data-en="Honors">Honors</span> <span class="nav-diamond">◆</span></a></li>
+                <li><a href="#literary" class="mobile-nav-link"><span class="nav-icon-box dendro"><i class="fas fa-book-open"></i></span> <span class="nav-title" data-id="Fiksi & Fizzo Novel" data-en="Literary">Literary</span> <span class="nav-diamond">◆</span></a></li>
+                <li><a href="#articles" class="mobile-nav-link"><span class="nav-icon-box hydro"><i class="fas fa-feather-alt"></i></span> <span class="nav-title" data-id="Tulisan & Catatan" data-en="Writing">Writing</span> <span class="nav-diamond">◆</span></a></li>
+                <li><a href="#about" class="mobile-nav-link"><span class="nav-icon-box cryo"><i class="fas fa-user-graduate"></i></span> <span class="nav-title" data-id="Pendidikan & Skill" data-en="About">About</span> <span class="nav-diamond">◆</span></a></li>
+                <li><a href="#contact" class="mobile-nav-link"><span class="nav-icon-box pyro"><i class="fas fa-envelope"></i></span> <span class="nav-title" data-id="Hubungi Saya" data-en="Contact">Contact</span> <span class="nav-diamond">◆</span></a></li>
             </ul>
+
+            <!-- Traveler Footer Action -->
             <div class="mobile-drawer-footer">
-                <button id="mobile-ambient-toggle" class="btn-ctrl" style="width: 100%; justify-content: center; margin-bottom: 12px; gap: 8px;">
+                <button id="mobile-ambient-toggle" class="btn-ctrl genshin-ctrl-btn" style="width: 100%; justify-content: center; margin-bottom: 12px; gap: 8px;">
                     <i class="fas fa-wand-magic-sparkles" id="mobile-ambient-icon"></i>
                     <span>Atmosphere: <strong id="mobile-ambient-text" class="ambient-badge">Ethereal</strong></span>
                 </button>
-                <a href="CV_Khohar_Muhamad_Fatahurrohman.pdf" target="_blank" class="btn-primary" style="width: 100%; justify-content: center;" download>
+                <a href="CV_Khohar_Muhamad_Fatahurrohman.pdf" target="_blank" class="btn-primary genshin-gold-btn" style="width: 100%; justify-content: center;" download>
                     <i class="fas fa-file-pdf"></i> <span data-id="Unduh CV Resmi (PDF)" data-en="Download Resume (PDF)">Download Resume (PDF)</span>
                 </a>
             </div>
@@ -185,7 +204,7 @@
                             <a href="https://khoharrohman.my.id" target="_blank" class="social-chip" title="Official Website" aria-label="Website"><i class="fas fa-globe"></i></a>
                             <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" class="social-chip" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                             <a href="https://www.upwork.com/freelancers/~01d9cbd5c3522943b2" target="_blank" class="social-chip" title="Upwork" aria-label="Upwork"><i class="fas fa-briefcase"></i></a>
-                            <a href="mailto:gdmilenial@gmail.com" class="social-chip" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:khoharrohman@gmail.com" class="social-chip" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
                             <a href="https://khoharmuhamad.blogspot.com" target="_blank" class="social-chip" title="Blogger" aria-label="Blogger"><i class="fab fa-blogger"></i></a>
                         </div>
                     </div>
@@ -227,7 +246,7 @@
         <section id="venture" class="section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="section-tag" data-id="Inisiatif & Kepemimpinan" data-en="Venture & Leadership">Venture & Leadership</span>
+                    <span class="section-tag">◆ <span data-id="Inisiatif & Kepemimpinan" data-en="Venture & Leadership">Venture & Leadership</span> ◆</span>
                     <h2 class="section-title" data-id="Inovasi & Edukasi AI Terapan" data-en="Applied AI Training & Technology Initiative">Applied AI Training & Technology Initiative</h2>
                     <p class="section-desc" 
                        data-id="Lembaga edukasi teknologi dan pelatihan AI terapan yang berbasis di Indonesia untuk membantu talenta muda menguasai alat digital modern."
@@ -238,6 +257,10 @@
 
                 <div class="venture-banner-card reveal">
                     <div class="venture-info">
+                        <div class="genshin-star-banner five-star">
+                            <span class="star-group"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="star-label">5-STAR EXECUTIVE VENTURE</span>
+                        </div>
                         <div class="venture-badge">
                             <i class="fas fa-building"></i> <span data-id="Direktur (Sep 2026 - Sekarang)" data-en="Director (Sep 2026 - Present)">Director (Sep 2026 - Present)</span>
                         </div>
@@ -247,7 +270,7 @@
                            data-en="PT Aigarn Akademi Artificial bridges academic theory and real-world technology usage. As Director, I lead practical training programs (Generative AI & Agentic tools), educational partnerships, and internal digital systems.">
                            PT Aigarn Akademi Artificial bridges academic theory and real-world technology usage. As Director, I lead practical training programs (Generative AI & Agentic tools), educational partnerships, and internal digital systems.
                         </p>
-                        <a href="mailto:gdmilenial@gmail.com" class="btn-primary" style="padding: 10px 20px; font-size: 0.88rem;">
+                        <a href="mailto:khoharrohman@gmail.com" class="btn-primary" style="padding: 10px 20px; font-size: 0.88rem;">
                             <i class="fas fa-envelope"></i> <span data-id="Kontak Kerjasama" data-en="Contact for Partnership">Contact for Partnership</span>
                         </a>
                     </div>
@@ -285,7 +308,7 @@
         <section id="projects" class="section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="section-tag" data-id="Proyek Terpilih" data-en="Featured Projects">Featured Projects</span>
+                    <span class="section-tag">◆ <span data-id="Proyek Terpilih" data-en="Featured Projects">Featured Projects</span> ◆</span>
                     <h2 class="section-title" data-id="Aplikasi Web yang Dideploy (Live)" data-en="Live Deployed Web Applications">Live Deployed Web Applications</h2>
                     <p class="section-desc"
                        data-id="Proyek web nyata yang aktif beroperasi dan dapat langsung dicoba secara daring."
@@ -382,7 +405,7 @@
         <section id="honors" class="section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="section-tag" data-id="Kredensial & Penghargaan" data-en="Recognition & Credentials">Recognition & Credentials</span>
+                    <span class="section-tag">◆ <span data-id="Kredensial & Penghargaan" data-en="Recognition & Credentials">Recognition & Credentials</span> ◆</span>
                     <h2 class="section-title" data-id="Prestasi Sains & Sertifikasi Global" data-en="National Olympiad Golds & Global Certifications">National Olympiad Golds & Global Certifications</h2>
                     <p class="section-desc"
                        data-id="Konsistensi penalaran sains analitis yang dibuktikan melalui 8 medali emas olimpiade sains nasional serta sertifikasi keprofesian internasional."
@@ -533,7 +556,7 @@
         <section id="literary" class="section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="section-tag" data-id="Karya Kreatif & Publikasi Digital" data-en="Creative Works & Digital Publishing">Creative Works & Digital Publishing</span>
+                    <span class="section-tag">◆ <span data-id="Karya Kreatif & Publikasi Digital" data-en="Creative Works & Digital Publishing">Creative Works & Digital Publishing</span> ◆</span>
                     <h2 class="section-title" data-id="Penulis Fiksi & Folklor Nusantara — Fizzo Novel" data-en="Fiction & Nusantara Folklore Author — Fizzo Novel">Fiction & Nusantara Folklore Author — Fizzo Novel</h2>
                     <p class="section-desc"
                        data-id="Meriset dan menulis serial fiksi naratif berbasis mitologi, seni bela diri tradisional, dan kebudayaan lokal Nusantara, menjangkau pembaca aktif di platform penerbitan digital Fizzo Novel."
@@ -608,7 +631,7 @@
         <section id="articles" class="section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="section-tag" data-id="Catatan & Tulisan" data-en="Writing & Notes">Writing & Notes</span>
+                    <span class="section-tag">◆ <span data-id="Catatan & Tulisan" data-en="Writing & Notes">Writing & Notes</span> ◆</span>
                     <h2 class="section-title" data-id="Artikel & Catatan Rekayasa" data-en="Articles & Engineering Notes">Articles & Engineering Notes</h2>
                     <p class="section-desc"
                        data-id="Catatan praktis seputar pengembangan web, pemanfaatan alat AI, dan pembelajaran teknologi."
@@ -667,7 +690,7 @@
         <section id="about" class="section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="section-tag" data-id="Tentang & Latar Belakang" data-en="Background & Skills">Background & Skills</span>
+                    <span class="section-tag">◆ <span data-id="Tentang & Latar Belakang" data-en="Background & Skills">Background & Skills</span> ◆</span>
                     <h2 class="section-title" data-id="Pendidikan & Keahlian" data-en="Education & Skills">Education & Skills</h2>
                 </div>
 
@@ -758,8 +781,8 @@
                     </p>
                     
                     <div class="contact-button-row">
-                        <a href="mailto:gdmilenial@gmail.com" class="btn-primary">
-                            <i class="fas fa-envelope"></i> <span>gdmilenial@gmail.com</span>
+                        <a href="mailto:khoharrohman@gmail.com" class="btn-primary">
+                            <i class="fas fa-envelope"></i> <span>khoharrohman@gmail.com</span>
                         </a>
                         <a href="https://www.linkedin.com/in/khoharrohman" target="_blank" class="btn-secondary">
                             <i class="fab fa-linkedin"></i> <span>LinkedIn</span>
@@ -787,6 +810,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=23"></script>
+    <script src="script.js?v=24"></script>
 </body>
 </html>
