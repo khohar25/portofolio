@@ -435,10 +435,127 @@ function initPageLoader() {
     }
 }
 
+// --- FICTION & NOVEL CAROUSEL SLIDER (GENSHIN ARCHIVE STYLE) ---
+function initFictionSlider() {
+    const track = document.getElementById('fiction-slider-track');
+    const prevBtn = document.getElementById('fiction-prev-btn');
+    const nextBtn = document.getElementById('fiction-next-btn');
+    const dots = document.querySelectorAll('.fiction-dot');
+
+    if (!track) return;
+
+    const cards = track.querySelectorAll('.book-slide-card');
+    if (!cards.length) return;
+
+    function getCardStep() {
+        if (cards.length > 1) {
+            return cards[1].offsetLeft - cards[0].offsetLeft;
+        }
+        return (cards[0] ? cards[0].offsetWidth : 300) + 22;
+    }
+
+    function updateSliderState() {
+        const scrollLeft = track.scrollLeft;
+        const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+        const step = getCardStep();
+        const activeIndex = Math.min(cards.length - 1, Math.max(0, Math.round(scrollLeft / (step || 1))));
+
+        // Update pagination dots
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === activeIndex);
+        });
+
+        // Update button states
+        if (prevBtn) {
+            const isAtStart = scrollLeft <= 8;
+            prevBtn.disabled = isAtStart;
+            prevBtn.classList.toggle('disabled', isAtStart);
+        }
+        if (nextBtn) {
+            const isAtEnd = scrollLeft >= maxScroll - 8;
+            nextBtn.disabled = isAtEnd;
+            nextBtn.classList.toggle('disabled', isAtEnd);
+        }
+    }
+
+    // Prev / Next button click handlers
+    prevBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const step = getCardStep();
+        track.scrollBy({ left: -step, behavior: 'smooth' });
+    });
+
+    nextBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const step = getCardStep();
+        track.scrollBy({ left: step, behavior: 'smooth' });
+    });
+
+    // Dot indicators click
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            const targetCard = cards[idx];
+            if (targetCard) {
+                const targetLeft = targetCard.offsetLeft - track.offsetLeft;
+                track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Drag-to-scroll support for desktop mouse users
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+
+    track.addEventListener('mousedown', (e) => {
+        if (e.target.closest('a') || e.target.closest('button')) return;
+        isDown = true;
+        track.classList.add('is-dragging');
+        startX = e.pageX - track.offsetLeft;
+        scrollStart = track.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (!isDown) return;
+        isDown = false;
+        track.classList.remove('is-dragging');
+        setTimeout(updateSliderState, 150);
+    });
+
+    track.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        const x = e.pageX - track.offsetLeft;
+        const walk = (x - startX) * 1.35;
+        if (Math.abs(walk) > 4) {
+            e.preventDefault();
+            track.scrollLeft = scrollStart - walk;
+        }
+    });
+
+    // Scroll listener (throttled via requestAnimationFrame)
+    let ticking = false;
+    track.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateSliderState();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Initial state after layout settles
+    setTimeout(updateSliderState, 120);
+    window.addEventListener('resize', updateSliderState);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // 0. Initialize Page Entry Preloader
     initPageLoader();
+
+    // 0.1 Initialize Fiction / Novel Slider
+    initFictionSlider();
     
     const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
     const sections = document.querySelectorAll('section');

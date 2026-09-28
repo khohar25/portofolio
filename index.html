@@ -565,64 +565,170 @@
                     </p>
                 </div>
 
-                <div class="literary-grid" id="library-container">
-                    
-                    <!-- 1. RAJAH KOLOCOKRO -->
-                    <div class="book-card reveal">
-                        <span class="book-genre" data-id="Mistisisme Spiritual & Tradisi Jawa" data-en="Spiritual Mysticism & Javanese Tradition">Spiritual Mysticism & Javanese Tradition</span>
-                        <h3 class="book-title notranslate">Rajah Kolocokro</h3>
-                        <p class="book-synopsis"
-                           data-id="Eksplorasi narasi mistisisme spiritual dan filosofi proteksi Jawa kuno."
-                           data-en="Narrative exploration of spiritual mysticism and ancient Javanese protection philosophy.">
-                           Narrative exploration of spiritual mysticism and ancient Javanese protection philosophy.
-                        </p>
-                        <a href="https://www.fizzo.org/page/share/?bid=7305462020474666186&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID" target="_blank" class="book-read-btn">
-                            <i class="fas fa-book-reader"></i> <span data-id="Baca di Fizzo" data-en="Read on Fizzo">Read on Fizzo</span>
-                        </a>
+                <!-- Horizontal Carousel Slider Component -->
+                <div class="fiction-carousel-wrapper reveal">
+                    <div class="fiction-carousel-topbar">
+                        <div class="fiction-carousel-hint">
+                            <i class="fas fa-arrows-left-right"></i> <span data-id="Geser untuk menjelajah karya" data-en="Swipe or click arrows to explore">Swipe or click arrows to explore</span>
+                        </div>
+                        <div class="fiction-carousel-nav">
+                            <button id="fiction-prev-btn" class="genshin-slider-nav-btn prev" aria-label="Previous Book" title="Sebelumnya">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button id="fiction-next-btn" class="genshin-slider-nav-btn next" aria-label="Next Book" title="Selanjutnya">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
                     </div>
 
-                    <!-- 2. ILMU AJIAN BRAJAMUSTI -->
-                    <div class="book-card reveal">
-                        <span class="book-genre" data-id="Fiksi Laga & Mitologi Kanuragan" data-en="Action Martial Arts & Kanuragan">Action Martial Arts & Kanuragan</span>
-                        <h3 class="book-title notranslate">Ilmu Ajian Brajamusti</h3>
-                        <p class="book-synopsis"
-                           data-id="Fiksi laga dan legenda kekuatan kanuragan tradisional."
-                           data-en="Action martial arts fiction and traditional kanuragan invulnerability legends.">
-                           Action martial arts fiction and traditional kanuragan invulnerability legends.
-                        </p>
-                        <a href="https://www.fizzo.org/page/share/?bid=7313071067822554314&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID" target="_blank" class="book-read-btn">
-                            <i class="fas fa-book-reader"></i> <span data-id="Baca di Fizzo" data-en="Read on Fizzo">Read on Fizzo</span>
-                        </a>
+                    <!-- Scroll Track -->
+                    <div class="fiction-slider-track" id="fiction-slider-track">
+                        
+                        <!-- 1. RAJAH KOLOCOKRO -->
+                        <div class="book-slide-card genshin-card">
+                            <div class="book-cover-frame geo">
+                                <div class="book-cover-placeholder">
+                                    <div class="book-cover-glow"></div>
+                                    <div class="book-cover-badge"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> FIZZO</div>
+                                    <div class="book-cover-icon"><i class="fas fa-shield-halved"></i></div>
+                                    <h4 class="book-cover-title notranslate">Rajah Kolocokro</h4>
+                                    <div class="book-cover-author">Khohar M.F.</div>
+                                    <div class="book-cover-watermark">FOLKLORE ARCHIVE</div>
+                                </div>
+                                <img src="cover_rajah_kolocokro.jpg" alt="Cover Rajah Kolocokro" class="book-cover-real-img" onerror="this.style.display='none'">
+                                <div class="book-spine-effect"></div>
+                            </div>
+                            <div class="book-info-content">
+                                <div class="book-meta-top">
+                                    <span class="book-genre geo" data-id="Mistisisme Spiritual & Tradisi Jawa" data-en="Spiritual Mysticism & Javanese Tradition">Spiritual Mysticism & Javanese Tradition</span>
+                                    <span class="book-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                </div>
+                                <h3 class="book-title notranslate">Rajah Kolocokro</h3>
+                                <p class="book-synopsis"
+                                   data-id="Eksplorasi narasi mistisisme spiritual dan filosofi proteksi Jawa kuno yang sarat akan makna kearifan lokal."
+                                   data-en="Narrative exploration of spiritual mysticism and ancient Javanese protection philosophy deeply rooted in local wisdom.">
+                                   Narrative exploration of spiritual mysticism and ancient Javanese protection philosophy deeply rooted in local wisdom.
+                                </p>
+                                <div class="book-card-footer">
+                                    <span class="book-platform"><i class="fas fa-check-circle"></i> Fizzo Official</span>
+                                    <a href="https://www.fizzo.org/page/share/?bid=7305462020474666186&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID" target="_blank" class="book-read-btn">
+                                        <i class="fas fa-book-reader"></i> <span data-id="Baca di Fizzo" data-en="Read on Fizzo">Read on Fizzo</span> <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. ILMU AJIAN BRAJAMUSTI -->
+                        <div class="book-slide-card genshin-card">
+                            <div class="book-cover-frame electro">
+                                <div class="book-cover-placeholder">
+                                    <div class="book-cover-glow"></div>
+                                    <div class="book-cover-badge"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> FIZZO</div>
+                                    <div class="book-cover-icon"><i class="fas fa-fist-raised"></i></div>
+                                    <h4 class="book-cover-title notranslate">Ilmu Ajian Brajamusti</h4>
+                                    <div class="book-cover-author">Khohar M.F.</div>
+                                    <div class="book-cover-watermark">MARTIAL ARTS ARCHIVE</div>
+                                </div>
+                                <img src="cover_ilmu_ajian_brajamusti.jpg" alt="Cover Ilmu Ajian Brajamusti" class="book-cover-real-img" onerror="this.style.display='none'">
+                                <div class="book-spine-effect"></div>
+                            </div>
+                            <div class="book-info-content">
+                                <div class="book-meta-top">
+                                    <span class="book-genre electro" data-id="Fiksi Laga & Mitologi Kanuragan" data-en="Action Martial Arts & Kanuragan">Action Martial Arts & Kanuragan</span>
+                                    <span class="book-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                </div>
+                                <h3 class="book-title notranslate">Ilmu Ajian Brajamusti</h3>
+                                <p class="book-synopsis"
+                                   data-id="Fiksi laga dan legenda kekuatan kanuragan tradisional Nusantara yang memukau ribuan pembaca."
+                                   data-en="Action martial arts fiction and traditional Nusantara kanuragan invulnerability legends captivating thousands of readers.">
+                                   Action martial arts fiction and traditional Nusantara kanuragan invulnerability legends captivating thousands of readers.
+                                </p>
+                                <div class="book-card-footer">
+                                    <span class="book-platform"><i class="fas fa-check-circle"></i> Fizzo Official</span>
+                                    <a href="https://www.fizzo.org/page/share/?bid=7313071067822554314&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID" target="_blank" class="book-read-btn">
+                                        <i class="fas fa-book-reader"></i> <span data-id="Baca di Fizzo" data-en="Read on Fizzo">Read on Fizzo</span> <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. ILMU DEBUS -->
+                        <div class="book-slide-card genshin-card">
+                            <div class="book-cover-frame pyro">
+                                <div class="book-cover-placeholder">
+                                    <div class="book-cover-glow"></div>
+                                    <div class="book-cover-badge"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> FIZZO</div>
+                                    <div class="book-cover-icon"><i class="fas fa-fire-flame-curved"></i></div>
+                                    <h4 class="book-cover-title notranslate">Ilmu Debus</h4>
+                                    <div class="book-cover-author">Khohar M.F.</div>
+                                    <div class="book-cover-watermark">CULTURAL COMBAT</div>
+                                </div>
+                                <img src="cover_ilmu_debus.jpg" alt="Cover Ilmu Debus" class="book-cover-real-img" onerror="this.style.display='none'">
+                                <div class="book-spine-effect"></div>
+                            </div>
+                            <div class="book-info-content">
+                                <div class="book-meta-top">
+                                    <span class="book-genre pyro" data-id="Seni Pertunjukan & Ketahanan Fisik" data-en="Extreme Performance & Physical Endurance">Extreme Performance & Physical Endurance</span>
+                                    <span class="book-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                </div>
+                                <h3 class="book-title notranslate">Ilmu Debus</h3>
+                                <p class="book-synopsis"
+                                   data-id="Pengangkatan seni bela diri ekstrem dan tradisi kekebalan Nusantara dengan alur cerita yang menegangkan."
+                                   data-en="Showcasing extreme performance martial arts and traditional Nusantara invulnerability traditions with an intense narrative.">
+                                   Showcasing extreme performance martial arts and traditional Nusantara invulnerability traditions with an intense narrative.
+                                </p>
+                                <div class="book-card-footer">
+                                    <span class="book-platform"><i class="fas fa-check-circle"></i> Fizzo Official</span>
+                                    <a href="https://www.fizzo.org/page/share/?bid=7284278721647738058&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID" target="_blank" class="book-read-btn">
+                                        <i class="fas fa-book-reader"></i> <span data-id="Baca di Fizzo" data-en="Read on Fizzo">Read on Fizzo</span> <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. PELET PANDANGAN PERTAMA -->
+                        <div class="book-slide-card genshin-card">
+                            <div class="book-cover-frame anemo">
+                                <div class="book-cover-placeholder">
+                                    <div class="book-cover-glow"></div>
+                                    <div class="book-cover-badge"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> FIZZO</div>
+                                    <div class="book-cover-icon"><i class="fas fa-feather"></i></div>
+                                    <h4 class="book-cover-title notranslate">Pelet Pandangan Pertama</h4>
+                                    <div class="book-cover-author">Khohar M.F.</div>
+                                    <div class="book-cover-watermark">ROMANCE FOLKLORE</div>
+                                </div>
+                                <img src="cover_pelet_pandangan_pertama.jpg" alt="Cover Pelet Pandangan Pertama" class="book-cover-real-img" onerror="this.style.display='none'">
+                                <div class="book-spine-effect"></div>
+                            </div>
+                            <div class="book-info-content">
+                                <div class="book-meta-top">
+                                    <span class="book-genre anemo" data-id="Romansa Modern & Folklor Lokal" data-en="Modern Romance & Local Folklore">Modern Romance & Local Folklore</span>
+                                    <span class="book-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                </div>
+                                <h3 class="book-title notranslate">Pelet Pandangan Pertama</h3>
+                                <p class="book-synopsis"
+                                   data-id="Fiksi romansa berbalut kepercayaan supranatural lokal yang menyentuh hati dan sarat emosi."
+                                   data-en="Contemporary romance fiction intertwined with local supernatural beliefs that touches the heart with rich emotion.">
+                                   Contemporary romance fiction intertwined with local supernatural beliefs that touches the heart with rich emotion.
+                                </p>
+                                <div class="book-card-footer">
+                                    <span class="book-platform"><i class="fas fa-check-circle"></i> Fizzo Official</span>
+                                    <a href="https://www.fizzo.org/page/share/?bid=7305258678230187258&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID" target="_blank" class="book-read-btn">
+                                        <i class="fas fa-book-reader"></i> <span data-id="Baca di Fizzo" data-en="Read on Fizzo">Read on Fizzo</span> <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <!-- 3. ILMU DEBUS -->
-                    <div class="book-card reveal">
-                        <span class="book-genre" data-id="Seni Pertunjukan & Ketahanan Fisik" data-en="Extreme Performance & Physical Endurance">Extreme Performance & Physical Endurance</span>
-                        <h3 class="book-title notranslate">Ilmu Debus</h3>
-                        <p class="book-synopsis"
-                           data-id="Pengangkatan seni bela diri ekstrem dan tradisi kekebalan Nusantara."
-                           data-en="Showcasing extreme performance martial arts and traditional Nusantara invulnerability traditions.">
-                           Showcasing extreme performance martial arts and traditional Nusantara invulnerability traditions.
-                        </p>
-                        <a href="https://www.fizzo.org/page/share/?bid=7284278721647738058&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID" target="_blank" class="book-read-btn">
-                            <i class="fas fa-book-reader"></i> <span data-id="Baca di Fizzo" data-en="Read on Fizzo">Read on Fizzo</span>
-                        </a>
+                    <!-- Diamond Pagination Pips -->
+                    <div class="fiction-slider-dots" id="fiction-slider-dots">
+                        <span class="fiction-dot active" data-index="0">◆</span>
+                        <span class="fiction-dot" data-index="1">◆</span>
+                        <span class="fiction-dot" data-index="2">◆</span>
+                        <span class="fiction-dot" data-index="3">◆</span>
                     </div>
-
-                    <!-- 4. PELET PANDANGAN PERTAMA -->
-                    <div class="book-card reveal">
-                        <span class="book-genre" data-id="Romansa Modern & Folklor Lokal" data-en="Modern Romance & Local Folklore">Modern Romance & Local Folklore</span>
-                        <h3 class="book-title notranslate">Pelet Pandangan Pertama</h3>
-                        <p class="book-synopsis"
-                           data-id="Fiksi romansa berbalut kepercayaan supranatural lokal."
-                           data-en="Contemporary romance fiction intertwined with local supernatural beliefs.">
-                           Contemporary romance fiction intertwined with local supernatural beliefs.
-                        </p>
-                        <a href="https://www.fizzo.org/page/share/?bid=7305258678230187258&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID" target="_blank" class="book-read-btn">
-                            <i class="fas fa-book-reader"></i> <span data-id="Baca di Fizzo" data-en="Read on Fizzo">Read on Fizzo</span>
-                        </a>
-                    </div>
-
                 </div>
             </div>
         </section>

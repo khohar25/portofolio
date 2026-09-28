@@ -1240,28 +1240,306 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ==========================================================================
-   LITERARY & NARRATIVE RESEARCH (FIZZO NOVEL)
+   LITERARY & NARRATIVE RESEARCH (GENSHIN CODEX HORIZONTAL SLIDER)
    ========================================================================== */
-.literary-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 22px;
+.fiction-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 15px;
 }
 
-.book-card {
+.fiction-carousel-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 15px;
+}
+
+.fiction-carousel-hint {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.fiction-carousel-hint i {
+    color: var(--genshin-gold);
+    animation: hintArrowBounce 2s ease-in-out infinite;
+}
+
+@keyframes hintArrowBounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+}
+
+.fiction-carousel-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.genshin-slider-nav-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-subtle);
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.genshin-slider-nav-btn:hover:not(:disabled):not(.disabled) {
+    border-color: var(--genshin-gold);
+    color: var(--genshin-gold);
+    box-shadow: 0 0 16px var(--genshin-gold-glow);
+    transform: scale(1.08);
+}
+
+.genshin-slider-nav-btn:active:not(:disabled):not(.disabled) {
+    transform: scale(0.95);
+}
+
+.genshin-slider-nav-btn:disabled,
+.genshin-slider-nav-btn.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+    border-color: var(--border-subtle);
+}
+
+/* Horizontal Track */
+.fiction-slider-track {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 10px 4px 24px 4px;
+    cursor: grab;
+    user-select: none;
+}
+
+.fiction-slider-track.is-dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;
+}
+
+.fiction-slider-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Slide Card */
+.book-slide-card {
+    flex: 0 0 315px;
+    scroll-snap-align: start;
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    padding: 24px;
+    padding: 18px;
     box-shadow: var(--card-shadow);
-    transition: 0.3s;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    user-select: text;
+}
+
+.book-slide-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--genshin-gold-border);
+    box-shadow: 0 18px 36px -12px var(--genshin-gold-glow);
+}
+
+/* Book Cover Frame (3:4 Ratio) */
+.book-cover-frame {
+    width: 100%;
+    aspect-ratio: 3 / 4.1;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 16px;
+    background: #0d1117;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.35);
     display: flex;
     flex-direction: column;
 }
 
-.book-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
+.book-cover-frame.geo { border-color: rgba(245, 158, 11, 0.45); }
+.book-cover-frame.electro { border-color: rgba(168, 85, 247, 0.45); }
+.book-cover-frame.pyro { border-color: rgba(239, 68, 68, 0.45); }
+.book-cover-frame.anemo { border-color: rgba(20, 184, 166, 0.45); }
+
+/* Book Spine 3D Effect */
+.book-spine-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 16px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.28) 0%, rgba(0, 0, 0, 0.5) 75%, transparent 100%);
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* Book Cover Placeholder Design */
+.book-cover-placeholder {
+    position: absolute;
+    inset: 0;
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Placeholder Elemental Backgrounds */
+.book-cover-frame.geo .book-cover-placeholder {
+    background: radial-gradient(circle at 50% 25%, rgba(245, 158, 11, 0.25), transparent 75%),
+                linear-gradient(180deg, #1f1b13 0%, #0d0b07 100%);
+}
+.book-cover-frame.electro .book-cover-placeholder {
+    background: radial-gradient(circle at 50% 25%, rgba(168, 85, 247, 0.28), transparent 75%),
+                linear-gradient(180deg, #1b162f 0%, #0b0716 100%);
+}
+.book-cover-frame.pyro .book-cover-placeholder {
+    background: radial-gradient(circle at 50% 25%, rgba(239, 68, 68, 0.26), transparent 75%),
+                linear-gradient(180deg, #261113 0%, #0f0506 100%);
+}
+.book-cover-frame.anemo .book-cover-placeholder {
+    background: radial-gradient(circle at 50% 25%, rgba(20, 184, 166, 0.26), transparent 75%),
+                linear-gradient(180deg, #0d2325 0%, #030d0e 100%);
+}
+
+.book-cover-glow {
+    position: absolute;
+    top: -30%;
+    left: 10%;
+    width: 80%;
+    height: 70%;
+    border-radius: 50%;
+    filter: blur(35px);
+    pointer-events: none;
+    opacity: 0.5;
+}
+.book-cover-frame.geo .book-cover-glow { background: #f59e0b; }
+.book-cover-frame.electro .book-cover-glow { background: #a855f7; }
+.book-cover-frame.pyro .book-cover-glow { background: #ef4444; }
+.book-cover-frame.anemo .book-cover-glow { background: #14b8a6; }
+
+.book-cover-badge {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #fbbf24;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 3px 8px;
+    border-radius: 20px;
+    align-self: flex-start;
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    backdrop-filter: blur(6px);
+}
+.book-cover-badge i {
+    font-size: 0.6rem;
+    color: #fbbf24;
+}
+
+.book-cover-icon {
+    position: relative;
+    z-index: 2;
+    font-size: 3.2rem;
+    text-align: center;
+    margin: auto 0;
+    opacity: 0.88;
+    filter: drop-shadow(0 0 14px currentColor);
+    transition: transform 0.3s ease;
+}
+.book-slide-card:hover .book-cover-icon {
+    transform: scale(1.1);
+}
+.book-cover-frame.geo .book-cover-icon { color: #fbbf24; }
+.book-cover-frame.electro .book-cover-icon { color: #c084fc; }
+.book-cover-frame.pyro .book-cover-icon { color: #f87171; }
+.book-cover-frame.anemo .book-cover-icon { color: #2dd4bf; }
+
+.book-cover-title {
+    position: relative;
+    z-index: 2;
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 2px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+    line-height: 1.25;
+}
+
+.book-cover-author {
+    position: relative;
+    z-index: 2;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.book-cover-watermark {
+    position: relative;
+    z-index: 2;
+    font-size: 0.56rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.35);
+    text-align: center;
+    margin-top: 6px;
+    font-weight: 700;
+}
+
+/* User Uploaded Real Image */
+.book-cover-real-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 3;
+    transition: transform 0.4s ease;
+}
+
+.book-slide-card:hover .book-cover-real-img {
+    transform: scale(1.04);
+}
+
+/* Book Information Content */
+.book-info-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.book-meta-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 8px;
 }
 
 .book-genre {
@@ -1269,32 +1547,111 @@ img { max-width: 100%; height: auto; display: block; }
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: var(--accent);
-    margin-bottom: 10px;
+}
+.book-genre.geo { color: #d97706; }
+.book-genre.electro { color: #9333ea; }
+.book-genre.pyro { color: #dc2626; }
+.book-genre.anemo { color: #0d9488; }
+[data-theme="dark"] .book-genre.geo { color: #fbbf24; }
+[data-theme="dark"] .book-genre.electro { color: #c084fc; }
+[data-theme="dark"] .book-genre.pyro { color: #f87171; }
+[data-theme="dark"] .book-genre.anemo { color: #2dd4bf; }
+
+.book-stars {
+    color: var(--genshin-gold);
+    font-size: 0.7rem;
+    display: inline-flex;
+    gap: 2px;
 }
 
 .book-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 800;
     color: var(--text-primary);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    line-height: 1.3;
 }
 
 .book-synopsis {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 20px;
+    line-height: 1.55;
+    margin-bottom: 16px;
     flex-grow: 1;
+}
+
+.book-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-subtle);
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.book-platform {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.book-platform i {
+    color: #10b981;
 }
 
 .book-read-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    color: var(--accent);
+    color: #ffffff;
+    background: var(--accent-gradient);
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px var(--accent-glow);
+}
+
+.book-read-btn:hover {
+    transform: translateX(3px);
+    filter: brightness(1.1);
+    box-shadow: 0 6px 16px var(--accent-glow);
+}
+
+/* Diamond Pagination Pips */
+.fiction-slider-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.fiction-dot {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    user-select: none;
+    line-height: 1;
+    opacity: 0.5;
+}
+
+.fiction-dot:hover {
+    color: var(--genshin-gold);
+    opacity: 0.9;
+    transform: scale(1.2);
+}
+
+.fiction-dot.active {
+    color: var(--genshin-gold);
+    opacity: 1;
+    text-shadow: 0 0 10px var(--genshin-gold-glow);
+    transform: scale(1.4);
 }
 
 /* ==========================================================================
@@ -1734,13 +2091,15 @@ img { max-width: 100%; height: auto; display: block; }
 .venture-banner-card,
 .honor-item-card,
 .book-card,
+.book-slide-card,
 .article-entry-card {
     position: relative;
 }
 
 .bento-card::before,
 .venture-banner-card::before,
-.honor-item-card::before {
+.honor-item-card::before,
+.book-slide-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -1757,7 +2116,8 @@ img { max-width: 100%; height: auto; display: block; }
 
 .bento-card:hover::before,
 .venture-banner-card:hover::before,
-.honor-item-card:hover::before {
+.honor-item-card:hover::before,
+.book-slide-card:hover::before {
     opacity: 1;
     border-color: var(--genshin-gold);
 }
@@ -1913,6 +2273,12 @@ body.mobile-nav-active {
     }
 }
 
+@media (max-width: 768px) {
+    .book-slide-card {
+        flex: 0 0 min(280px, 80vw);
+    }
+}
+
 @media (max-width: 380px) {
     .container { padding: 0 12px; }
     .hero-title { font-size: 1.85rem; }
@@ -1923,11 +2289,15 @@ body.mobile-nav-active {
     .stat-label { font-size: 0.68rem; }
     .brand-ar-pip { display: none; }
     .brand-name { font-size: 0.82rem; }
-    .bento-card, .honor-item-card, .book-card, .article-entry-card { padding: 18px 14px; }
+    .bento-card, .honor-item-card, .book-card, .book-slide-card, .article-entry-card { padding: 18px 14px; }
 }
 
 @media (max-width: 330px) {
     /* Foldable cover screens (280px - 320px) */
     .brand-name { display: none; }
     .quick-stats-grid { grid-template-columns: 1fr; }
+    .book-slide-card {
+        flex: 0 0 86vw;
+        padding: 14px 12px;
+    }
 }
