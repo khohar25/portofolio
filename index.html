@@ -16,11 +16,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom International Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=21">
+    <link rel="stylesheet" href="style.css?v=22">
 </head>
 <body>
 
     <div class="ambient-glow"></div>
+    <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+    <div id="lightning-flash" class="lightning-flash"></div>
 
     <!-- 1. FLOATING GLOBAL NAVBAR -->
     <header class="site-header">
@@ -46,6 +48,9 @@
                 </button>
                 <button id="theme-toggle" class="btn-ctrl" aria-label="Toggle Theme" title="Toggle Theme">
                     <i class="fas fa-sun" id="theme-icon"></i>
+                </button>
+                <button id="ambient-toggle" class="btn-ctrl" aria-label="Toggle Atmosphere" title="Ganti Suasana Animasi">
+                    <i class="fas fa-wand-magic-sparkles" id="ambient-icon"></i> <span id="ambient-text" class="ambient-badge">Ethereal</span>
                 </button>
                 <a href="CV_Khohar_Muhamad_Fatahurrohman.pdf" target="_blank" class="btn-nav-resume" download>
                     <i class="fas fa-file-pdf"></i> <span data-id="CV Resmi" data-en="Resume">Resume</span>
@@ -81,6 +86,10 @@
                 <li><a href="#contact" class="mobile-nav-link"><i class="fas fa-envelope"></i> <span data-id="Hubungi Saya" data-en="Contact">Contact</span></a></li>
             </ul>
             <div class="mobile-drawer-footer">
+                <button id="mobile-ambient-toggle" class="btn-ctrl" style="width: 100%; justify-content: center; margin-bottom: 12px; gap: 8px;">
+                    <i class="fas fa-wand-magic-sparkles" id="mobile-ambient-icon"></i>
+                    <span>Atmosphere: <strong id="mobile-ambient-text" class="ambient-badge">Ethereal</strong></span>
+                </button>
                 <a href="CV_Khohar_Muhamad_Fatahurrohman.pdf" target="_blank" class="btn-primary" style="width: 100%; justify-content: center;" download>
                     <i class="fas fa-file-pdf"></i> <span data-id="Unduh CV Resmi (PDF)" data-en="Download Resume (PDF)">Download Resume (PDF)</span>
                 </a>
@@ -733,6 +742,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=21"></script>
+    <script src="script.js?v=22"></script>
 </body>
 </html>

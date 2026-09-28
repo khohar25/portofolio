@@ -63,7 +63,9 @@ a { color: inherit; text-decoration: none; transition: 0.2s; }
 img { max-width: 100%; height: auto; display: block; }
 ::selection { background: var(--accent); color: #fff; }
 
-/* AMBIENT BACKGROUND GLOW */
+/* ==========================================================================
+   ATMOSPHERIC AMBIENT ENGINE (ANTI-AI-SLOP 60FPS CANVAS & CELESTIAL HORIZON)
+   ========================================================================== */
 .ambient-glow {
     position: fixed;
     top: 0;
@@ -72,9 +74,49 @@ img { max-width: 100%; height: auto; display: block; }
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: -1;
+    z-index: -3;
     background: radial-gradient(circle at 50% 0%, var(--accent-glow), transparent 50%);
-    opacity: 0.6;
+    opacity: 0.55;
+}
+
+.ambient-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -2;
+    opacity: 0.95;
+    transition: opacity 0.5s ease;
+}
+
+.ambient-canvas.ambient-hidden {
+    opacity: 0;
+}
+
+.lightning-flash {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(ellipse 130% 75% at 50% 100%, rgba(165, 180, 252, 0.38), rgba(56, 189, 248, 0.22) 40%, transparent 75%);
+    mix-blend-mode: screen;
+    opacity: 0;
+    transition: opacity 0.08s ease-out;
+}
+
+.ambient-badge {
+    font-size: 0.72rem;
+    padding: 2px 7px;
+    border-radius: 12px;
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
 }
 
 /* WRAPPER & CONTAINER */
@@ -1265,6 +1307,7 @@ body.mobile-nav-active {
     
     /* Hide top resume button on small screens: accessible via drawer & hero CTA */
     .btn-nav-resume { display: none; }
+    #ambient-text { display: none; }
     .btn-ctrl { padding: 6px 10px; font-size: 0.78rem; gap: 5px; }
     .brand-avatar { width: 28px; height: 28px; }
     .nav-brand span { font-size: 0.88rem; }
