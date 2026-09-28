@@ -64,6 +64,270 @@ img { max-width: 100%; height: auto; display: block; }
 ::selection { background: var(--accent); color: #fff; }
 
 /* ==========================================================================
+   PAGE ENTRY PRELOADER (ANIME / GENSHIN ELECTRO LIGHTNING CHARGE)
+   Full Light & Dark Theme Support, Zero-Lag, 60FPS CSS Vector Animation
+   ========================================================================== */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background-color: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s ease, visibility 0.5s;
+    overflow: hidden;
+    user-select: none;
+}
+
+.page-loader.loader-hidden {
+    opacity: 0;
+    transform: scale(1.04);
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* Background Atmospheric Radial Glow */
+.loader-bg-glow {
+    position: absolute;
+    width: min(650px, 90vw);
+    height: min(650px, 90vw);
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    filter: blur(45px);
+    animation: loader-bg-pulse 2.2s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes loader-bg-pulse {
+    0% { transform: scale(0.85); opacity: 0.45; }
+    100% { transform: scale(1.18); opacity: 0.85; }
+}
+
+.loader-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px;
+}
+
+/* Sigil Wrapper */
+.loader-sigil-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Shockwave Pulse Ring */
+.loader-pulse-ring {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    opacity: 0;
+    animation: loader-shockwave 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+@keyframes loader-shockwave {
+    0% { transform: scale(0.7); opacity: 0.85; }
+    50% { opacity: 0.4; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Orbiting Spark Ring */
+.loader-spark-ring {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px dashed var(--accent);
+    opacity: 0.55;
+    animation: loader-spin 7s linear infinite;
+}
+
+@keyframes loader-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Core Container */
+.loader-core {
+    position: relative;
+    width: 84px;
+    height: 84px;
+    border-radius: 22px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-hover);
+    box-shadow: 0 10px 30px var(--accent-glow), inset 0 0 15px var(--accent-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Lightning SVG */
+.lightning-svg {
+    width: 48px;
+    height: 58px;
+    overflow: visible;
+}
+
+/* Bolt Glow (Behind) */
+.bolt-glow {
+    stroke-width: 6;
+    stroke-linejoin: round;
+    opacity: 0.65;
+    filter: blur(5px);
+    animation: bolt-flicker 0.18s infinite alternate;
+}
+
+[data-theme="dark"] .bolt-glow {
+    fill: #818cf8;
+    stroke: #38bdf8;
+}
+
+[data-theme="light"] .bolt-glow {
+    fill: #7c3aed;
+    stroke: #0284c7;
+}
+
+/* Bolt Core (Foreground sharp lightning) */
+.bolt-core {
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+    animation: bolt-strike 1.6s ease-in-out infinite alternate;
+}
+
+[data-theme="dark"] .bolt-core {
+    fill: #ffffff;
+    stroke: #38bdf8;
+    filter: drop-shadow(0 0 8px #38bdf8);
+}
+
+[data-theme="light"] .bolt-core {
+    fill: #0284c7;
+    stroke: #0369a1;
+    filter: drop-shadow(0 0 6px rgba(2, 132, 199, 0.7));
+}
+
+/* Secondary Branching Arcs */
+.bolt-branch {
+    fill: none;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+[data-theme="dark"] .bolt-branch {
+    stroke: #c084fc;
+    filter: drop-shadow(0 0 4px #a855f7);
+}
+
+[data-theme="light"] .bolt-branch {
+    stroke: #9333ea;
+    filter: drop-shadow(0 0 4px rgba(147, 51, 234, 0.5));
+}
+
+.bolt-branch.b1 {
+    animation: branch-flicker-1 0.7s steps(2, start) infinite;
+}
+
+.bolt-branch.b2 {
+    animation: branch-flicker-2 0.9s steps(2, start) infinite;
+}
+
+@keyframes bolt-flicker {
+    0% { opacity: 0.4; transform: scale(0.97); }
+    100% { opacity: 0.85; transform: scale(1.02); }
+}
+
+@keyframes bolt-strike {
+    0% { transform: translateY(0) scale(0.98); }
+    30% { transform: translateY(-2px) scale(1.03); }
+    60% { transform: translateY(1px) scale(0.97); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes branch-flicker-1 {
+    0%, 100% { opacity: 0; }
+    20%, 35% { opacity: 1; }
+    40% { opacity: 0; }
+    70%, 85% { opacity: 0.9; }
+}
+
+@keyframes branch-flicker-2 {
+    0%, 100% { opacity: 0; }
+    15%, 25% { opacity: 1; }
+    30% { opacity: 0; }
+    55%, 68% { opacity: 0.85; }
+}
+
+/* Loader Text & Progress Info */
+.loader-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.loader-brand-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.loader-name {
+    font-size: 0.84rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+}
+
+.loader-badge {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: var(--accent-glow);
+    color: var(--accent);
+    border: 1px solid var(--border-hover);
+}
+
+.loader-progress-track {
+    width: 220px;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--border-subtle);
+    overflow: hidden;
+    position: relative;
+}
+
+.loader-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--accent-gradient);
+    box-shadow: 0 0 10px var(--accent);
+    border-radius: 4px;
+    transition: width 0.3s ease-out;
+}
+
+.loader-status-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    min-height: 18px;
+}
+
+/* ==========================================================================
    ATMOSPHERIC AMBIENT ENGINE (ANTI-AI-SLOP 60FPS CANVAS & CELESTIAL HORIZON)
    ========================================================================== */
 .ambient-glow {

@@ -380,7 +380,65 @@ class AmbientAtmosphere {
     }
 }
 
+// --- PAGE ENTRY PRELOADER CONTROLLER ---
+let pageLoaderInitialized = false;
+function initPageLoader() {
+    if (pageLoaderInitialized) return;
+    pageLoaderInitialized = true;
+
+    const loader = document.getElementById('page-loader');
+    if (!loader) return;
+
+    const progressBar = document.getElementById('loader-progress-bar');
+    const statusText = document.getElementById('loader-status-text');
+
+    const prefLang = localStorage.getItem('prefLang') || 'en';
+    const isId = prefLang === 'id';
+    
+    // Smooth progress simulation
+    let progress = 18;
+    if (progressBar) progressBar.style.width = '18%';
+
+    const progressTimer = setInterval(() => {
+        if (progress < 85) {
+            progress += Math.floor(Math.random() * 14) + 8;
+            if (progress > 85) progress = 85;
+            if (progressBar) progressBar.style.width = `${progress}%`;
+        }
+    }, 110);
+
+    let finished = false;
+    function dismissLoader() {
+        if (finished) return;
+        finished = true;
+        clearInterval(progressTimer);
+
+        if (progressBar) progressBar.style.width = '100%';
+        if (statusText) statusText.textContent = isId ? 'Sistem Siap! Meluncurkan...' : 'System Ready! Launching...';
+
+        setTimeout(() => {
+            loader.classList.add('loader-hidden');
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 550);
+        }, 320);
+    }
+
+    if (document.readyState === 'complete') {
+        setTimeout(dismissLoader, 700);
+    } else {
+        window.addEventListener('load', () => {
+            setTimeout(dismissLoader, 600);
+        });
+        // Absolute fail-safe timeout
+        setTimeout(dismissLoader, 2200);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // 0. Initialize Page Entry Preloader
+    initPageLoader();
     
     const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
     const sections = document.querySelectorAll('section');

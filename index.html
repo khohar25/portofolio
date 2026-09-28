@@ -16,9 +16,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom International Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=22">
+    <link rel="stylesheet" href="style.css?v=23">
+
+    <!-- Immediate Theme Initialization (Zero-FOUC for Preloader) -->
+    <script>
+        (function() {
+            var theme = localStorage.getItem('savedTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
 </head>
 <body>
+
+    <!-- LIGHTNING & CELESTIAL INTRO PRELOADER -->
+    <div id="page-loader" class="page-loader" aria-label="Loading Portfolio">
+        <div class="loader-bg-glow"></div>
+        <div class="loader-container">
+            <!-- Electric Sigil / Emblem with Orbiting Sparks -->
+            <div class="loader-sigil-wrap">
+                <div class="loader-pulse-ring"></div>
+                <div class="loader-spark-ring"></div>
+                
+                <!-- Central Electric Emblem & Lightning Bolt SVG -->
+                <div class="loader-core">
+                    <svg class="lightning-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background glow bolt -->
+                        <path class="bolt-glow" d="M58 8L22 62H48L40 112L78 54H52L58 8Z" />
+                        <!-- Sharp lightning strike bolt -->
+                        <path class="bolt-core" d="M58 8L22 62H48L40 112L78 54H52L58 8Z" />
+                        <!-- Branching arcs -->
+                        <path class="bolt-branch b1" d="M48 62L68 76L62 90" />
+                        <path class="bolt-branch b2" d="M36 40L20 48L24 60" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Cinematic Status & Electric Progress Line -->
+            <div class="loader-info">
+                <div class="loader-brand-text">
+                    <span class="loader-name">KHOHAR MUHAMAD F.</span>
+                    <span class="loader-badge" data-id="MEMUAT" data-en="INITIALIZING">INITIALIZING</span>
+                </div>
+                <div class="loader-progress-track">
+                    <div class="loader-progress-bar" id="loader-progress-bar"></div>
+                </div>
+                <div class="loader-status-text" id="loader-status-text" data-id="Menghubungkan resonansi elektro..." data-en="Channeling electro resonance...">Channeling electro resonance...</div>
+            </div>
+        </div>
+    </div>
 
     <div class="ambient-glow"></div>
     <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
@@ -742,6 +787,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=22"></script>
+    <script src="script.js?v=23"></script>
 </body>
 </html>
