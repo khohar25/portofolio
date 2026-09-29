@@ -1393,7 +1393,103 @@ img { max-width: 100%; height: auto; display: block; }
 .shelf-tome-item.theme-pyro .tome-crest-circle { color: #f87171; border-color: rgba(248, 113, 113, 0.5); filter: drop-shadow(0 0 10px rgba(248, 113, 113, 0.4)); }
 .shelf-tome-item.theme-ruby .tome-crest-circle { color: #fb7185; border-color: rgba(251, 113, 133, 0.5); filter: drop-shadow(0 0 10px rgba(251, 113, 133, 0.4)); }
 
-/* Real thumbnail for special items like CEC UB */
+/* Real Certificate Document Showcase Plate */
+.tome-doc-preview-plate {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10.5;
+    margin: 6px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #060911;
+    border: 1.5px solid rgba(212, 175, 55, 0.45);
+    box-shadow: 
+        inset 0 0 10px rgba(0, 0, 0, 0.8),
+        0 4px 12px rgba(0, 0, 0, 0.45);
+    z-index: 2;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tome-doc-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    filter: brightness(0.92) contrast(1.05);
+    transition: transform 0.45s ease, filter 0.35s ease;
+}
+
+.shelf-tome-item:hover .tome-doc-thumb {
+    transform: scale(1.08);
+    filter: brightness(1.02) contrast(1.08);
+}
+
+.shelf-tome-item:hover .tome-doc-preview-plate {
+    border-color: var(--genshin-gold);
+    box-shadow: 
+        0 0 16px var(--genshin-gold-glow),
+        0 6px 14px rgba(0, 0, 0, 0.5);
+}
+
+/* Glassy Glare sweep on hover */
+.tome-doc-glare {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.04) 100%);
+    pointer-events: none;
+    opacity: 0.5;
+    transition: opacity 0.35s ease;
+}
+.shelf-tome-item:hover .tome-doc-glare {
+    opacity: 0.85;
+}
+
+/* Corner Element Seal */
+.tome-doc-crest {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    background: rgba(8, 12, 22, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    z-index: 3;
+    transition: transform 0.3s ease;
+}
+.shelf-tome-item:hover .tome-doc-crest {
+    transform: scale(1.15) rotate(6deg);
+}
+
+.tome-doc-crest.theme-gold { color: #fbbf24; border-color: rgba(251, 191, 36, 0.6); }
+.tome-doc-crest.theme-emerald { color: #34d399; border-color: rgba(52, 211, 153, 0.6); }
+.tome-doc-crest.theme-electro { color: #c084fc; border-color: rgba(192, 132, 252, 0.6); }
+.tome-doc-crest.theme-cyan { color: #38bdf8; border-color: rgba(56, 189, 248, 0.6); }
+.tome-doc-crest.theme-pyro { color: #f87171; border-color: rgba(248, 113, 113, 0.6); }
+.tome-doc-crest.theme-ruby { color: #fb7185; border-color: rgba(251, 113, 133, 0.6); }
+
+.tome-footer-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+}
+.tome-date {
+    font-size: 0.64rem;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Fallback thumbnail */
 .tome-custom-thumbnail {
     position: absolute;
     inset: 0;
@@ -1403,9 +1499,6 @@ img { max-width: 100%; height: auto; display: block; }
     z-index: 1;
     opacity: 0.35;
     transition: opacity 0.3s ease;
-}
-.shelf-tome-item:hover .tome-custom-thumbnail {
-    opacity: 0.65;
 }
 
 /* Header inside Tome */
@@ -1638,14 +1731,51 @@ img { max-width: 100%; height: auto; display: block; }
     margin-bottom: 8px;
 }
 
-.modal-issuer-row {
+.modal-cert-preview-wrap {
+    position: relative;
+    width: 100%;
+    max-height: 240px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #060911;
+    border: 1.5px solid var(--border-subtle);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.modal-cert-preview-wrap:hover {
+    border-color: var(--genshin-gold);
+    box-shadow: 0 8px 24px var(--genshin-gold-glow);
+}
+.modal-cert-preview-img {
+    width: 100%;
+    max-height: 240px;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.35s ease;
+}
+.modal-cert-preview-wrap:hover .modal-cert-preview-img {
+    transform: scale(1.02);
+}
+.modal-cert-preview-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    background: rgba(10, 15, 26, 0.9);
+    border: 1px solid rgba(212, 175, 55, 0.4);
     color: var(--genshin-gold);
+    font-size: 0.72rem;
     font-weight: 700;
-    margin-bottom: 18px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .modal-info-grid {
@@ -2849,3 +2979,496 @@ body.mobile-nav-active {
         padding: 14px 12px;
     }
 }
+
+/* ==========================================================================
+   PHOTO DOCUMENTATION & ACTIVITY GALLERY (GENSHIN BENTO ARCHIVE)
+   ========================================================================== */
+.gallery-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 35px;
+}
+
+.gallery-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    border-radius: 24px;
+    border: 1.5px solid var(--border-subtle);
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(8px);
+}
+
+.gallery-filter-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--genshin-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px var(--genshin-gold-glow);
+}
+
+.gallery-filter-btn.active {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(184, 134, 11, 0.15) 100%);
+    border-color: var(--genshin-gold);
+    color: var(--genshin-gold);
+    box-shadow: 0 0 16px var(--genshin-gold-glow);
+}
+
+/* Bento Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 22px;
+    margin-bottom: 35px;
+}
+
+.gallery-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 16 / 11;
+    background: var(--bg-surface-elevated);
+    border: 1.5px solid var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--genshin-gold);
+    box-shadow: 0 16px 32px -6px var(--genshin-gold-glow), 0 0 20px rgba(212, 175, 55, 0.25);
+}
+
+.gallery-card-img-wrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.gallery-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+    filter: brightness(0.9);
+}
+
+.gallery-card:hover .gallery-card-img {
+    transform: scale(1.08);
+    filter: brightness(1);
+}
+
+.gallery-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, 
+        rgba(8, 12, 22, 0.45) 0%, 
+        rgba(8, 12, 22, 0.1) 40%, 
+        rgba(5, 8, 15, 0.75) 70%, 
+        rgba(3, 5, 10, 0.96) 100%);
+    pointer-events: none;
+    z-index: 2;
+    transition: background 0.35s ease;
+}
+
+.gallery-card:hover .gallery-card-overlay {
+    background: linear-gradient(180deg, 
+        rgba(8, 12, 22, 0.3) 0%, 
+        rgba(8, 12, 22, 0.05) 35%, 
+        rgba(5, 8, 15, 0.65) 65%, 
+        rgba(3, 5, 10, 0.92) 100%);
+}
+
+.gallery-card-filigree {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    display: flex;
+    gap: 6px;
+}
+
+.gallery-card-date-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.65);
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+}
+
+.gallery-card-cat-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid var(--genshin-gold);
+    color: var(--genshin-gold);
+    backdrop-filter: blur(6px);
+}
+
+.gallery-card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px 16px 14px 16px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.gallery-card-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.gallery-card-subtitle {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gallery-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.gallery-card-loc {
+    font-size: 0.72rem;
+    color: var(--genshin-gold);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.gallery-card-action {
+    font-size: 0.7rem;
+    color: #ffffff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0.85;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-card:hover .gallery-card-action {
+    color: var(--genshin-gold);
+    transform: translateX(3px);
+}
+
+/* User hint notice */
+.gallery-upload-hint {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.9) 100%);
+    border: 1.5px dashed rgba(212, 175, 55, 0.45);
+    border-radius: 14px;
+    padding: 20px 24px;
+    backdrop-filter: blur(12px);
+    margin-top: 20px;
+    transition: border-color 0.3s ease;
+}
+
+.gallery-upload-hint:hover {
+    border-color: var(--genshin-gold);
+}
+
+.gallery-hint-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.gallery-hint-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--genshin-gold);
+    font-size: 1.45rem;
+    flex-shrink: 0;
+}
+
+.gallery-hint-text {
+    flex: 1;
+}
+
+.gallery-hint-text h4 {
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.gallery-hint-text p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    margin: 0;
+}
+
+.gallery-hint-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    background: var(--genshin-gold);
+    color: #121826;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-hint-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px var(--genshin-gold-glow);
+}
+
+/* Lightbox Modal */
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.gallery-lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 6, 12, 0.88);
+    backdrop-filter: blur(14px);
+}
+
+.gallery-lightbox-window {
+    position: relative;
+    z-index: 2;
+    width: min(92vw, 940px);
+    max-height: 90vh;
+    background: var(--bg-surface-elevated);
+    border: 1.5px solid var(--genshin-gold);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px var(--genshin-gold-glow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: zoomModalIn 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-lightbox-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.gallery-lightbox-close:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    transform: rotate(90deg);
+}
+
+.gallery-lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1.5px solid rgba(212, 175, 55, 0.5);
+    color: var(--genshin-gold);
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9;
+    transition: all 0.2s ease;
+}
+
+.gallery-lightbox-arrow:hover {
+    background: var(--genshin-gold);
+    color: #0b0f19;
+    box-shadow: 0 0 16px var(--genshin-gold-glow);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.gallery-lightbox-arrow.prev { left: 16px; }
+.gallery-lightbox-arrow.next { right: 16px; }
+
+.gallery-lightbox-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.gallery-lightbox-media-wrap {
+    width: 100%;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 56vh;
+    overflow: hidden;
+}
+
+.gallery-lightbox-image {
+    max-width: 100%;
+    max-height: 56vh;
+    object-fit: contain;
+    display: block;
+}
+
+.gallery-lightbox-details {
+    padding: 22px 26px;
+    background: var(--bg-surface-elevated);
+}
+
+.gallery-lightbox-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.gallery-lightbox-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: rgba(212, 175, 55, 0.2);
+    border: 1px solid var(--genshin-gold);
+    color: var(--genshin-gold);
+}
+
+.gallery-lightbox-meta-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.gallery-lightbox-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: 4px;
+}
+
+.gallery-lightbox-subtitle {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--genshin-gold);
+    margin-bottom: 10px;
+}
+
+.gallery-lightbox-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    .gallery-hint-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .gallery-lightbox-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+    .gallery-lightbox-arrow.prev { left: 8px; }
+    .gallery-lightbox-arrow.next { right: 8px; }
+    .gallery-lightbox-details { padding: 16px; }
+    .gallery-lightbox-title { font-size: 1.05rem; }
+}
+

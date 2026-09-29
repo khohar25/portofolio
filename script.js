@@ -606,6 +606,15 @@ function initBookshelfArchive() {
                 </div>
             </div>
 
+            ${item.thumb_img ? `
+            <div class="modal-cert-preview-wrap" onclick="window.open('${escapeHtml(item.file_url)}', '_blank')">
+                <img src="${escapeHtml(item.thumb_img)}" alt="${escapeHtml(title)}" class="modal-cert-preview-img" loading="lazy">
+                <div class="modal-cert-preview-badge">
+                    <i class="fas fa-search-plus"></i> <span>${lang === 'en' ? 'Click to View Full Credential' : 'Klik untuk Membuka Dokumen Asli'}</span>
+                </div>
+            </div>
+            ` : ''}
+
             <div class="modal-info-grid">
                 <div class="modal-info-item">
                     <span>${issuerLabel}</span>
@@ -715,10 +724,21 @@ function initBookshelfArchive() {
         grid.innerHTML = '';
         visibleItems.forEach((item) => {
             const title = (lang === 'en' && item.title_en) ? item.title_en : item.title_id;
-            const starsHtml = '<i class="fas fa-star"></i>'.repeat(item.stars || 4);
-            const thumbImgHtml = item.thumb_img 
-                ? `<img src="${escapeHtml(item.thumb_img)}" alt="${escapeHtml(title)}" class="tome-custom-thumbnail">` 
-                : '';
+            const previewPlateHtml = item.thumb_img 
+                ? `
+                    <div class="tome-doc-preview-plate">
+                        <img src="${escapeHtml(item.thumb_img)}" alt="${escapeHtml(title)}" class="tome-doc-thumb" loading="lazy">
+                        <div class="tome-doc-glare"></div>
+                        <div class="tome-doc-crest theme-${item.color_theme}">
+                            <i class="${escapeHtml(item.icon)}"></i>
+                        </div>
+                    </div>
+                  `
+                : `
+                    <div class="tome-crest-circle">
+                        <i class="${escapeHtml(item.icon)}"></i>
+                    </div>
+                  `;
 
             const tome = document.createElement('div');
             tome.className = `shelf-tome-item theme-${item.color_theme} reveal active`;
@@ -730,19 +750,19 @@ function initBookshelfArchive() {
                 <div class="shelf-tome-cover">
                     <div class="shelf-tome-spine"></div>
                     <div class="shelf-tome-ribbon"></div>
-                    ${thumbImgHtml}
                     <div class="tome-top-row">
                         <div class="tome-stars">${starsHtml}</div>
-                        <span class="tome-type-badge">${escapeHtml(item.badge_text || 'ARCHIVE')}</span>
+                        <span class="tome-type-badge">${escapeHtml(item.badge_text || 'ARSIP')}</span>
                     </div>
-                    <div class="tome-crest-circle">
-                        <i class="${escapeHtml(item.icon)}"></i>
-                    </div>
+                    ${previewPlateHtml}
                     <div class="tome-bottom-content">
                         <h4 class="tome-title notranslate">${escapeHtml(title)}</h4>
                         <div class="tome-issuer notranslate">${escapeHtml(item.issuer)}</div>
-                        <div class="tome-inspect-prompt">
-                            <span>${lang === 'en' ? 'Inspect Credential' : 'Tinjau Kredensial'}</span> <i class="fas fa-chevron-right"></i>
+                        <div class="tome-footer-meta">
+                            <span class="tome-date"><i class="far fa-calendar-alt"></i> ${escapeHtml(item.date)}</span>
+                            <div class="tome-inspect-prompt">
+                                <span>${lang === 'en' ? 'Inspect' : 'Tinjau'}</span> <i class="fas fa-chevron-right"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -827,6 +847,292 @@ function initBookshelfArchive() {
         });
 }
 
+// ==========================================================================
+// 0.3 PHOTO DOCUMENTATION & ACTIVITY GALLERY ENGINE
+// ==========================================================================
+function initPhotoGallery() {
+    const grid = document.getElementById('gallery-grid');
+    if (!grid) return;
+
+    const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+    const lightbox = document.getElementById('gallery-lightbox');
+    const lightboxBackdrop = document.getElementById('gallery-lightbox-backdrop');
+    const lightboxClose = document.getElementById('gallery-lightbox-close');
+    const lightboxPrev = document.getElementById('gallery-lightbox-prev');
+    const lightboxNext = document.getElementById('gallery-lightbox-next');
+    const lightboxImg = document.getElementById('gallery-lightbox-img');
+    const lightboxCat = document.getElementById('gallery-lightbox-category');
+    const lightboxDate = document.getElementById('gallery-lightbox-date');
+    const lightboxLoc = document.getElementById('gallery-lightbox-loc');
+    const lightboxTitle = document.getElementById('gallery-lightbox-title');
+    const lightboxSubtitle = document.getElementById('gallery-lightbox-subtitle');
+    const lightboxDesc = document.getElementById('gallery-lightbox-desc');
+
+    let galleryItems = [];
+    let activeFilter = 'all';
+    let currentLightboxIndex = 0;
+    let filteredItems = [];
+
+    // Fallback embedded data (guarantees instant display even if fetch is blocked)
+    const fallbackGallery = [
+        {
+            "id": "galeri-1",
+            "category": "pribadi",
+            "category_name_id": "Potret Profil & Riset",
+            "category_name_en": "Professional & Engineering",
+            "title_id": "Khohar Muhamad Fatahurrohman — Profil Rekayasa",
+            "title_en": "Khohar Muhamad Fatahurrohman — Engineering Profile",
+            "subtitle_id": "Software & Applied AI Specialist",
+            "subtitle_en": "Software & Applied AI Specialist",
+            "date": "2026",
+            "location_id": "Malang, Jawa Timur",
+            "location_en": "Malang, East Java",
+            "image_url": "aku.jpeg",
+            "caption_id": "Potret kerja dan dedikasi dalam rekayasa perangkat lunak, eksplorasi kecerdasan buatan terapan, dan pengembangan sistem web modern.",
+            "caption_en": "Dedicated to software engineering excellence, applied AI architectures, and modern responsive web systems.",
+            "featured": true
+        },
+        {
+            "id": "galeri-2",
+            "category": "organisasi",
+            "category_name_id": "Organisasi & Relawan",
+            "category_name_en": "Volunteering & Leadership",
+            "title_id": "Forum Palang Merah Remaja (PMR) & Korps Sukarela",
+            "title_en": "Youth Red Cross Forum & Voluntary Corps",
+            "subtitle_id": "Aktivitas Kemanusiaan & Manajemen Pertolongan Pertama",
+            "subtitle_en": "Humanitarian Mission & First Aid Operations",
+            "date": "2024 - 2025",
+            "location_id": "Ngawi, Jawa Timur",
+            "location_en": "Ngawi, East Java",
+            "image_url": "gallery/placeholder_pmr.webp",
+            "caption_id": "Dokumentasi keaktifan dalam korps kesukarelawanan, simulasi tanggap darurat bencana, dan koordinasi tim lapangan kemanusiaan.",
+            "caption_en": "Field documentation of humanitarian activities, emergency response drills, and volunteer coordination.",
+            "featured": false
+        },
+        {
+            "id": "galeri-3",
+            "category": "organisasi",
+            "category_name_id": "Organisasi & Relawan",
+            "category_name_en": "Leadership & Organization",
+            "title_id": "Musyawarah Pramuka Penegak & Pandega (Musppanitra)",
+            "title_en": "Scout Leadership Assembly (Musppanitra)",
+            "subtitle_id": "Dewan Kerja Cabang & Kepemimpinan Pemuda",
+            "subtitle_en": "District Scout Council & Youth Leadership",
+            "date": "2023 - 2025",
+            "location_id": "Kwartir Cabang Ngawi",
+            "location_en": "Ngawi Scout Headquarters",
+            "image_url": "gallery/placeholder_dkc.webp",
+            "caption_id": "Sidang pleno dan perumusan arah kebijakan kepemimpinan generasi muda dalam wadah kepramukaan tingkat kwartir cabang.",
+            "caption_en": "Plenary sessions and strategic youth leadership governance within the district Scout leadership branch.",
+            "featured": false
+        },
+        {
+            "id": "galeri-4",
+            "category": "akademik",
+            "category_name_id": "Akademik & Kampus",
+            "category_name_en": "Academic & Campus",
+            "title_id": "Praktikum Laboratorium Komputasi & Rekayasa Perangkat Lunak",
+            "title_en": "Computing Lab Practicum & Software Engineering",
+            "subtitle_id": "D4 Teknik Informatika • POLINEMA",
+            "subtitle_en": "Informatics Engineering • POLINEMA",
+            "date": "2025 - Sekarang",
+            "location_id": "Politeknik Negeri Malang",
+            "location_en": "State Polytechnic of Malang",
+            "image_url": "gallery/placeholder_polinema.webp",
+            "caption_id": "Aktivitas perkuliahan, riset algoritma cerdas, dan pengerjaan proyek rekayasa perangkat lunak berskala industri.",
+            "caption_en": "Academic lab sessions, algorithmic research, and applied industrial software engineering projects.",
+            "featured": false
+        },
+        {
+            "id": "galeri-5",
+            "category": "prestasi",
+            "category_name_id": "Sains & Konferensi",
+            "category_name_en": "Science & Conferences",
+            "title_id": "Simposium Sains, AI & Seminar Nasional",
+            "title_en": "Science Symposium, Applied AI & National Seminars",
+            "subtitle_id": "Diseminasi Keilmuan & Riset Komputasi",
+            "subtitle_en": "Scientific Knowledge Dissemination & Computing",
+            "date": "2026",
+            "location_id": "Forum Akademik Nasional",
+            "location_en": "National Academic Forum",
+            "image_url": "gallery/placeholder_simposium.webp",
+            "caption_id": "Partisipasi aktif dalam seminar nasional, webinar pakar industri IBM & Google, serta pemutakhiran wawasan kecerdasan buatan.",
+            "caption_en": "Active participation in national symposiums, IBM & Google industry webinars, and emerging AI frontiers.",
+            "featured": false
+        },
+        {
+            "id": "galeri-6",
+            "category": "kegiatan",
+            "category_name_id": "Pengabdian Lapangan",
+            "category_name_en": "Community & Field",
+            "title_id": "Inisiatif Pengabdian Masyarakat & Edukasi Digital",
+            "title_en": "Community Service Initiative & Digital Literacy",
+            "subtitle_id": "Pemberdayaan Teknologi Tepat Guna",
+            "subtitle_en": "Appropriate Technology Empowerment",
+            "date": "2025 - 2026",
+            "location_id": "Jawa Timur, Indonesia",
+            "location_en": "East Java, Indonesia",
+            "image_url": "gallery/placeholder_pengabdian.webp",
+            "caption_id": "Aksi nyata edukasi pemanfaatan teknologi informasi dan perangkat lunak bagi efisiensi administrasi serta pengembangan potensi komunitas.",
+            "caption_en": "Practical grassroots technology education and digital tooling enablement for community growth.",
+            "featured": false
+        }
+    ];
+
+    function renderGallery() {
+        const lang = window.currentPortfolioLang || localStorage.getItem('prefLang') || 'en';
+        filteredItems = activeFilter === 'all' 
+            ? galleryItems 
+            : galleryItems.filter(item => item.category === activeFilter);
+
+        grid.innerHTML = '';
+        if (filteredItems.length === 0) {
+            grid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-muted);">
+                    <i class="fas fa-camera-retro" style="font-size: 2rem; margin-bottom: 12px; display: block; opacity: 0.5;"></i>
+                    <p>${lang === 'en' ? 'No photos in this category yet. You can add them to gallery/ anytime!' : 'Belum ada foto dalam kategori ini. Anda dapat menambahkannya ke folder gallery/ kapan saja!'}</p>
+                </div>
+            `;
+            return;
+        }
+
+        filteredItems.forEach((item, index) => {
+            const title = (lang === 'en' && item.title_en) ? item.title_en : item.title_id;
+            const subtitle = (lang === 'en' && item.subtitle_en) ? item.subtitle_en : item.subtitle_id;
+            const categoryName = (lang === 'en' && item.category_name_en) ? item.category_name_en : item.category_name_id;
+            const location = (lang === 'en' && item.location_en) ? item.location_en : item.location_id;
+
+            const card = document.createElement('div');
+            card.className = 'gallery-card reveal active';
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('role', 'button');
+            card.setAttribute('aria-label', title);
+
+            card.innerHTML = `
+                <div class="gallery-card-img-wrap">
+                    <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(title)}" class="gallery-card-img" loading="lazy">
+                </div>
+                <div class="gallery-card-overlay"></div>
+                <div class="gallery-card-cat-badge">${escapeHtml(categoryName)}</div>
+                <div class="gallery-card-filigree">
+                    <span class="gallery-card-date-badge"><i class="far fa-calendar-alt"></i> ${escapeHtml(item.date)}</span>
+                </div>
+                <div class="gallery-card-info">
+                    <h4 class="gallery-card-title notranslate">${escapeHtml(title)}</h4>
+                    <p class="gallery-card-subtitle notranslate">${escapeHtml(subtitle)}</p>
+                    <div class="gallery-card-footer">
+                        <span class="gallery-card-loc"><i class="fas fa-map-marker-alt"></i> ${escapeHtml(location)}</span>
+                        <span class="gallery-card-action"><span>${lang === 'en' ? 'View' : 'Lihat'}</span> <i class="fas fa-expand-alt"></i></span>
+                    </div>
+                </div>
+            `;
+
+            card.addEventListener('click', () => openLightbox(index));
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openLightbox(index);
+                }
+            });
+
+            grid.appendChild(card);
+        });
+    }
+
+    function openLightbox(index) {
+        if (!lightbox || !filteredItems[index]) return;
+        currentLightboxIndex = index;
+        updateLightboxContent();
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightboxContent() {
+        const item = filteredItems[currentLightboxIndex];
+        if (!item) return;
+        const lang = window.currentPortfolioLang || localStorage.getItem('prefLang') || 'en';
+
+        const title = (lang === 'en' && item.title_en) ? item.title_en : item.title_id;
+        const subtitle = (lang === 'en' && item.subtitle_en) ? item.subtitle_en : item.subtitle_id;
+        const categoryName = (lang === 'en' && item.category_name_en) ? item.category_name_en : item.category_name_id;
+        const location = (lang === 'en' && item.location_en) ? item.location_en : item.location_id;
+        const caption = (lang === 'en' && item.caption_en) ? item.caption_en : item.caption_id;
+
+        if (lightboxImg) {
+            lightboxImg.src = item.image_url;
+            lightboxImg.alt = title;
+        }
+        if (lightboxCat) lightboxCat.textContent = categoryName;
+        if (lightboxDate) lightboxDate.innerHTML = `<i class="far fa-calendar-alt"></i> ${escapeHtml(item.date)}`;
+        if (lightboxLoc) lightboxLoc.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${escapeHtml(location)}`;
+        if (lightboxTitle) lightboxTitle.textContent = title;
+        if (lightboxSubtitle) lightboxSubtitle.textContent = subtitle;
+        if (lightboxDesc) lightboxDesc.textContent = caption;
+
+        if (lightboxPrev) lightboxPrev.style.display = filteredItems.length > 1 ? 'flex' : 'none';
+        if (lightboxNext) lightboxNext.style.display = filteredItems.length > 1 ? 'flex' : 'none';
+    }
+
+    function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    function nextPhoto() {
+        if (filteredItems.length <= 1) return;
+        currentLightboxIndex = (currentLightboxIndex + 1) % filteredItems.length;
+        updateLightboxContent();
+    }
+
+    function prevPhoto() {
+        if (filteredItems.length <= 1) return;
+        currentLightboxIndex = (currentLightboxIndex - 1 + filteredItems.length) % filteredItems.length;
+        updateLightboxContent();
+    }
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeFilter = btn.dataset.filter || 'all';
+            renderGallery();
+        });
+    });
+
+    lightboxClose?.addEventListener('click', closeLightbox);
+    lightboxBackdrop?.addEventListener('click', closeLightbox);
+    lightboxPrev?.addEventListener('click', (e) => { e.stopPropagation(); prevPhoto(); });
+    lightboxNext?.addEventListener('click', (e) => { e.stopPropagation(); nextPhoto(); });
+
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox?.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') nextPhoto();
+        if (e.key === 'ArrowLeft') prevPhoto();
+    });
+
+    window.renderPhotoGallery = renderGallery;
+
+    // Fetch galeri.json
+    fetch('galeri.json')
+        .then(res => {
+            if (!res.ok) throw new Error('galeri.json load error');
+            return res.json();
+        })
+        .then(data => {
+            galleryItems = Array.isArray(data) && data.length > 0 ? data : fallbackGallery;
+            renderGallery();
+        })
+        .catch(err => {
+            console.info('Using fallback photo gallery data:', err.message);
+            galleryItems = fallbackGallery;
+            renderGallery();
+        });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // 0. Initialize Page Entry Preloader
@@ -837,6 +1143,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 0.2 Initialize The Grand Codex Bookshelf Archive
     initBookshelfArchive();
+
+    // 0.3 Initialize Photo Documentation & Activity Gallery
+    initPhotoGallery();
     
     const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
     const sections = document.querySelectorAll('section');
@@ -969,6 +1278,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Segarkan Rak Buku Arsip Kredensial
         window.renderBookshelf?.();
+
+        // Segarkan Galeri Foto Dokumentasi
+        window.renderPhotoGallery?.();
 
         // Muat / Segarkan Artikel Sesuai Bahasa (Non-blocking & Cepat)
         loadDynamicArticles(lang);
