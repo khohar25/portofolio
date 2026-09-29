@@ -1,19 +1,19 @@
 [
   {
-    "judul": "Membangun Ekosistem Kecerdasan Buatan Terapan untuk Masa Depan Industri",
-    "judul_en": "Building Applied Artificial Intelligence Ecosystems for Future Industry",
-    "kategori": "Artificial Intelligence",
-    "deskripsi": "Ulasan mengenai pemanfaatan AI generatif dan agen otomatis (Agentic AI) untuk membantu produktivitas tim dan percepatan talenta teknologi di Indonesia.",
-    "deskripsi_en": "Thoughts on adopting generative AI and agentic automation to boost team productivity and train modern tech talent in Indonesia.",
+    "judul": "Membangun Ekosistem Kecerdasan Buatan Terapan untuk Akselerasi Industri",
+    "judul_en": "Architecting Applied Artificial Intelligence Ecosystems for Industrial Acceleration",
+    "kategori": "Applied Artificial Intelligence",
+    "deskripsi": "Analisis mendalam mengenai integrasi kecerdasan buatan generatif dan sistem agen otonom (Agentic AI) dalam mendongkrak efisiensi operasional serta akselerasi kapabilitas rekayasa perangkat lunak di Indonesia.",
+    "deskripsi_en": "An in-depth analysis on adopting generative AI and autonomous agentic workflows to enhance operational productivity and accelerate software engineering capability.",
     "link": "https://khohar25.github.io/artikel/",
     "created_at": "2026-09-20"
   },
   {
-    "judul": "Arsitektur Web Modern: Optimalisasi Latensi Rendah di Lingkungan Cloud Vercel",
-    "judul_en": "Modern Web Architecture: Ultra-Low Latency Optimization in Vercel Cloud Environment",
-    "kategori": "Cloud & Web Engineering",
-    "deskripsi": "Catatan praktis seputar cara deploy aplikasi web di Vercel agar waktu muatnya cepat, efisien bandwidth, dan nyaman dibuka di ponsel.",
-    "deskripsi_en": "Practical notes on deploying web applications on Vercel for fast load times, edge caching, and smooth mobile experiences.",
+    "judul": "Arsitektur Web Modern: Optimalisasi Latensi Rendah pada Ekosistem Cloud Vercel",
+    "judul_en": "Modern Web Architecture: Ultra-Low Latency Optimization in Vercel Cloud",
+    "kategori": "Cloud & Web Architecture",
+    "deskripsi": "Studi praktis implementasi arsitektur web modern, caching di edge network, serta eliminasi overhead runtime guna mencapai skor Core Web Vitals optimal pada perangkat seluler.",
+    "deskripsi_en": "A practical study on modern web architecture, edge caching, and runtime overhead elimination to achieve optimal Core Web Vitals across diverse mobile devices.",
     "link": "https://khohar25.github.io/artikel/",
     "created_at": "2026-09-15"
   }

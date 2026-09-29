@@ -1,12 +1,12 @@
 {
   "network": [
     {
-      "tipe": "Direktur & Inisiator",
-      "nama_kegiatan": "Direktur PT Aigarn Akademi Artificial",
-      "platform_atau_tempat": "PT Aigarn Akademi Artificial",
-      "tahun": "September 2026 - Sekarang",
-      "deskripsi": "Memimpin inisiatif pelatihan kecerdasan buatan terapan, perancangan kurikulum praktis (Prompting, Agentic AI, Generative Tools), serta pengembangan sistem digital akademi.",
-      "deskripsi_en": "Leading applied AI training initiatives, hands-on workshop design (Prompting, Agentic AI, Generative Tools), and academy digital systems."
+      "tipe": "Rekayasa & AI",
+      "nama_kegiatan": "Pengembang Solusi Web & AI Terapan",
+      "platform_atau_tempat": "Politeknik Negeri Malang & Portfolio Publik",
+      "tahun": "2025 - Sekarang",
+      "deskripsi": "Mengembangkan solusi rekayasa web modern, otomatisasi alur kerja agen cerdas (Agentic AI), dan integrasi model AI generatif.",
+      "deskripsi_en": "Developing modern web solutions, agentic AI workflows, and generative AI system integrations."
     }
   ],
   "portofolio": [

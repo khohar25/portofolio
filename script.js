@@ -414,7 +414,7 @@ function initPageLoader() {
         clearInterval(progressTimer);
 
         if (progressBar) progressBar.style.width = '100%';
-        if (statusText) statusText.textContent = isId ? 'Sistem Siap! Meluncurkan...' : 'System Ready! Launching...';
+        if (statusText) statusText.textContent = isId ? 'Repositori Siap! Membuka sistem...' : 'System Ready! Launching environment...';
 
         setTimeout(() => {
             loader.classList.add('loader-hidden');
@@ -585,10 +585,10 @@ function initBookshelfArchive() {
         const title = (lang === 'en' && item.title_en) ? item.title_en : item.title_id;
         const catName = (lang === 'en' && item.category_name_en) ? item.category_name_en : item.category_name_id;
         const desc = (lang === 'en' && item.desc_en) ? item.desc_en : item.desc_id;
-        const openLabel = lang === 'en' ? 'Open Original Document' : 'Buka Dokumen Asli';
-        const dateLabel = lang === 'en' ? 'Date / Year' : 'Tanggal / Periode';
-        const issuerLabel = lang === 'en' ? 'Issuing Organization' : 'Institusi Penerbit';
-        const statusLabel = lang === 'en' ? 'Verification Status' : 'Status Keabsahan';
+        const openLabel = lang === 'en' ? 'Verify Original Credential' : 'Verifikasi Dokumen Asli';
+        const dateLabel = lang === 'en' ? 'Date / Conferred' : 'Tanggal / Periode Perolehan';
+        const issuerLabel = lang === 'en' ? 'Issuing Authority' : 'Lembaga / Institusi Penerbit';
+        const statusLabel = lang === 'en' ? 'Credential Status' : 'Status Keabsahan Kredensial';
         const starsHtml = '<i class="fas fa-star"></i>'.repeat(item.stars || 5);
 
         modalBody.innerHTML = `
@@ -626,7 +626,7 @@ function initBookshelfArchive() {
             </div>
 
             <div class="modal-desc-box">
-                <h5>${lang === 'en' ? 'Competency & Archival Notes' : 'Kompetensi & Catatan Arsip'}</h5>
+                <h5>${lang === 'en' ? 'Competency Scope & Archival Abstract' : 'Cakupan Kompetensi & Abstrak Arsip'}</h5>
                 <p>${escapeHtml(desc)}</p>
             </div>
 
@@ -742,7 +742,7 @@ function initBookshelfArchive() {
                         <h4 class="tome-title notranslate">${escapeHtml(title)}</h4>
                         <div class="tome-issuer notranslate">${escapeHtml(item.issuer)}</div>
                         <div class="tome-inspect-prompt">
-                            <span>${lang === 'en' ? 'Inspect Details' : 'Lihat Detail'}</span> <i class="fas fa-chevron-right"></i>
+                            <span>${lang === 'en' ? 'Inspect Credential' : 'Tinjau Kredensial'}</span> <i class="fas fa-chevron-right"></i>
                         </div>
                     </div>
                 </div>
@@ -1076,7 +1076,7 @@ function renderArticles(articleList, lang = 'en') {
     articleList.slice(0, 4).forEach(item => {
         const title = (lang === 'en' && item.judul_en) ? item.judul_en : item.judul;
         const excerpt = (lang === 'en' && item.deskripsi_en) ? item.deskripsi_en : item.deskripsi;
-        const readLabel = lang === 'en' ? 'Read Article' : 'Baca Selengkapnya';
+        const readLabel = lang === 'en' ? 'Read Technical Publication' : 'Baca Publikasi Lengkap';
         const articleLink = item.link || 'https://khohar25.github.io/artikel/';
 
         const card = document.createElement('div');
