@@ -1414,15 +1414,15 @@ img { max-width: 100%; height: auto; display: block; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
+    object-position: center 30%;
     display: block;
-    filter: brightness(0.92) contrast(1.05);
-    transition: transform 0.45s ease, filter 0.35s ease;
+    filter: brightness(0.96) contrast(1.04);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
 }
 
 .shelf-tome-item:hover .tome-doc-thumb {
-    transform: scale(1.08);
-    filter: brightness(1.02) contrast(1.08);
+    transform: scale(1.1);
+    filter: brightness(1.05) contrast(1.08);
 }
 
 .shelf-tome-item:hover .tome-doc-preview-plate {

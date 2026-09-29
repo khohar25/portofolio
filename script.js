@@ -610,7 +610,7 @@ function initBookshelfArchive() {
             <div class="modal-cert-preview-wrap" onclick="window.open('${escapeHtml(item.file_url)}', '_blank')">
                 <img src="${escapeHtml(item.thumb_img)}" alt="${escapeHtml(title)}" class="modal-cert-preview-img" loading="lazy">
                 <div class="modal-cert-preview-badge">
-                    <i class="fas fa-search-plus"></i> <span>${lang === 'en' ? 'Click to View Full Credential' : 'Klik untuk Membuka Dokumen Asli'}</span>
+                    <i class="fas fa-wand-magic-sparkles"></i> <span>${lang === 'en' ? 'Activity Concept Art &bull; Click to View Official Document' : 'Ilustrasi Konsep Kegiatan &bull; Klik Buka Dokumen Asli'}</span>
                 </div>
             </div>
             ` : ''}
