@@ -549,6 +549,284 @@ function initFictionSlider() {
     window.addEventListener('resize', updateSliderState);
 }
 
+// --- THE GRAND CODEX ARCHIVE (BOOKSHELF SYSTEM) ---
+function initBookshelfArchive() {
+    const grid = document.getElementById('bookshelf-display-grid');
+    const tabs = document.querySelectorAll('.shelf-tab-btn');
+    const searchInput = document.getElementById('shelf-search-input');
+    const searchClear = document.getElementById('shelf-search-clear');
+    const shownCountEl = document.getElementById('bookshelf-shown-count');
+    const loadRow = document.getElementById('bookshelf-load-row');
+    const loadBtn = document.getElementById('bookshelf-load-more-btn');
+    const modalBackdrop = document.getElementById('codex-modal-backdrop');
+    const modalCloseBtn = document.getElementById('codex-modal-close-btn');
+    const modalBody = document.getElementById('codex-modal-body');
+
+    if (!grid) return;
+
+    let certificates = [];
+    let activeCategory = 'all';
+    let searchQuery = '';
+    let displayLimit = 24;
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    // Modal Controller
+    function openModal(item) {
+        if (!modalBackdrop || !modalBody) return;
+        const lang = window.currentPortfolioLang || localStorage.getItem('prefLang') || 'en';
+        const title = (lang === 'en' && item.title_en) ? item.title_en : item.title_id;
+        const catName = (lang === 'en' && item.category_name_en) ? item.category_name_en : item.category_name_id;
+        const desc = (lang === 'en' && item.desc_en) ? item.desc_en : item.desc_id;
+        const openLabel = lang === 'en' ? 'Open Original Document' : 'Buka Dokumen Asli';
+        const dateLabel = lang === 'en' ? 'Date / Year' : 'Tanggal / Periode';
+        const issuerLabel = lang === 'en' ? 'Issuing Organization' : 'Institusi Penerbit';
+        const statusLabel = lang === 'en' ? 'Verification Status' : 'Status Keabsahan';
+        const starsHtml = '<i class="fas fa-star"></i>'.repeat(item.stars || 5);
+
+        modalBody.innerHTML = `
+            <div class="modal-detail-header">
+                <div class="modal-crest-icon tome-crest-circle theme-${item.color_theme}">
+                    <i class="${escapeHtml(item.icon)}"></i>
+                </div>
+                <div class="modal-header-meta">
+                    <span class="modal-cat-chip theme-${item.color_theme}">${escapeHtml(catName)}</span>
+                    <div class="modal-stars-row">${starsHtml}</div>
+                    <h3 class="modal-title notranslate" id="codex-modal-title">${escapeHtml(title)}</h3>
+                    <div class="modal-issuer-row">
+                        <i class="fas fa-award"></i> <span>${escapeHtml(item.issuer)}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-info-grid">
+                <div class="modal-info-item">
+                    <span>${issuerLabel}</span>
+                    <strong>${escapeHtml(item.issuer)}</strong>
+                </div>
+                <div class="modal-info-item">
+                    <span>${dateLabel}</span>
+                    <strong>${escapeHtml(item.date)}</strong>
+                </div>
+                <div class="modal-info-item">
+                    <span>${statusLabel}</span>
+                    <strong style="color: #10b981;"><i class="fas fa-check-circle"></i> ${escapeHtml(item.badge_text || 'Terverifikasi')}</strong>
+                </div>
+                <div class="modal-info-item">
+                    <span>Format File</span>
+                    <strong>${escapeHtml(item.file_type.toUpperCase())} Digital Credential</strong>
+                </div>
+            </div>
+
+            <div class="modal-desc-box">
+                <h5>${lang === 'en' ? 'Competency & Archival Notes' : 'Kompetensi & Catatan Arsip'}</h5>
+                <p>${escapeHtml(desc)}</p>
+            </div>
+
+            <div class="modal-actions-row">
+                <a href="${escapeHtml(item.file_url)}" target="_blank" rel="noopener noreferrer" class="modal-verify-btn">
+                    <i class="fas fa-external-link-alt"></i> <span>${openLabel} (${escapeHtml(item.file_type.toUpperCase())})</span>
+                </a>
+            </div>
+        `;
+
+        modalBackdrop.classList.add('active');
+        modalBackdrop.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        if (!modalBackdrop) return;
+        modalBackdrop.classList.remove('active');
+        modalBackdrop.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    modalCloseBtn?.addEventListener('click', closeModal);
+    modalBackdrop?.addEventListener('click', (e) => {
+        if (e.target === modalBackdrop) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalBackdrop?.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    // Update Counter Badges
+    function updateCounters() {
+        const counts = { all: certificates.length, olim: 0, profesi: 0, ibm: 0, seminar: 0 };
+        certificates.forEach(c => {
+            if (counts[c.category] !== undefined) {
+                counts[c.category]++;
+            }
+        });
+        const cAll = document.getElementById('count-all');
+        const cOlim = document.getElementById('count-olim');
+        const cProf = document.getElementById('count-profesi');
+        const cIbm = document.getElementById('count-ibm');
+        const cSem = document.getElementById('count-seminar');
+        if (cAll) cAll.textContent = counts.all;
+        if (cOlim) cOlim.textContent = counts.olim;
+        if (cProf) cProf.textContent = counts.profesi;
+        if (cIbm) cIbm.textContent = counts.ibm;
+        if (cSem) cSem.textContent = counts.seminar;
+    }
+
+    // Render Shelf Tomes
+    function renderShelves() {
+        const lang = window.currentPortfolioLang || localStorage.getItem('prefLang') || 'en';
+        const q = searchQuery.toLowerCase().trim();
+
+        const filtered = certificates.filter(item => {
+            const matchesCat = (activeCategory === 'all' || item.category === activeCategory);
+            if (!matchesCat) return false;
+            if (!q) return true;
+            const titleId = (item.title_id || '').toLowerCase();
+            const titleEn = (item.title_en || '').toLowerCase();
+            const issuer = (item.issuer || '').toLowerCase();
+            const badge = (item.badge_text || '').toLowerCase();
+            const desc = ((item.desc_id || '') + ' ' + (item.desc_en || '')).toLowerCase();
+            return titleId.includes(q) || titleEn.includes(q) || issuer.includes(q) || badge.includes(q) || desc.includes(q);
+        });
+
+        if (shownCountEl) shownCountEl.textContent = filtered.length;
+
+        const visibleItems = (q || activeCategory !== 'all') ? filtered : filtered.slice(0, displayLimit);
+
+        if (filtered.length === 0) {
+            grid.innerHTML = `
+                <div class="bookshelf-empty-state">
+                    <i class="fas fa-search"></i>
+                    <h4>${lang === 'en' ? 'No Credentials Found' : 'Tidak Ada Dokumen Ditemukan'}</h4>
+                    <p>${lang === 'en' ? 'Try adjusting your search query or switching categories.' : 'Coba ubah kata kunci pencarian atau pilih kategori lain.'}</p>
+                </div>
+            `;
+            if (loadRow) loadRow.style.display = 'none';
+            return;
+        }
+
+        grid.innerHTML = '';
+        visibleItems.forEach((item) => {
+            const title = (lang === 'en' && item.title_en) ? item.title_en : item.title_id;
+            const starsHtml = '<i class="fas fa-star"></i>'.repeat(item.stars || 4);
+            const thumbImgHtml = item.thumb_img 
+                ? `<img src="${escapeHtml(item.thumb_img)}" alt="${escapeHtml(title)}" class="tome-custom-thumbnail">` 
+                : '';
+
+            const tome = document.createElement('div');
+            tome.className = `shelf-tome-item theme-${item.color_theme} reveal active`;
+            tome.setAttribute('tabindex', '0');
+            tome.setAttribute('role', 'button');
+            tome.setAttribute('aria-label', title);
+
+            tome.innerHTML = `
+                <div class="shelf-tome-cover">
+                    <div class="shelf-tome-spine"></div>
+                    <div class="shelf-tome-ribbon"></div>
+                    ${thumbImgHtml}
+                    <div class="tome-top-row">
+                        <div class="tome-stars">${starsHtml}</div>
+                        <span class="tome-type-badge">${escapeHtml(item.badge_text || 'ARCHIVE')}</span>
+                    </div>
+                    <div class="tome-crest-circle">
+                        <i class="${escapeHtml(item.icon)}"></i>
+                    </div>
+                    <div class="tome-bottom-content">
+                        <h4 class="tome-title notranslate">${escapeHtml(title)}</h4>
+                        <div class="tome-issuer notranslate">${escapeHtml(item.issuer)}</div>
+                        <div class="tome-inspect-prompt">
+                            <span>${lang === 'en' ? 'Inspect Details' : 'Lihat Detail'}</span> <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            tome.addEventListener('click', () => openModal(item));
+            tome.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openModal(item);
+                }
+            });
+
+            grid.appendChild(tome);
+        });
+
+        // Load More button visibility
+        if (loadRow) {
+            if (!q && activeCategory === 'all' && displayLimit < filtered.length) {
+                loadRow.style.display = 'flex';
+            } else {
+                loadRow.style.display = 'none';
+            }
+        }
+    }
+
+    window.renderBookshelf = renderShelves;
+
+    // Filter tab clicks
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            tabs.forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-selected', 'false');
+            });
+            this.classList.add('active');
+            this.setAttribute('aria-selected', 'true');
+            activeCategory = this.getAttribute('data-category') || 'all';
+            displayLimit = 24;
+            renderShelves();
+        });
+    });
+
+    // Search input with debounce
+    let searchTimer = null;
+    searchInput?.addEventListener('input', (e) => {
+        const val = e.target.value;
+        if (searchClear) searchClear.style.display = val ? 'block' : 'none';
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => {
+            searchQuery = val;
+            renderShelves();
+        }, 150);
+    });
+
+    searchClear?.addEventListener('click', () => {
+        if (searchInput) searchInput.value = '';
+        searchClear.style.display = 'none';
+        searchQuery = '';
+        renderShelves();
+        searchInput?.focus();
+    });
+
+    // Load More click
+    loadBtn?.addEventListener('click', () => {
+        displayLimit += 24;
+        renderShelves();
+    });
+
+    // Fetch certificates.json
+    fetch('certificates.json')
+        .then(res => res.json())
+        .then(data => {
+            if (Array.isArray(data) && data.length > 0) {
+                certificates = data;
+                updateCounters();
+                renderShelves();
+            }
+        })
+        .catch(err => {
+            console.warn('Failed to load certificates.json', err);
+        });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // 0. Initialize Page Entry Preloader
@@ -556,6 +834,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 0.1 Initialize Fiction / Novel Slider
     initFictionSlider();
+
+    // 0.2 Initialize The Grand Codex Bookshelf Archive
+    initBookshelfArchive();
     
     const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
     const sections = document.querySelectorAll('section');
@@ -665,10 +946,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLang = localStorage.getItem('prefLang') || 'en';
 
     function applyLanguage(lang) {
+        window.currentPortfolioLang = lang;
+
         // Ganti Teks Statis Seketika (0 ms)
         document.querySelectorAll('[data-id]').forEach(el => {
             const text = el.getAttribute(`data-${lang}`);
             if (text) el.innerHTML = text;
+        });
+
+        // Ganti Placeholder Input Dinamis
+        document.querySelectorAll('[data-placeholder-id]').forEach(el => {
+            const ph = el.getAttribute(`data-placeholder-${lang}`);
+            if (ph) el.placeholder = ph;
         });
 
         // Update Label Tombol
@@ -677,6 +966,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Simpan Memori
         localStorage.setItem('prefLang', lang);
         currentLang = lang;
+
+        // Segarkan Rak Buku Arsip Kredensial
+        window.renderBookshelf?.();
 
         // Muat / Segarkan Artikel Sesuai Bahasa (Non-blocking & Cepat)
         loadDynamicArticles(lang);
