@@ -724,6 +724,7 @@ function initBookshelfArchive() {
         grid.innerHTML = '';
         visibleItems.forEach((item) => {
             const title = (lang === 'en' && item.title_en) ? item.title_en : item.title_id;
+            const starsHtml = '<i class="fas fa-star"></i>'.repeat(item.stars || 5);
             const previewPlateHtml = item.thumb_img 
                 ? `
                     <div class="tome-doc-preview-plate">
