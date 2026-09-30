@@ -834,7 +834,7 @@ function initBookshelfArchive() {
     });
 
     // Fetch certificates.json
-    fetch('certificates.json')
+    fetch('certificates.json?v=29')
         .then(res => res.json())
         .then(data => {
             if (Array.isArray(data) && data.length > 0) {

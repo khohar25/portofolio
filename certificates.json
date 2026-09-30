@@ -16,7 +16,7 @@
     "desc_en": "Awarded National Gold Medal with Grade A+ distinction in the competitive Biology division.",
     "file_url": "olim/piag_Biologi - FSBN 2026.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_biology_research.webp",
+    "thumb_img": "cert_covers/ai_art/cover_olim-1.webp",
     "doc_thumb": "cert_covers/olim-1.webp"
   },
   {
@@ -36,7 +36,7 @@
     "desc_en": "Achieved National Gold Medal with Grade A+ distinction in the English academic championship.",
     "file_url": "olim/piag_Bahasa Inggris - FASNAS 2026.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_english_linguistics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_olim-2.webp",
     "doc_thumb": "cert_covers/olim-2.webp"
   },
   {
@@ -56,7 +56,7 @@
     "desc_en": "Won National Gold Medal with Grade A+ distinction in the Medical & Science Physics olympiad.",
     "file_url": "olim/piag_Fisika - ISMO 2026.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_physics_quantum.webp",
+    "thumb_img": "cert_covers/ai_art/cover_olim-3.webp",
     "doc_thumb": "cert_covers/olim-3.webp"
   },
   {
@@ -76,7 +76,7 @@
     "desc_en": "Awarded National Gold Medal in the Education Science Olympiad (English) division.",
     "file_url": "olim/Piagam_OSP_2026_Bahasa_Inggris.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_english_linguistics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_olim-4.webp",
     "doc_thumb": "cert_covers/olim-4.webp"
   },
   {
@@ -96,7 +96,7 @@
     "desc_en": "Achieved National Gold Medal in Physics during the National Education Day Science Olympiad.",
     "file_url": "olim/piag_Fisika - OSPENAS 2026.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_physics_quantum.webp",
+    "thumb_img": "cert_covers/ai_art/cover_olim-5.webp",
     "doc_thumb": "cert_covers/olim-5.webp"
   },
   {
@@ -116,7 +116,7 @@
     "desc_en": "Awarded National Gold Medal in Physics in the National Education Day Science Competition.",
     "file_url": "olim/piag_Fisika - KSN-HP 2026.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_physics_quantum.webp",
+    "thumb_img": "cert_covers/ai_art/cover_olim-6.webp",
     "doc_thumb": "cert_covers/olim-6.webp"
   },
   {
@@ -136,7 +136,7 @@
     "desc_en": "National Gold Medal in Astronomy with Grade A+ distinction.",
     "file_url": "olim/piag_Astronomi - ONSB 2023.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_astronomy_cosmos.webp",
+    "thumb_img": "cert_covers/ai_art/cover_olim-7.webp",
     "doc_thumb": "cert_covers/olim-7.webp"
   },
   {
@@ -156,7 +156,7 @@
     "desc_en": "National Gold Medal in Sociology with Grade A+ distinction.",
     "file_url": "olim/piag_Sosiologi - ONSB 2023.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sociology_humanities.webp",
+    "thumb_img": "cert_covers/ai_art/cover_olim-8.webp",
     "doc_thumb": "cert_covers/olim-8.webp"
   },
   {
@@ -176,7 +176,7 @@
     "desc_en": "Standardization in Scrum Agile methodologies, sprint cadence, backlog grooming, and cross-functional agile orchestration.",
     "file_url": "profesi sertif/Scrum Fundamentals Certified.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_scrum_agile.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-1.webp",
     "doc_thumb": "cert_covers/prof-1.webp"
   },
   {
@@ -196,7 +196,7 @@
     "desc_en": "Proficiency in the DMAIC quality cycle to eliminate industrial variability and drive structured process improvements.",
     "file_url": "profesi sertif/Six Sigma Yellow Belt.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sixsigma_quality.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-2.webp",
     "doc_thumb": "cert_covers/prof-2.webp"
   },
   {
@@ -216,7 +216,7 @@
     "desc_en": "Foundational defect elimination and customer satisfaction orientation based on Six Sigma quality standards.",
     "file_url": "profesi sertif/Six Sigma White Belt.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sixsigma_quality.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-3.webp",
     "doc_thumb": "cert_covers/prof-3.webp"
   },
   {
@@ -236,7 +236,7 @@
     "desc_en": "Process efficiency standardization, elimination of operational wastes, and cycle time acceleration.",
     "file_url": "profesi sertif/Lean Six Sigma White Belt Certifed.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sixsigma_quality.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-4.webp",
     "doc_thumb": "cert_covers/prof-4.webp"
   },
   {
@@ -256,7 +256,7 @@
     "desc_en": "Work-in-progress (WIP) flow management, bottleneck visualization, and sustainable continuous delivery pipelines.",
     "file_url": "profesi sertif/Kanban Essentialswith Certified.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_scrum_agile.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-5.webp",
     "doc_thumb": "cert_covers/prof-5.webp"
   },
   {
@@ -276,7 +276,7 @@
     "desc_en": "Formulating corporate Objectives & Key Results to align organizational trajectory and accelerate measurable milestones.",
     "file_url": "profesi sertif/OKR Fundamentalswith Certified.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_scrum_agile.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-6.webp",
     "doc_thumb": "cert_covers/prof-6.webp"
   },
   {
@@ -296,7 +296,7 @@
     "desc_en": "Structured project governance: baseline scheduling, critical resource allocation, and risk mitigation matrices.",
     "file_url": "profesi sertif/Project Management Essential Certifed.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_scrum_agile.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-7.webp",
     "doc_thumb": "cert_covers/prof-7.webp"
   },
   {
@@ -316,7 +316,7 @@
     "desc_en": "Silicon Valley executive curriculum covering business modeling, market feasibility, venture launch, and corporate governance.",
     "file_url": "profesi sertif/Starting_a_Business_Certificate_of_Completion.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sixsigma_quality.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-8.webp",
     "doc_thumb": "cert_covers/prof-8.webp"
   },
   {
@@ -336,7 +336,7 @@
     "desc_en": "Enterprise requirements engineering, stakeholder elicitation, data-driven solution design, and value stream mapping.",
     "file_url": "profesi sertif/Business Analysis Fundamentalswith Certified.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_bigdata_analytics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-9.webp",
     "doc_thumb": "cert_covers/prof-9.webp"
   },
   {
@@ -356,7 +356,7 @@
     "desc_en": "Modern business governance principles, operational leadership, and corporate resource allocation strategies.",
     "file_url": "profesi sertif/Bussiness Management Essentials Certifed.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_scrum_agile.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-10.webp",
     "doc_thumb": "cert_covers/prof-10.webp"
   },
   {
@@ -376,7 +376,7 @@
     "desc_en": "Adaptive leadership, high-trust conflict resolution, strategic executive decision-making, and talent empowerment.",
     "file_url": "profesi sertif/Leadership Essentials Certificate.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sociology_humanities.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-11.webp",
     "doc_thumb": "cert_covers/prof-11.webp"
   },
   {
@@ -396,7 +396,7 @@
     "desc_en": "Corporate B2B sales architectures, enterprise pipeline management, and sustainable high-value client partnerships.",
     "file_url": "profesi sertif/Corporate Sales Fundamentals.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_bigdata_analytics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-12.webp",
     "doc_thumb": "cert_covers/prof-12.webp"
   },
   {
@@ -416,7 +416,7 @@
     "desc_en": "Principled negotiation methodologies, value-creation frameworks, and complex multiparty agreement structuring.",
     "file_url": "profesi sertif/Negotiation Associate.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sociology_humanities.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-13.webp",
     "doc_thumb": "cert_covers/prof-13.webp"
   },
   {
@@ -436,7 +436,7 @@
     "desc_en": "Market segmentation, unique value proposition (UVP) differentiation, and high-impact product positioning strategies.",
     "file_url": "profesi sertif/Marketing Strategy Fundamentals.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-14.webp",
     "doc_thumb": "cert_covers/prof-14.webp"
   },
   {
@@ -456,7 +456,7 @@
     "desc_en": "Quantitative and qualitative consumer research, market viability validation, and competitive intelligence.",
     "file_url": "profesi sertif/Marketing Research Fundamentals.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_bigdata_analytics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-15.webp",
     "doc_thumb": "cert_covers/prof-15.webp"
   },
   {
@@ -476,7 +476,7 @@
     "desc_en": "Multi-channel digital customer acquisition, conversion rate optimization (CRO), and modern marketing analytics.",
     "file_url": "profesi sertif/Digital Marketing Fundamentals.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_prof-16.webp",
     "doc_thumb": "cert_covers/prof-16.webp"
   },
   {
@@ -496,7 +496,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in AI-Enabled Apps for Customer Service.",
     "file_url": "ibm/AI-EnabledApplicationsforCustomerService_Badge20260716-8-e2nsw8.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_ai_agentic.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-1.webp",
     "doc_thumb": "cert_covers/ibm-1.webp"
   },
   {
@@ -516,7 +516,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in AI Efficiencies and Governance.",
     "file_url": "ibm/AIEfficienciesandGovernance_Badge20260716-8-ws2qr5.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_cybersecurity.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-2.webp",
     "doc_thumb": "cert_covers/ibm-2.webp"
   },
   {
@@ -536,7 +536,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in Artificial Intelligence Literacy.",
     "file_url": "ibm/AILiteracy_Badge20260716-8-5yt7t3.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_ai_agentic.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-3.webp",
     "doc_thumb": "cert_covers/ibm-3.webp"
   },
   {
@@ -556,7 +556,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in Enterprise AI Business Solutions.",
     "file_url": "ibm/EnterpriseAIBusinessSolutions_Badge20260716-8-9dclp0.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_ai_agentic.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-4.webp",
     "doc_thumb": "cert_covers/ibm-4.webp"
   },
   {
@@ -576,7 +576,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in Getting Started with Generative AI.",
     "file_url": "ibm/GettingStartedwithGenerativeAI_Badge20260716-8-1a9qnd.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_ai_agentic.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-5.webp",
     "doc_thumb": "cert_covers/ibm-5.webp"
   },
   {
@@ -596,7 +596,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in Human-AI Collaborative Planning.",
     "file_url": "ibm/Human-AICollaborativePlanning_Badge20260716-8-fvkdni.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_ai_agentic.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-6.webp",
     "doc_thumb": "cert_covers/ibm-6.webp"
   },
   {
@@ -616,7 +616,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM Enterprise Design Thinking Practitioner.",
     "file_url": "ibm/IBMDesign20260716-8-5y1dwh.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-7.webp",
     "doc_thumb": "cert_covers/ibm-7.webp"
   },
   {
@@ -636,7 +636,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM Enterprise Design Thinking Co-Creator.",
     "file_url": "ibm/IBMDesign20260716-8-7302ky.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-8.webp",
     "doc_thumb": "cert_covers/ibm-8.webp"
   },
   {
@@ -656,7 +656,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM Team Essentials for Design Thinking.",
     "file_url": "ibm/IBMDesign20260716-8-a3xear.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-9.webp",
     "doc_thumb": "cert_covers/ibm-9.webp"
   },
   {
@@ -676,7 +676,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM User Research & Empathy Mapping.",
     "file_url": "ibm/IBMDesign20260716-8-ihh8la.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-10.webp",
     "doc_thumb": "cert_covers/ibm-10.webp"
   },
   {
@@ -696,7 +696,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM Hills & Playbacks Methodology.",
     "file_url": "ibm/IBMDesign20260716-8-j2k4xi.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-11.webp",
     "doc_thumb": "cert_covers/ibm-11.webp"
   },
   {
@@ -716,7 +716,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM Creative Prototyping & Iteration.",
     "file_url": "ibm/IBMDesign20260716-8-l5e2y6.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-12.webp",
     "doc_thumb": "cert_covers/ibm-12.webp"
   },
   {
@@ -736,7 +736,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM Big Idea Prioritization Matrix.",
     "file_url": "ibm/IBMDesign20260716-8-moe9rv.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-13.webp",
     "doc_thumb": "cert_covers/ibm-13.webp"
   },
   {
@@ -756,7 +756,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM Experience Roadmap & Journey.",
     "file_url": "ibm/IBMDesign20260716-8-na0tth.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-14.webp",
     "doc_thumb": "cert_covers/ibm-14.webp"
   },
   {
@@ -776,7 +776,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM User-Centered Systems Architecture.",
     "file_url": "ibm/IBMDesign20260716-8-rg70e1.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-15.webp",
     "doc_thumb": "cert_covers/ibm-15.webp"
   },
   {
@@ -796,7 +796,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM Collaborative Stakeholder Alignment.",
     "file_url": "ibm/IBMDesign20260718-8-icdkl2.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-16.webp",
     "doc_thumb": "cert_covers/ibm-16.webp"
   },
   {
@@ -816,7 +816,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM Design Strategy & Product Vision.",
     "file_url": "ibm/IBMDesign20260718-8-ped8yr.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-17.webp",
     "doc_thumb": "cert_covers/ibm-17.webp"
   },
   {
@@ -836,7 +836,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM Design Systems & Interaction Dynamics.",
     "file_url": "ibm/IBMDesign20260718-8-smhox1.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-18.webp",
     "doc_thumb": "cert_covers/ibm-18.webp"
   },
   {
@@ -856,7 +856,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in IBM Advanced Design Thinking Mastery.",
     "file_url": "ibm/IBMDesign20260719-8-3okz8p.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-19.webp",
     "doc_thumb": "cert_covers/ibm-19.webp"
   },
   {
@@ -876,7 +876,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in Lifelong Professional Skills.",
     "file_url": "ibm/LifelongProfessionalSkills_Badge20260716-8-se6udh.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_english_linguistics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-20.webp",
     "doc_thumb": "cert_covers/ibm-20.webp"
   },
   {
@@ -896,7 +896,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in Make Agentic AI Work for You.",
     "file_url": "ibm/MakeAgenticAIWorkforYou_Badge20260718-8-ug5jit.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_ai_agentic.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-21.webp",
     "doc_thumb": "cert_covers/ibm-21.webp"
   },
   {
@@ -916,7 +916,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in Project Management Fundamentals.",
     "file_url": "ibm/ProjectManagementFundamentals_Badge20260716-8-v50m4x.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_scrum_agile.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-22.webp",
     "doc_thumb": "cert_covers/ibm-22.webp"
   },
   {
@@ -936,7 +936,7 @@
     "desc_en": "Official global technology credential issued by IBM SkillsBuild verifying verified competency in Responsible AI and Risk Management.",
     "file_url": "ibm/ResponsibleAIandRiskManagement_Badge20260716-8-oi66jg.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_cybersecurity.webp",
+    "thumb_img": "cert_covers/ai_art/cover_ibm-23.webp",
     "doc_thumb": "cert_covers/ibm-23.webp"
   },
   {
@@ -956,7 +956,7 @@
     "desc_en": "Active participant in the International Seminar 'Fragile Systems, Recurring Crises: Islamic Economics in an Era of Global Shocks', endorsed by the Dean of FEB Universitas Brawijaya.",
     "file_url": "Webinar Seminar/CEC UB.png",
     "file_type": "png",
-    "thumb_img": "cert_covers/ai_art/art_bigdata_analytics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-cec-ub.webp",
     "doc_thumb": "cert_covers/sem-cec-ub.webp"
   },
   {
@@ -976,7 +976,7 @@
     "desc_en": "Comprehensive master archive compilation of national academic achievement certificates, honors, and verified seminar credentials.",
     "file_url": "Webinar Seminar/Khohar Muhamad Fatahurrohman.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_astronomy_cosmos.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-compendium.webp",
     "doc_thumb": "cert_covers/sem-compendium.webp"
   },
   {
@@ -996,7 +996,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding digital transformation & modern business ecosystems with certified digital verification.",
     "file_url": "Webinar Seminar/20.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_cloud_devops.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-20.webp",
     "doc_thumb": "cert_covers/sem-20.webp"
   },
   {
@@ -1016,7 +1016,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding economic resilience & macroeconomic market analysis with certified digital verification.",
     "file_url": "Webinar Seminar/21.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_bigdata_analytics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-21.webp",
     "doc_thumb": "cert_covers/sem-21.webp"
   },
   {
@@ -1036,7 +1036,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding corporate risk governance & capital allocation with certified digital verification.",
     "file_url": "Webinar Seminar/22.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_cybersecurity.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-22.webp",
     "doc_thumb": "cert_covers/sem-22.webp"
   },
   {
@@ -1056,7 +1056,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding talent development & sustainable organizational leadership with certified digital verification.",
     "file_url": "Webinar Seminar/23.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sociology_humanities.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-23.webp",
     "doc_thumb": "cert_covers/sem-23.webp"
   },
   {
@@ -1076,7 +1076,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding sustainable technology innovation & clean energy transition with certified digital verification.",
     "file_url": "Webinar Seminar/24.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_green_energy.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-24.webp",
     "doc_thumb": "cert_covers/sem-24.webp"
   },
   {
@@ -1096,7 +1096,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding big data analytics & strategic executive decisioning with certified digital verification.",
     "file_url": "Webinar Seminar/25.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_bigdata_analytics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-25.webp",
     "doc_thumb": "cert_covers/sem-25.webp"
   },
   {
@@ -1116,7 +1116,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding research-driven entrepreneurship & business incubation with certified digital verification.",
     "file_url": "Webinar Seminar/26.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sixsigma_quality.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-26.webp",
     "doc_thumb": "cert_covers/sem-26.webp"
   },
   {
@@ -1136,7 +1136,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding cybersecurity architecture & enterprise data protection with certified digital verification.",
     "file_url": "Webinar Seminar/27.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_cybersecurity.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-27.webp",
     "doc_thumb": "cert_covers/sem-27.webp"
   },
   {
@@ -1156,7 +1156,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding applied scientific research methodologies & rigor with certified digital verification.",
     "file_url": "Webinar Seminar/28.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_physics_quantum.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-28.webp",
     "doc_thumb": "cert_covers/sem-28.webp"
   },
   {
@@ -1176,7 +1176,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding global supply chain optimization & resilient logistics with certified digital verification.",
     "file_url": "Webinar Seminar/29.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_cloud_devops.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-29.webp",
     "doc_thumb": "cert_covers/sem-29.webp"
   },
   {
@@ -1196,7 +1196,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding artificial intelligence & industrial automation systems with certified digital verification.",
     "file_url": "Webinar Seminar/30.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_ai_agentic.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-30.webp",
     "doc_thumb": "cert_covers/sem-30.webp"
   },
   {
@@ -1216,7 +1216,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding business law, corporate ethics & regulatory compliance with certified digital verification.",
     "file_url": "Webinar Seminar/31.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_cybersecurity.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-31.webp",
     "doc_thumb": "cert_covers/sem-31.webp"
   },
   {
@@ -1236,7 +1236,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding strategic financial planning & modern investment portfolios with certified digital verification.",
     "file_url": "Webinar Seminar/32.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_bigdata_analytics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-32.webp",
     "doc_thumb": "cert_covers/sem-32.webp"
   },
   {
@@ -1256,7 +1256,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding metric-driven user experience design & product empathy with certified digital verification.",
     "file_url": "Webinar Seminar/33.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-33.webp",
     "doc_thumb": "cert_covers/sem-33.webp"
   },
   {
@@ -1276,7 +1276,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding total quality management (tqm) & industry standards with certified digital verification.",
     "file_url": "Webinar Seminar/34.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sixsigma_quality.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-34.webp",
     "doc_thumb": "cert_covers/sem-34.webp"
   },
   {
@@ -1296,7 +1296,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding public policy, educational innovation & competitiveness with certified digital verification.",
     "file_url": "Webinar Seminar/35.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_english_linguistics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-35.webp",
     "doc_thumb": "cert_covers/sem-35.webp"
   },
   {
@@ -1316,7 +1316,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding corporate strategic communications & crisis reputation with certified digital verification.",
     "file_url": "Webinar Seminar/36.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_english_linguistics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-36.webp",
     "doc_thumb": "cert_covers/sem-36.webp"
   },
   {
@@ -1336,7 +1336,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding organizational psychology & high-performance dynamics with certified digital verification.",
     "file_url": "Webinar Seminar/37.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sociology_humanities.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-37.webp",
     "doc_thumb": "cert_covers/sem-37.webp"
   },
   {
@@ -1356,7 +1356,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding strategic value-based marketing & customer centricity with certified digital verification.",
     "file_url": "Webinar Seminar/38.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_design_thinking.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-38.webp",
     "doc_thumb": "cert_covers/sem-38.webp"
   },
   {
@@ -1376,7 +1376,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding agile leadership & organizational velocity adaptation with certified digital verification.",
     "file_url": "Webinar Seminar/39.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_scrum_agile.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-39.webp",
     "doc_thumb": "cert_covers/sem-39.webp"
   },
   {
@@ -1396,7 +1396,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding academic research integrity & scholarly publications with certified digital verification.",
     "file_url": "Webinar Seminar/40.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_biology_research.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-40.webp",
     "doc_thumb": "cert_covers/sem-40.webp"
   },
   {
@@ -1416,7 +1416,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding compliance auditing & information systems frameworks with certified digital verification.",
     "file_url": "Webinar Seminar/41.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_cybersecurity.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-41.webp",
     "doc_thumb": "cert_covers/sem-41.webp"
   },
   {
@@ -1436,7 +1436,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding sustainable business process reengineering (bpr) with certified digital verification.",
     "file_url": "Webinar Seminar/42.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sixsigma_quality.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-42.webp",
     "doc_thumb": "cert_covers/sem-42.webp"
   },
   {
@@ -1456,7 +1456,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding leadership ethics in the era of exponential disruption with certified digital verification.",
     "file_url": "Webinar Seminar/43.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sociology_humanities.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-43.webp",
     "doc_thumb": "cert_covers/sem-43.webp"
   },
   {
@@ -1476,7 +1476,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding change management & resilient organizational culture with certified digital verification.",
     "file_url": "Webinar Seminar/44.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sociology_humanities.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-44.webp",
     "doc_thumb": "cert_covers/sem-44.webp"
   },
   {
@@ -1496,7 +1496,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding cloud enterprise architecture & it infrastructure with certified digital verification.",
     "file_url": "Webinar Seminar/45.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_cloud_devops.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-45.webp",
     "doc_thumb": "cert_covers/sem-45.webp"
   },
   {
@@ -1516,7 +1516,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding applied data science for market forecasting with certified digital verification.",
     "file_url": "Webinar Seminar/46.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_bigdata_analytics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-46.webp",
     "doc_thumb": "cert_covers/sem-46.webp"
   },
   {
@@ -1536,7 +1536,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding strategic cross-cultural negotiation frameworks with certified digital verification.",
     "file_url": "Webinar Seminar/47.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_english_linguistics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-47.webp",
     "doc_thumb": "cert_covers/sem-47.webp"
   },
   {
@@ -1556,7 +1556,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding strategic asset management & operational reliability with certified digital verification.",
     "file_url": "Webinar Seminar/48.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sixsigma_quality.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-48.webp",
     "doc_thumb": "cert_covers/sem-48.webp"
   },
   {
@@ -1576,7 +1576,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding startup governance & venture capital scaling stages with certified digital verification.",
     "file_url": "Webinar Seminar/49.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_cloud_devops.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-49.webp",
     "doc_thumb": "cert_covers/sem-49.webp"
   },
   {
@@ -1596,7 +1596,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding sustainable disruptive business model formulation with certified digital verification.",
     "file_url": "Webinar Seminar/50.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_green_energy.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-50.webp",
     "doc_thumb": "cert_covers/sem-50.webp"
   },
   {
@@ -1616,7 +1616,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding occupational health, safety & crisis protocols (hse) with certified digital verification.",
     "file_url": "Webinar Seminar/51.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_biology_research.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-51.webp",
     "doc_thumb": "cert_covers/sem-51.webp"
   },
   {
@@ -1636,7 +1636,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding corporate esg sustainability reporting standards with certified digital verification.",
     "file_url": "Webinar Seminar/52.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_green_energy.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-52.webp",
     "doc_thumb": "cert_covers/sem-52.webp"
   },
   {
@@ -1656,7 +1656,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding enterprise software engineering architecture with certified digital verification.",
     "file_url": "Webinar Seminar/53.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_cloud_devops.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-53.webp",
     "doc_thumb": "cert_covers/sem-53.webp"
   },
   {
@@ -1676,7 +1676,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding emotional intelligence & executive persuasion with certified digital verification.",
     "file_url": "Webinar Seminar/54.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_sociology_humanities.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-54.webp",
     "doc_thumb": "cert_covers/sem-54.webp"
   },
   {
@@ -1696,7 +1696,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding quantitative methods for industry trend forecasting with certified digital verification.",
     "file_url": "Webinar Seminar/55.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_bigdata_analytics.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-55.webp",
     "doc_thumb": "cert_covers/sem-55.webp"
   },
   {
@@ -1716,7 +1716,7 @@
     "desc_en": "Official participation in the accredited national seminar regarding young leaders forum & national strategic initiatives with certified digital verification.",
     "file_url": "Webinar Seminar/56.pdf",
     "file_type": "pdf",
-    "thumb_img": "cert_covers/ai_art/art_astronomy_cosmos.webp",
+    "thumb_img": "cert_covers/ai_art/cover_sem-56.webp",
     "doc_thumb": "cert_covers/sem-56.webp"
   }
 ]
