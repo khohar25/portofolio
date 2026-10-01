@@ -2014,7 +2014,7 @@ function initPhotoGallery() {
 
             card.innerHTML = `
                 <div class="gallery-cover-frame ${themeClass}" style="height: 100%; border-radius: 16px; overflow: hidden;">
-                    <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(title)}" class="gallery-cover-real-img" ${item.object_position ? `style="object-position: ${escapeHtml(item.object_position)};"` : ''} loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(title)}" class="gallery-cover-real-img" style="width:100%;height:100%;object-fit:cover;${item.object_position ? `object-position:${escapeHtml(item.object_position)};` : ''}" loading="lazy" onerror="this.onerror=null;this.style.display='none';">
                     <div class="gallery-cover-glare"></div>
                 </div>
             `;
@@ -2524,3 +2524,91 @@ function renderArticles(articleList, lang = 'en') {
         articleContainer.appendChild(card);
     });
 }
+
+// ==========================================================================
+// COUNT-UP ANIMATION FOR HERO STATS
+// ==========================================================================
+function initCountUpAnimation() {
+    const counters = document.querySelectorAll('.stat-num');
+    if (!counters.length) return;
+    
+    const animateCounter = (el) => {
+        const text = el.textContent.trim();
+        const match = text.match(/^(\d+)(.*)/); 
+        if (!match) return;
+        const target = parseInt(match[1]);
+        const suffix = match[2]; // '+', 'x', etc.
+        const duration = 1500;
+        const start = performance.now();
+        
+        const step = (now) => {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            const current = Math.round(target * eased);
+            el.textContent = current + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const stats = entry.target.querySelectorAll('.stat-num');
+                stats.forEach(el => animateCounter(el));
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    const heroCard = document.querySelector('.hero-stats-card, .stat-grid, .hero-card');
+    if (heroCard) observer.observe(heroCard);
+}
+
+// Init on DOMContentLoaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCountUpAnimation);
+} else {
+    initCountUpAnimation();
+}
+
+// ==========================================================================
+// KEYBOARD NAVIGATION SHORTCUTS
+// ==========================================================================
+(function initKeyboardShortcuts() {
+    const sectionMap = {
+        '1': 'hero',
+        '2': 'projects', 
+        '3': 'honors',
+        '4': 'literary',
+        '5': 'articles',
+        '6': 'about',
+        '7': 'gallery',
+        '8': 'contact'
+    };
+    
+    document.addEventListener('keydown', (e) => {
+        // Don't trigger if user is typing in an input
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
+        
+        // Number keys to jump to sections
+        if (sectionMap[e.key]) {
+            e.preventDefault();
+            const section = document.getElementById(sectionMap[e.key]);
+            if (section) section.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Escape to close any open modal
+        if (e.key === 'Escape') {
+            const codexModal = document.getElementById('codex-modal-backdrop');
+            if (codexModal && codexModal.getAttribute('aria-hidden') === 'false') {
+                document.getElementById('codex-modal-close-btn')?.click();
+            }
+            const lightbox = document.querySelector('.gallery-lightbox-backdrop.active');
+            if (lightbox) {
+                document.querySelector('.gallery-lightbox-close')?.click();
+            }
+        }
+    });
+})();

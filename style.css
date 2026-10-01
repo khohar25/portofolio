@@ -3688,3 +3688,37 @@ body.mobile-nav-active {
     transform: scale(1.06);
     filter: brightness(1.08);
 }
+
+/* ==========================================================================
+   ADDED THEMES
+   ========================================================================== */
+
+[data-theme="midnight"] {
+    --accent: #6366f1;
+    --accent-hover: #818cf8;
+    --accent-glow: rgba(99, 102, 241, 0.15);
+    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
+    --genshin-gold: #818cf8;
+    --genshin-gold-border: rgba(99, 102, 241, 0.5);
+    --genshin-gold-glow: rgba(99, 102, 241, 0.15);
+}
+
+[data-theme="emerald"] {
+    --accent: #10b981;
+    --accent-hover: #34d399;
+    --accent-glow: rgba(16, 185, 129, 0.15);
+    --accent-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --genshin-gold: #34d399;
+    --genshin-gold-border: rgba(16, 185, 129, 0.5);
+    --genshin-gold-glow: rgba(16, 185, 129, 0.15);
+}
+
+[data-theme="amber"] {
+    --accent: #f59e0b;
+    --accent-hover: #fbbf24;
+    --accent-glow: rgba(245, 158, 11, 0.15);
+    --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --genshin-gold: #fbbf24;
+    --genshin-gold-border: rgba(245, 158, 11, 0.5);
+    --genshin-gold-glow: rgba(245, 158, 11, 0.15);
+}
