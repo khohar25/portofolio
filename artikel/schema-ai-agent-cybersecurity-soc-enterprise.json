@@ -1,0 +1,95 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://artikel.khoharrohman.my.id/ai-agent-cybersecurity-soc-enterprise#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://artikel.khoharrohman.my.id/ai-agent-cybersecurity-soc-enterprise",
+        "url": "https://artikel.khoharrohman.my.id/ai-agent-cybersecurity-soc-enterprise",
+        "name": "AI Agent dalam Cybersecurity dan SOC Enterprise | Artikel Khohar Rohman"
+      },
+      "headline": "AI Agent dalam Cybersecurity dan SOC Enterprise",
+      "alternativeHeadline": "Arsitektur Autonomous AI SOC Agents untuk Pertahanan Siber",
+      "description": "Panduan arsitektur AI Agent dalam Security Operations Center (SOC) enterprise: mitigasi alert fatigue, prinsip Least Agency Privilege, dan regulasi UU PDP.",
+      "image": [
+        "https://artikel.khoharrohman.my.id/assets/ai-agent-soc-cybersecurity-hero.jpg",
+        "https://artikel.khoharrohman.my.id/assets/soc-alert-triage-architecture.jpg",
+        "https://artikel.khoharrohman.my.id/assets/tata-kelola-least-agency-privilege.jpg"
+      ],
+      "datePublished": "2026-10-01T08:00:00+07:00",
+      "dateModified": "2026-10-01T12:00:00+07:00",
+      "inLanguage": "id-ID",
+      "author": {
+        "@type": "Person",
+        "name": "Khohar Rohman",
+        "alternateName": "Khohar Muhamad Fatahurrohman",
+        "jobTitle": "Direktur PT Aigarn Akademi Artificial",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "PT Aigarn Akademi Artificial"
+        },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "Politeknik Negeri Malang"
+        },
+        "url": "https://artikel.khoharrohman.my.id",
+        "sameAs": [
+          "https://github.com/khohar25",
+          "https://www.linkedin.com",
+          "https://scholar.google.com"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Artikel Khohar Rohman",
+        "url": "https://artikel.khoharrohman.my.id",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://artikel.khoharrohman.my.id/assets/logo.png"
+        }
+      },
+      "keywords": [
+        "AI Agent",
+        "Cybersecurity SOC",
+        "Security Operations Center",
+        "Autonomous SOC Agent",
+        "Least Agency Privilege",
+        "UU PDP",
+        "Triage Insiden Otomatis",
+        "Tata Kelola AI Siber"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://artikel.khoharrohman.my.id/ai-agent-cybersecurity-soc-enterprise#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Apakah AI SOC Agent akan menggantikan analis keamanan manusia (Tier-1 hingga Tier-3)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tidak. Konsensus riset industri (Gartner dan Forrester) menegaskan bahwa agen AI diposisikan sebagai rekan kerja digital (digital teammates), bukan pengganti staf manusia. Agen menangani pekerjaan repetitif bervolume tinggi seperti pembersihan derau peringatan dan pengumpulan artefak forensik awal, membebaskan analis manusia untuk fokus pada perburuan ancaman proaktif (threat hunting), investigasi taktik musuh yang canggih, dan penyusunan strategi mitigasi risiko arsitektur."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana cara melindungi agen SOC dari manipulasi peretas (prompt injection)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mitigasi dilakukan dengan arsitektur pertahanan berlapis: (1) Menempatkan gerbang pembersih masukan (Sanitization Gateway) yang memisahkan teks telemetri log dari instruksi inti model; (2) Menerapkan Least Agency Privilege, sehingga agen investigasi tidak memiliki izin mengeksekusi perubahan konfigurasi sistem; dan (3) Menggunakan model bahasa yang telah disempurnakan (fine-tuned) untuk mengenali upaya manipulasi instruksi tersembunyi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mengapa kecepatan respon agen AI sangat krusial terhadap kepatuhan UU PDP di Indonesia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pasal 46 UU PDP No. 27/2022 mewajibkan pemberitahuan resmi terjadinya insiden kebocoran data pribadi dalam waktu maksimal 3 x 24 jam. Tanpa agen AI yang mampu menganalisis jutaan baris log dan mengidentifikasi subjek data yang bocor dalam hitungan menit, proses forensik manual kerap melampaui batas waktu tersebut, yang berakibat pada ancaman denda administratif hingga 2% dari total pendapatan tahunan bagi perusahaan."
+          }
+        }
+      ]
+    }
+  ]
+}

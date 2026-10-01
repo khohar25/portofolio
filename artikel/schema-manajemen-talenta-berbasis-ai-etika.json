@@ -1,0 +1,95 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://artikel.khoharrohman.my.id/manajemen-talenta-berbasis-ai-etika#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://artikel.khoharrohman.my.id/manajemen-talenta-berbasis-ai-etika",
+        "url": "https://artikel.khoharrohman.my.id/manajemen-talenta-berbasis-ai-etika",
+        "name": "Manajemen Talenta Berbasis AI: Efisiensi dan Etika | Artikel Khohar Rohman"
+      },
+      "headline": "Manajemen Talenta Berbasis AI: Efisiensi dan Etika",
+      "alternativeHeadline": "Strategi AI dalam Rekrutmen dan Manajemen Talenta Modern",
+      "description": "Kajian arsitektur AI dalam manajemen talenta dan HR enterprise: mitigasi bias algoritmik, strategi Talent Remix Gartner 2026, dan kepatuhan UU PDP No 27/2022.",
+      "image": [
+        "https://artikel.khoharrohman.my.id/assets/ai-talent-management-hero.svg",
+        "https://artikel.khoharrohman.my.id/assets/talent-remix-skills-graph.svg",
+        "https://artikel.khoharrohman.my.id/assets/etika-ai-rekrutmen-uupdp.svg"
+      ],
+      "datePublished": "2026-10-01T08:00:00+07:00",
+      "dateModified": "2026-10-01T12:00:00+07:00",
+      "inLanguage": "id-ID",
+      "author": {
+        "@type": "Person",
+        "name": "Khohar Rohman",
+        "alternateName": "Khohar Muhamad Fatahurrohman",
+        "jobTitle": "Direktur PT Aigarn Akademi Artificial",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "PT Aigarn Akademi Artificial"
+        },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "Politeknik Negeri Malang"
+        },
+        "url": "https://artikel.khoharrohman.my.id",
+        "sameAs": [
+          "https://github.com/khohar25",
+          "https://www.linkedin.com",
+          "https://scholar.google.com"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Artikel Khohar Rohman",
+        "url": "https://artikel.khoharrohman.my.id",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://artikel.khoharrohman.my.id/assets/logo.png"
+        }
+      },
+      "keywords": [
+        "Manajemen Talenta AI",
+        "HR Tech",
+        "People Analytics",
+        "Bias Algoritma Rekrutmen",
+        "Talent Remix",
+        "UU PDP",
+        "SE Menkominfo No 9 2023",
+        "Human-in-the-Loop HR"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://artikel.khoharrohman.my.id/manajemen-talenta-berbasis-ai-etika#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Bagaimana cara mengetahui apakah sistem AI penyaring resume di perusahaan kita memiliki bias tersembunyi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Uji bias dilakukan dengan menganalisis data historis menggunakan uji disparitas dampak (Disparate Impact Analysis). Jika terdapat perbedaan rasio kelulusan yang mencolok antar kelompok demografis padahal kompetensi teknis mereka setara, maka sistem tersebut terindikasi memuat bias warisan. Audit juga dapat dilakukan melalui pengujian acak menggunakan resume sintetis dengan kualifikasi setara namun variabel identitas diubah."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah perusahaan di Indonesia wajib memberi tahu pelamar jika resume mereka dipindai oleh AI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. Berdasarkan prinsip transparansi pemrosesan data pribadi dalam UU PDP No. 27/2022, pengendali data wajib menyampaikan informasi yang jelas dan mudah dipahami mengenai tujuan pemrosesan dan penggunaan analisis otomatis terhadap data kandidat sebelum pemrosesan dilakukan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mengapa AI tidak boleh dibiarkan mengambil keputusan pemutusan hubungan kerja (PHK) secara otomatis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Surat Edaran Menkominfo No. 9 Tahun 2023 secara tegas melarang sistem kecerdasan artifisial diselenggarakan sebagai pemutus tunggal dalam keputusan kritis yang menyangkut harkat kemanusiaan dan mata pencaharian hidup seseorang. Keputusan mengenai kelangsungan karier seorang karyawan menuntut pertimbangan etika, evaluasi kontekstual, dan empati moral yang tidak dimiliki oleh algoritma komputasi."
+          }
+        }
+      ]
+    }
+  ]
+}

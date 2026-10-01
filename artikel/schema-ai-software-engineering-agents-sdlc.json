@@ -1,0 +1,95 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://artikel.khoharrohman.my.id/ai-software-engineering-agents-sdlc#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://artikel.khoharrohman.my.id/ai-software-engineering-agents-sdlc",
+        "url": "https://artikel.khoharrohman.my.id/ai-software-engineering-agents-sdlc",
+        "name": "AI Software Engineering Agents dalam Transformasi SDLC | Artikel Khohar Rohman"
+      },
+      "headline": "AI Software Engineering Agents dalam Transformasi SDLC",
+      "alternativeHeadline": "Evolusi SDLC: Dari Copilot ke Autonomous Software Engineer",
+      "description": "Kajian mendalam AI Software Engineering Agents dalam transformasi SDLC: tolok ukur SWE-bench, mitigasi governance debt, dan proyeksi produktivitas Gartner 2028.",
+      "image": [
+        "https://artikel.khoharrohman.my.id/assets/ai-software-engineering-agent-hero.jpg",
+        "https://artikel.khoharrohman.my.id/assets/sdlc-agentic-lifecycle-diagram.svg",
+        "https://artikel.khoharrohman.my.id/assets/swe-bench-verification-framework.svg"
+      ],
+      "datePublished": "2026-10-01T08:00:00+07:00",
+      "dateModified": "2026-10-01T12:00:00+07:00",
+      "inLanguage": "id-ID",
+      "author": {
+        "@type": "Person",
+        "name": "Khohar Rohman",
+        "alternateName": "Khohar Muhamad Fatahurrohman",
+        "jobTitle": "Direktur PT Aigarn Akademi Artificial",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "PT Aigarn Akademi Artificial"
+        },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "Politeknik Negeri Malang"
+        },
+        "url": "https://artikel.khoharrohman.my.id",
+        "sameAs": [
+          "https://github.com/khohar25",
+          "https://www.linkedin.com",
+          "https://scholar.google.com"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Artikel Khohar Rohman",
+        "url": "https://artikel.khoharrohman.my.id",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://artikel.khoharrohman.my.id/assets/logo.png"
+        }
+      },
+      "keywords": [
+        "AI Software Engineering",
+        "SWE Agent",
+        "SWE-bench",
+        "Agentic SDLC",
+        "Software Engineering",
+        "Verification-First",
+        "Governance Debt",
+        "Developer Productivity"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://artikel.khoharrohman.my.id/ai-software-engineering-agents-sdlc#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Apa perbedaan mendasar antara GitHub Copilot generasi awal dan Autonomous SWE Agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GitHub Copilot generasi awal beroperasi secara sinkron di dalam editor teks untuk menyarankan kelanjutan beberapa baris kode saat pengembang mengetik. Sebaliknya, Autonomous SWE Agents beroperasi secara asinkron di latar belakang: agen dapat membaca satu tiket masalah (issue), merencanakan strategi penyelesaian, menelusuri ratusan berkas dalam repositori, memodifikasi kode multi-berkas, dan memverifikasi keberhasilan perbaikan melalui eksekusi pengujian otomatis tanpa perlu ditunggui oleh pengembang."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mengapa benchmark SWE-bench dianggap jauh lebih kredibel dibanding HumanEval?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "HumanEval hanya menguji apakah model dapat menulis sebuah fungsi kecil yang berdiri sendiri berdasarkan deskripsi sederhana, yang rentan terhadap kontaminasi data latih (memorization). SWE-bench menguji model pada masalah nyata yang diambil langsung dari repositori perangkat lunak sumber terbuka skala besar di GitHub. Model dituntut memahami pohon kode yang rumit, menemukan letak bug di antara ribuan baris kode, dan memastikan perbaikan yang dibuat tidak merusak fitur lain yang dibuktikan lewat kelulusan rangkaian tes regresi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana cara mencegah kode buatan agen AI merusak kualitas arsitektur sistem enterprise?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kualitas arsitektur dijaga dengan menerapkan doktrin Verification-First Delegation: agen tidak pernah diberikan izin untuk menggabungkan (merge) kode langsung ke cabang produksi. Seluruh keluaran agen harus diisolasi dalam cabang fitur (feature branch), diwajibkan lulus uji integrasi otomatis dan audit keamanan statis (SAST), serta wajib melalui proses penelaahan (code review) dan persetujuan akhir oleh insinyur perangkat lunak manusia senior."
+          }
+        }
+      ]
+    }
+  ]
+}

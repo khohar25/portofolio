@@ -40,11 +40,47 @@
     "judul": "AI Agent dalam Manajemen Rantai Pasok dan Logistik: Arsitektur Self-Healing, Mitigasi Bullwhip Effect, dan Tata Kelola Proporsional",
     "judul_en": "AI Agents in Supply Chain Management and Logistics: Self-Healing Architecture, Bullwhip Mitigation, and Proportional Governance",
     "kategori": "Smart Logistics & Autonomous SCM",
-    "deskripsi": "Panduan implementasi AI Agent dan Multi-Agent Systems di manajemen rantai pasok: arsitektur self-healing, pemodelan konsensus multi-agen untuk menjinakkan agent bullwhip effect, proyeksi pasar Gartner 2026-2030, dan piramida tata kelola proporsional.",
+    "deskripsi": "Panduan implementasi AI Agent dan Multi-Agent Systems di manajemen rantai pasok: arsitektur self-healing, mitigasi agent bullwhip effect via konsensus multi-agen, proyeksi pasar Gartner 2026-2030, dan piramida tata kelola proporsional.",
     "deskripsi_en": "Implementation guide for AI Agents and Multi-Agent Systems in SCM: self-healing supply chains, multi-agent consensus protocols against agent bullwhip distortion, Gartner 2026-2030 forecasts, and proportional governance tiers.",
     "link": "artikel/ai-agent-manajemen-rantai-pasok.html",
     "author": "Khohar Rohman",
     "reading_time": "13 min read",
+    "created_at": "2026-10-01"
+  },
+  {
+    "id": "ai-agent-cybersecurity-soc-enterprise",
+    "judul": "AI Agent dalam Cybersecurity dan SOC Enterprise: Mitigasi Alert Fatigue, Prinsip Least Agency Privilege, dan Kepatuhan Regulasi",
+    "judul_en": "AI Agents in Enterprise Cybersecurity & SOC: Mitigating Alert Fatigue, Least Agency Privilege, and Regulatory Compliance",
+    "kategori": "Cybersecurity & Autonomous SOC",
+    "deskripsi": "Kajian arsitektur AI Agent dalam Security Operations Center (SOC) enterprise: menyaring 70-85% alert fatigue, korelasi multi-tahap SIEM/EDR, doktrin keamanan Least Agency Privilege, dan pemenuhan batas notifikasi 3x24 jam UU PDP No. 27/2022.",
+    "deskripsi_en": "Architectural study on AI Agents in enterprise Security Operations Centers (SOC): filtering 70-85% false positive alert fatigue, multi-stage telemetry correlation, Least Agency Privilege security doctrine, and meeting PDP Law 3x24h incident notification limits.",
+    "link": "artikel/ai-agent-cybersecurity-soc-enterprise.html",
+    "author": "Khohar Rohman",
+    "reading_time": "12 min read",
+    "created_at": "2026-10-01"
+  },
+  {
+    "id": "ai-software-engineering-agents-sdlc",
+    "judul": "AI Software Engineering Agents dalam Transformasi SDLC: Dari Copilot ke Autonomous Engineer, SWE-bench, dan Verification-First",
+    "judul_en": "AI Software Engineering Agents in SDLC Transformation: From Copilot to Autonomous Engineer, SWE-bench, and Verification-First",
+    "kategori": "Software Engineering & Developer Tooling",
+    "deskripsi": "Kajian mendalam AI Software Engineering (SWE) Agents dalam siklus hidup pengembangan perangkat lunak (SDLC): tolok ukur SWE-bench, arsitektur multi-berkas asinkron, mitigasi governance debt, dan proyeksi produktivitas Gartner 2028.",
+    "deskripsi_en": "In-depth study of AI Software Engineering (SWE) Agents across the modern SDLC: SWE-bench verified benchmarks, asynchronous multi-file coding workflows, mitigating governance debt, and Gartner 2028 productivity forecasts.",
+    "link": "artikel/ai-software-engineering-agents-sdlc.html",
+    "author": "Khohar Rohman",
+    "reading_time": "11 min read",
+    "created_at": "2026-10-01"
+  },
+  {
+    "id": "manajemen-talenta-berbasis-ai-etika",
+    "judul": "Manajemen Talenta Berbasis AI: Efisiensi dan Etika, Strategi Talent Remix, Mitigasi Bias Algoritma, dan UU PDP",
+    "judul_en": "AI-Driven Talent Management: Efficiency and Ethics, Talent Remix Strategy, Mitigating Algorithmic Bias, and PDP Law",
+    "kategori": "People Analytics & Organizational AI",
+    "deskripsi": "Kajian arsitektur AI dalam manajemen talenta dan HR enterprise: transisi ke Dynamic Skills Intelligence, strategi Talent Remix Gartner 2026 melampaui PHK massal, audit bias disparitas dampak, dan perlindungan hak pelamar UU PDP No. 27/2022.",
+    "deskripsi_en": "Architectural analysis of AI in enterprise talent management and HR: transition to Dynamic Skills Intelligence, Gartner 2026 Talent Remix workforce amplification, algorithmic disparate impact audits, and PDP Law applicant rights.",
+    "link": "artikel/manajemen-talenta-berbasis-ai-etika.html",
+    "author": "Khohar Rohman",
+    "reading_time": "10 min read",
     "created_at": "2026-10-01"
   }
 ]
