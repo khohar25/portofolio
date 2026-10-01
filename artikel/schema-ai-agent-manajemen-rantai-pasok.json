@@ -1,0 +1,96 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://artikel.khoharrohman.my.id/ai-agent-manajemen-rantai-pasok#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://artikel.khoharrohman.my.id/ai-agent-manajemen-rantai-pasok",
+        "url": "https://artikel.khoharrohman.my.id/ai-agent-manajemen-rantai-pasok",
+        "name": "AI Agent dalam Manajemen Rantai Pasok dan Logistik | Artikel Khohar Rohman"
+      },
+      "headline": "AI Agent dalam Manajemen Rantai Pasok dan Logistik",
+      "alternativeHeadline": "Transformasi AI Agent di Manajemen Rantai Pasok",
+      "description": "Panduan implementasi AI Agent dan Multi-Agent Systems di manajemen rantai pasok: arsitektur self-healing, mitigasi bullwhip effect, dan proyeksi pasar 2026.",
+      "image": [
+        "https://artikel.khoharrohman.my.id/assets/ai-agent-supply-chain-hero.jpg",
+        "https://artikel.khoharrohman.my.id/assets/multi-agent-inventory-coordination.jpg",
+        "https://artikel.khoharrohman.my.id/assets/tata-kelola-agent-bullwhip-mitigasi.jpg"
+      ],
+      "datePublished": "2026-10-01T08:00:00+07:00",
+      "dateModified": "2026-10-01T12:00:00+07:00",
+      "inLanguage": "id-ID",
+      "author": {
+        "@type": "Person",
+        "name": "Khohar Rohman",
+        "alternateName": "Khohar Muhamad Fatahurrohman",
+        "jobTitle": "Direktur PT Aigarn Akademi Artificial",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "PT Aigarn Akademi Artificial"
+        },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "Politeknik Negeri Malang"
+        },
+        "url": "https://artikel.khoharrohman.my.id",
+        "sameAs": [
+          "https://github.com/khohar25",
+          "https://www.linkedin.com",
+          "https://scholar.google.com"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Artikel Khohar Rohman",
+        "url": "https://artikel.khoharrohman.my.id",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://artikel.khoharrohman.my.id/assets/logo.png"
+        }
+      },
+      "keywords": [
+        "AI Agent",
+        "Agentic AI",
+        "Manajemen Rantai Pasok",
+        "Supply Chain Management",
+        "Logistik Pintar",
+        "Multi-Agent Systems",
+        "Self-Healing Supply Chain",
+        "Bullwhip Effect",
+        "Proportional Governance"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://artikel.khoharrohman.my.id/ai-agent-manajemen-rantai-pasok#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Apa perbedaan mendasar antara otomatisasi logistik berbasis aturan (RPA) dan agen AI otonom?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "RPA dan sistem aturan konvensional hanya mampu mengeksekusi alur kerja linear deterministik yang sudah ditentukan sebelumnya (if-this-then-that). Jika terjadi anomali baru yang tidak terdaftar dalam aturan, sistem akan gagal atau berhenti. Sebaliknya, agen AI otonom memiliki kemampuan penalaran kontekstual berbasis model bahasa: agen dapat mengevaluasi skenario yang belum pernah dihadapi sebelumnya, mempertimbangkan berbagai opsi solusi, dan bernegosiasi dengan sistem lain untuk memecahkan masalah logistik secara mandiri."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana agen AI memitigasi distorsi pesanan (Bullwhip Effect) pada rantai pasok?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Agen AI memitigasi efek cambuk melalui mekanisme transparansi data multi-agen (multi-agent consensus-seeking). Alih-alih setiap tingkat rantai pasok menduga-duga volume permintaan berdasarkan pesanan perantara, agen saling berbagi sinyal konsumsi riil konsumen akhir secara terenkripsi, disertai penggunaan algoritma peredam (safety dampeners) yang mencegah lonjakan pesanan panik."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah agen otonom dapat melakukan transaksi pemesanan barang tanpa izin manusia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bisa, namun hanya untuk transaksi operasional rutin bernilai rendah di bawah batas toleransi yang ditetapkan manajemen (misalnya pemesanan ulang suku cadang rutin di bawah ambang batas tertentu). Untuk transaksi pengadaan bernilai besar atau perubahan kontrak vendor jangka panjang, tata kelola proporsional mewajibkan arsitektur Human-in-the-Loop, di mana agen hanya bertindak sebagai analis penyusun rekomendasi dan eksekusi final membutuhkan otorisasi manajer manusia."
+          }
+        }
+      ]
+    }
+  ]
+}

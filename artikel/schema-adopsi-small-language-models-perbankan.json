@@ -1,0 +1,96 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://artikel.khoharrohman.my.id/adopsi-small-language-models-perbankan#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://artikel.khoharrohman.my.id/adopsi-small-language-models-perbankan",
+        "url": "https://artikel.khoharrohman.my.id/adopsi-small-language-models-perbankan",
+        "name": "Adopsi Small Language Models (SLMs) di Sektor Perbankan | Artikel Khohar Rohman"
+      },
+      "headline": "Adopsi Small Language Models (SLMs) di Sektor Perbankan",
+      "alternativeHeadline": "Strategi Small Language Models (SLMs) untuk Bank Modern",
+      "description": "Kajian arsitektur Small Language Models (SLMs) on-premise di sektor perbankan: efisiensi biaya 90%, kedaulatan data UU PDP, dan kepatuhan OJK 2025/2026.",
+      "image": [
+        "https://artikel.khoharrohman.my.id/assets/slm-perbankan-onpremise-hero.jpg",
+        "https://artikel.khoharrohman.my.id/assets/arsitektur-model-pyramid-finansial.jpg",
+        "https://artikel.khoharrohman.my.id/assets/kepatuhan-data-nasabah-bank.jpg"
+      ],
+      "datePublished": "2026-10-01T08:00:00+07:00",
+      "dateModified": "2026-10-01T12:00:00+07:00",
+      "inLanguage": "id-ID",
+      "author": {
+        "@type": "Person",
+        "name": "Khohar Rohman",
+        "alternateName": "Khohar Muhamad Fatahurrohman",
+        "jobTitle": "Direktur PT Aigarn Akademi Artificial",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "PT Aigarn Akademi Artificial"
+        },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "Politeknik Negeri Malang"
+        },
+        "url": "https://artikel.khoharrohman.my.id",
+        "sameAs": [
+          "https://github.com/khohar25",
+          "https://www.linkedin.com",
+          "https://scholar.google.com"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Artikel Khohar Rohman",
+        "url": "https://artikel.khoharrohman.my.id",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://artikel.khoharrohman.my.id/assets/logo.png"
+        }
+      },
+      "keywords": [
+        "Small Language Models",
+        "SLM",
+        "AI Perbankan",
+        "FinTech",
+        "Kedaulatan Data",
+        "UU PDP",
+        "OJK",
+        "Tata Kelola AI Perbankan",
+        "On-Premise AI"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://artikel.khoharrohman.my.id/adopsi-small-language-models-perbankan#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Apakah model bahasa kecil (SLM) mampu menandingi kemampuan penalaran model raksasa (LLM)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Untuk tugas-tugas penalaran umum dan pengetahuan ensiklopedis dunia, model raksasa masih lebih unggul. Namun, untuk tugas-tugas domain finansial yang terikat aturan (bounded domain), seperti ekstraksi tabel mutasi rekening, penentuan rasio kredit, dan klasifikasi kepatuhan, riset empiris membuktikan bahwa SLM berukuran 3B–8B yang telah disempurnakan (fine-tuned) dengan LoRA menghasilkan akurasi yang setara atau bahkan mengungguli model raksasa umum."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Berapa investasi perangkat keras minimal untuk menjalankan SLM On-Premise di perbankan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dengan teknologi kuantisasi 4-bit mutakhir, bank tidak memerlukan kluster superkomputer bernilai puluhan miliar rupiah. Sebuah server rak standar perbankan yang dilengkapi 2 hingga 4 unit GPU enterprise (masing-masing 24–48 GB VRAM) sudah cukup untuk melayani ribuan inferensi model 8B secara simultan dengan waktu respons milidetik, menghasilkan periode pengembalian modal (payback period) kurang dari 9 bulan dibanding biaya langganan API cloud."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mengapa OJK mewajibkan sistem AI perbankan bebas dari fenomena kotak hitam (black-box)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dalam industri perbankan yang berlandaskan prinsip kehati-hatian (prudential banking), setiap keputusan kredit atau sanksi pembatasan rekening berdampak langsung pada hak finansial nasabah. Panduan Tata Kelola AI Perbankan OJK 2025 mewajibkan transparansi agar jika terjadi penolakan fasilitas pinjaman atau pelaporan fraud keliru, bank dapat menjelaskan faktor data objektif yang mendasari keputusan tersebut kepada regulator dan nasabah."
+          }
+        }
+      ]
+    }
+  ]
+}

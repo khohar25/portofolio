@@ -1,0 +1,96 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://artikel.khoharrohman.my.id/model-context-protocol-multi-agent-enterprise#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://artikel.khoharrohman.my.id/model-context-protocol-multi-agent-enterprise",
+        "url": "https://artikel.khoharrohman.my.id/model-context-protocol-multi-agent-enterprise",
+        "name": "Model Context Protocol (MCP) dan Arsitektur Multi-Agent AI | Artikel Khohar Rohman"
+      },
+      "headline": "Model Context Protocol (MCP) dan Arsitektur Multi-Agent AI",
+      "alternativeHeadline": "Model Context Protocol (MCP) untuk Multi-Agent Enterprise",
+      "description": "Panduan arsitektur Model Context Protocol (MCP) dan Multi-Agent Systems enterprise untuk memecahkan integrasi NxM, tata kelola data, dan regulasi 2026.",
+      "image": [
+        "https://artikel.khoharrohman.my.id/assets/mcp-arsitektur-enterprise-hero.jpg",
+        "https://artikel.khoharrohman.my.id/assets/multi-agent-orchestration-enterprise.jpg",
+        "https://artikel.khoharrohman.my.id/assets/tata-kelola-keamanan-ai-enterprise.jpg"
+      ],
+      "datePublished": "2026-10-01T08:00:00+07:00",
+      "dateModified": "2026-10-01T12:00:00+07:00",
+      "inLanguage": "id-ID",
+      "author": {
+        "@type": "Person",
+        "name": "Khohar Rohman",
+        "alternateName": "Khohar Muhamad Fatahurrohman",
+        "jobTitle": "Direktur PT Aigarn Akademi Artificial",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "PT Aigarn Akademi Artificial"
+        },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "Politeknik Negeri Malang"
+        },
+        "url": "https://artikel.khoharrohman.my.id",
+        "sameAs": [
+          "https://github.com/khohar25",
+          "https://www.linkedin.com",
+          "https://scholar.google.com"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Artikel Khohar Rohman",
+        "url": "https://artikel.khoharrohman.my.id",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://artikel.khoharrohman.my.id/assets/logo.png"
+        }
+      },
+      "keywords": [
+        "Model Context Protocol",
+        "MCP",
+        "Multi-Agent Systems",
+        "AI enterprise",
+        "Agentic AI",
+        "UU PDP",
+        "SE Menkominfo No 9 2023",
+        "Human-in-the-Loop",
+        "Software Architecture"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://artikel.khoharrohman.my.id/model-context-protocol-multi-agent-enterprise#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Apakah Model Context Protocol (MCP) menggantikan REST API atau GraphQL yang sudah ada di korporasi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tidak. MCP tidak menggantikan REST API atau GraphQL, melainkan bertindak sebagai jembatan perantara semantik (semantic wrapper). Server MCP membungkus endpoint REST API atau kueri GraphQL internal yang sudah ada, lalu menerjemahkannya ke dalam format kontrak Tools dan Resources standar JSON-RPC 2.0 agar dapat dipahami dan dipanggil secara deterministik oleh agen AI."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apa perbedaan mendasar antara MCP dan Function Calling bawaan dari penyedia LLM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Function Calling konvensional adalah mekanisme inferensi bawaan model tertentu untuk menghasilkan sintaksis pemanggilan fungsi JSON dengan implementasi kode manual pada masing-masing penyedia model. MCP adalah protokol terbuka standar industri yang mengabstraksi seluruh proses tersebut secara universal: sekali Anda membuat satu MCP Server untuk basis data Anda, server tersebut dapat dikonsumsi oleh model dan aplikasi AI apa pun yang mematuhi standar MCP tanpa perlu menulis ulang kode konektor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mengapa sistem multi-agen enterprise memerlukan verifikasi manusia (Human-in-the-Loop)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Verifikasi manusia diperlukan untuk memitigasi risiko halusinasi, kesalahan logika pemanggilan fungsi, dan potensi tindakan fatal pada sistem produksi seperti transfer dana atau penghapusan data. Selain itu, di Indonesia, SE Menkominfo No. 9/2023 dan UU PDP No. 27/2022 mewajibkan akuntabilitas hukum dan melarang sistem otonom mengambil keputusan akhir yang berdampak langsung pada hak hukum dan keselamatan manusia tanpa diskresi peninjau manusia yang kompeten."
+          }
+        }
+      ]
+    }
+  ]
+}

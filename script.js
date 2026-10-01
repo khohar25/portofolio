@@ -2526,15 +2526,22 @@ function renderArticles(articleList, lang = 'en') {
         const title = (lang === 'en' && item.judul_en) ? item.judul_en : item.judul;
         const excerpt = (lang === 'en' && item.deskripsi_en) ? item.deskripsi_en : item.deskripsi;
         const readLabel = lang === 'en' ? 'Read Technical Publication' : 'Baca Publikasi Lengkap';
-        const articleLink = item.link || 'https://khohar25.github.io/artikel/';
+        const articleLink = item.link || 'artikel/';
+        const readingTime = item.reading_time || (lang === 'en' ? '15 min read' : '~15 menit baca');
+        const dateStr = item.created_at || '2026-10-01';
 
         const card = document.createElement('div');
-        card.className = 'article-entry-card reveal active';
+        card.className = 'article-entry-card reveal active featured-article';
         card.innerHTML = `
-            <span class="article-cat">${item.kategori || 'Article'}</span>
-            <h4 class="article-heading notranslate">${title}</h4>
-            <p class="article-excerpt">${excerpt || ''}</p>
-            <a href="${articleLink}" target="_blank" class="project-footer-link">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;">
+                <span class="article-cat" style="margin-bottom: 0;">${escapeHtml(item.kategori || 'Applied Artificial Intelligence')}</span>
+                <span style="font-size: 0.78rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px;">
+                    <i class="far fa-calendar-alt" style="color: var(--accent);"></i> ${escapeHtml(dateStr)} • ${escapeHtml(readingTime)}
+                </span>
+            </div>
+            <h4 class="article-heading notranslate">${escapeHtml(title)}</h4>
+            <p class="article-excerpt">${escapeHtml(excerpt || '')}</p>
+            <a href="${articleLink}" class="project-footer-link">
                 <span>${readLabel}</span> <i class="fas fa-arrow-right"></i>
             </a>
         `;

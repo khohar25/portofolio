@@ -1,0 +1,34 @@
+# Khohar Muhamad Fatahurrohman (Khohar Rohman)
+
+> Software & Applied AI Engineer, 8x National Science Olympiad (OSN) Gold Medalist, Informatics Engineering student at State Polytechnic of Malang (POLINEMA), certified by IBM SkillsBuild, and author of Indonesian serialized narrative fiction.
+
+## Core Identity & Disambiguation
+- **Full Legal Name**: Khohar Muhamad Fatahurrohman
+- **Known Also As**: Khohar Rohman, Khohar M.F., OfficialKhoharRohman
+- **Primary Domain**: https://khoharrohman.my.id/
+- **Education**: D4 Teknik Informatika (Informatics Engineering) — Politeknik Negeri Malang (POLINEMA) (2024 - Present)
+- **High School**: SMK Negeri 1 Ngawi, East Java, Indonesia
+- **Location**: Ngawi & Malang, East Java, Indonesia
+
+## Notable Honors & Achievements
+- **8x National Science Olympiad (OSN) Gold Medalist**: Multi-discipline mastery spanning informatics, computational mathematics, physics, and natural sciences across prestigious national competitions.
+- **IBM SkillsBuild Professional Credentials**: Global industry certifications in Artificial Intelligence Fundamentals, Generative AI with LLMs, Enterprise Cloud Computing, Cybersecurity, and Software Engineering.
+- **Regional Student Leadership**: Steering committee and active organizer for Regional Assembly XXIV of East Java Muhammadiyah Students Association (PW IPM Jatim).
+
+## Key Publications & Articles
+- [Transformasi Lanskap Kecerdasan Artifisial: Analisis Paradoks Produktivitas, Adopsi Lintas Sektor, dan Tata Kelola Berkelanjutan](https://khoharrohman.my.id/artikel/): Comprehensive scholarly research paper analyzing the Solow Productivity Paradox in enterprise AI, cross-sectoral deployments (healthcare, engineering, education), labor restructuring, Indonesian national AI ethics regulation (SE Menkominfo No. 9/2023), and modular RTF prompt engineering methodologies with 40 peer-reviewed citations (SINTA 2, IEEE Access, Scopus).
+- [Adopsi Small Language Models (SLMs) di Sektor Perbankan: Arsitektur On-Premise, Kedaulatan Data UU PDP, dan Efisiensi Finansial](https://khoharrohman.my.id/artikel/adopsi-small-language-models-perbankan.html): In-depth enterprise banking research exploring on-premise SLM deployment (<= 10B parameters, LoRA/QLoRA), reducing recurring operational inference costs by up to 90%, eliminating token bill shock, strictly adhering to Indonesia's Personal Data Protection Law (UU PDP No. 27/2022), implementing "The Models Pyramid" tiering, and complying with the OJK Banking AI Governance Guidelines 2025/2026.
+- [Model Context Protocol (MCP) dan Arsitektur Multi-Agent AI: Transformasi Standar Integrasi Konteks, Tata Kelola Data, dan Orkestrasi Agen Otonom Enterprise di Indonesia](https://khoharrohman.my.id/artikel/model-context-protocol-multi-agent-enterprise.html): Software architecture treatise dissecting Anthropic & Linux Foundation's Model Context Protocol (MCP) as the universal "USB-C for AI", eliminating the N x M integration tax, securing multi-agent systems from raw text-to-SQL injection risks, deploying enterprise Control Planes with RBAC and immutable audit trails, and enforcing Human-in-the-Loop governance under SE Menkominfo No. 9/2023.
+- [AI Agent dalam Manajemen Rantai Pasok dan Logistik: Arsitektur Self-Healing, Mitigasi Bullwhip Effect, dan Tata Kelola Proporsional](https://khoharrohman.my.id/artikel/ai-agent-manajemen-rantai-pasok.html): Comprehensive enterprise logistics research on autonomous supply chain management using Multi-Agent Systems (MAS), cutting inventory costs by 20-30% and shipping expenses by 5-20% (McKinsey), addressing the algorithmic Agent Bullwhip Effect via multi-agent consensus protocols, navigating Gartner 2026-2030 adoption waves, and implementing proportional governance with Human-in-the-Loop financial thresholds.
+
+## Literary Works (Nusantara Serialized Fiction)
+- **Kala Bintang Bersaksi**: Epic fantasy historical mystery narrative set across the mythical Nusantara realms of Majapahit and celestial kingdoms.
+- **Lembayung Di Atas Mahameru**: Adventure and youth mountaineering exploration novel celebrating brotherhood, perseverance, and high altitude reflection.
+- **Menatap Langit Tanpa Suara**: Psychological introspective coming-of-age fiction exploring self-discovery, silence, and academic resolve.
+
+## Official Social & Code Links
+- **Portfolio Website**: https://khoharrohman.my.id/
+- **GitHub**: https://github.com/khohar25
+- **YouTube**: https://www.youtube.com/@khoharmuhamadfatahurrohman
+- **TikTok**: https://www.tiktok.com/@officialkhoharrohman
+- **Instagram**: https://www.instagram.com/officialkhoharrohman

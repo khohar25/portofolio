@@ -1,20 +1,50 @@
 [
   {
-    "judul": "Membangun Ekosistem Kecerdasan Buatan Terapan untuk Akselerasi Industri",
-    "judul_en": "Architecting Applied Artificial Intelligence Ecosystems for Industrial Acceleration",
-    "kategori": "Applied Artificial Intelligence",
-    "deskripsi": "Analisis mendalam mengenai integrasi kecerdasan buatan generatif dan sistem agen otonom (Agentic AI) dalam mendongkrak efisiensi operasional serta akselerasi kapabilitas rekayasa perangkat lunak di Indonesia.",
-    "deskripsi_en": "An in-depth analysis on adopting generative AI and autonomous agentic workflows to enhance operational productivity and accelerate software engineering capability.",
-    "link": "https://khohar25.github.io/artikel/",
-    "created_at": "2026-09-20"
+    "id": "transformasi-lanskap-kecerdasan-artifisial",
+    "judul": "Transformasi Lanskap Kecerdasan Artifisial: Analisis Paradoks Produktivitas, Adopsi Lintas Sektor, dan Tata Kelola Berkelanjutan",
+    "judul_en": "Transforming the Artificial Intelligence Landscape: Productivity Paradox, Cross-Sector Adoption, and Sustainable Governance",
+    "kategori": "Applied Artificial Intelligence & Policy",
+    "deskripsi": "Kajian komprehensif mengupas Paradoks Solow dalam adopsi AI, transformasi lintas sektor (kesehatan, rekayasa software, pendidikan, kreatif), restrukturisasi pasar tenaga kerja dua jalur, kepatuhan etika regulasi SE Menkominfo No. 9/2023, hingga metodologi rekayasa instruksi RTF modular.",
+    "deskripsi_en": "A comprehensive scholarly analysis dissecting the modern Solow Productivity Paradox in enterprise AI adoption, cross-sector transformations, labor market restructuring, ethical regulatory frameworks (SE Menkominfo No. 9/2023), and modular RTF prompt engineering methodologies.",
+    "link": "artikel/",
+    "author": "Khohar Muhamad Fatahurrohman",
+    "reading_time": "15 min read",
+    "created_at": "2026-10-01"
   },
   {
-    "judul": "Arsitektur Web Modern: Optimalisasi Latensi Rendah pada Ekosistem Cloud Vercel",
-    "judul_en": "Modern Web Architecture: Ultra-Low Latency Optimization in Vercel Cloud",
-    "kategori": "Cloud & Web Architecture",
-    "deskripsi": "Studi praktis implementasi arsitektur web modern, caching di edge network, serta eliminasi overhead runtime guna mencapai skor Core Web Vitals optimal pada perangkat seluler.",
-    "deskripsi_en": "A practical study on modern web architecture, edge caching, and runtime overhead elimination to achieve optimal Core Web Vitals across diverse mobile devices.",
-    "link": "https://khohar25.github.io/artikel/",
-    "created_at": "2026-09-15"
+    "id": "adopsi-small-language-models-perbankan",
+    "judul": "Adopsi Small Language Models (SLMs) di Sektor Perbankan: Arsitektur On-Premise, Kedaulatan Data UU PDP, dan Efisiensi Finansial",
+    "judul_en": "Adoption of Small Language Models (SLMs) in Banking: On-Premise Architecture, Data Sovereignty, and Financial Efficiency",
+    "kategori": "FinTech & Banking AI Architecture",
+    "deskripsi": "Kajian arsitektur Small Language Models (SLMs) on-premise di sektor perbankan: efisiensi biaya hingga 90%, jaminan kedaulatan data nasabah UU PDP No. 27/2022, paradigma The Models Pyramid, dan kepatuhan Panduan Tata Kelola AI OJK 2025.",
+    "deskripsi_en": "Architecture study on on-premise Small Language Models (SLMs) in banking: cutting Opex by up to 90%, strict client data sovereignty under PDP Law, the Models Pyramid paradigm, and OJK 2025/2026 governance compliance.",
+    "link": "artikel/adopsi-small-language-models-perbankan.html",
+    "author": "Khohar Rohman",
+    "reading_time": "12 min read",
+    "created_at": "2026-10-01"
+  },
+  {
+    "id": "model-context-protocol-multi-agent-enterprise",
+    "judul": "Model Context Protocol (MCP) dan Arsitektur Multi-Agent AI: Transformasi Standar Integrasi Konteks dan Tata Kelola Korporat",
+    "judul_en": "Model Context Protocol (MCP) and Multi-Agent AI Architecture: Standardizing Context Integration and Enterprise Governance",
+    "kategori": "Enterprise Architecture & Agentic AI",
+    "deskripsi": "Panduan arsitektur Model Context Protocol (MCP) dan Multi-Agent Systems enterprise: memecahkan krisis integrasi N x M, eliminasi kerentanan Text-to-SQL, lapisan kendali Control Plane RBAC, dan audit kepatuhan regulasi AI 2026.",
+    "deskripsi_en": "Architectural guide to Model Context Protocol (MCP) and enterprise Multi-Agent Systems: resolving the NxM integration bottleneck, eliminating raw Text-to-SQL risks, enterprise Control Plane with RBAC, and AI governance auditability.",
+    "link": "artikel/model-context-protocol-multi-agent-enterprise.html",
+    "author": "Khohar Rohman",
+    "reading_time": "14 min read",
+    "created_at": "2026-10-01"
+  },
+  {
+    "id": "ai-agent-manajemen-rantai-pasok",
+    "judul": "AI Agent dalam Manajemen Rantai Pasok dan Logistik: Arsitektur Self-Healing, Mitigasi Bullwhip Effect, dan Tata Kelola Proporsional",
+    "judul_en": "AI Agents in Supply Chain Management and Logistics: Self-Healing Architecture, Bullwhip Mitigation, and Proportional Governance",
+    "kategori": "Smart Logistics & Autonomous SCM",
+    "deskripsi": "Panduan implementasi AI Agent dan Multi-Agent Systems di manajemen rantai pasok: arsitektur self-healing, pemodelan konsensus multi-agen untuk menjinakkan agent bullwhip effect, proyeksi pasar Gartner 2026-2030, dan piramida tata kelola proporsional.",
+    "deskripsi_en": "Implementation guide for AI Agents and Multi-Agent Systems in SCM: self-healing supply chains, multi-agent consensus protocols against agent bullwhip distortion, Gartner 2026-2030 forecasts, and proportional governance tiers.",
+    "link": "artikel/ai-agent-manajemen-rantai-pasok.html",
+    "author": "Khohar Rohman",
+    "reading_time": "13 min read",
+    "created_at": "2026-10-01"
   }
 ]
