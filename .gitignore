@@ -2,3 +2,10 @@
 .DS_Store
 Thumbs.db
 __pycache__/
+node_modules/
+scratch/
+*.zip
+generate_*.py
+compile_*.py
+certs_status.json
+package*.json

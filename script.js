@@ -3,6 +3,15 @@
    ATMOSPHERIC AMBIENT ENGINE (ANTI-AI-SLOP 60FPS CANVAS & CELESTIAL HORIZON)
    ========================================================================== */
 
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
 class AmbientAtmosphere {
     constructor() {
         this.canvas = document.getElementById('ambient-canvas');
@@ -458,37 +467,53 @@ function initFictionSlider() {
         const scrollLeft = track.scrollLeft;
         const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
         const step = getCardStep();
-        const activeIndex = Math.min(cards.length - 1, Math.max(0, Math.round(scrollLeft / (step || 1))));
+        const activeIndex = scrollLeft >= maxScroll - 30
+            ? cards.length - 1
+            : Math.min(cards.length - 1, Math.max(0, Math.round(scrollLeft / (step || 1))));
 
         // Update pagination dots
         dots.forEach((dot, idx) => {
             dot.classList.toggle('active', idx === activeIndex);
         });
 
-        // Update button states
+        // Continuous Loop: buttons are always enabled and never disabled
         if (prevBtn) {
-            const isAtStart = scrollLeft <= 8;
-            prevBtn.disabled = isAtStart;
-            prevBtn.classList.toggle('disabled', isAtStart);
+            prevBtn.disabled = false;
+            prevBtn.classList.remove('disabled');
         }
         if (nextBtn) {
-            const isAtEnd = scrollLeft >= maxScroll - 8;
-            nextBtn.disabled = isAtEnd;
-            nextBtn.classList.toggle('disabled', isAtEnd);
+            nextBtn.disabled = false;
+            nextBtn.classList.remove('disabled');
         }
     }
 
-    // Prev / Next button click handlers
+    // Prev / Next button click handlers with infinite wrap-around
     prevBtn?.addEventListener('click', (e) => {
         e.preventDefault();
+        const scrollLeft = track.scrollLeft;
+        const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
         const step = getCardStep();
-        track.scrollBy({ left: -step, behavior: 'smooth' });
+
+        // If at the beginning, wrap to the end
+        if (scrollLeft <= Math.max(25, step * 0.25)) {
+            track.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        } else {
+            track.scrollBy({ left: -step, behavior: 'smooth' });
+        }
     });
 
     nextBtn?.addEventListener('click', (e) => {
         e.preventDefault();
+        const scrollLeft = track.scrollLeft;
+        const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
         const step = getCardStep();
-        track.scrollBy({ left: step, behavior: 'smooth' });
+
+        // If at the end or within remaining step from end, wrap around to the beginning
+        if (scrollLeft >= maxScroll - Math.max(30, step * 0.75)) {
+            track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            track.scrollBy({ left: step, behavior: 'smooth' });
+        }
     });
 
     // Dot indicators click
@@ -834,7 +859,7 @@ function initBookshelfArchive() {
     });
 
     // Fetch certificates.json
-    fetch('certificates.json?v=30')
+    fetch('certificates.json?v=33')
         .then(res => res.json())
         .then(data => {
             if (Array.isArray(data) && data.length > 0) {
@@ -849,13 +874,16 @@ function initBookshelfArchive() {
 }
 
 // ==========================================================================
-// 0.3 PHOTO DOCUMENTATION & ACTIVITY GALLERY ENGINE
+// 0.3 PHOTO DOCUMENTATION & ACTIVITY GALLERY ENGINE (UNIFIED INFINITE CAROUSEL)
 // ==========================================================================
 function initPhotoGallery() {
-    const grid = document.getElementById('gallery-grid');
-    if (!grid) return;
+    const track = document.getElementById('gallery-slider-track');
+    if (!track) return;
 
-    const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+    const prevBtn = document.getElementById('gallery-prev-btn');
+    const nextBtn = document.getElementById('gallery-next-btn');
+    const dotsContainer = document.getElementById('gallery-slider-dots');
+
     const lightbox = document.getElementById('gallery-lightbox');
     const lightboxBackdrop = document.getElementById('gallery-lightbox-backdrop');
     const lightboxClose = document.getElementById('gallery-lightbox-close');
@@ -870,165 +898,455 @@ function initPhotoGallery() {
     const lightboxDesc = document.getElementById('gallery-lightbox-desc');
 
     let galleryItems = [];
-    let activeFilter = 'all';
     let currentLightboxIndex = 0;
-    let filteredItems = [];
+
+    // Helper to map category to Genshin elemental theme class
+    function getThemeClass(cat) {
+        switch ((cat || '').toLowerCase()) {
+            case 'prestasi': return 'geo';
+            case 'akademik': return 'electro';
+            case 'organisasi': return 'anemo';
+            case 'kegiatan': return 'pyro';
+            case 'pribadi': return 'hydro';
+            default: return 'geo';
+        }
+    }
+
+    function cleanText(str) {
+        if (!str) return '';
+        return String(str).replace(/&bull;/g, '•');
+    }
+
+    function getCardStep() {
+        const cards = track.querySelectorAll('.gallery-slide-card');
+        if (cards.length > 1) {
+            return cards[1].offsetLeft - cards[0].offsetLeft;
+        }
+        return (cards[0] ? cards[0].offsetWidth : 320) + 20;
+    }
+
+    function updateSliderState() {
+        const cards = track.querySelectorAll('.gallery-slide-card');
+        if (!cards.length) return;
+        const scrollLeft = track.scrollLeft;
+        const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+        const step = getCardStep();
+        const activeIndex = scrollLeft >= maxScroll - Math.max(30, step * 0.75)
+            ? cards.length - 1
+            : Math.min(cards.length - 1, Math.max(0, Math.round(scrollLeft / (step || 1))));
+
+        if (dotsContainer) {
+            const dots = dotsContainer.querySelectorAll('.gallery-dot');
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === activeIndex);
+            });
+        }
+
+        // Infinite Continuous Loop: Navigation buttons are never disabled
+        if (prevBtn) {
+            prevBtn.disabled = false;
+            prevBtn.classList.remove('disabled');
+        }
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.classList.remove('disabled');
+        }
+    }
 
     // Fallback embedded data (guarantees instant display even if fetch is blocked)
     const fallbackGallery = [
         {
-            "id": "galeri-1",
-            "category": "pribadi",
-            "category_name_id": "Potret Profil & Riset",
-            "category_name_en": "Professional & Engineering",
-            "title_id": "Khohar Muhamad Fatahurrohman — Profil Rekayasa",
-            "title_en": "Khohar Muhamad Fatahurrohman — Engineering Profile",
-            "subtitle_id": "Software & Applied AI Specialist",
-            "subtitle_en": "Software & Applied AI Specialist",
-            "date": "2026",
-            "location_id": "Malang, Jawa Timur",
-            "location_en": "Malang, East Java",
-            "image_url": "aku.jpeg",
-            "caption_id": "Potret kerja dan dedikasi dalam rekayasa perangkat lunak, eksplorasi kecerdasan buatan terapan, dan pengembangan sistem web modern.",
-            "caption_en": "Dedicated to software engineering excellence, applied AI architectures, and modern responsive web systems.",
-            "featured": true
+                "id": "galeri-1",
+                "category": "prestasi",
+                "category_name_id": "Prestasi & Kredensial Global",
+                "category_name_en": "Achievements & Global Credentials",
+                "title_id": "Khohar Muhamad Fatahurrohman — Potret Profesional & Dinding Kredensial IBM",
+                "title_en": "Khohar Muhamad Fatahurrohman — Professional Studio & IBM Credential Wall",
+                "subtitle_id": "Rekayasa Komputasi & Kompetensi Industri Digital",
+                "subtitle_en": "Computational Engineering & Digital Industry Competency",
+                "date": "2026",
+                "location_id": "Studio Profesional, Jawa Timur",
+                "location_en": "Professional Studio, East Java",
+                "image_url": "gallery/khohar_suit_ibm_portrait.webp",
+                "caption_id": "Potret resmi berbusana jas formal dengan latar belakang jajaran sertifikasi keahlian teknologi IBM SkillsBuild, merepresentasikan komitmen berkelanjutan dalam penguasaan rekayasa perangkat lunak, AI, dan standar industri global.",
+                "caption_en": "Official formal studio portrait in suit with the IBM SkillsBuild credential wall backdrop, demonstrating enduring dedication to software engineering mastery, artificial intelligence, and global industry standards.",
+                "featured": true,
+                "object_position": "center 20%"
         },
         {
-            "id": "galeri-2",
-            "category": "organisasi",
-            "category_name_id": "Organisasi & Relawan",
-            "category_name_en": "Volunteering & Leadership",
-            "title_id": "Forum Palang Merah Remaja (PMR) & Korps Sukarela",
-            "title_en": "Youth Red Cross Forum & Voluntary Corps",
-            "subtitle_id": "Aktivitas Kemanusiaan & Manajemen Pertolongan Pertama",
-            "subtitle_en": "Humanitarian Mission & First Aid Operations",
-            "date": "2024 - 2025",
-            "location_id": "Ngawi, Jawa Timur",
-            "location_en": "Ngawi, East Java",
-            "image_url": "gallery/placeholder_pmr.webp",
-            "caption_id": "Dokumentasi keaktifan dalam korps kesukarelawanan, simulasi tanggap darurat bencana, dan koordinasi tim lapangan kemanusiaan.",
-            "caption_en": "Field documentation of humanitarian activities, emergency response drills, and volunteer coordination.",
-            "featured": false
+                "id": "galeri-2",
+                "category": "akademik",
+                "category_name_id": "Akademik & Kampus",
+                "category_name_en": "Academic & Labs",
+                "title_id": "Praktikum Laboratorium Komputasi & Informatika POLINEMA",
+                "title_en": "Informatics & Computing Laboratory Practicum POLINEMA",
+                "subtitle_id": "D4 Teknik Informatika &bull; Politeknik Negeri Malang",
+                "subtitle_en": "Informatics Engineering &bull; State Polytechnic of Malang",
+                "date": "2025 - 2026",
+                "location_id": "Laboratorium Komputer POLINEMA, Malang",
+                "location_en": "POLINEMA Computer Laboratory, Malang",
+                "image_url": "gallery/polinema_lab_komputasi.webp",
+                "caption_id": "Dokumentasi keaktifan perkuliahan dan pendampingan teknis praktikum di laboratorium komputer Politeknik Negeri Malang (POLINEMA) mengenakan seragam dinas kebanggaan almamater.",
+                "caption_en": "Academic lab session and technical mentorship at the State Polytechnic of Malang (POLINEMA) computing facility wearing the official institutional laboratory uniform.",
+                "featured": true,
+                "object_position": "center 25%"
         },
         {
-            "id": "galeri-3",
-            "category": "organisasi",
-            "category_name_id": "Organisasi & Relawan",
-            "category_name_en": "Leadership & Organization",
-            "title_id": "Musyawarah Pramuka Penegak & Pandega (Musppanitra)",
-            "title_en": "Scout Leadership Assembly (Musppanitra)",
-            "subtitle_id": "Dewan Kerja Cabang & Kepemimpinan Pemuda",
-            "subtitle_en": "District Scout Council & Youth Leadership",
-            "date": "2023 - 2025",
-            "location_id": "Kwartir Cabang Ngawi",
-            "location_en": "Ngawi Scout Headquarters",
-            "image_url": "gallery/placeholder_dkc.webp",
-            "caption_id": "Sidang pleno dan perumusan arah kebijakan kepemimpinan generasi muda dalam wadah kepramukaan tingkat kwartir cabang.",
-            "caption_en": "Plenary sessions and strategic youth leadership governance within the district Scout leadership branch.",
-            "featured": false
+                "id": "galeri-3",
+                "category": "organisasi",
+                "category_name_id": "Kepemimpinan & Organisasi",
+                "category_name_en": "Leadership & Organization",
+                "title_id": "Musyawarah Wilayah XXIV PW IPM Jawa Timur",
+                "title_en": "24th Regional Assembly (Musywil XXIV) PW IPM East Java",
+                "subtitle_id": "Perangkat Musywil XXIV &bull; Ikatan Pelajar Muhammadiyah",
+                "subtitle_en": "Assembly Steering Committee &bull; Muhammadiyah Student Association",
+                "date": "Juli 2026",
+                "location_id": "Arena Musywil XXIV IPM Jawa Timur",
+                "location_en": "Musywil XXIV IPM Arena, East Java",
+                "image_url": "gallery/musywil_xxiv_ipm_jatim.webp",
+                "caption_id": "Mengemban amanah sebagai Perangkat Musyawarah Wilayah XXIV Pimpinan Wilayah Ikatan Pelajar Muhammadiyah (PW IPM) Jawa Timur, mengawal jalannya permusyawaratan tertinggi pelajar tingkat provinsi.",
+                "caption_en": "Serving as official steering committee member for the 24th Regional Assembly of the East Java Muhammadiyah Student Association (PW IPM Jatim), orchestrating parliamentary and regional youth leadership proceedings.",
+                "featured": true,
+                "object_position": "center 22%"
         },
         {
-            "id": "galeri-4",
-            "category": "akademik",
-            "category_name_id": "Akademik & Kampus",
-            "category_name_en": "Academic & Campus",
-            "title_id": "Praktikum Laboratorium Komputasi & Rekayasa Perangkat Lunak",
-            "title_en": "Computing Lab Practicum & Software Engineering",
-            "subtitle_id": "D4 Teknik Informatika • POLINEMA",
-            "subtitle_en": "Informatics Engineering • POLINEMA",
-            "date": "2025 - Sekarang",
-            "location_id": "Politeknik Negeri Malang",
-            "location_en": "State Polytechnic of Malang",
-            "image_url": "gallery/placeholder_polinema.webp",
-            "caption_id": "Aktivitas perkuliahan, riset algoritma cerdas, dan pengerjaan proyek rekayasa perangkat lunak berskala industri.",
-            "caption_en": "Academic lab sessions, algorithmic research, and applied industrial software engineering projects.",
-            "featured": false
+                "id": "galeri-4",
+                "category": "organisasi",
+                "category_name_id": "Dedikasi Panitia & Lapangan",
+                "category_name_en": "Field Committee Dedication",
+                "title_id": "Behind The Scenes Musywil XXIV PW IPM Jatim",
+                "title_en": "Behind the Scenes — Musywil XXIV Steering Team",
+                "subtitle_id": "Kesiapsiagaan Tim Pengarah & Manajemen Acara",
+                "subtitle_en": "Steering Team Preparedness & Event Operations",
+                "date": "Juli 2026",
+                "location_id": "Jawa Timur, Indonesia",
+                "location_en": "East Java, Indonesia",
+                "image_url": "gallery/ipm_committee_vest.webp",
+                "caption_id": "Dokumentasi di balik layar kepanitiaan mengenakan rompi dinas Perangkat Musywil XXIV PW IPM Jawa Timur, memastikan kelancaran teknis operasional dan protokol persidangan sepanjang malam.",
+                "caption_en": "Behind-the-scenes committee snapshot wearing the official Musywil XXIV PW IPM East Java vest and credentials during operational overnight setup and coordination.",
+                "featured": false,
+                "object_position": "center 25%"
         },
         {
-            "id": "galeri-5",
-            "category": "prestasi",
-            "category_name_id": "Sains & Konferensi",
-            "category_name_en": "Science & Conferences",
-            "title_id": "Simposium Sains, AI & Seminar Nasional",
-            "title_en": "Science Symposium, Applied AI & National Seminars",
-            "subtitle_id": "Diseminasi Keilmuan & Riset Komputasi",
-            "subtitle_en": "Scientific Knowledge Dissemination & Computing",
-            "date": "2026",
-            "location_id": "Forum Akademik Nasional",
-            "location_en": "National Academic Forum",
-            "image_url": "gallery/placeholder_simposium.webp",
-            "caption_id": "Partisipasi aktif dalam seminar nasional, webinar pakar industri IBM & Google, serta pemutakhiran wawasan kecerdasan buatan.",
-            "caption_en": "Active participation in national symposiums, IBM & Google industry webinars, and emerging AI frontiers.",
-            "featured": false
+                "id": "galeri-5",
+                "category": "akademik",
+                "category_name_id": "Akademik & Pelatihan Vokasi",
+                "category_name_en": "Academic & Vocational Workshop",
+                "title_id": "Workshop Teknologi Pengolahan & Hilirisasi Pertanian",
+                "title_en": "Agricultural Processing Technology & Agro-Industry Workshop",
+                "subtitle_id": "Pelatihan Terapan & Rekayasa Produk Pangan Lokal",
+                "subtitle_en": "Applied Processing & Local Agro-Commodity Engineering",
+                "date": "Juli 2026",
+                "location_id": "Pusat Pelatihan Vokasi, Jawa Timur",
+                "location_en": "Vocational Training Center, East Java",
+                "image_url": "gallery/workshop_teknologi_pengolahan.webp",
+                "caption_id": "Momentum kelulusan dan apresiasi pelatihan pengolahan hasil pertanian bersama rekan-rekan peserta workshop membawa buket kehormatan atas keberhasilan menyelesaikan kurikulum terapan.",
+                "caption_en": "Celebration and completion milestone of the agro-processing technology workshop with fellow peers, commemorating successful completion of the hands-on vocational curriculum.",
+                "featured": false,
+                "object_position": "center 28%"
         },
         {
-            "id": "galeri-6",
-            "category": "kegiatan",
-            "category_name_id": "Pengabdian Lapangan",
-            "category_name_en": "Community & Field",
-            "title_id": "Inisiatif Pengabdian Masyarakat & Edukasi Digital",
-            "title_en": "Community Service Initiative & Digital Literacy",
-            "subtitle_id": "Pemberdayaan Teknologi Tepat Guna",
-            "subtitle_en": "Appropriate Technology Empowerment",
-            "date": "2025 - 2026",
-            "location_id": "Jawa Timur, Indonesia",
-            "location_en": "East Java, Indonesia",
-            "image_url": "gallery/placeholder_pengabdian.webp",
-            "caption_id": "Aksi nyata edukasi pemanfaatan teknologi informasi dan perangkat lunak bagi efisiensi administrasi serta pengembangan potensi komunitas.",
-            "caption_en": "Practical grassroots technology education and digital tooling enablement for community growth.",
-            "featured": false
+                "id": "galeri-6",
+                "category": "akademik",
+                "category_name_id": "Almamater & Jejak Studi",
+                "category_name_en": "Alma Mater & Academic Foundation",
+                "title_id": "Kebersamaan Angkatan Sekolah Menengah",
+                "title_en": "Secondary School Cohort & Academic Comrades",
+                "subtitle_id": "Fondasi Awal Karakter, Disiplin, & Persahabatan",
+                "subtitle_en": "Early Foundations of Discipline, Character & Fellowship",
+                "date": "2024",
+                "location_id": "Jawa Timur, Indonesia",
+                "location_en": "East Java, Indonesia",
+                "image_url": "gallery/angkatan_sekolah_menengah.webp",
+                "caption_id": "Potret kebersamaan rekan satu almamater sekolah menengah dengan seragam batik biru kebanggaan di depan gerbang utama dan masjid sekolah, memupuk semangat juang menuntut ilmu.",
+                "caption_en": "Commemorative group photo with high school classmates wearing blue school uniform batiks in front of the main campus archway and mosque, honoring foundational formative years.",
+                "featured": false,
+                "object_position": "center 40%"
+        },
+        {
+                "id": "galeri-7",
+                "category": "kegiatan",
+                "category_name_id": "Pelatihan Vokasi & Ketenagakerjaan",
+                "category_name_en": "Vocational Skills Training",
+                "title_id": "Pelatihan Kompetensi Kejuruan UPT BLK Madiun",
+                "title_en": "Vocational Competency Cohort at UPT BLK Madiun",
+                "subtitle_id": "Balai Latihan Kerja &bull; Dinas Tenaga Kerja Provinsi Jatim",
+                "subtitle_en": "Work Training Center &bull; Provincial Manpower Agency",
+                "date": "Juli 2026",
+                "location_id": "UPT BLK Madiun, Jawa Timur",
+                "location_en": "UPT BLK Madiun, East Java",
+                "image_url": "gallery/blk_madiun_pelatihan.webp",
+                "caption_id": "Foto bersama seluruh peserta pelatihan berbasis kompetensi, instruktur, dan pimpinan UPT Balai Latihan Kerja (BLK) Madiun di halaman gedung utama dinas ketenagakerjaan.",
+                "caption_en": "Official cohort group photograph with vocational instructors, administrators, and peers at the UPT Balai Latihan Kerja (BLK) Madiun front headquarters.",
+                "featured": false,
+                "object_position": "center center"
+        },
+        {
+                "id": "galeri-8",
+                "category": "kegiatan",
+                "category_name_id": "Laboratorium Terapan & Produksi",
+                "category_name_en": "Applied Kitchen & Production Lab",
+                "title_id": "Praktik Produksi Kue & Pastry Laboratorium Kuliner",
+                "title_en": "Pastry & Baking Production Lab Practicum",
+                "subtitle_id": "Standar Higienitas, Resep Terukur, & Kerja Sama Tim",
+                "subtitle_en": "Hygiene Standards, Formulations & Team Dynamics",
+                "date": "Juli 2026",
+                "location_id": "Laboratorium Pengolahan Pangan, Jawa Timur",
+                "location_en": "Food Processing Laboratory, East Java",
+                "image_url": "gallery/praktik_baking_pastry.webp",
+                "caption_id": "Dokumentasi hasil praktik laboratorium pengolahan makanan menunjukkan karya cake dan bakery higienis bersama rekan satu meja produksi.",
+                "caption_en": "Culinary production lab session demonstrating hands-on bakery outcomes, recipe precision, and teamwork in food processing.",
+                "featured": false,
+                "object_position": "center 30%"
+        },
+        {
+                "id": "galeri-9",
+                "category": "kegiatan",
+                "category_name_id": "Teknologi Pangan & Laboratorium",
+                "category_name_en": "Food Technology Laboratory",
+                "title_id": "Sesi Uji Mutu & Pengolahan Makanan Standar Industri",
+                "title_en": "Quality Assurance & Food Production in Industrial Kitchen Lab",
+                "subtitle_id": "Peralatan Stainless Steel & Standar Keamanan Pangan",
+                "subtitle_en": "Food Grade Stainless Equipment & Production Safety",
+                "date": "Agustus 2026",
+                "location_id": "Fasilitas Pengolahan Pangan Industri",
+                "location_en": "Industrial Food Processing Facility",
+                "image_url": "gallery/lab_pengolahan_kuliner.webp",
+                "caption_id": "Swafoto kebersamaan kelompok pelatihan di dalam laboratorium produksi yang dilengkapi peralatan food-grade stainless steel berstandar industri.",
+                "caption_en": "Team selfie inside the food production laboratory featuring industrial-grade stainless equipment, celebrating productive teamwork.",
+                "featured": false,
+                "object_position": "center center"
+        },
+        {
+                "id": "galeri-10",
+                "category": "kegiatan",
+                "category_name_id": "Kekeluargaan & Jejaring",
+                "category_name_en": "Fellowship & Networking",
+                "title_id": "Malam Ramah Tamah & Temu Rekan Sejawat Pelatihan",
+                "title_en": "Cohort Fellowship & Networking Dinner",
+                "subtitle_id": "Solidaritas, Pertukaran Cerita, & Kolaborasi Masa Depan",
+                "subtitle_en": "Camaraderie, Shared Ambitions & Future Alliances",
+                "date": "2026",
+                "location_id": "Jawa Timur, Indonesia",
+                "location_en": "East Java, Indonesia",
+                "image_url": "gallery/kebersamaan_rekan_studi.webp",
+                "caption_id": "Momen kehangatan santap malam dan diskusi santai bersama rekan-rekan seperjuangan pelatihan kejuruan berseragam biru, merajut persaudaraan erat.",
+                "caption_en": "Warm dinner gathering and lively conversation with vocational peers wearing signature blue cohort uniforms, building lasting friendships.",
+                "featured": false,
+                "object_position": "center 35%"
+        },
+        {
+                "id": "galeri-11",
+                "category": "kegiatan",
+                "category_name_id": "Literasi & Wawasan",
+                "category_name_en": "Literacy & Intellectual Pursuit",
+                "title_id": "Eksplorasi Buku & Literasi Bersama Sahabat",
+                "title_en": "Bookstore Exploration & Knowledge Gathering with Friends",
+                "subtitle_id": "Kultur Membaca, Diskusi Gagasan, & Inspirasi Karya",
+                "subtitle_en": "Reading Culture, Idea Exchange & Creative Inspiration",
+                "date": "September 2025",
+                "location_id": "Toko Buku / Perpustakaan, Jawa Timur",
+                "location_en": "Bookstore / Library Hub, East Java",
+                "image_url": "gallery/literasi_buku_sahabat.webp",
+                "caption_id": "Swafoto penuh keceriaan bersama kawan-kawan saat berburu buku referensi dan bahan bacaan, menumbuhkan kecintaan terhadap literasi dan wawasan baru.",
+                "caption_en": "Joyful group selfie with close friends during a book hunting and literature exploration session, fostering a shared love for reading and learning.",
+                "featured": false,
+                "object_position": "center 25%"
+        },
+        {
+                "id": "galeri-12",
+                "category": "kegiatan",
+                "category_name_id": "Jejak Mobilitas Lapangan",
+                "category_name_en": "Mobility & Transit Journal",
+                "title_id": "Perjalanan Fajar Antar-Kota Jawa Timur via Kereta Api",
+                "title_en": "Intercity Transit Across East Java via Railway",
+                "subtitle_id": "Mobilitas Antara Ngawi, Madiun, & Malang Menuju Agenda Tugas",
+                "subtitle_en": "Commuting Between Ngawi, Madiun & Malang for Study and Missions",
+                "date": "Juni 2026",
+                "location_id": "Kereta Api Indonesia, Lintasan Jawa Timur",
+                "location_en": "Indonesian Railways (KAI), East Java Route",
+                "image_url": "gallery/perjalanan_kereta_api.webp",
+                "caption_id": "Dokumentasi perjalanan dini hari menaiki kereta api melintasi jalur Jawa Timur menuju lokasi kegiatan akademik dan organisasi di berbagai kota.",
+                "caption_en": "Early-dawn travel documentation aboard Indonesian Railways train traversing East Java routes connecting Ngawi, Madiun, and Malang for academic and civic duties.",
+                "featured": false,
+                "object_position": "center 30%"
+        },
+        {
+                "id": "galeri-13",
+                "category": "pribadi",
+                "category_name_id": "Potret Profil & Riset",
+                "category_name_en": "Professional & Engineering",
+                "title_id": "Khohar Muhamad Fatahurrohman — Profil Rekayasa",
+                "title_en": "Khohar Muhamad Fatahurrohman — Engineering Profile",
+                "subtitle_id": "Software & Applied AI Specialist",
+                "subtitle_en": "Software & Applied AI Specialist",
+                "date": "2026",
+                "location_id": "Malang, Jawa Timur",
+                "location_en": "Malang, East Java",
+                "image_url": "gallery/khohar_profil_rekayasa.webp",
+                "caption_id": "Potret kerja dan dedikasi dalam rekayasa perangkat lunak, eksplorasi kecerdasan buatan terapan, dan pengembangan sistem web modern.",
+                "caption_en": "Dedicated to software engineering excellence, applied AI architectures, and modern responsive web systems.",
+                "featured": false,
+                "object_position": "center 20%"
+        },
+        {
+                "id": "galeri-14",
+                "category": "pribadi",
+                "category_name_id": "Keluarga & Nilai Luhur",
+                "category_name_en": "Family & Core Heritage",
+                "title_id": "Kehangatan Idul Fitri Bersama Keluarga Tercinta",
+                "title_en": "Cherished Eid al-Fitr Family Gathering",
+                "subtitle_id": "Mohon Maaf Lahir & Batin &bull; Karangjati, Ngawi",
+                "subtitle_en": "Traditional Eid Greetings &bull; Karangjati, Ngawi",
+                "date": "Maret 2026",
+                "location_id": "Ringinanom, Karangjati, Ngawi",
+                "location_en": "Ringinanom, Karangjati, Ngawi",
+                "image_url": "gallery/keluarga_idul_fitri.webp",
+                "caption_id": "Potret penuh berkah momen Idul Fitri bersama kedua orang tua dan adik tercinta di depan kediaman, bersyukur atas kerukunan, doa, dan restu keluarga.",
+                "caption_en": "Blessed Eid al-Fitr portrait with beloved parents and younger sister in front of home, offering heartfelt greetings and celebrating unconditional family support.",
+                "featured": false,
+                "object_position": "center 28%"
+        },
+        {
+                "id": "galeri-15",
+                "category": "pribadi",
+                "category_name_id": "Akar Budaya & Usaha Keluarga",
+                "category_name_en": "Family Heritage & Entrepreneurship",
+                "title_id": "Kripik Tempe Kharisma — Dedikasi Usaha Mandiri Keluarga",
+                "title_en": "Kripik Tempe Kharisma — Family Micro-Enterprise Heritage",
+                "subtitle_id": "Kripik Tempe Khas Karangjati Ngawi &bull; Gurih & Renyah",
+                "subtitle_en": "Authentic Tempe Chips of Karangjati Ngawi",
+                "date": "Maret 2026",
+                "location_id": "Templek, Ringinanom, Karangjati, Ngawi",
+                "location_en": "Templek, Ringinanom, Karangjati, Ngawi",
+                "image_url": "gallery/usaha_keluarga_kripik_tempe.webp",
+                "caption_id": "Keluarga berdiri bangga di depan plang usaha rumah tangga 'Kripik Tempe Kharisma' di Karangjati, Ngawi. Sumber inspirasi kerja keras, ketulusan, dan integritas hidup.",
+                "caption_en": "Family standing proudly before their home-based micro-enterprise 'Kripik Tempe Kharisma' banner in Karangjati, Ngawi — the living root of dedication, grit, and humility.",
+                "featured": false,
+                "object_position": "center 25%"
+        },
+        {
+                "id": "galeri-16",
+                "category": "pribadi",
+                "category_name_id": "Potret Diri & Identitas",
+                "category_name_en": "Portrait & Identity",
+                "title_id": "Nuansa Tradisi — Busana Batik & Suasana Pagi Desa",
+                "title_en": "Echoes of Heritage — Traditional Batik & Rural Morning",
+                "subtitle_id": "Ketenteraman Pedesaan Ringinanom &bull; Ngawi Ramah",
+                "subtitle_en": "Serenity of Ringinanom &bull; Ngawi, East Java",
+                "date": "Maret 2026",
+                "location_id": "Ringinanom, Karangjati, Ngawi",
+                "location_en": "Ringinanom, Karangjati, Ngawi",
+                "image_url": "gallery/potret_batik_tradisi.webp",
+                "caption_id": "Potret pribadi berbusana batik bercorak parang dan sarung di bawah semilir pohon rindang pedesaan Ngawi, merawat ketenangan batin di tengah dinamika dunia teknologi.",
+                "caption_en": "Reflective personal portrait wearing traditional batik and sarong under a tall village tree in peaceful Ngawi, grounding high-tech aspirations in cultural wisdom.",
+                "featured": false,
+                "object_position": "center 20%"
+        },
+        {
+                "id": "galeri-17",
+                "category": "pribadi",
+                "category_name_id": "Memori & Jejak Langkah",
+                "category_name_en": "Childhood Memory & Roots",
+                "title_id": "Memori Masa Kecil — Jiwa Petualang di Atas Dahan",
+                "title_en": "Childhood Memory — Free-Spirited Explorer in the Trees",
+                "subtitle_id": "Keberanian Masa Kecil & Kenangan Tak Terlupakan",
+                "subtitle_en": "Fearless Childhood Days & Cherished Memories",
+                "date": "Masa Kecil",
+                "location_id": "Karangjati, Ngawi, Jawa Timur",
+                "location_en": "Karangjati, Ngawi, East Java",
+                "image_url": "gallery/memori_masa_kecil_pohon.webp",
+                "caption_id": "Rekaman nostalgia masa kanak-kanak memanjat pohon rindang bersama saudara di pekarangan rumah, mengingatkan pada keberanian dan rasa ingin tahu yang tak pernah padam.",
+                "caption_en": "Nostalgic childhood snapshot climbing a leafy tree with a sibling, embodying early fearlessness, curiosity, and joyful discovery in rural nature.",
+                "featured": false,
+                "object_position": "center center"
+        },
+        {
+                "id": "galeri-18",
+                "category": "pribadi",
+                "category_name_id": "Memori & Jejak Langkah",
+                "category_name_en": "Childhood Memory & Roots",
+                "title_id": "Kasih Sayang Masa Kanak-Kanak Bersama Adik",
+                "title_en": "Childhood Warmth & Sibling Bond",
+                "subtitle_id": "Tumbuh Bersama dalam Kesederhanaan & Kehangatan",
+                "subtitle_en": "Growing Up with Sibling Love & Warmth",
+                "date": "Masa Kecil",
+                "location_id": "Karangjati, Ngawi, Jawa Timur",
+                "location_en": "Karangjati, Ngawi, East Java",
+                "image_url": "gallery/memori_masa_kecil_keluarga.webp",
+                "caption_id": "Kenangan masa kecil menggendong dan menemani adik perempuan tersayang di beranda rumah, simbol kasih sayang persaudaraan yang senantiasa dijaga selamanya.",
+                "caption_en": "Treasured vintage childhood photo holding hands and caring for his beloved younger sister, an enduring emblem of unconditional sibling love and family protection.",
+                "featured": false,
+                "object_position": "center 28%"
         }
-    ];
+];
 
     function renderGallery() {
         const lang = window.currentPortfolioLang || localStorage.getItem('prefLang') || 'en';
-        filteredItems = activeFilter === 'all' 
-            ? galleryItems 
-            : galleryItems.filter(item => item.category === activeFilter);
+        track.innerHTML = '';
+        if (dotsContainer) dotsContainer.innerHTML = '';
 
-        grid.innerHTML = '';
-        if (filteredItems.length === 0) {
-            grid.innerHTML = `
-                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-muted);">
+        if (!galleryItems || galleryItems.length === 0) {
+            track.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-muted); width: 100%;">
                     <i class="fas fa-camera-retro" style="font-size: 2rem; margin-bottom: 12px; display: block; opacity: 0.5;"></i>
-                    <p>${lang === 'en' ? 'No photos in this category yet. You can add them to gallery/ anytime!' : 'Belum ada foto dalam kategori ini. Anda dapat menambahkannya ke folder gallery/ kapan saja!'}</p>
+                    <p>${lang === 'en' ? 'No photos in the gallery yet. You can add them to gallery/ anytime!' : 'Belum ada foto dalam galeri. Anda dapat menambahkannya ke folder gallery/ kapan saja!'}</p>
                 </div>
             `;
             return;
         }
 
-        filteredItems.forEach((item, index) => {
+        galleryItems.forEach((item, index) => {
             const title = (lang === 'en' && item.title_en) ? item.title_en : item.title_id;
-            const subtitle = (lang === 'en' && item.subtitle_en) ? item.subtitle_en : item.subtitle_id;
+            const subtitle = cleanText((lang === 'en' && item.subtitle_en) ? item.subtitle_en : item.subtitle_id);
             const categoryName = (lang === 'en' && item.category_name_en) ? item.category_name_en : item.category_name_id;
-            const location = (lang === 'en' && item.location_en) ? item.location_en : item.location_id;
+            const location = cleanText((lang === 'en' && item.location_en) ? item.location_en : item.location_id);
+            const caption = cleanText((lang === 'en' && item.caption_en) ? item.caption_en : item.caption_id);
+            const themeClass = getThemeClass(item.category);
 
             const card = document.createElement('div');
-            card.className = 'gallery-card reveal active';
+            card.className = 'gallery-slide-card genshin-card reveal active';
             card.setAttribute('tabindex', '0');
             card.setAttribute('role', 'button');
             card.setAttribute('aria-label', title);
 
             card.innerHTML = `
-                <div class="gallery-card-img-wrap">
-                    <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(title)}" class="gallery-card-img" loading="lazy">
+                <div class="gallery-cover-frame ${themeClass}">
+                    <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(title)}" class="gallery-cover-real-img" ${item.object_position ? `style="object-position: ${escapeHtml(item.object_position)};"` : ''} loading="lazy">
+                    <div class="gallery-cover-glare"></div>
+                    <span class="gallery-cover-cat-badge ${themeClass}">${escapeHtml(categoryName)}</span>
                 </div>
-                <div class="gallery-card-overlay"></div>
-                <div class="gallery-card-cat-badge">${escapeHtml(categoryName)}</div>
-                <div class="gallery-card-filigree">
-                    <span class="gallery-card-date-badge"><i class="far fa-calendar-alt"></i> ${escapeHtml(item.date)}</span>
-                </div>
-                <div class="gallery-card-info">
+                <div class="gallery-info-content">
+                    <div class="gallery-meta-top">
+                        <span class="gallery-genre ${themeClass}">
+                            <i class="fas fa-gem"></i> ${escapeHtml(categoryName)}
+                        </span>
+                        <span class="gallery-date-pill">
+                            <i class="far fa-calendar-alt"></i> ${escapeHtml(item.date)}
+                        </span>
+                    </div>
                     <h4 class="gallery-card-title notranslate">${escapeHtml(title)}</h4>
                     <p class="gallery-card-subtitle notranslate">${escapeHtml(subtitle)}</p>
+                    <p class="gallery-card-synopsis">${escapeHtml(caption)}</p>
                     <div class="gallery-card-footer">
-                        <span class="gallery-card-loc"><i class="fas fa-map-marker-alt"></i> ${escapeHtml(location)}</span>
-                        <span class="gallery-card-action"><span>${lang === 'en' ? 'View' : 'Lihat'}</span> <i class="fas fa-expand-alt"></i></span>
+                        <span class="gallery-card-loc" title="${escapeHtml(location)}">
+                            <i class="fas fa-map-marker-alt"></i> ${escapeHtml(location)}
+                        </span>
+                        <button class="gallery-view-btn" type="button" aria-label="${lang === 'en' ? 'View Photo' : 'Lihat Foto'}">
+                            <i class="fas fa-expand-alt"></i>
+                            <span>${lang === 'en' ? 'View Photo' : 'Lihat Foto'}</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
             `;
 
-            card.addEventListener('click', () => openLightbox(index));
+            // Card click & keyboard navigation to open Lightbox (ignoring drag movement)
+            card.addEventListener('click', () => {
+                if (track.classList.contains('was-dragged')) return;
+                openLightbox(index);
+            });
+
             card.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -1036,12 +1354,108 @@ function initPhotoGallery() {
                 }
             });
 
-            grid.appendChild(card);
+            track.appendChild(card);
+
+            // Generate diamond pagination pip
+            if (dotsContainer) {
+                const dot = document.createElement('button');
+                dot.className = `gallery-dot ${index === 0 ? 'active' : ''}`;
+                dot.setAttribute('aria-label', `Go to photo ${index + 1}`);
+                dot.setAttribute('title', `${lang === 'en' ? 'Photo' : 'Foto'} ${index + 1}: ${title}`);
+                dot.addEventListener('click', () => {
+                    const targetLeft = card.offsetLeft - track.offsetLeft;
+                    track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+                });
+                dotsContainer.appendChild(dot);
+            }
         });
+
+        setTimeout(updateSliderState, 120);
     }
 
+    // Prev / Next button click handlers with infinite wrap-around (cyclic loop)
+    prevBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const scrollLeft = track.scrollLeft;
+        const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+        const step = getCardStep();
+
+        // If at the beginning, wrap to the end
+        if (scrollLeft <= Math.max(25, step * 0.25)) {
+            track.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        } else {
+            track.scrollBy({ left: -step, behavior: 'smooth' });
+        }
+    });
+
+    nextBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const scrollLeft = track.scrollLeft;
+        const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+        const step = getCardStep();
+
+        // If at the end or within remaining step from end, wrap around to the beginning
+        if (scrollLeft >= maxScroll - Math.max(30, step * 0.75)) {
+            track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            track.scrollBy({ left: step, behavior: 'smooth' });
+        }
+    });
+
+    // Drag-to-scroll support for desktop mouse users
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let dragDistance = 0;
+
+    track.addEventListener('mousedown', (e) => {
+        isDown = true;
+        dragDistance = 0;
+        track.classList.add('is-dragging');
+        track.classList.remove('was-dragged');
+        startX = e.pageX - track.offsetLeft;
+        scrollStart = track.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (!isDown) return;
+        isDown = false;
+        track.classList.remove('is-dragging');
+        if (dragDistance > 6) {
+            track.classList.add('was-dragged');
+            setTimeout(() => track.classList.remove('was-dragged'), 220);
+        }
+        setTimeout(updateSliderState, 150);
+    });
+
+    track.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        const x = e.pageX - track.offsetLeft;
+        const walk = (x - startX) * 1.35;
+        dragDistance = Math.abs(x - startX);
+        if (dragDistance > 4) {
+            e.preventDefault();
+            track.scrollLeft = scrollStart - walk;
+        }
+    });
+
+    // Throttled scroll listener
+    let ticking = false;
+    track.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateSliderState();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    window.addEventListener('resize', updateSliderState);
+
+    // Lightbox modal functionality
     function openLightbox(index) {
-        if (!lightbox || !filteredItems[index]) return;
+        if (!lightbox || !galleryItems[index]) return;
         currentLightboxIndex = index;
         updateLightboxContent();
         lightbox.classList.add('active');
@@ -1050,15 +1464,15 @@ function initPhotoGallery() {
     }
 
     function updateLightboxContent() {
-        const item = filteredItems[currentLightboxIndex];
+        const item = galleryItems[currentLightboxIndex];
         if (!item) return;
         const lang = window.currentPortfolioLang || localStorage.getItem('prefLang') || 'en';
 
         const title = (lang === 'en' && item.title_en) ? item.title_en : item.title_id;
-        const subtitle = (lang === 'en' && item.subtitle_en) ? item.subtitle_en : item.subtitle_id;
+        const subtitle = cleanText((lang === 'en' && item.subtitle_en) ? item.subtitle_en : item.subtitle_id);
         const categoryName = (lang === 'en' && item.category_name_en) ? item.category_name_en : item.category_name_id;
-        const location = (lang === 'en' && item.location_en) ? item.location_en : item.location_id;
-        const caption = (lang === 'en' && item.caption_en) ? item.caption_en : item.caption_id;
+        const location = cleanText((lang === 'en' && item.location_en) ? item.location_en : item.location_id);
+        const caption = cleanText((lang === 'en' && item.caption_en) ? item.caption_en : item.caption_id);
 
         if (lightboxImg) {
             lightboxImg.src = item.image_url;
@@ -1071,8 +1485,8 @@ function initPhotoGallery() {
         if (lightboxSubtitle) lightboxSubtitle.textContent = subtitle;
         if (lightboxDesc) lightboxDesc.textContent = caption;
 
-        if (lightboxPrev) lightboxPrev.style.display = filteredItems.length > 1 ? 'flex' : 'none';
-        if (lightboxNext) lightboxNext.style.display = filteredItems.length > 1 ? 'flex' : 'none';
+        if (lightboxPrev) lightboxPrev.style.display = galleryItems.length > 1 ? 'flex' : 'none';
+        if (lightboxNext) lightboxNext.style.display = galleryItems.length > 1 ? 'flex' : 'none';
     }
 
     function closeLightbox() {
@@ -1083,30 +1497,50 @@ function initPhotoGallery() {
     }
 
     function nextPhoto() {
-        if (filteredItems.length <= 1) return;
-        currentLightboxIndex = (currentLightboxIndex + 1) % filteredItems.length;
+        if (galleryItems.length <= 1) return;
+        currentLightboxIndex = (currentLightboxIndex + 1) % galleryItems.length;
         updateLightboxContent();
     }
 
     function prevPhoto() {
-        if (filteredItems.length <= 1) return;
-        currentLightboxIndex = (currentLightboxIndex - 1 + filteredItems.length) % filteredItems.length;
+        if (galleryItems.length <= 1) return;
+        currentLightboxIndex = (currentLightboxIndex - 1 + galleryItems.length) % galleryItems.length;
         updateLightboxContent();
     }
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            activeFilter = btn.dataset.filter || 'all';
-            renderGallery();
-        });
-    });
 
     lightboxClose?.addEventListener('click', closeLightbox);
     lightboxBackdrop?.addEventListener('click', closeLightbox);
     lightboxPrev?.addEventListener('click', (e) => { e.stopPropagation(); prevPhoto(); });
     lightboxNext?.addEventListener('click', (e) => { e.stopPropagation(); nextPhoto(); });
+
+    // Touch swipe gesture support for seamless mobile photo navigation
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    lightbox?.addEventListener('touchstart', (e) => {
+        if (!e.changedTouches || e.changedTouches.length === 0) return;
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    lightbox?.addEventListener('touchend', (e) => {
+        if (!e.changedTouches || e.changedTouches.length === 0) return;
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+        
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+        // Check if horizontal gesture was dominant and reached threshold (> 40px)
+        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY) * 1.4) {
+            if (diffX < 0) {
+                nextPhoto(); // Swiped left -> Next photo
+            } else {
+                prevPhoto(); // Swiped right -> Previous photo
+            }
+        }
+    }, { passive: true });
 
     document.addEventListener('keydown', (e) => {
         if (!lightbox?.classList.contains('active')) return;
@@ -1118,7 +1552,7 @@ function initPhotoGallery() {
     window.renderPhotoGallery = renderGallery;
 
     // Fetch galeri.json
-    fetch('galeri.json')
+    fetch('galeri.json?v=' + Date.now())
         .then(res => {
             if (!res.ok) throw new Error('galeri.json load error');
             return res.json();
