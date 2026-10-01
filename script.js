@@ -2013,33 +2013,9 @@ function initPhotoGallery() {
             card.setAttribute('aria-label', title);
 
             card.innerHTML = `
-                <div class="gallery-cover-frame ${themeClass}">
-                    <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(title)}" class="gallery-cover-real-img" ${item.object_position ? `style="object-position: ${escapeHtml(item.object_position)};"` : ''} loading="lazy">
+                <div class="gallery-cover-frame ${themeClass}" style="height: 100%; border-radius: 16px; overflow: hidden;">
+                    <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(title)}" class="gallery-cover-real-img" ${item.object_position ? `style="object-position: ${escapeHtml(item.object_position)};"` : ''} loading="lazy" style="width:100%;height:100%;object-fit:cover;">
                     <div class="gallery-cover-glare"></div>
-                    <span class="gallery-cover-cat-badge ${themeClass}">${escapeHtml(categoryName)}</span>
-                </div>
-                <div class="gallery-info-content">
-                    <div class="gallery-meta-top">
-                        <span class="gallery-genre ${themeClass}">
-                            <i class="fas fa-gem"></i> ${escapeHtml(categoryName)}
-                        </span>
-                        <span class="gallery-date-pill">
-                            <i class="far fa-calendar-alt"></i> ${escapeHtml(item.date)}
-                        </span>
-                    </div>
-                    <h4 class="gallery-card-title notranslate">${escapeHtml(title)}</h4>
-                    <p class="gallery-card-subtitle notranslate">${escapeHtml(subtitle)}</p>
-                    <p class="gallery-card-synopsis">${escapeHtml(caption)}</p>
-                    <div class="gallery-card-footer">
-                        <span class="gallery-card-loc" title="${escapeHtml(location)}">
-                            <i class="fas fa-map-marker-alt"></i> ${escapeHtml(location)}
-                        </span>
-                        <button class="gallery-view-btn" type="button" aria-label="${lang === 'en' ? 'View Photo' : 'Lihat Foto'}">
-                            <i class="fas fa-expand-alt"></i>
-                            <span>${lang === 'en' ? 'View Photo' : 'Lihat Foto'}</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
                 </div>
             `;
 
