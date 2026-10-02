@@ -3266,9 +3266,16 @@ body.mobile-nav-active {
     overflow: hidden;
     position: relative;
     margin-bottom: 0;
-    background: #0d1117;
+    background: linear-gradient(110deg, #0b1120 8%, #162238 20%, #0b1120 35%);
+    background-size: 200% 100%;
+    animation: galleryShimmer 1.8s ease-in-out infinite;
     border: 2px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes galleryShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
 
 .gallery-cover-frame.geo { border-color: rgba(245, 158, 11, 0.55); }

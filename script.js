@@ -434,13 +434,16 @@ function initPageLoader() {
     }
 
     if (document.readyState === 'complete') {
-        setTimeout(dismissLoader, 700);
+        setTimeout(dismissLoader, 180);
     } else {
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(dismissLoader, 250);
+        });
         window.addEventListener('load', () => {
-            setTimeout(dismissLoader, 600);
+            setTimeout(dismissLoader, 280);
         });
         // Absolute fail-safe timeout
-        setTimeout(dismissLoader, 2200);
+        setTimeout(dismissLoader, 900);
     }
 }
 
@@ -2014,7 +2017,7 @@ function initPhotoGallery() {
 
             card.innerHTML = `
                 <div class="gallery-cover-frame ${themeClass}" style="height: 100%; border-radius: 16px; overflow: hidden;">
-                    <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(title)}" class="gallery-cover-real-img" style="width:100%;height:100%;object-fit:cover;${item.object_position ? `object-position:${escapeHtml(item.object_position)};` : ''}" loading="lazy" onerror="this.onerror=null;this.style.display='none';">
+                    <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(title)}" class="gallery-cover-real-img" style="width:100%;height:100%;object-fit:cover;${item.object_position ? `object-position:${escapeHtml(item.object_position)};` : ''}" loading="${index < 4 ? 'eager' : 'lazy'}" decoding="async" onerror="this.onerror=null;this.style.display='none';">
                     <div class="gallery-cover-glare"></div>
                 </div>
             `;
@@ -2229,8 +2232,8 @@ function initPhotoGallery() {
 
     window.renderPhotoGallery = renderGallery;
 
-    // Fetch galeri.json
-    fetch('galeri.json?v=' + Date.now())
+    // Fetch galeri.json with stable versioned cache
+    fetch('galeri.json?v=34')
         .then(res => {
             if (!res.ok) throw new Error('galeri.json load error');
             return res.json();
