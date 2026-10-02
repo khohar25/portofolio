@@ -747,13 +747,13 @@ function initBookshelfArchive() {
         }
 
         grid.innerHTML = '';
-        visibleItems.forEach((item) => {
+        visibleItems.forEach((item, index) => {
             const title = (lang === 'en' && item.title_en) ? item.title_en : item.title_id;
             const starsHtml = '<i class="fas fa-star"></i>'.repeat(item.stars || 5);
             const previewPlateHtml = item.thumb_img 
                 ? `
                     <div class="tome-doc-preview-plate">
-                        <img src="${escapeHtml(item.thumb_img)}" alt="${escapeHtml(title)}" class="tome-doc-thumb" loading="lazy">
+                        <img src="${escapeHtml(item.thumb_img)}" alt="${escapeHtml(title)}" class="tome-doc-thumb" loading="${index < 16 ? 'eager' : 'lazy'}" decoding="async" onerror="this.onerror=null;this.src='cert_covers/ai_art/art_ai_agentic.webp';">
                         <div class="tome-doc-glare"></div>
                         <div class="tome-doc-crest theme-${item.color_theme}">
                             <i class="${escapeHtml(item.icon)}"></i>
@@ -2497,18 +2497,32 @@ function renderArticles(articleList, lang = 'en') {
     const articleContainer = document.getElementById('article-preview-container');
     if (!articleContainer || !Array.isArray(articleList) || articleList.length === 0) return;
 
+    const articleImages = {
+        'transformasi-lanskap-kecerdasan-artifisial': 'artikel/assets/transformasi-lanskap-ai-enterprise-hero.jpg',
+        'adopsi-small-language-models-perbankan': 'artikel/assets/slm-perbankan-onpremise-hero.jpg',
+        'model-context-protocol-multi-agent-enterprise': 'artikel/assets/mcp-arsitektur-enterprise-hero.jpg',
+        'ai-agent-manajemen-rantai-pasok': 'artikel/assets/ai-agent-supply-chain-hero.jpg',
+        'ai-agent-cybersecurity-soc-enterprise': 'artikel/assets/ai-soc-cybersecurity-hero.jpg',
+        'ai-software-engineering-agents-sdlc': 'artikel/assets/ai-swe-agents-sdlc-hero.jpg',
+        'manajemen-talenta-berbasis-ai-etika': 'artikel/assets/ai-talent-management-ethics-hero.jpg'
+    };
+
     articleContainer.innerHTML = '';
-    articleList.slice(0, 4).forEach(item => {
+    articleList.slice(0, 4).forEach((item, idx) => {
         const title = (lang === 'en' && item.judul_en) ? item.judul_en : item.judul;
         const excerpt = (lang === 'en' && item.deskripsi_en) ? item.deskripsi_en : item.deskripsi;
         const readLabel = lang === 'en' ? 'Read Technical Publication' : 'Baca Publikasi Lengkap';
         const articleLink = item.link || 'artikel/';
         const readingTime = item.reading_time || (lang === 'en' ? '15 min read' : '~15 menit baca');
         const dateStr = item.created_at || '2026-10-01';
+        const thumbUrl = item.gambar || articleImages[item.id] || 'artikel/assets/transformasi-lanskap-ai-enterprise-hero.jpg';
 
         const card = document.createElement('div');
         card.className = 'article-entry-card reveal active featured-article';
         card.innerHTML = `
+            <div class="article-thumb-frame">
+                <img src="${escapeHtml(thumbUrl)}" alt="${escapeHtml(title)}" class="article-thumb-img" loading="${idx < 2 ? 'eager' : 'lazy'}" decoding="async" onerror="this.onerror=null;this.style.display='none';">
+            </div>
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;">
                 <span class="article-cat" style="margin-bottom: 0;">${escapeHtml(item.kategori || 'Applied Artificial Intelligence')}</span>
                 <span style="font-size: 0.78rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px;">
