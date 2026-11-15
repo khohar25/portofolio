@@ -1,0 +1,157 @@
+[
+  {
+    "slug": "konstituante-1957-risalah-bandung",
+    "title": "Risalah yang Terbakar di Bandung",
+    "subtitle": "Sebuah Roman Sejarah tentang Sengketa Konstituante dan Hukum Darurat Negara",
+    "author": "Khohar Rohman",
+    "publisher": "Pustaka Konstitusi Nusantara",
+    "isbn": "978-602-5412-08-4",
+    "year": 2026,
+    "era_setting": "Indonesia 1956–1959 (Bandung & Jakarta, Masa Sidang Majelis Konstituante dan Pemberlakuan SOB)",
+    "constitutional_focus": "Pertentangan Pasal 134 & 137 UUDS 1950 (syarat kuorum 2/3), doktrin rechtstaat vs machtstaat, pengadilan konstitusi/hak uji materiil, dan hukum darurat militer (Staat van Oorlog en Beleg / staatsnoodrecht)",
+    "premise": "Di Gedung Merdeka Bandung antara tahun 1956 hingga 1959, seorang panitera muda Komisi Hak Asasi Manusia dan seorang pengajar hukum tata negara berusaha menyelamatkan risalah rancangan hak uji materiil sebelum Majelis Konstituante dibekukan. Berhadapan dengan mantan teman kuliah mereka yang kini menjadi perwira hukum Penguasa Perang Daerah di bawah aturan Staat van Oorlog en Beleg, naskah konstitusi itu menjadi pertaruhan antara supremasi hukum prosedural dan doktrin keselamatan negara darurat menuju Dekrit 5 Juli 1959.",
+    "back_cover_blurb": "Bandung, 1956–1959. Di balik dinding Gedung Merdeka yang riuh oleh perdebatan fraksi, seorang panitera muda dan seorang pengajar hukum tata negara mencoba menyelamatkan risalah hak uji materiil sebelum syarat kuorum dua pertiga runtuh oleh doktrin keadaan darurat negara.\n\nKetika Staat van Oorlog en Beleg mengetuk pintu percetakan dan jalan keluar di luar prosedur konstitusi disiapkan di Jakarta, setiap tanda tangan pada lembaran negara menentukan apakah Republik akan berdiri sebagai rechtstaat atau takluk pada machtstaat.",
+    "back_cover_quote": "Negara hukum tidak runtuh oleh meriam musuh, melainkan oleh pasal yang ditangguhkan atas nama keadaan darurat.",
+    "back_cover_quote_source": "Risalah Sidang Komisi Hak Asasi, Bandung 1958",
+    "size_preset": "A5",
+    "paper_type": "bookpaper_57",
+    "page_count": 35,
+    "spine_width_mm": 2.21,
+    "chapter_count": 6,
+    "front_cover_rel": "assets/novels/konstituante-1957-risalah-bandung/cover_front.png",
+    "spread_cover_rel": "assets/novels/konstituante-1957-risalah-bandung/cover_spread.png",
+    "chapter_outlines": [
+      {
+        "number": 1,
+        "roman": "I",
+        "title": "Kertas Stensil di Gedung Merdeka",
+        "date_and_location": "Bandung, 14 November 1956 — Ruang Arsip Konstituante",
+        "epigraph_quote": "Konstituante tidak dapat bermufakat jika tidak hadir sekurang-kurangnya dua pertiga anggota.",
+        "epigraph_source": "Pasal 137 ayat (1) UUDS 1950",
+        "outline": "Di ruang arsip yang berbau tinta stensil, Marlina dan Sastrawijaya menyusun draf awal pasal pengadilan konstitusi untuk membatasi kekuasaan eksekutif. Mereka berpacu dengan kebuntuan fraksi-fraksi yang mulai mengancam syarat hadir dua pertiga anggota dalam Pasal 137 UUDS 1950. Kunjungan mendadak seorang kurir berseragam memaksa Marlina menyembunyikan bundel catatan merah di balik tumpukan berita acara sidang.",
+        "legal_concepts": [
+          "Pasal 134 UUDS 1950",
+          "Hak Uji Materiil",
+          "Kedaulatan Konstituante"
+        ],
+        "illustration_rel": "assets/novels/konstituante-1957-risalah-bandung/ch_01.png"
+      },
+      {
+        "number": 2,
+        "roman": "II",
+        "title": "Pasal Seratus Tiga Puluh Tujuh",
+        "date_and_location": "Bandung, 22 Maret 1957 — Ruang Rapat Panitia Persiapan Konstitusi",
+        "epigraph_quote": "Siapa yang menguasai keadaan darurat, dialah yang memegang kedaulatan sejati.",
+        "epigraph_source": "Carl Schmitt, Politische Theologie (1922)",
+        "outline": "Delapan hari setelah pemberlakuan keadaan perang nasional, Mayor Hendrawan melangkah masuk ke ruang rapat sambil membawa berkas wewenang Penguasa Perang Daerah. Mantan rekan kuliah itu mendebat Sastrawijaya bahwa doktrin negara hukum prosedural tidak mampu menahan disintegrasi wilayah tanpa hukum darurat militer. Marlina mencatat seluruh argumen otoritarian tersebut di pinggir draf Pasal 137 sebagai bukti ancaman pembekuan parlemen.",
+        "legal_concepts": [
+          "Staat van Oorlog en Beleg",
+          "Staatsnoodrecht",
+          "Machtstaat"
+        ],
+        "illustration_rel": "assets/novels/konstituante-1957-risalah-bandung/ch_02.png"
+      },
+      {
+        "number": 3,
+        "roman": "III",
+        "title": "Surat Perintah di Jalan Braga",
+        "date_and_location": "Bandung, 8 Agustus 1957 — Percetakan Nasional Jalan Braga",
+        "epigraph_quote": "Negara hukum tidak runtuh oleh pemberontakan bersenjata, melainkan oleh pasal yang ditaati separuh hati.",
+        "epigraph_source": "Risalah Komisi Hak Asasi Konstituante, 1957",
+        "outline": "Marlina dan Sastrawijaya menyelinap ke Percetakan Nasional Jalan Braga tengah malam untuk menggandakan risalah hak asasi manusia sebelum dibahas di sidang pleno. Pasukan Penguasa Perang Daerah pimpinan Hendrawan menggerebek ruang mesin cetak berbekal surat perintah penyitaan berbasis aturan darurat militer. Sastrawijaya berdebat soal hak imunitas dokumen konstituante sementara Marlina meloloskan pelat timah cetakan lewat pintu belakang.",
+        "legal_concepts": [
+          "Sensor Pers Militer",
+          "Imunitas Parlemen",
+          "Rechtstaat"
+        ],
+        "illustration_rel": "assets/novels/konstituante-1957-risalah-bandung/ch_03.png"
+      },
+      {
+        "number": 4,
+        "roman": "IV",
+        "title": "Sidang Malam tanpa Kuorum",
+        "date_and_location": "Jakarta, 19 Januari 1958 — Departemen Kehakiman",
+        "epigraph_quote": "Setiap hak warga yang tidak dilindungi pengadilan merdeka hanyalah hiasan kertas upacara.",
+        "epigraph_source": "Notulen Perdebatan Hak Uji Materiil, 1958",
+        "outline": "Di koridor temaram Departemen Kehakiman Jakarta, Sastrawijaya menghadiri rapat tertutup guna menyelamatkan klausul pengadilan merdeka dari pemangkasan kabinet. Tanpa kehadiran kuorum yang sah, pejabat kementerian bersama Hendrawan merumuskan tafsir hukum bahwa peraturan penguasa perang dapat menyimpangi undang-undang dasar sementara. Sastrawijaya menolak menandatangani berita acara rapat malam itu lalu mengirimkan salinan bantahan ke Bandung melalui kereta subuh.",
+        "legal_concepts": [
+          "Independensi Yudikatif",
+          "Hierarki Norma Hukum",
+          "Peraturan Penguasa Perang"
+        ],
+        "illustration_rel": "assets/novels/konstituante-1957-risalah-bandung/ch_04.png"
+      },
+      {
+        "number": 5,
+        "roman": "V",
+        "title": "Tinta Biru di Atas Risalah",
+        "date_and_location": "Bandung, 30 Mei 1959 — Lobi Sidang Pleno Gedung Merdeka",
+        "epigraph_quote": "Apabila suara tidak mencukupi dua pertiga, palu ketua tidak boleh memaksa kehendak menjadi hukum.",
+        "epigraph_source": "Tata Tertib Sidang Pleno Bandung, 1959",
+        "outline": "Ketegangan memuncak di lobi Gedung Merdeka setelah pemungutan suara kembali ke UUD 1945 gagal memenuhi syarat dua pertiga suara sah. Hendrawan menyudutkan Marlina di dekat loket arsip dan menuntut penyerahan draf final hak uji materiil sebelum rapat diskors. Dengan menatap langsung mata mantan temannya, Marlina berpegang pada tata tertib sidang dan menolak memanipulasi daftar hadir demi meloloskan kehendak penguasa darurat.",
+        "legal_concepts": [
+          "Kuorum Dua Pertiga",
+          "Supremasi Prosedural",
+          "Pasal 137 UUDS 1950"
+        ],
+        "illustration_rel": "assets/novels/konstituante-1957-risalah-bandung/ch_05.png"
+      },
+      {
+        "number": 6,
+        "roman": "VI",
+        "title": "Dua Pertiga yang Tak Pernah Tiba",
+        "date_and_location": "Bandung, 5 Juli 1959 — Ruang Panitera Lantai Dua",
+        "epigraph_quote": "Kami membubarkan Konstituante demi keselamatan nusa dan bangsa.",
+        "epigraph_source": "Konsiderans Dekrit 5 Juli 1959",
+        "outline": "Ketika radio menyiarkan pembubaran Konstituante dari Jakarta, pasukan bersenjata menyegel Gedung Merdeka dan membakar berkas rancangan di halaman belakang. Mayor Hendrawan naik ke lantai dua untuk menyita sisa risalah hak uji materiil atas nama keselamatan negara. Sebelum api melahap arsip stensil itu, Marlina menyelipkan satu bundel ke dalam tas kulit Sastrawijaya sebagai bukti runtuhnya supremasi hukum.",
+        "legal_concepts": [
+          "Dekrit Presiden 1959",
+          "Diskontinuitas Konstitusi",
+          "Hukum Darurat Subjektif"
+        ],
+        "illustration_rel": "assets/novels/konstituante-1957-risalah-bandung/ch_06.png"
+      }
+    ],
+    "dossier_highlights": [
+      "Undang-Undang Dasar Sementara Republik Indonesia 1950 (Ketentuan Konstituante) (1950)",
+      "Regeling op de Staat van Oorlog en Beleg (Keadaan Perang dan Darurat) (1939 / 1957)",
+      "Dekrit Presiden Republik Indonesia 5 Juli 1959 (1959)",
+      "- 15 Desember 1955 — Pemilihan Umum Anggota Konstituante: Menghasilkan 514 kursi terfragmentasi tanpa mayoritas tunggal 2/3 suara.",
+      "- 10 November 1956 — Pelantikan Majelis Konstituante di Bandung: Dimulainya sidang komisi penyusunan Mukadimah, HAM, dan sistem pemerintahan.",
+      "- 14 Maret 1957 — Pemberlakuan Staat van Oorlog en Beleg (SOB) di seluruh Indonesia: Wewenang penguasa militer meningkat tajam dan membayangi kemerdekaan pers.",
+      "- 29 Mei – 2 Juni 1959 — Pemungutan Suara Tiga Kali di Bandung untuk Kembali ke UUD 1945: Usulan pemerintah gagal memenuhi syarat kuorum 2/3 Pasal 137 UUDS 1950.",
+      "- 5 Juli 1959 — Pembacaan Dekrit Presiden di Istana Merdeka: Konstituante dibubarkan dan negara beralih ke sistem presidensial Demokrasi Terpimpin.",
+      "- Staatsfundamentalnorm (*Jerman / Hans Nawiasky*): Norma fundamental negara yang menjadi sumber legitimasi tertinggi bagi seluruh pasal konstitusi.",
+      "- Rechtstaat (*Belanda / Jerman*): Negara hukum di mana kekuasaan pemerintah dibatasi oleh hukum tertulis, hak warga, dan peradilan merdeka."
+    ],
+    "external_buttons": [
+      {
+        "label": "Baca di Wattpad",
+        "url": "https://www.wattpad.com/search/Risalah%20yang%20Terbakar%20di%20Bandung",
+        "key": "wattpad"
+      },
+      {
+        "label": "Baca di KaryaKarsa",
+        "url": "https://karyakarsa.com/discover?q=Khohar%20Rohman",
+        "key": "karyakarsa"
+      },
+      {
+        "label": "Google Play Books",
+        "url": "https://play.google.com/store/search?q=Risalah%20yang%20Terbakar%20di%20Bandung&c=books",
+        "key": "google_play_books"
+      },
+      {
+        "label": "Lihat di Goodreads",
+        "url": "https://www.goodreads.com/search?q=Risalah+yang+Terbakar+di+Bandung",
+        "key": "goodreads"
+      },
+      {
+        "label": "Arsip PDF (Google Drive)",
+        "url": "https://drive.google.com/drive/folders/1leukeNem8xBKEGk4xFaq7VNPYiACrYeW",
+        "key": "google_drive"
+      }
+    ],
+    "model_used": "gemini-4-hydrogen",
+    "generation_mode": "live-ai"
+  }
+]

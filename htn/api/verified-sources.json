@@ -1,0 +1,189 @@
+{
+  "verified_sources": {
+    "mkri.id": {
+      "name": "Mahkamah Konstitusi RI",
+      "tier": "Lembaga Negara & Arsip Resmi",
+      "verification_basis": "Situs Resmi Lembaga Peradilan Konstitusi RI"
+    },
+    "mahkamahagung.go.id": {
+      "name": "Mahkamah Agung RI",
+      "tier": "Lembaga Negara & Arsip Resmi",
+      "verification_basis": "Situs Resmi Mahkamah Agung RI"
+    },
+    "dpr.go.id": {
+      "name": "Dewan Perwakilan Rakyat RI",
+      "tier": "Lembaga Negara & Arsip Resmi",
+      "verification_basis": "Situs Resmi Parlemen Republik Indonesia"
+    },
+    "peraturan.go.id": {
+      "name": "Portal Peraturan Perundang-undangan RI",
+      "tier": "Lembaga Negara & Arsip Resmi",
+      "verification_basis": "Direktorat Jenderal Peraturan Perundang-undangan Kemenkumham"
+    },
+    "jdihn.go.id": {
+      "name": "Jaringan Dokumentasi & Informasi Hukum Nasional",
+      "tier": "Lembaga Negara & Arsip Resmi",
+      "verification_basis": "Portal Dokumentasi Hukum Resmi Pemerintah RI"
+    },
+    "bphn.go.id": {
+      "name": "Badan Pembinaan Hukum Nasional",
+      "tier": "Lembaga Negara & Arsip Resmi",
+      "verification_basis": "Lembaga Resmi Kajian & Pembinaan Hukum RI"
+    },
+    "anri.go.id": {
+      "name": "Arsip Nasional Republik Indonesia",
+      "tier": "Lembaga Negara & Arsip Resmi",
+      "verification_basis": "Lembaga Arsip Sejarah Resmi Negara RI"
+    },
+    "setneg.go.id": {
+      "name": "Kementerian Sekretariat Negara RI",
+      "tier": "Lembaga Negara & Arsip Resmi",
+      "verification_basis": "Portal Resmi Kepresidenan & Sekretariat Negara"
+    },
+    "setkab.go.id": {
+      "name": "Sekretariat Kabinet RI",
+      "tier": "Lembaga Negara & Arsip Resmi",
+      "verification_basis": "Portal Resmi Regulasi & Berita Kabinet RI"
+    },
+    "komnasham.go.id": {
+      "name": "Komisi Nasional Hak Asasi Manusia",
+      "tier": "Lembaga Negara & Arsip Resmi",
+      "verification_basis": "Lembaga Independen Negara Hak Asasi Manusia"
+    },
+    "kpu.go.id": {
+      "name": "Komisi Pemilihan Umum RI",
+      "tier": "Lembaga Negara & Arsip Resmi",
+      "verification_basis": "Lembaga Penyelenggara Pemilu Resmi RI"
+    },
+    "antaranews.com": {
+      "name": "LKBN ANTARA",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Kantor Berita Resmi Negara Indonesia"
+    },
+    "kompas.id": {
+      "name": "Harian Kompas",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Media Cetak & Digital Terverifikasi Dewan Pers"
+    },
+    "kompas.com": {
+      "name": "Kompas.com",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Media Nasional Terverifikasi Dewan Pers"
+    },
+    "tempo.co": {
+      "name": "Tempo.co",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Media Investigasi & Hukum Terverifikasi Dewan Pers"
+    },
+    "hukumonline.com": {
+      "name": "Hukumonline.com",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Portal Hukum & Perundang-undangan Terverifikasi Dewan Pers"
+    },
+    "historia.id": {
+      "name": "Historia.id",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Majalah Sejarah Indonesia Terverifikasi Dewan Pers"
+    },
+    "tirto.id": {
+      "name": "Tirto.id",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Media Jurnalisme Data & Sejarah Terverifikasi Dewan Pers"
+    },
+    "katadata.co.id": {
+      "name": "Katadata",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Media Riset Kebijakan Publik Terverifikasi Dewan Pers"
+    },
+    "cnnindonesia.com": {
+      "name": "CNN Indonesia",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Media Nasional Terverifikasi Dewan Pers"
+    },
+    "cnbcindonesia.com": {
+      "name": "CNBC Indonesia",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Media Ekonomi & Kebijakan Terverifikasi Dewan Pers"
+    },
+    "republika.co.id": {
+      "name": "Republika",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Media Nasional Terverifikasi Dewan Pers"
+    },
+    "mediaindonesia.com": {
+      "name": "Media Indonesia",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Media Nasional Terverifikasi Dewan Pers"
+    },
+    "bisnis.com": {
+      "name": "Bisnis Indonesia",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Media Kebijakan & Bisnis Terverifikasi Dewan Pers"
+    },
+    "detik.com": {
+      "name": "Detikcom",
+      "tier": "Media Pers Terverifikasi Dewan Pers",
+      "verification_basis": "Media Nasional Terverifikasi Dewan Pers"
+    }
+  },
+  "anti_slop_rules": {
+    "banned_phrases": [
+      "di tengah gemuruh",
+      "permadani sejarah",
+      "simfoni perjuangan",
+      "mozaik kehidupan",
+      "takdir yang terjalin",
+      "benang merah takdir",
+      "bisikan angin",
+      "secercah harapan",
+      "di ujung terowongan",
+      "merajut asa",
+      "bukan sekadar",
+      "lebih dari sekadar",
+      "sebuah pengingat bahwa",
+      "gema perubahan",
+      "denyut nadi",
+      "dalam keheningan yang",
+      "seolah waktu berhenti",
+      "menyimpan sejuta misteri",
+      "babak baru dalam sejarah",
+      "menatap cakrawala",
+      "api semangat",
+      "perjalanan panjang yang berliku"
+    ],
+    "banned_sentence_starters": [
+      "Di tengah",
+      "Dalam keheningan",
+      "Seiring berjalannya waktu",
+      "Tak dapat dipungkiri",
+      "Sebagai catatan"
+    ],
+    "required_legal_terms": [
+      "staatsfundamentalnorm",
+      "rechtstaat",
+      "machtstaat",
+      "konstituante",
+      "risalah",
+      "dekrit",
+      "ordonansi",
+      "staat van oorlog en beleg",
+      "undang-undang dasar",
+      "pasal",
+      "ayat",
+      "hak uji materiil",
+      "kedaulatan",
+      "parlemen",
+      "kabinet",
+      "mosi",
+      "amendemen",
+      "fraksi",
+      "yurisprudensi",
+      "trias politica",
+      "peraturan pemerintah",
+      "mahkamah",
+      "quorum",
+      "veto",
+      "maklumat"
+    ]
+  }
+}
