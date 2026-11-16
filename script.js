@@ -19,8 +19,8 @@ class AmbientAtmosphere {
         if (!this.canvas) return;
 
         this.ctx = this.canvas.getContext('2d');
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        this.mode = localStorage.getItem('portfolioAtmosphere') || (prefersReducedMotion ? 'off' : 'fusion');
+        // Executive-Editorial default: keep decorative storm/spark particle animations disabled
+        this.mode = 'off';
         this.isRunning = false;
         this.animationId = null;
         this.lightningTimer = null;
@@ -2514,7 +2514,7 @@ function renderArticles(articleList, lang = 'en') {
     articleList.slice(0, 4).forEach((item, idx) => {
         const title = (lang === 'en' && item.judul_en) ? item.judul_en : item.judul;
         const excerpt = (lang === 'en' && item.deskripsi_en) ? item.deskripsi_en : item.deskripsi;
-        const readLabel = lang === 'en' ? 'Read Technical Publication' : 'Baca Publikasi Lengkap';
+        const readLabel = lang === 'en' ? 'Read Full Study' : 'Baca Kajian Lengkap';
         const articleLink = item.link || 'artikel/';
         const readingTime = item.reading_time || (lang === 'en' ? '15 min read' : '~15 menit baca');
         const dateStr = item.created_at || '2026-10-01';
@@ -2527,7 +2527,7 @@ function renderArticles(articleList, lang = 'en') {
                 <img src="${escapeHtml(thumbUrl)}" alt="${escapeHtml(title)}" class="article-thumb-img" loading="${idx < 2 ? 'eager' : 'lazy'}" decoding="async" onerror="this.onerror=null;this.style.display='none';">
             </div>
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;">
-                <span class="article-cat" style="margin-bottom: 0;">${escapeHtml(item.kategori || 'Applied Artificial Intelligence')}</span>
+                <span class="article-cat" style="margin-bottom: 0;">${escapeHtml(item.kategori || 'Kajian Hukum & Teknologi')}</span>
                 <span style="font-size: 0.78rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px;">
                     <i class="far fa-calendar-alt" style="color: var(--accent);"></i> ${escapeHtml(dateStr)} • ${escapeHtml(readingTime)}
                 </span>
@@ -2596,13 +2596,14 @@ if (document.readyState === 'loading') {
 (function initKeyboardShortcuts() {
     const sectionMap = {
         '1': 'hero',
-        '2': 'projects', 
-        '3': 'honors',
+        '2': 'jurisprudence',
+        '3': 'articles',
         '4': 'literary',
-        '5': 'articles',
-        '6': 'about',
-        '7': 'gallery',
-        '8': 'contact'
+        '5': 'projects',
+        '6': 'honors',
+        '7': 'about',
+        '8': 'gallery',
+        '9': 'contact'
     };
     
     document.addEventListener('keydown', (e) => {

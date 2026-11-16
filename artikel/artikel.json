@@ -1,5 +1,55 @@
 [
   {
+    "id": 101,
+    "slug": "mosi-integral-natsir-1950-likuidasi-ris",
+    "judul": "Mosi Integral Natsir dan Rekayasa Konstitusional Menuju Negara Kesatuan 1950",
+    "kategori": "SEJARAH KONSTITUSI (dpr.go.id)",
+    "tanggal": "2026-11-16",
+    "deskripsi_singkat": "Esai ini membedah arsitektur hukum di balik Mosi Integral Mohammad Natsir pada 3 April 1950 yang mengakhiri struktur federal Republik Indonesia Serikat. Melalui pembacaan atas mekanisme perubahan Konstitusi RIS 1949, Piagam Persetujuan 19 Mei 1950, serta pengesahan UU Federal Nomor 7 Tahun 1950, tulisan ini menelaah transisi damai menuju negara kesatuan berbasis Undang-Undang Dasar Sementara 1950 beserta implikasi sosial-politiknya bagi legitimasi negara hukum Indonesia.",
+    "link_gambar": "../htn/assets/illustrations/mosi-integral-natsir-1950-likuidasi-ris.png",
+    "link": "../htn/articles/mosi-integral-natsir-1950-likuidasi-ris.html"
+  },
+  {
+    "id": 102,
+    "slug": "20261116-dpr-tegaskan-kewajiban-pejabat-pemerintahan-patu",
+    "judul": "Kepatuhan Eksekutif di Hadapan Palu Hakim dan Batas Diskresi Birokrasi",
+    "kategori": "HUKUM TATA NEGARA (mkri.id)",
+    "tanggal": "2026-11-16",
+    "deskripsi_singkat": "Esai ini membedah penegasan Dewan Perwakilan Rakyat mengenai kewajiban pejabat pemerintahan mematuhi putusan pengadilan dalam arsitektur ketatanegaraan Indonesia, menelusuri ketegangan antara diskresi birokrasi dan kemandirian yudikatif melalui norma UUD 1945, hukum administrasi negara, serta sejarah Peradilan Tata Usaha Negara.",
+    "link_gambar": "../htn/assets/illustrations/20261116-dpr-tegaskan-kewajiban-pejabat-pemerintahan-patu.png",
+    "link": "../htn/articles/20261116-dpr-tegaskan-kewajiban-pejabat-pemerintahan-patu.html"
+  },
+  {
+    "id": 103,
+    "slug": "20261115-ahli-dpr-tegaskan-ruu-polri-bukan-carry-over-mah",
+    "judul": "Status Carry Over RUU Polri dalam Sorotan Prosedur Legislasi",
+    "kategori": "HUKUM TATA NEGARA (mkri.id)",
+    "tanggal": "2026-11-15",
+    "deskripsi_singkat": "Analisis atas pernyataan ahli Dewan Perwakilan Rakyat dalam persidangan di Mahkamah Konstitusi sebagaimana dilansir laman resmi mkri.id yang menegaskan bahwa Rancangan Undang-Undang Polri bukan merupakan rancangan undang-undang luncuran atau carry over, ditinjau dari ketentuan Pasal 71A Undang-Undang Pembentukan Peraturan Perundang-undangan serta dampak konstitusional dan sosial-politiknya.",
+    "link_gambar": "../htn/assets/illustrations/20261115-ahli-dpr-tegaskan-ruu-polri-bukan-carry-over-mah.png",
+    "link": "../htn/articles/20261115-ahli-dpr-tegaskan-ruu-polri-bukan-carry-over-mah.html"
+  },
+  {
+    "id": 104,
+    "slug": "kuorum-pasal-137-uuds-konstituante-1959",
+    "judul": "Batas Dua Pertiga di Bandung: Anatomi Kebuntuan Pasal 137 UUDS 1950",
+    "kategori": "SEJARAH KONSTITUSI (anri.go.id)",
+    "tanggal": "2026-11-15",
+    "deskripsi_singkat": "Analisis hukum tata negara mengenai mekanisme kuorum dua pertiga dalam Pasal 137 ayat (1) dan (2) UUDS 1950 yang menyebabkan kebuntuan pemungutan suara di Majelis Konstituante pada Mei–Juni 1959 serta dampaknya terhadap penerbitan Dekrit Presiden 5 Juli 1959.",
+    "link_gambar": "../htn/assets/illustrations/kuorum-pasal-137-uuds-konstituante-1959.png",
+    "link": "../htn/articles/kuorum-pasal-137-uuds-konstituante-1959.html"
+  },
+  {
+    "id": 105,
+    "slug": "polemik-hak-uji-materiil-soepomo-yamin-bpupki-1945",
+    "judul": "Penolakan di Pejambon: Silang Pendapat Yamin dan Soepomo soal Uji Materiil 1945",
+    "kategori": "HUKUM TATA NEGARA (mkri.id)",
+    "tanggal": "2026-11-15",
+    "deskripsi_singkat": "Esai ini menelusuri perdebatan antara Muhammad Yamin dan Soepomo dalam Sidang BPUPKI Juli 1945 mengenai hak uji materiil, dampaknya pada rumusan Pasal 24 UUD 1945 serta konstitusi periode 1949-1950, hingga pembalikan arsitektur kekuasaan kehakiman melalui Pasal 24C UUD 1945 dan Undang-Undang Nomor 24 Tahun 2003.",
+    "link_gambar": "../htn/assets/illustrations/polemik-hak-uji-materiil-soepomo-yamin-bpupki-1945.png",
+    "link": "../htn/articles/polemik-hak-uji-materiil-soepomo-yamin-bpupki-1945.html"
+  },
+  {
     "id": 1,
     "slug": "transformasi-lanskap-kecerdasan-artifisial",
     "judul": "Transformasi Lanskap Kecerdasan Artifisial Analisis Paradoks Produktivitas, Adopsi Lintas Sektor, dan Tata Kelola Berkelanjutan",

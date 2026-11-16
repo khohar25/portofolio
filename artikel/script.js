@@ -52,11 +52,19 @@ function filterArticles(category) {
     const filtered = allArticles.filter(art => {
         const cat = (art.kategori || '').toLowerCase();
         const title = (art.judul || '').toLowerCase();
-        if (category === 'ai') return cat.includes('ai') || cat.includes('intelligence') || title.includes('kecerdasan');
-        if (category === 'mcp') return cat.includes('mcp') || cat.includes('enterprise') || title.includes('context protocol');
-        if (category === 'cyber') return cat.includes('cyber') || cat.includes('soc') || title.includes('keamanan');
-        if (category === 'banking') return cat.includes('bank') || cat.includes('fintech') || title.includes('perbankan');
-        if (category === 'scm') return cat.includes('scm') || cat.includes('supply') || cat.includes('software') || title.includes('sdlc') || title.includes('rantai');
+        const desc = (art.deskripsi_singkat || art.deskripsi || '').toLowerCase();
+        if (category === 'htn') {
+            return cat.includes('tata negara') || cat.includes('konstitusi') || title.includes('konstituante') || title.includes('natsir') || title.includes('soepomo');
+        }
+        if (category === 'techlaw') {
+            return cat.includes('policy') || cat.includes('ethics') || cat.includes('banking') || desc.includes('uu pdp') || desc.includes('menkominfo');
+        }
+        if (category === 'mcp') {
+            return cat.includes('mcp') || cat.includes('enterprise') || cat.includes('scm') || title.includes('context protocol');
+        }
+        if (category === 'cyber') {
+            return cat.includes('cyber') || cat.includes('soc') || cat.includes('software') || title.includes('sdlc');
+        }
         return true;
     });
     
