@@ -2,12 +2,7 @@
 
 Personal website: https://khoharrohman.my.id/
 
-Khohar is an Informatics Engineering student at Politeknik Negeri Malang and Director at PT Aigarn Akademi Artificial. The site contains web projects, fiction, education and activity records. No articles or legal study notes are currently published in this local version.
-
-## Web projects
-- Tron Sistem: https://tronsistem.vercel.app/
-- Zafarsh Trans: https://zafarsh-trans.vercel.app/
-- Kripik Tempe Kharisma: https://khohar25.github.io/kripiktempekharisma/
+Khohar is an Informatics Engineering student at Politeknik Negeri Malang and Director at PT Aigarn Akademi Artificial. The site contains a personal profile, fiction, education, and organizational experience. No articles or legal study notes are currently published in this local version.
 
 ## Fiction
 - Rajah Kolocokro
@@ -16,9 +11,6 @@ Khohar is an Informatics Engineering student at Politeknik Negeri Malang and Dir
 - Pelet Pandangan Pertama
 
 These serialized works are linked from the site's fiction section.
-
-## Supporting documents
-The homepage shows six selected supporting documents. The full archive is at https://khoharrohman.my.id/arsip-sertifikat.html and contains participation records, training badges, certifications, and award documents. Document types differ. The archive is not a blanket claim of professional licensing or independent verification. Refer to the attached documents and issuer records where available.
 
 ## Contact and code
 - Email: khoharrohman@gmail.com

@@ -9,29 +9,7 @@
       "deskripsi_en": "Developing modern web solutions, agentic AI workflows, and generative AI system integrations."
     }
   ],
-  "portofolio": [
-    {
-      "judul": "Tron Sistem",
-      "kategori": "Web Application / Operations",
-      "deskripsi": "Aplikasi web manajemen operasional dan monitoring berbasis cloud. Didesain dengan antarmuka yang bersih dan responsif, dioptimasi agar cepat diakses dan stabil saat digunakan pengguna lapangan.",
-      "deskripsi_en": "Cloud-based operational management and tracking web application. Designed with a clean, responsive UI, optimized for fast loading and stable performance in field use.",
-      "link": "https://tronsistem.vercel.app"
-    },
-    {
-      "judul": "Zafarsh Trans",
-      "kategori": "Fleet Showcase & Travel Booking",
-      "deskripsi": "Website informasi armada dan sistem reservasi perjalanan travel antar-kota. Memudahkan calon penumpang melihat daftar rute, jadwal keberangkatan, dan menghubungi admin pemesanan secara langsung.",
-      "deskripsi_en": "Fleet showcase and online reservation platform for intercity transport. Helps passengers view travel routes, check schedules, and contact dispatchers directly for bookings.",
-      "link": "https://zafarsh-trans.vercel.app"
-    },
-    {
-      "judul": "Kripik Tempe Kharisma",
-      "kategori": "UMKM Digital Showcase",
-      "deskripsi": "Katalog produk dan etalase digital untuk UMKM makanan ringan khas Trenggalek. Dibuat ringan dan responsif agar memudahkan promosi oleh-oleh lokal ke pembeli online.",
-      "deskripsi_en": "Product catalog and digital landing page for a local snack business in Trenggalek, built lightweight and mobile-friendly to help traditional food makers reach online buyers.",
-      "link": "https://khohar25.github.io/kripiktempekharisma/"
-    }
-  ],
+  "portofolio": [],
   "library": [
     {
       "judul": "Rajah Kolocokro",
