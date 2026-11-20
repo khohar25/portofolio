@@ -808,7 +808,7 @@ if (document.readyState === 'loading') {
 // KEYBOARD NAVIGATION SHORTCUTS
 // ==========================================================================
 (function initKeyboardShortcuts() {
-    const sectionMap = { '1': 'hero', '2': 'literary', '3': 'about', '4': 'contact' };
+    const sectionMap = { '1': 'hero', '2': 'about', '3': 'literary', '4': 'contact' };
     
     document.addEventListener('keydown', (e) => {
         // Don't trigger if user is typing in an input

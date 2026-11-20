@@ -4157,3 +4157,458 @@ a:focus-visible, button:focus-visible, input:focus-visible, [role="button"]:focu
 #bookshelf-display-grid[data-certificate-mode="featured"] .shelf-tome-cover { aspect-ratio:auto; height:100%; justify-content:flex-start; gap:12px; padding:16px; }
 #bookshelf-display-grid[data-certificate-mode="featured"] .tome-doc-preview-plate { height:150px; aspect-ratio:auto; margin:0; flex-shrink:0; }
 #bookshelf-display-grid[data-certificate-mode="featured"] .shelf-tome-item::after { display:none; }
+
+
+/* ==========================================================================
+   CLASSIC STATESMAN / INTELLECTUAL EDITORIAL ARCHIVE LAYOUT
+   (Inspired by formal statesman & scholar websites — anti-AI-slop typography)
+   ========================================================================== */
+.ambient-glow {
+    opacity: 0.2 !important;
+}
+
+.genshin-hud-pill {
+    border-radius: 4px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+}
+
+.bento-card::before,
+.honor-item-card::before,
+.book-slide-card::before {
+    display: none !important;
+}
+
+.editorial-hero-grid {
+    grid-template-columns: 1.38fr 0.78fr;
+    gap: 56px;
+    align-items: start;
+}
+
+.editorial-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.73rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+}
+
+.hero-title {
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    margin-bottom: 14px;
+}
+
+.hero-role-title {
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    font-size: 1.24rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.editorial-prose {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 30px;
+    max-width: 65ch;
+}
+
+.editorial-prose p {
+    font-size: 1.01rem;
+    color: var(--text-secondary);
+    line-height: 1.82;
+}
+
+/* Portrait Dossier Card (Right Column) */
+.editorial-portrait-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-top: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    text-align: left;
+}
+
+.editorial-portrait-frame {
+    width: 112px;
+    height: 136px;
+    margin-bottom: 16px;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-surface-elevated);
+}
+
+.editorial-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    filter: saturate(0.88) contrast(1.03);
+}
+
+.editorial-portrait-caption {
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.editorial-portrait-caption .hero-visual-name {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.18rem;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.editorial-portrait-caption .hero-visual-sub {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.editorial-dossier-list {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-size: 0.84rem;
+}
+
+.dossier-row {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 10px;
+    align-items: baseline;
+}
+
+.dossier-row dt {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+}
+
+.dossier-row dd {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.editorial-section {
+    border-top: 1px solid var(--border-subtle);
+    padding: 84px 0;
+}
+
+/* Biographical Prose Essay */
+.editorial-bio-article {
+    max-width: 78ch;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 48px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.editorial-bio-article p {
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    font-size: 1.14rem;
+    line-height: 1.85;
+    color: var(--text-secondary);
+}
+
+/* Two-Column Chronology Record */
+.editorial-chronology-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.chronology-heading {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.28rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    padding-bottom: 12px;
+    margin-bottom: 22px;
+    border-bottom: 2px solid var(--accent);
+}
+
+.chronology-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.chronology-item {
+    display: grid;
+    grid-template-columns: 118px 1fr;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    align-items: baseline;
+}
+
+.chronology-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.chronology-period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+}
+
+.chronology-title {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    line-height: 1.32;
+}
+
+.chronology-role {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.chronology-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.62;
+}
+
+/* Bibliography / Literary Catalog List */
+.bibliography-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.bibliography-entry {
+    display: grid;
+    grid-template-columns: 116px 1fr;
+    gap: 28px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    align-items: start;
+}
+
+.bibliography-cover-wrap {
+    width: 116px;
+    aspect-ratio: 3 / 4.1;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-surface-elevated);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.bibliography-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.bibliography-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.bibliography-index {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.bibliography-title {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.44rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    line-height: 1.25;
+}
+
+.bibliography-synopsis {
+    font-size: 0.96rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    max-width: 72ch;
+    margin-bottom: 14px;
+}
+
+.bibliography-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.bibliography-link:hover {
+    color: var(--accent-hover);
+}
+
+/* Official Correspondence Two-Column Layout */
+.editorial-correspondence-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 48px;
+    align-items: start;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 36px;
+}
+
+.correspondence-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.correspondence-item dt {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.73rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+}
+
+.correspondence-item dd {
+    font-size: 0.96rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.correspondence-item dd a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.correspondence-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.correspondence-links .btn-secondary {
+    padding: 9px 15px;
+    font-size: 0.84rem;
+}
+
+.editorial-form {
+    display: grid;
+    gap: 16px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-field label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.form-field input,
+.form-field textarea {
+    padding: 11px 14px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    border-color: var(--accent);
+}
+
+.traveler-location {
+    font-size: 0.74rem;
+    color: var(--accent);
+    margin-top: 2px;
+}
+
+@media (max-width: 960px) {
+    .editorial-hero-grid,
+    .editorial-chronology-grid,
+    .editorial-correspondence-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .editorial-hero-grid {
+        text-align: left;
+    }
+
+    .hero-cta-wrap,
+    .hero-socials {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+    .chronology-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .bibliography-entry {
+        grid-template-columns: 88px 1fr;
+        gap: 18px;
+        padding: 22px 0;
+    }
+
+    .bibliography-cover-wrap {
+        width: 88px;
+    }
+
+    .bibliography-title {
+        font-size: 1.22rem;
+    }
+
+    .editorial-correspondence-grid {
+        padding: 22px 18px;
+    }
+}
