@@ -4812,3 +4812,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, [role="button"]:focu
         padding: 40px 0 48px 0;
     }
 }
+
+/* Half-body portrait and book-page links. */
+.yusril-stage-portrait { width: min(100%, 390px); max-height: 490px; }
+.bibliography-actions { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+.bibliography-actions a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+@media (max-width: 900px) { .yusril-stage-portrait { width: min(82%, 310px); max-height: 390px; } }

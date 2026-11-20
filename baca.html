@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruang Baca | Khohar Muhamad Fatahurrohman</title>
+  <meta name="description" content="Halaman buku dan ruang baca karya Khohar Muhamad Fatahurrohman.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="reader.css?v=1">
+  <script type="module" src="reader.js?v=1"></script>
+</head>
+<body>
+  <a class="skip-link" href="#book">Lewati ke buku</a>
+  <header class="masthead">
+    <a class="author" href="index.html">Khohar Muhamad Fatahurrohman<span>Laman resmi · Karya tulis</span></a>
+    <a class="back-link" href="index.html#literary">Kembali ke karya tulis</a>
+  </header>
+  <main>
+    <section id="book" class="book-intro" aria-labelledby="book-title">
+      <div class="cover-frame"><img id="book-cover" hidden alt=""></div>
+      <div class="book-details">
+        <p class="eyebrow">Ruang baca</p>
+        <h1 id="book-title">Memuat buku…</h1>
+        <p id="book-author" class="byline"></p>
+        <p id="book-theme" class="book-theme"></p>
+        <p id="book-description" class="description"></p>
+        <div id="availability" class="availability" role="status" aria-live="polite">
+          <h2 id="availability-title">Menyiapkan halaman buku</h2>
+          <p id="availability-message">Mohon tunggu sebentar.</p>
+        </div>
+        <div class="book-actions">
+          <a id="fizzo-link" class="button primary" hidden target="_blank" rel="noopener noreferrer">Baca di Fizzo Novel <span class="sr-only">(tab baru)</span></a>
+          <a id="start-reading" class="button primary" href="#reader" hidden>Mulai membaca</a>
+          <a id="pdf-link" class="text-link" hidden target="_blank" rel="noopener">Buka PDF <span class="sr-only">(tab baru)</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="reader" class="reader" aria-label="Pembaca buku" hidden>
+      <div class="reader-heading"><h2 id="reader-title">Baca buku</h2><p>Posisi baca tersimpan di peramban ini.</p></div>
+      <div class="toolbar" aria-label="Pengaturan membaca">
+        <div class="page-navigation">
+          <button id="previous" type="button" aria-label="Halaman sebelumnya">Sebelumnya</button>
+          <form id="page-form">
+            <label for="page-number">Halaman</label>
+            <input id="page-number" type="number" min="1" value="1" inputmode="numeric" required>
+            <span id="page-total">/ —</span>
+            <button type="submit">Buka</button>
+          </form>
+          <button id="next" type="button" aria-label="Halaman berikutnya">Berikutnya</button>
+        </div>
+        <div class="view-controls">
+          <label for="zoom">Ukuran</label>
+          <select id="zoom"><option value="fit">Sesuai layar</option><option value="1">100%</option><option value="1.25">125%</option><option value="1.5">150%</option><option value="2">200%</option></select>
+          <button id="text-toggle" type="button" aria-pressed="false">Tampilan teks</button>
+          <button id="fullscreen" type="button">Layar penuh</button>
+        </div>
+      </div>
+      <p id="reader-status" class="reader-status" role="status" aria-live="polite"></p>
+      <div id="page-stage" class="page-stage" tabindex="0" aria-label="Halaman buku. Gunakan tombol panah kiri dan kanan untuk berpindah halaman.">
+        <canvas id="pdf-canvas" role="img" aria-label="Halaman buku"></canvas>
+        <article id="page-text" class="page-text" aria-label="Teks halaman buku" hidden></article>
+      </div>
+      <p class="reader-help">Gunakan tombol Sebelumnya/Berikutnya atau panah kiri/kanan pada keyboard.</p>
+    </section>
+
+    <nav class="other-books" aria-label="Karya lainnya"><h2>Karya lainnya</h2><div id="other-books"></div></nav>
+    <noscript><p class="noscript-message">Aktifkan JavaScript untuk membuka pembaca. <a href="index.html#literary">Lihat daftar karya dan tautan Fizzo.</a></p></noscript>
+  </main>
+  <footer>Khohar Muhamad Fatahurrohman <span>Malang, Jawa Timur</span></footer>
+</body>
+</html>
