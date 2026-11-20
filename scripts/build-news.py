@@ -1,101 +1,402 @@
-"""Build the curated news pages from berita.json; no external dependencies."""
-from pathlib import Path
+"""Build personal news & writing pages from berita.json; no external dependencies.
+
+Schema for berita.json:
+{
+  "updatedAt": "YYYY-MM-DD",
+  "items": [
+    {
+      "slug": "judul-tulisan",
+      "category": "Kabar Pribadi",
+      "title": "Judul Berita atau Tulisan Pribadi",
+      "publishedAt": "YYYY-MM-DD",
+      "updatedAt": "YYYY-MM-DD",                # optional
+      "excerpt": "Ringkasan singkat 1-2 kalimat.",
+      "image": "artikel/images/sampul.webp",    # optional local image
+      "imageAlt": "Deskripsi singkat gambar",   # required when "image" is set
+      "imageCaption": "Keterangan foto",        # optional
+      "paragraphs": [
+        "Paragraf teks biasa...",
+        {
+          "type": "heading",
+          "text": "Subjudul Opsional"
+        },
+        {
+          "type": "image",
+          "src": "artikel/images/ilustrasi-1.webp",
+          "alt": "Deskripsi ilustrasi",
+          "caption": "Keterangan ilustrasi (opsional)"
+        },
+        "Paragraf berikutnya..."
+      ]
+    }
+  ]
+}
+"""
 from datetime import date
-import html, json, re
-from urllib.parse import urlsplit
+import html
+import json
+from pathlib import Path
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
-data = json.loads((ROOT / 'berita.json').read_text(encoding='utf-8'))
-items = sorted(data['items'], key=lambda item: item['publishedAt'], reverse=True)
-checked = date.fromisoformat(data['checkedAt'])
-months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']
-esc = lambda value: html.escape(str(value), quote=True)
+ARTIKEL_DIR = ROOT / 'artikel'
+SITE_URL = 'https://khoharrohman.my.id'
+AUTHOR_NAME = 'Khohar Muhamad Fatahurrohman'
+CSS_VERSION = '3'
+
+months = [
+    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember',
+]
+
+
+def esc(value):
+    return html.escape(str(value), quote=True)
+
+
 def formatted(value):
     day = date.fromisoformat(value)
-    return f'{day.day} {months[day.month-1]} {day.year}'
-assert len({item['slug'] for item in items}) == len(items)
-for item in items:
-    assert re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', item['slug'])
-    assert date.fromisoformat(item['publishedAt']) <= checked
-    assert urlsplit(item['sourceUrl']).scheme == 'https'
-    assert item['paragraphs'] and all(isinstance(p,str) and p.strip() for p in item['paragraphs'])
+    return f'{day.day} {months[day.month - 1]} {day.year}'
 
-def entries(prefix):
-    return '\n'.join(f'''<article class="news-item" lang="id">
+
+def validate_local_image(root, rel_path):
+    assert isinstance(rel_path, str) and rel_path.strip(), 'Image path must be a non-empty string'
+    normalized = rel_path.replace('\\', '/').strip()
+    assert not normalized.startswith(('http://', 'https://', '/', 'data:', 'javascript:')), (
+        f'Image path must be a local relative path inside the repository: {rel_path}'
+    )
+    parts = Path(normalized).parts
+    assert '..' not in parts, f'Image path cannot traverse parent directories: {rel_path}'
+    full_path = (root / normalized).resolve()
+    assert full_path.is_file(), f'Image file not found: {normalized}'
+    return normalized
+
+
+def image_href(rel_path, in_artikel_dir=False):
+    if not in_artikel_dir:
+        return rel_path
+    if rel_path.startswith('artikel/'):
+        return rel_path[len('artikel/'):]
+    return '../' + rel_path
+
+
+def render_entries(entry_items, prefix, in_artikel_dir=False):
+    cards = []
+    for item in entry_items:
+        has_img = bool(item.get('image'))
+        cls = 'news-item has-thumb' if has_img else 'news-item'
+        href = f'{prefix}{esc(item["slug"])}.html'
+        thumb = ''
+        if has_img:
+            src = image_href(item['image'], in_artikel_dir=in_artikel_dir)
+            thumb = (
+                f'\n  <a class="news-thumb" href="{href}">'
+                f'<img src="{esc(src)}" alt="{esc(item["imageAlt"])}" loading="lazy" decoding="async"></a>'
+            )
+        cards.append(
+            f'''<article class="{cls}" lang="id">
   <div class="news-date"><time datetime="{esc(item['publishedAt'])}">{formatted(item['publishedAt'])}</time><span class="news-category">{esc(item['category'])}</span></div>
-  <div><h3 class="news-title"><a href="{prefix}{item['slug']}.html">{esc(item['title'])}</a></h3>
+  <div><h3 class="news-title"><a href="{href}">{esc(item['title'])}</a></h3>
     <p class="news-excerpt">{esc(item['excerpt'])}</p>
-    <div class="news-source"><span>Ringkasan · {esc(item['source'])}</span><a href="{esc(item['sourceUrl'])}" target="_blank" rel="noopener noreferrer">Sumber asli<span class="sr-only"> (tab baru)</span></a></div>
-  </div>
-</article>''' for item in items)
+  </div>{thumb}
+</article>'''
+        )
+    return '\n'.join(cards)
 
-section = f'''<!-- NEWS-SECTION:START -->
+
+def render_body_blocks(blocks):
+    rendered = []
+    for block in blocks:
+        if isinstance(block, str):
+            rendered.append(f'<p>{esc(block)}</p>')
+        elif block['type'] == 'heading':
+            rendered.append(f'<h2>{esc(block["text"])}</h2>')
+        elif block['type'] == 'image':
+            src = image_href(block['src'], in_artikel_dir=True)
+            caption = (
+                f'<figcaption>{esc(block["caption"])}</figcaption>'
+                if block.get('caption')
+                else ''
+            )
+            rendered.append(
+                f'<figure class="article-figure">'
+                f'<img src="{esc(src)}" alt="{esc(block["alt"])}" loading="lazy" decoding="async">'
+                f'{caption}</figure>'
+            )
+    return ''.join(rendered)
+
+
+def shell(title, description, canonical, content, robots='index,follow', schema=None, og_image=None, og_type='website'):
+    structured = (
+        '<script type="application/ld+json">'
+        + json.dumps(schema, ensure_ascii=False).replace('<', '\\u003c')
+        + '</script>'
+        if schema
+        else ''
+    )
+    canonical_url = f'{SITE_URL}/{canonical}'
+    social_meta = (
+        f'<meta property="og:type" content="{esc(og_type)}">'
+        f'<meta property="og:title" content="{esc(title)} | Khohar Rohman">'
+        f'<meta property="og:description" content="{esc(description)}">'
+        f'<meta property="og:url" content="{esc(canonical_url)}">'
+    )
+    if og_image:
+        image_url = f'{SITE_URL}/{og_image}'
+        social_meta += (
+            f'<meta property="og:image" content="{esc(image_url)}">'
+            '<meta name="twitter:card" content="summary_large_image">'
+            f'<meta name="twitter:image" content="{esc(image_url)}">'
+        )
+    else:
+        social_meta += '<meta name="twitter:card" content="summary">'
+
+    return (
+        '<!DOCTYPE html>\n'
+        '<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n'
+        f'<title>{esc(title)} | Khohar Rohman</title>'
+        f'<meta name="description" content="{esc(description)}">'
+        f'<meta name="robots" content="{esc(robots)}">\n'
+        f'<link rel="canonical" href="{esc(canonical_url)}">'
+        f'{social_meta}\n'
+        '<link rel="icon" href="../favicon.png" type="image/png">\n'
+        f'<link rel="stylesheet" href="../reader.css?v=1"><link rel="stylesheet" href="../artikel.css?v={CSS_VERSION}">{structured}\n'
+        '</head><body class="news-page"><a class="skip-link" href="#content">Lewati ke isi</a>\n'
+        f'<header class="masthead"><a class="author" href="../">{AUTHOR_NAME}<span>Laman resmi · Berita &amp; tulisan pribadi</span></a>'
+        '<a class="back-link" href="../#articles">Kembali ke beranda</a></header>\n'
+        f'{content}\n'
+        f'<footer>{AUTHOR_NAME}<span>Malang, Jawa Timur</span></footer></body></html>\n'
+    )
+
+
+def build(root=ROOT):
+    artikel_dir = root / 'artikel'
+    data = json.loads((root / 'berita.json').read_text(encoding='utf-8'))
+    raw_items = data.get('items', [])
+    assert isinstance(raw_items, list), 'berita.json "items" must be a list'
+
+    updated_at = data.get('updatedAt') or date.today().isoformat()
+    date.fromisoformat(updated_at)
+
+    items = sorted(raw_items, key=lambda item: item['publishedAt'], reverse=True)
+    assert len({item['slug'] for item in items}) == len(items), 'Duplicate slug in berita.json'
+
+    normalized_items = []
+    for raw in items:
+        item = dict(raw)
+        assert re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', item['slug']), f"Invalid slug: {item['slug']}"
+        assert isinstance(item.get('category'), str) and item['category'].strip()
+        assert isinstance(item.get('title'), str) and item['title'].strip()
+        assert isinstance(item.get('excerpt'), str) and item['excerpt'].strip()
+        date.fromisoformat(item['publishedAt'])
+        if item.get('updatedAt'):
+            date.fromisoformat(item['updatedAt'])
+
+        if item.get('image'):
+            item['image'] = validate_local_image(root, item['image'])
+            assert isinstance(item.get('imageAlt'), str) and item['imageAlt'].strip(), (
+                f"Item '{item['slug']}' with image must include non-empty imageAlt"
+            )
+            if item.get('imageCaption') is not None:
+                assert isinstance(item['imageCaption'], str)
+
+        raw_blocks = item.get('paragraphs')
+        assert isinstance(raw_blocks, list) and raw_blocks, f"Item '{item['slug']}' needs non-empty paragraphs"
+        clean_blocks = []
+        for block in raw_blocks:
+            if isinstance(block, str):
+                assert block.strip(), f"Empty paragraph string in '{item['slug']}'"
+                clean_blocks.append(block.strip())
+            elif isinstance(block, dict):
+                btype = block.get('type')
+                if btype == 'heading':
+                    assert isinstance(block.get('text'), str) and block['text'].strip()
+                    clean_blocks.append({'type': 'heading', 'text': block['text'].strip()})
+                elif btype == 'image':
+                    src = validate_local_image(root, block.get('src'))
+                    assert isinstance(block.get('alt'), str) and block['alt'].strip(), (
+                        f"Inline image in '{item['slug']}' must include non-empty alt"
+                    )
+                    caption = block.get('caption', '').strip() if isinstance(block.get('caption'), str) else ''
+                    clean_blocks.append({'type': 'image', 'src': src, 'alt': block['alt'].strip(), 'caption': caption})
+                else:
+                    raise AssertionError(f"Unsupported block type in '{item['slug']}': {btype}")
+            else:
+                raise AssertionError(f"Paragraph entries in '{item['slug']}' must be string or block object")
+        item['paragraphs'] = clean_blocks
+        normalized_items.append(item)
+
+    items = normalized_items
+
+    if items:
+        home_body = (
+            f'                <div class="news-list reveal">{render_entries(items[:5], "artikel/", in_artikel_dir=False)}</div>\n'
+            '                <div class="news-bottom reveal"><a href="artikel/" data-id="Lihat semua berita &amp; tulisan" data-en="View all news &amp; writing">Lihat semua berita &amp; tulisan</a></div>'
+        )
+    else:
+        home_body = '''                <div class="news-empty-state reveal">
+                    <p class="news-empty-label" data-id="Arsip Pribadi" data-en="Personal Archive">Arsip Pribadi</p>
+                    <h3 data-id="Belum ada berita atau tulisan yang diterbitkan." data-en="No personal news or writing has been published yet.">Belum ada berita atau tulisan yang diterbitkan.</h3>
+                    <p data-id="Kabar kegiatan, pembaruan karya, dan tulisan pribadi akan dimuat di sini setelah diterbitkan." data-en="Personal updates, new releases, and original writing will appear here once published.">Kabar kegiatan, pembaruan karya, dan tulisan pribadi akan dimuat di sini setelah diterbitkan.</p>
+                    <div class="news-empty-actions"><a href="artikel/" data-id="Buka halaman arsip" data-en="Open archive page">Buka halaman arsip</a></div>
+                </div>'''
+
+    section = f'''<!-- NEWS-SECTION:START -->
         <section id="articles" class="section editorial-section" aria-labelledby="news-heading">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="section-tag" data-id="Bagian III · Berita &amp; Artikel" data-en="Section III · News &amp; Articles">Bagian III · Berita &amp; Artikel</span>
-                    <h2 id="news-heading" class="section-title" data-id="Berita &amp; Artikel Terkini" data-en="News &amp; Articles">Berita &amp; Artikel Terkini</h2>
-                    <p class="section-desc" data-id="Bacaan pilihan tentang hukum tata negara dan tata kelola teknologi. Setiap ringkasan mencantumkan tanggal terbit serta sumber aslinya." data-en="Selected reading on constitutional law and technology governance. Each Indonesian-language summary includes its source and publication date.">Bacaan pilihan tentang hukum tata negara dan tata kelola teknologi. Setiap ringkasan mencantumkan tanggal terbit serta sumber aslinya.</p>
+                    <span class="section-tag" data-id="Bagian III &bull; Berita &amp; Tulisan" data-en="Section III &bull; News &amp; Writing">Bagian III &bull; Berita &amp; Tulisan</span>
+                    <h2 id="news-heading" class="section-title" data-id="Berita &amp; Tulisan Pribadi" data-en="Personal News &amp; Writing">Berita &amp; Tulisan Pribadi</h2>
+                    <p class="section-desc" data-id="Ruang kabar pribadi, catatan kegiatan, dan tulisan asli Khohar Muhamad Fatahurrohman." data-en="Personal updates, activity notes, and original writing by Khohar Muhamad Fatahurrohman.">Ruang kabar pribadi, catatan kegiatan, dan tulisan asli Khohar Muhamad Fatahurrohman.</p>
                 </div>
-                <div class="news-heading-row"><p class="news-checked" data-id="Sumber terakhir diperiksa: {formatted(data['checkedAt'])}" data-en="Sources last checked: {checked.strftime('%d %B %Y').lstrip('0')}">Sumber terakhir diperiksa: {formatted(data['checkedAt'])}</p></div>
-                <div class="news-list">{entries('artikel/')}</div>
-                <div class="news-bottom"><a href="artikel/" data-id="Lihat semua bacaan" data-en="View all reading">Lihat semua bacaan</a><a href="artikel/#tulisan-pribadi" data-id="Tulisan pribadi" data-en="Personal writing">Tulisan pribadi</a></div>
-                <div class="personal-placeholder"><h3 data-id="Tulisan Pribadi" data-en="Personal Writing">Tulisan Pribadi</h3><p data-id="Belum ada tulisan pribadi yang diterbitkan." data-en="No personal essays have been published yet.">Belum ada tulisan pribadi yang diterbitkan.</p></div>
+{home_body}
             </div>
         </section>
         <!-- NEWS-SECTION:END -->'''
-index = (ROOT / 'index.html').read_text(encoding='utf-8')
-if '<!-- NEWS-SECTION:START -->' in index:
-    index = re.sub(r'<!-- NEWS-SECTION:START -->.*?<!-- NEWS-SECTION:END -->', lambda _: section, index, flags=re.S)
-else:
-    index = index.replace('        <!-- 5. KORESPONDENSI -->',section+'\n\n        <!-- 5. KORESPONDENSI -->')
-    for class_name,label in [('nav-link','Artikel'),('mobile-nav-link','Berita &amp; Artikel')]:
-        marker=f'                <li><a href="#contact" class="{class_name}"'
-        if class_name == 'nav-link':
-            new='                <li><a href="#articles" class="nav-link" data-id="Artikel" data-en="Articles">Artikel</a></li>\n'
-        else:
-            new='                <li><a href="#articles" class="mobile-nav-link"><span class="nav-title" data-id="Berita &amp; Artikel" data-en="News &amp; Articles">Berita &amp; Artikel</span></a></li>\n'
-        assert marker in index
-        index=index.replace(marker,new+marker,1)
-    footer_marker='                        <li><a href="#contact" data-id="Korespondensi"'
-    assert footer_marker in index
-    index=index.replace(footer_marker,'                        <li><a href="#articles" data-id="Berita &amp; Artikel" data-en="News &amp; Articles">Berita &amp; Artikel</a></li>\n'+footer_marker,1)
-    index=index.replace('    <link rel="stylesheet" href="style.css?v=53">','    <link rel="stylesheet" href="style.css?v=53">\n    <link rel="stylesheet" href="artikel.css?v=1">')
-index=index.replace('data-en="Section III &bull; Correspondence" data-id="Bagian III &bull; Korespondensi">Bagian III &bull; Korespondensi','data-en="Section IV &bull; Correspondence" data-id="Bagian IV &bull; Korespondensi">Bagian IV &bull; Korespondensi')
-index=index.replace('Memuat biografi, karya fiksi, riwayat pendidikan, dan pengalaman organisasi.','Memuat biografi, karya fiksi, riwayat pendidikan, pengalaman organisasi, serta bacaan hukum dan teknologi.')
-(ROOT/'index.html').write_text(index,encoding='utf-8')
 
-def shell(title, description, canonical, content, schema=None):
-    structured = '<script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False).replace('<','\\u003c')+'</script>' if schema else ''
-    return f'''<!DOCTYPE html>
-<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{esc(title)} | Khohar Rohman</title><meta name="description" content="{esc(description)}"><meta name="robots" content="index,follow">
-<link rel="canonical" href="https://khoharrohman.my.id/{canonical}"><link rel="icon" href="../favicon.png" type="image/png">
-<link rel="stylesheet" href="../reader.css?v=1"><link rel="stylesheet" href="../artikel.css?v=1">{structured}
-</head><body class="news-page"><a class="skip-link" href="#content">Lewati ke isi</a>
-<header class="masthead"><a class="author" href="../">Khohar Muhamad Fatahurrohman<span>Laman resmi · Berita &amp; artikel</span></a><a class="back-link" href="../#articles">Kembali ke beranda</a></header>
-{content}
-<footer>Khohar Muhamad Fatahurrohman<span>Malang, Jawa Timur</span></footer></body></html>\n'''
+    index_path = root / 'index.html'
+    index_html = index_path.read_text(encoding='utf-8')
+    assert '<!-- NEWS-SECTION:START -->' in index_html and '<!-- NEWS-SECTION:END -->' in index_html
+    index_html = re.sub(
+        r'<!-- NEWS-SECTION:START -->.*?<!-- NEWS-SECTION:END -->',
+        lambda _: section,
+        index_html,
+        flags=re.S,
+    )
+    index_html = re.sub(r'artikel\.css\?v=\d+', f'artikel.css?v={CSS_VERSION}', index_html)
+    index_path.write_text(index_html, encoding='utf-8')
 
-archive=f'''<main id="content"><div class="page-intro"><p class="eyebrow">Bacaan pilihan</p><h1>Berita &amp; Artikel</h1><p>Ringkasan berita hukum tata negara dan tata kelola teknologi, disertai sumber asli. Tulisan pribadi tersedia pada bagian tersendiri.</p><p class="news-checked">Sumber terakhir diperiksa: {formatted(data['checkedAt'])}</p><a href="#tulisan-pribadi">Ke tulisan pribadi</a></div>
-<section aria-labelledby="curated-title"><h2 id="curated-title">Ringkasan berita</h2><div class="news-list">{entries('')}</div></section>
-<section id="tulisan-pribadi" class="personal-placeholder" aria-labelledby="personal-title"><p class="eyebrow">Khohar Muhamad Fatahurrohman</p><h2 id="personal-title">Tulisan Pribadi</h2><p>Belum ada tulisan pribadi yang diterbitkan.</p></section></main>'''
-(ROOT/'artikel'/'index.html').write_text(shell('Berita & Artikel','Ringkasan berita hukum tata negara dan tata kelola teknologi beserta sumber aslinya.','artikel/',archive),encoding='utf-8')
+    artikel_dir.mkdir(exist_ok=True)
+    active_files = {'index.html'} | {f"{item['slug']}.html" for item in items}
+    removed = []
+    for existing in artikel_dir.glob('*.html'):
+        if existing.name not in active_files:
+            existing.unlink()
+            removed.append(existing.name)
 
-for item in items:
-    body=''.join('<p>'+esc(paragraph)+'</p>' for paragraph in item['paragraphs'])
-    content=f'''<main id="content" class="news-detail"><article aria-labelledby="article-title"><p class="eyebrow">Ringkasan berita · {esc(item['category'])}</p><h1 id="article-title">{esc(item['title'])}</h1>
-<div class="article-meta"><span>Sumber terbit: <time datetime="{item['publishedAt']}">{formatted(item['publishedAt'])}</time></span><span>Ringkasan diperbarui: <time datetime="{data['checkedAt']}">{formatted(data['checkedAt'])}</time></span></div>
-<p class="article-lead">{esc(item['excerpt'])}</p><div class="article-body">{body}</div>
-<aside class="source-note" aria-label="Sumber ringkasan"><h2>Sumber bacaan</h2><p>{esc(item['source'])} · {formatted(item['publishedAt'])}</p><p><a href="{esc(item['sourceUrl'])}" target="_blank" rel="noopener noreferrer">{esc(item['sourceTitle'])}<span class="sr-only"> (tab baru)</span></a></p><p>Ringkasan bacaan berdasarkan laporan lembaga di atas. Sumber asli memuat konteks pemberitaan selengkapnya.</p></aside>
-<nav class="article-end" aria-label="Navigasi artikel"><a href="./">Kembali ke semua bacaan</a></nav></article></main>'''
-    canonical='artikel/'+item['slug']+'.html'
-    schema={'@context':'https://schema.org','@type':'WebPage','name':item['title'],'url':'https://khoharrohman.my.id/'+canonical,'description':item['excerpt'],'inLanguage':'id','dateModified':data['checkedAt'],'citation':{'@type':'CreativeWork','name':item['sourceTitle'],'url':item['sourceUrl'],'datePublished':item['publishedAt']}}
-    (ROOT/canonical).write_text(shell(item['title'],item['excerpt'],canonical,content,schema),encoding='utf-8')
+    if items:
+        archive_content = (
+            '<main id="content">'
+            '<div class="page-intro"><p class="eyebrow">Khohar Muhamad Fatahurrohman</p>'
+            '<h1>Berita &amp; Tulisan Pribadi</h1>'
+            '<p>Kabar kegiatan, pembaruan karya, dan tulisan asli yang diterbitkan langsung oleh Khohar Muhamad Fatahurrohman.</p></div>\n'
+            f'<section aria-labelledby="archive-list-title"><h2 id="archive-list-title" class="sr-only">Daftar berita dan tulisan</h2>'
+            f'<div class="news-list">{render_entries(items, "", in_artikel_dir=True)}</div></section>'
+            '</main>'
+        )
+        archive_robots = 'index,follow'
+    else:
+        archive_content = (
+            '<main id="content">'
+            '<div class="page-intro"><p class="eyebrow">Khohar Muhamad Fatahurrohman</p>'
+            '<h1>Berita &amp; Tulisan Pribadi</h1>'
+            '<p>Kabar kegiatan, pembaruan karya, dan tulisan asli yang diterbitkan langsung oleh Khohar Muhamad Fatahurrohman.</p></div>\n'
+            '<section class="news-empty-state" aria-labelledby="empty-title">'
+            '<p class="news-empty-label">Arsip Pribadi</p>'
+            '<h2 id="empty-title">Belum ada berita atau tulisan yang diterbitkan.</h2>'
+            '<p>Kabar kegiatan, pembaruan karya, serta tulisan pribadi akan dimuat pada halaman ini setelah tersedia.</p>'
+            '</section></main>'
+        )
+        archive_robots = 'noindex,follow'
 
-sitemap='''<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'''
-for path in ['', 'artikel/']+['artikel/'+item['slug']+'.html' for item in items]:
-    sitemap+=f'  <url><loc>https://khoharrohman.my.id/{path}</loc><lastmod>{data["checkedAt"]}</lastmod></url>\n'
-(ROOT/'sitemap.xml').write_text(sitemap+'</urlset>\n',encoding='utf-8')
-print(f'Built {len(items)} sourced news pages, homepage section, archive, and empty personal-writing section.')
+    (artikel_dir / 'index.html').write_text(
+        shell(
+            'Berita & Tulisan Pribadi',
+            'Kabar pribadi, catatan kegiatan, dan tulisan asli Khohar Muhamad Fatahurrohman.',
+            'artikel/',
+            archive_content,
+            robots=archive_robots,
+        ),
+        encoding='utf-8',
+    )
+
+    for item in items:
+        body = render_body_blocks(item['paragraphs'])
+        modified = item.get('updatedAt') or item['publishedAt']
+        meta_updated = (
+            f'<span>Diperbarui: <time datetime="{esc(modified)}">{formatted(modified)}</time></span>'
+            if item.get('updatedAt') and item['updatedAt'] != item['publishedAt']
+            else ''
+        )
+        cover_html = ''
+        if item.get('image'):
+            cover_src = image_href(item['image'], in_artikel_dir=True)
+            cover_caption = (
+                f'<figcaption>{esc(item["imageCaption"])}</figcaption>'
+                if item.get('imageCaption')
+                else ''
+            )
+            cover_html = (
+                f'\n<figure class="article-cover">'
+                f'<img src="{esc(cover_src)}" alt="{esc(item["imageAlt"])}" decoding="async">'
+                f'{cover_caption}</figure>'
+            )
+
+        content = (
+            f'<main id="content" class="news-detail"><article aria-labelledby="article-title">'
+            f'<p class="eyebrow">{esc(item["category"])}</p>'
+            f'<h1 id="article-title">{esc(item["title"])}</h1>\n'
+            f'<div class="article-meta"><span>Oleh {AUTHOR_NAME}</span>'
+            f'<span>Terbit: <time datetime="{esc(item["publishedAt"])}">{formatted(item["publishedAt"])}</time></span>'
+            f'{meta_updated}</div>\n'
+            f'<p class="article-lead">{esc(item["excerpt"])}</p>'
+            f'{cover_html}\n'
+            f'<div class="article-body">{body}</div>\n'
+            '<nav class="article-end" aria-label="Navigasi artikel"><a href="./">Kembali ke arsip berita &amp; tulisan</a></nav>'
+            '</article></main>'
+        )
+        canonical = f"artikel/{item['slug']}.html"
+        schema = {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            'headline': item['title'],
+            'description': item['excerpt'],
+            'url': f'{SITE_URL}/{canonical}',
+            'inLanguage': 'id',
+            'datePublished': item['publishedAt'],
+            'dateModified': modified,
+            'author': {
+                '@type': 'Person',
+                'name': AUTHOR_NAME,
+                'url': f'{SITE_URL}/',
+            },
+            'publisher': {
+                '@type': 'Person',
+                'name': AUTHOR_NAME,
+                'url': f'{SITE_URL}/',
+            },
+        }
+        if item.get('image'):
+            schema['image'] = f'{SITE_URL}/{item["image"]}'
+
+        (root / canonical).write_text(
+            shell(
+                item['title'],
+                item['excerpt'],
+                canonical,
+                content,
+                schema=schema,
+                og_image=item.get('image'),
+                og_type='article',
+            ),
+            encoding='utf-8',
+        )
+
+    sitemap_urls = ['']
+    if items:
+        sitemap_urls.append('artikel/')
+        sitemap_urls.extend(f"artikel/{item['slug']}.html" for item in items)
+
+    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    for path in sitemap_urls:
+        sitemap += f'  <url><loc>{SITE_URL}/{path}</loc><lastmod>{updated_at}</lastmod></url>\n'
+    (root / 'sitemap.xml').write_text(sitemap + '</urlset>\n', encoding='utf-8')
+
+    print(
+        f'Built personal news section ({len(items)} published items), archive, sitemap'
+        + (f'; removed {len(removed)} stale file(s): {", ".join(sorted(removed))}' if removed else '.')
+    )
+
+
+if __name__ == '__main__':
+    build()
