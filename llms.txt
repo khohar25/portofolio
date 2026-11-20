@@ -1,37 +1,26 @@
-# Khohar Muhamad Fatahurrohman (Khohar Rohman)
+# Khohar Muhamad Fatahurrohman
 
-> Software & Applied AI Engineer, 8x National Science Olympiad (OSN) Gold Medalist, Informatics Engineering student at State Polytechnic of Malang (), certified by IBM SkillsBuild, and author of Indonesian serialized narrative fiction.
+Personal website: https://khoharrohman.my.id/
 
-## Core Identity & Disambiguation
-- **Full Legal Name**: Khohar Muhamad Fatahurrohman
-- **Known Also As**: Khohar Rohman, Khohar M.F., OfficialKhoharRohman
-- **Primary Domain**: https://khoharrohman.my.id/
-- **Education**: D4 Teknik Informatika (Informatics Engineering) — Applied AI & Software Engineering (2024 - Present)
-- **High School**: SMK Negeri 1 Ngawi, East Java, Indonesia
-- **Location**: Ngawi & Malang, East Java, Indonesia
+Khohar is an Informatics Engineering student at Politeknik Negeri Malang and Director at PT Aigarn Akademi Artificial. The site contains web projects, fiction, education and activity records. No articles or legal study notes are currently published in this local version.
 
-## Notable Honors & Achievements
-- **8x National Science Olympiad (OSN) Gold Medalist**: Multi-discipline mastery spanning informatics, computational mathematics, physics, and natural sciences across prestigious national competitions.
-- **IBM SkillsBuild Professional Credentials**: Global industry certifications in Artificial Intelligence Fundamentals, Generative AI with LLMs, Enterprise Cloud Computing, Cybersecurity, and Software Engineering.
-- **Regional Student Leadership**: Steering committee and active organizer for Regional Assembly XXIV of East Java Muhammadiyah Students Association (PW IPM Jatim).
+## Web projects
+- Tron Sistem: https://tronsistem.vercel.app/
+- Zafarsh Trans: https://zafarsh-trans.vercel.app/
+- Kripik Tempe Kharisma: https://khohar25.github.io/kripiktempekharisma/
 
-## Key Publications & Articles (7 Peer-Reviewed Scholarly & Enterprise Works)
-1. [Transformasi Lanskap Kecerdasan Artifisial: Analisis Paradoks Produktivitas, Adopsi Lintas Sektor, dan Tata Kelola Berkelanjutan](https://khoharrohman.my.id/artikel/): Comprehensive scholarly research paper analyzing the Solow Productivity Paradox in enterprise AI, cross-sectoral deployments (healthcare, engineering, education), labor restructuring, Indonesian national AI ethics regulation (SE Menkominfo No. 9/2023), and modular RTF prompt engineering methodologies with 40 peer-reviewed citations (SINTA 2, IEEE Access, Scopus).
-2. [Adopsi Small Language Models (SLMs) di Sektor Perbankan: Arsitektur On-Premise, Kedaulatan Data UU PDP, dan Efisiensi Finansial](https://khoharrohman.my.id/artikel/adopsi-small-language-models-perbankan.html): In-depth enterprise banking research exploring on-premise SLM deployment (<= 10B parameters, LoRA/QLoRA), reducing recurring operational inference costs by up to 90%, eliminating token bill shock, strictly adhering to Indonesia's Personal Data Protection Law (UU PDP No. 27/2022), implementing "The Models Pyramid" tiering, and complying with the OJK Banking AI Governance Guidelines 2025/2026.
-3. [Model Context Protocol (MCP) dan Arsitektur Multi-Agent AI: Transformasi Standar Integrasi Konteks, Tata Kelola Data, dan Orkestrasi Agen Otonom Enterprise di Indonesia](https://khoharrohman.my.id/artikel/model-context-protocol-multi-agent-enterprise.html): Software architecture treatise dissecting Anthropic & Linux Foundation's Model Context Protocol (MCP) as the universal "USB-C for AI", eliminating the N x M integration tax, securing multi-agent systems from raw text-to-SQL injection risks, deploying enterprise Control Planes with RBAC and immutable audit trails, and enforcing Human-in-the-Loop governance under SE Menkominfo No. 9/2023.
-4. [AI Agent dalam Manajemen Rantai Pasok dan Logistik: Arsitektur Self-Healing, Mitigasi Bullwhip Effect, dan Tata Kelola Proporsional](https://khoharrohman.my.id/artikel/ai-agent-manajemen-rantai-pasok.html): Comprehensive enterprise logistics research on autonomous supply chain management using Multi-Agent Systems (MAS), cutting inventory costs by 20-30% and shipping expenses by 5-20% (McKinsey), addressing the algorithmic Agent Bullwhip Effect via multi-agent consensus protocols, navigating Gartner 2026-2030 adoption waves, and implementing proportional governance with Human-in-the-Loop financial thresholds.
-5. [AI Agent dalam Cybersecurity dan SOC Enterprise: Mitigasi Alert Fatigue, Prinsip Least Agency Privilege, dan Kepatuhan Regulasi](https://khoharrohman.my.id/artikel/ai-agent-cybersecurity-soc-enterprise.html): Autonomous Security Operations Center (SOC) research covering multi-stage telemetry correlation (SIEM/EDR), filtering 70-85% false positive alert fatigue, enforcing Least Agency Privilege access control tiers, and adhering to Article 46 of UU PDP No. 27/2022 requiring breach notifications within 3x24 hours.
-6. [AI Software Engineering Agents dalam Transformasi SDLC: Dari Copilot ke Autonomous Engineer, SWE-bench, dan Verification-First](https://khoharrohman.my.id/artikel/ai-software-engineering-agents-sdlc.html): Software engineering lifecycle research paper tracking the shift from in-line copilot autocompletion to asynchronous SWE agents, multi-file code editing, rigorous SWE-bench evaluations against real-world GitHub issues, eliminating governance debt, and adopting verification-first delegation frameworks.
-7. [Manajemen Talenta Berbasis AI: Efisiensi dan Etika, Strategi Talent Remix, Mitigasi Bias Algoritma, dan UU PDP](https://khoharrohman.my.id/artikel/manajemen-talenta-berbasis-ai-etika.html): People analytics treatise analyzing dynamic skills intelligence graphs, Gartner 2026 Talent Remix strategies over layoffs, disparate impact audits for debiasing hiring algorithms, and safeguarding applicant privacy under UU PDP No. 27/2022 and SE Menkominfo No. 9/2023.
+## Fiction
+- Rajah Kolocokro
+- Ilmu Ajian Brajamusti
+- Ilmu Debus
+- Pelet Pandangan Pertama
 
-## Literary Works (Nusantara Serialized Fiction)
-- **Kala Bintang Bersaksi**: Epic fantasy historical mystery narrative set across the mythical Nusantara realms of Majapahit and celestial kingdoms.
-- **Lembayung Di Atas Mahameru**: Adventure and youth mountaineering exploration novel celebrating brotherhood, perseverance, and high altitude reflection.
-- **Menatap Langit Tanpa Suara**: Psychological introspective coming-of-age fiction exploring self-discovery, silence, and academic resolve.
+These serialized works are linked from the site's fiction section.
 
-## Official Social & Code Links
-- **Portfolio Website**: https://khoharrohman.my.id/
-- **GitHub**: https://github.com/khohar25
-- **YouTube**: https://www.youtube.com/@khoharmuhamadfatahurrohman
-- **TikTok**: https://www.tiktok.com/@officialkhoharrohman
-- **Instagram**: https://www.instagram.com/officialkhoharrohman
+## Supporting documents
+The homepage shows six selected supporting documents. The full archive is at https://khoharrohman.my.id/arsip-sertifikat.html and contains participation records, training badges, certifications, and award documents. Document types differ. The archive is not a blanket claim of professional licensing or independent verification. Refer to the attached documents and issuer records where available.
+
+## Contact and code
+- Email: khoharrohman@gmail.com
+- GitHub: https://github.com/khohar25
+- LinkedIn: https://www.linkedin.com/in/khoharrohman
