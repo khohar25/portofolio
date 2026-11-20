@@ -2,7 +2,7 @@
 
 Personal website: https://khoharrohman.my.id/
 
-Khohar is an Informatics Engineering student at Politeknik Negeri Malang and Director at PT Aigarn Akademi Artificial. The site contains a personal profile, fiction, education, and organizational experience. No articles or legal study notes are currently published in this local version.
+Khohar is a fiction writer and Director at PT Aigarn Akademi Artificial. The site contains a personal profile, fiction, education, and organizational experience. No articles or legal study notes are currently published in this local version.
 
 ## Fiction
 - Rajah Kolocokro
