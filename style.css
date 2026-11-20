@@ -4655,20 +4655,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, [role="button"]:focu
     z-index: 2;
 }
 
-.yusril-emblem-lockup {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-}
-
-.yusril-crest-svg {
-    width: 78px;
-    height: 92px;
-    color: #e6dfd3;
-    flex-shrink: 0;
-    opacity: 0.92;
-}
-
 .yusril-stacked-title {
     font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
     font-size: clamp(2.15rem, 4.1vw, 3.35rem);
@@ -4712,14 +4698,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, [role="button"]:focu
 .yusril-stage-portrait {
     position: relative;
     z-index: 2;
-    width: min(100%, 430px);
-    max-height: 450px;
+    width: min(100%, 370px);
+    max-height: 510px;
     object-fit: contain;
     object-position: bottom center;
     display: block;
-    filter: contrast(1.04) brightness(0.98);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 92%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 92%, transparent 100%);
+    filter: contrast(1.03) brightness(0.98);
 }
 
 /* Lower Quote & Profile Button Deck (Below V-angled stage) */
@@ -4819,19 +4803,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, [role="button"]:focu
         padding-bottom: 0;
     }
 
-    .yusril-emblem-lockup {
-        flex-direction: column;
-        gap: 14px;
-    }
-
-    .yusril-crest-svg {
-        width: 58px;
-        height: 68px;
-    }
-
     .yusril-stage-portrait {
-        width: min(84%, 320px);
-        max-height: 340px;
+        width: min(78%, 310px);
+        max-height: 390px;
     }
 
     .yusril-intro-deck {
