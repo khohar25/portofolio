@@ -689,45 +689,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('savedTheme', newTheme);
     });
 
-    // --- 4. LANGUAGE LOGIC (NATIVE - INSTANT ZERO-LAG) ---
-    const langBtn = document.getElementById('lang-toggle');
-    const langText = document.getElementById('lang-text');
-    let currentLang = localStorage.getItem('prefLang') || 'id';
-
-    function applyLanguage(lang) {
-        window.currentPortfolioLang = lang;
-        document.documentElement.lang = lang;
-
-        // Ganti Teks Statis Seketika (0 ms)
-        document.querySelectorAll('[data-id]').forEach(el => {
-            const text = el.getAttribute(`data-${lang}`);
-            if (text) el.innerHTML = text;
-        });
-
-        // Ganti Placeholder Input Dinamis
-        document.querySelectorAll('[data-placeholder-id]').forEach(el => {
-            const ph = el.getAttribute(`data-placeholder-${lang}`);
-            if (ph) el.placeholder = ph;
-        });
-
-        // Update Label Tombol
-        if(langText) langText.innerText = lang.toUpperCase() === 'EN' ? 'EN / ID' : 'ID / EN';
-
-        // Simpan Memori
-        localStorage.setItem('prefLang', lang);
-        currentLang = lang;
-
-
-
-
-        // Update Ambient Badge Language
-        window.ambientEngine?.updateBadgeUI();
-    }
-
-    langBtn?.addEventListener('click', () => {
-        const nextLang = currentLang === 'en' ? 'id' : 'en';
-        applyLanguage(nextLang);
-    });
+    // Language preferences and translations are managed by language.js.
 
     // --- 5. ATMOSPHERIC AMBIENT TOGGLE CONTROLS ---
     window.ambientEngine = new AmbientAtmosphere();
@@ -753,7 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // Inisialisasi Pertama Kali (Instan)
-    applyLanguage(currentLang);
+    window.SiteLanguage?.apply();
 });
 
 // ==========================================================================

@@ -7,7 +7,9 @@
     "theme": "Tradisi & Sastra Populer Jawa",
     "description": "Naskah fiksi berlatar khazanah tradisi Jawa yang menelusuri simbolisme rajah perlindungan batin, laku pengendalian diri, serta pertautan antara warisan leluhur dan tanggung jawab moral tokoh-tokohnya.",
     "fizzoUrl": "https://www.fizzo.org/page/share/?bid=7305462020474666186&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID",
-    "pdfUrl": null
+    "pdfUrl": null,
+    "themeEn": "Javanese Tradition & Popular Fiction",
+    "descriptionEn": "A narrative set within classical Javanese tradition examining the symbolism of spiritual protection, self-restraint, and the moral responsibilities tied to ancestral heritage."
   },
   {
     "slug": "ilmu-ajian-brajamusti",
@@ -17,7 +19,9 @@
     "theme": "Fiksi Laga & Khasanah Kanuragan",
     "description": "Cerita fiksi laga yang diinspirasi oleh legenda kanuragan dalam tradisi lisan Nusantara, mengisahkan disiplin perguruan silat, ujian kesetiaan murid terhadap guru, serta etika penggunaan kekuatan.",
     "fizzoUrl": "https://www.fizzo.org/page/share/?bid=7313071067822554314&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID",
-    "pdfUrl": null
+    "pdfUrl": null,
+    "themeEn": "Martial Lore & Action Fiction",
+    "descriptionEn": "Martial fiction inspired by Indonesian oral traditions of kanuragan, portraying the discipline of traditional silat schools, loyalty between student and teacher, and the ethics of strength."
   },
   {
     "slug": "ilmu-debus",
@@ -27,7 +31,9 @@
     "theme": "Seni Tradisi & Budaya Banten",
     "description": "Kisah dramatik yang berlatar kesenian tradisional debus Banten, menyoroti laku tirakat, keteguhan batin para pelaku seni tradisi, serta upaya menjaga warisan budaya di tengah perubahan zaman.",
     "fizzoUrl": "https://www.fizzo.org/page/share/?bid=7284278721647738058&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID",
-    "pdfUrl": null
+    "pdfUrl": null,
+    "themeEn": "Traditional Performance & Banten Heritage",
+    "descriptionEn": "A dramatic story set against Banten's traditional debus martial art, highlighting spiritual discipline, inner resilience, and the preservation of community heritage amidst social change."
   },
   {
     "slug": "pelet-pandangan-pertama",
@@ -37,6 +43,8 @@
     "theme": "Romansa & Folklor Masyarakat",
     "description": "Fiksi romansa kontemporer yang memadukan kehidupan keseharian masyarakat dengan mitos dan kepercayaan folklor lokal, menggambarkan konflik batin serta relasi sosial antartokoh.",
     "fizzoUrl": "https://www.fizzo.org/page/share/?bid=7305258678230187258&isNew=1&from=copy_link&group=2&d=7594464234611144441&u=7368819250702169327&language=id&region=ID",
-    "pdfUrl": null
+    "pdfUrl": null,
+    "themeEn": "Contemporary Romance & Local Folklore",
+    "descriptionEn": "Contemporary romance intertwining everyday social life with local folk beliefs, exploring personal conflict and human relationships within a Javanese setting."
   }
 ]

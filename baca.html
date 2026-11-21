@@ -3,71 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ruang Baca | Khohar Muhamad Fatahurrohman</title>
-  <meta name="description" content="Halaman buku dan ruang baca karya Khohar Muhamad Fatahurrohman.">
+  <title data-id="Ruang Baca | Khohar Muhamad Fatahurrohman" data-en="Reading Room | Khohar Muhamad Fatahurrohman">Ruang Baca | Khohar Muhamad Fatahurrohman</title>
+  <meta name="description" content="Halaman buku dan ruang baca karya Khohar Muhamad Fatahurrohman." data-content-id="Halaman buku dan ruang baca karya Khohar Muhamad Fatahurrohman." data-content-en="Book details and online reading room for works by Khohar Muhamad Fatahurrohman.">
   <meta name="robots" content="noindex, follow">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="reader.css?v=1">
-  <script type="module" src="reader.js?v=1"></script>
+  <script defer src="language.js?v=1"></script>
+  <script type="module" src="reader.js?v=2"></script>
 </head>
 <body>
-  <a class="skip-link" href="#book">Lewati ke buku</a>
+  <a class="skip-link" href="#book" data-id="Lewati ke buku" data-en="Skip to book details">Lewati ke buku</a>
   <header class="masthead">
-    <a class="author" href="index.html">Khohar Muhamad Fatahurrohman<span>Laman resmi · Karya tulis</span></a>
-    <a class="back-link" href="index.html#literary">Kembali ke karya tulis</a>
+    <a class="author" href="index.html">Khohar Muhamad Fatahurrohman<span data-id="Laman resmi · Karya tulis" data-en="Official website · Published works">Laman resmi · Karya tulis</span></a>
+    <a class="back-link" href="index.html#literary" data-id="Kembali ke karya tulis" data-en="Back to published works">Kembali ke karya tulis</a>
+      <button class="button" type="button" data-language-toggle aria-label="Ganti ke bahasa Inggris"><span data-language-label>ID / EN</span></button>
   </header>
   <main>
     <section id="book" class="book-intro" aria-labelledby="book-title">
       <div class="cover-frame"><img id="book-cover" hidden alt=""></div>
       <div class="book-details">
-        <p class="eyebrow">Ruang baca</p>
-        <h1 id="book-title">Memuat buku…</h1>
+        <p class="eyebrow" data-id="Ruang baca" data-en="Reading room">Ruang baca</p>
+        <h1 id="book-title" data-id="Memuat buku…" data-en="Loading book…">Memuat buku…</h1>
         <p id="book-author" class="byline"></p>
         <p id="book-theme" class="book-theme"></p>
         <p id="book-description" class="description"></p>
         <div id="availability" class="availability" role="status" aria-live="polite">
-          <h2 id="availability-title">Menyiapkan halaman buku</h2>
-          <p id="availability-message">Mohon tunggu sebentar.</p>
+          <h2 id="availability-title" data-id="Menyiapkan halaman buku" data-en="Preparing book details">Menyiapkan halaman buku</h2>
+          <p id="availability-message" data-id="Mohon tunggu sebentar." data-en="Please wait a moment.">Mohon tunggu sebentar.</p>
         </div>
         <div class="book-actions">
-          <a id="fizzo-link" class="button primary" hidden target="_blank" rel="noopener noreferrer">Baca di Fizzo Novel <span class="sr-only">(tab baru)</span></a>
-          <a id="start-reading" class="button primary" href="#reader" hidden>Mulai membaca</a>
-          <a id="pdf-link" class="text-link" hidden target="_blank" rel="noopener">Buka PDF <span class="sr-only">(tab baru)</span></a>
+          <a id="fizzo-link" class="button primary" hidden target="_blank" rel="noopener noreferrer"><span data-id="Baca di Fizzo Novel" data-en="Read on Fizzo Novel">Baca di Fizzo Novel</span> <span class="sr-only" data-id="(tab baru)" data-en="(opens in a new tab)">(tab baru)</span></a>
+          <a id="start-reading" class="button primary" href="#reader" hidden data-id="Mulai membaca" data-en="Start reading">Mulai membaca</a>
+          <a id="pdf-link" class="text-link" hidden target="_blank" rel="noopener"><span data-id="Buka PDF" data-en="Open PDF">Buka PDF</span> <span class="sr-only" data-id="(tab baru)" data-en="(opens in a new tab)">(tab baru)</span></a>
         </div>
       </div>
     </section>
 
-    <section id="reader" class="reader" aria-label="Pembaca buku" hidden>
-      <div class="reader-heading"><h2 id="reader-title">Baca buku</h2><p>Posisi baca tersimpan di peramban ini.</p></div>
-      <div class="toolbar" aria-label="Pengaturan membaca">
+    <section id="reader" class="reader" aria-label="Pembaca buku" hidden data-aria-id="Pembaca buku" data-aria-en="Book reader">
+      <div class="reader-heading"><h2 id="reader-title" data-id="Baca buku" data-en="Read the book">Baca buku</h2><p data-id="Posisi baca tersimpan di peramban ini." data-en="Your reading position is saved in this browser.">Posisi baca tersimpan di peramban ini.</p></div>
+      <div class="toolbar" aria-label="Pengaturan membaca" data-aria-id="Pengaturan membaca" data-aria-en="Reading controls">
         <div class="page-navigation">
-          <button id="previous" type="button" aria-label="Halaman sebelumnya">Sebelumnya</button>
+          <button id="previous" type="button" aria-label="Halaman sebelumnya" data-id="Sebelumnya" data-en="Previous" data-aria-id="Halaman sebelumnya" data-aria-en="Previous page">Sebelumnya</button>
           <form id="page-form">
-            <label for="page-number">Halaman</label>
+            <label for="page-number" data-id="Halaman" data-en="Page">Halaman</label>
             <input id="page-number" type="number" min="1" value="1" inputmode="numeric" required>
             <span id="page-total">/ —</span>
-            <button type="submit">Buka</button>
+            <button type="submit" data-id="Buka" data-en="Go">Buka</button>
           </form>
-          <button id="next" type="button" aria-label="Halaman berikutnya">Berikutnya</button>
+          <button id="next" type="button" aria-label="Halaman berikutnya" data-id="Berikutnya" data-en="Next" data-aria-id="Halaman berikutnya" data-aria-en="Next page">Berikutnya</button>
         </div>
         <div class="view-controls">
-          <label for="zoom">Ukuran</label>
-          <select id="zoom"><option value="fit">Sesuai layar</option><option value="1">100%</option><option value="1.25">125%</option><option value="1.5">150%</option><option value="2">200%</option></select>
-          <button id="text-toggle" type="button" aria-pressed="false">Tampilan teks</button>
-          <button id="fullscreen" type="button">Layar penuh</button>
+          <label for="zoom" data-id="Ukuran" data-en="Zoom">Ukuran</label>
+          <select id="zoom"><option value="fit" data-id="Sesuai layar" data-en="Fit to screen">Sesuai layar</option><option value="1">100%</option><option value="1.25">125%</option><option value="1.5">150%</option><option value="2">200%</option></select>
+          <button id="text-toggle" type="button" aria-pressed="false" data-id="Tampilan teks" data-en="Text view">Tampilan teks</button>
+          <button id="fullscreen" type="button" data-id="Layar penuh" data-en="Full screen">Layar penuh</button>
         </div>
       </div>
       <p id="reader-status" class="reader-status" role="status" aria-live="polite"></p>
-      <div id="page-stage" class="page-stage" tabindex="0" aria-label="Halaman buku. Gunakan tombol panah kiri dan kanan untuk berpindah halaman.">
-        <canvas id="pdf-canvas" role="img" aria-label="Halaman buku"></canvas>
-        <article id="page-text" class="page-text" aria-label="Teks halaman buku" hidden></article>
+      <div id="page-stage" class="page-stage" tabindex="0" aria-label="Halaman buku. Gunakan tombol panah kiri dan kanan untuk berpindah halaman." data-aria-id="Halaman buku. Gunakan tombol panah kiri dan kanan untuk berpindah halaman." data-aria-en="Book page. Use the left and right arrow keys to turn pages.">
+        <canvas id="pdf-canvas" role="img" aria-label="Halaman buku" data-aria-id="Halaman buku" data-aria-en="Book page"></canvas>
+        <article id="page-text" class="page-text" aria-label="Teks halaman buku" hidden data-aria-id="Teks halaman buku" data-aria-en="Book page text"></article>
       </div>
-      <p class="reader-help">Gunakan tombol Sebelumnya/Berikutnya atau panah kiri/kanan pada keyboard.</p>
+      <p class="reader-help" data-id="Gunakan tombol Sebelumnya/Berikutnya atau panah kiri/kanan pada keyboard." data-en="Use Previous/Next or the left and right arrow keys to turn pages.">Gunakan tombol Sebelumnya/Berikutnya atau panah kiri/kanan pada keyboard.</p>
     </section>
 
-    <nav class="other-books" aria-label="Karya lainnya"><h2>Karya lainnya</h2><div id="other-books"></div></nav>
-    <noscript><p class="noscript-message">Aktifkan JavaScript untuk membuka pembaca. <a href="index.html#literary">Lihat daftar karya dan tautan Fizzo.</a></p></noscript>
+    <nav class="other-books" aria-label="Karya lainnya" data-aria-id="Karya lainnya" data-aria-en="Other works"><h2 data-id="Karya lainnya" data-en="Other works">Karya lainnya</h2><div id="other-books"></div></nav>
+    <noscript><p class="noscript-message">Aktifkan JavaScript untuk membuka pembaca. <a href="index.html#literary" data-id="Lihat daftar karya dan tautan Fizzo." data-en="View published works and Fizzo links.">Lihat daftar karya dan tautan Fizzo.</a></p></noscript>
   </main>
-  <footer>Khohar Muhamad Fatahurrohman <span>Malang, Jawa Timur</span></footer>
+  <footer>Khohar Muhamad Fatahurrohman <span data-id="Malang, Jawa Timur" data-en="Malang, East Java">Malang, Jawa Timur</span></footer>
 </body>
 </html>

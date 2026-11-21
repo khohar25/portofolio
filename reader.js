@@ -2,9 +2,51 @@ const $ = (id) => document.getElementById(id);
 const state = { pdf: null, page: 1, zoom: 'fit', text: false, expanded: false, render: null, queue: Promise.resolve() };
 let storageKey;
 
+const readerPhrases = {
+  "Memuat buku…": "Loading book…",
+  "Menyiapkan naskah": "Preparing the manuscript",
+  "Memuat buku untuk dibaca di halaman ini.": "Loading the book for reading on this page.",
+  "Tersedia untuk dibaca": "Available to read",
+  "Baca naskah langsung melalui pembaca di bawah ini.": "Read the manuscript using the reader below.",
+  "Pembaca belum dapat dibuka": "The reader could not be opened",
+  "Silakan coba lagi atau gunakan tautan Buka PDF.": "Please try again or use the Open PDF link.",
+  "Pilih buku": "Choose a book",
+  "Buku tidak ditemukan": "Book not found",
+  "Daftar karya": "Published works",
+  "Pilih salah satu judul pada daftar karya di bawah ini.": "Choose a title from the list below.",
+  "Ruang baca": "Reading room",
+  "Halaman belum dapat dimuat": "This page could not be loaded",
+  "Silakan muat ulang halaman atau kembali ke daftar karya.": "Please reload the page or return to the list of published works.",
+  "Naskah belum tersedia": "Manuscript not yet available",
+  "Naskah untuk dibaca langsung di situs ini belum ditambahkan. Anda tetap dapat membaca karya ini melalui Fizzo Novel.": "The manuscript has not yet been added to this website. You can still read this work on Fizzo Novel.",
+  "Halaman ini berupa gambar. Teks tidak tersedia.": "This page is an image. Text is not available.",
+  "Halaman gagal ditampilkan. Coba halaman lain atau buka berkas PDF.": "This page could not be displayed. Try another page or open the PDF file.",
+  "Keluar layar penuh": "Exit full screen",
+  "Layar penuh": "Full screen"
+};
+function english(text) {
+  if (readerPhrases[text]) return readerPhrases[text];
+  let match = /^Memuat halaman (\d+)…$/.exec(text);
+  if (match) return `Loading page ${match[1]}…`;
+  match = /^Halaman (\d+) dari (\d+)$/.exec(text);
+  if (match) return `Page ${match[1]} of ${match[2]}`;
+  match = /^Halaman (\d+) dari (\d+)\. Pilih Tampilan teks untuk membaca isi halaman dengan pembaca layar\.$/.exec(text);
+  if (match) return `Page ${match[1]} of ${match[2]}. Select Text view to read this page with a screen reader.`;
+  if (text.startsWith('Sampul ')) return 'Cover of ' + text.slice(7);
+  return text.replace(' | Ruang Baca Khohar', ' | Khohar Reading Room');
+}
+function write(element, id, en = english(id)) { window.SiteLanguage.setText(element, id, en); }
+function writeAttribute(element, attribute, id) {
+  const key = attribute === 'aria-label' ? 'aria' : attribute;
+  element.setAttribute(`data-${key}-id`, id);
+  element.setAttribute(`data-${key}-en`, english(id));
+  element.setAttribute(attribute, window.SiteLanguage.current === 'en' ? english(id) : id);
+}
+
+
 function message(title, text) {
-  $('availability-title').textContent = title;
-  $('availability-message').textContent = text;
+  write($('availability-title'), title);
+  write($('availability-message'), text);
 }
 function storedPage() {
   try { return Number(localStorage.getItem(storageKey)) || 1; } catch { return 1; }
@@ -28,11 +70,16 @@ async function renderPage() {
   const canvas = $('pdf-canvas');
   const stage = $('page-stage');
   stage.setAttribute('aria-busy', 'true');
-  $('reader-status').textContent = `Memuat halaman ${pageNumber}…`;
+  write($('reader-status'), `Memuat halaman ${pageNumber}…`);
   syncNavigation();
   try {
     const text = await page.getTextContent();
-    $('page-text').textContent = text.items.map((item) => item.str + (item.hasEOL ? '\n' : ' ')).join('') || 'Halaman ini berupa gambar. Teks tidak tersedia.';
+    const pageText = text.items.map((item) => item.str + (item.hasEOL ? '\n' : ' ')).join('');
+    if (pageText.trim()) {
+      $('page-text').removeAttribute('data-id');
+      $('page-text').removeAttribute('data-en');
+      $('page-text').textContent = pageText;
+    } else write($('page-text'), 'Halaman ini berupa gambar. Teks tidak tersedia.');
     const base = page.getViewport({ scale: 1 });
     const padding = parseFloat(getComputedStyle(stage).paddingLeft) + parseFloat(getComputedStyle(stage).paddingRight);
     const fit = Math.max(0.1, (stage.clientWidth - padding) / base.width);
@@ -43,13 +90,13 @@ async function renderPage() {
     canvas.height = Math.floor(viewport.height * density);
     canvas.style.width = `${Math.floor(viewport.width)}px`;
     canvas.style.height = `${Math.floor(viewport.height)}px`;
-    canvas.setAttribute('aria-label', `Halaman ${pageNumber} dari ${state.pdf.numPages}. Pilih Tampilan teks untuk membaca isi halaman dengan pembaca layar.`);
+    writeAttribute(canvas, 'aria-label', `Halaman ${pageNumber} dari ${state.pdf.numPages}. Pilih Tampilan teks untuk membaca isi halaman dengan pembaca layar.`);
     state.render = page.render({ canvasContext: canvas.getContext('2d'), viewport, transform: density === 1 ? null : [density, 0, 0, density, 0, 0] });
     await state.render.promise;
-    $('reader-status').textContent = `Halaman ${pageNumber} dari ${state.pdf.numPages}`;
+    write($('reader-status'), `Halaman ${pageNumber} dari ${state.pdf.numPages}`);
     savePage();
   } catch (error) {
-    $('reader-status').textContent = 'Halaman gagal ditampilkan. Coba halaman lain atau buka berkas PDF.';
+    write($('reader-status'), 'Halaman gagal ditampilkan. Coba halaman lain atau buka berkas PDF.');
     console.error('PDF page render failed:', error);
   } finally { stage.setAttribute('aria-busy', 'false'); state.render = null; }
 }
@@ -78,7 +125,7 @@ function setupControls() {
     state.expanded = expanded;
     $('reader').classList.toggle('is-expanded', expanded);
     document.body.classList.toggle('reader-open', expanded);
-    $('fullscreen').textContent = expanded ? 'Keluar layar penuh' : 'Layar penuh';
+    write($('fullscreen'), expanded ? 'Keluar layar penuh' : 'Layar penuh');
     queueRender();
   }
   $('fullscreen').addEventListener('click', async () => {
@@ -89,7 +136,7 @@ function setupControls() {
     } catch { setExpanded(true); }
   });
   document.addEventListener('fullscreenchange', () => {
-    $('fullscreen').textContent = document.fullscreenElement ? 'Keluar layar penuh' : 'Layar penuh';
+    write($('fullscreen'), document.fullscreenElement ? 'Keluar layar penuh' : 'Layar penuh');
     queueRender();
   });
   document.addEventListener('keydown', (event) => {
@@ -152,19 +199,20 @@ async function init() {
       link.textContent = entry.title;
       $('other-books').append(link);
     }
+    window.SiteLanguage.translate($('other-books'));
     if (!book) {
-      $('book-title').textContent = 'Pilih buku';
+      write($('book-title'), 'Pilih buku');
       message(slug ? 'Buku tidak ditemukan' : 'Daftar karya', 'Pilih salah satu judul pada daftar karya di bawah ini.');
       document.querySelector('.cover-frame').hidden = true;
       return;
     }
-    document.title = `${book.title} | Ruang Baca Khohar`;
-    $('book-title').textContent = book.title;
+    write(document.querySelector('title'), `${book.title} | Ruang Baca Khohar`);
+    write($('book-title'), book.title);
     $('book-author').textContent = book.author;
-    $('book-theme').textContent = book.theme;
-    $('book-description').textContent = book.description;
+    write($('book-theme'), book.theme, book.themeEn || book.theme);
+    write($('book-description'), book.description, book.descriptionEn || book.description);
     $('book-cover').src = localFile(book.cover);
-    $('book-cover').alt = `Sampul ${book.title}`;
+    writeAttribute($('book-cover'), 'alt', `Sampul ${book.title}`);
     $('book-cover').hidden = false;
     if (book.fizzoUrl) {
       const fizzo = new URL(book.fizzoUrl);
@@ -176,9 +224,10 @@ async function init() {
     if (book.pdfUrl) await openPdf(book);
     else message('Naskah belum tersedia', 'Naskah untuk dibaca langsung di situs ini belum ditambahkan. Anda tetap dapat membaca karya ini melalui Fizzo Novel.');
   } catch (error) {
-    $('book-title').textContent = 'Ruang baca';
+    write($('book-title'), 'Ruang baca');
     message('Halaman belum dapat dimuat', 'Silakan muat ulang halaman atau kembali ke daftar karya.');
     console.error('Book page load failed:', error);
   }
 }
-init();
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+else init();

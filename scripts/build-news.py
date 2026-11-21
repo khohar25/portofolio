@@ -126,6 +126,32 @@ def render_body_blocks(blocks):
     return ''.join(rendered)
 
 
+
+ARCHIVE_TRANSLATIONS = {'Berita & Tulisan Pribadi': 'Personal News & Writing', 'Kabar pribadi, catatan kegiatan, dan tulisan asli Khohar Muhamad Fatahurrohman.': 'Personal updates, activity notes, and original writing by Khohar Muhamad Fatahurrohman.', 'Kabar kegiatan, pembaruan karya, dan tulisan asli yang diterbitkan langsung oleh Khohar Muhamad Fatahurrohman.': 'Updates on activities, new work, and original writing by Khohar Muhamad Fatahurrohman.', 'Arsip Pribadi': 'Personal Archive', 'Belum ada berita atau tulisan yang diterbitkan.': 'No personal news or writing has been published yet.', 'Kabar kegiatan, pembaruan karya, serta tulisan pribadi akan dimuat pada halaman ini setelah tersedia.': 'Activity updates, new work, and personal writing will appear here once published.', 'Laman resmi · Berita & tulisan pribadi': 'Official website · Personal news & writing', 'Kembali ke beranda': 'Back to home', 'Lewati ke isi': 'Skip to content', 'Malang, Jawa Timur': 'Malang, East Java', 'Kembali ke arsip berita & tulisan': 'Back to the news & writing archive', 'Daftar berita dan tulisan': 'News & writing archive', 'Ruang Baca | Khohar Muhamad Fatahurrohman': 'Reading Room | Khohar Muhamad Fatahurrohman', 'Halaman buku dan ruang baca karya Khohar Muhamad Fatahurrohman.': 'Book details and online reading room for works by Khohar Muhamad Fatahurrohman.', 'Lewati ke buku': 'Skip to book details', 'Laman resmi · Karya tulis': 'Official website · Published works', 'Kembali ke karya tulis': 'Back to published works', 'Ruang baca': 'Reading room', 'Memuat buku…': 'Loading book…', 'Menyiapkan halaman buku': 'Preparing book details', 'Mohon tunggu sebentar.': 'Please wait a moment.', 'Baca di Fizzo Novel': 'Read on Fizzo Novel', '(tab baru)': '(opens in a new tab)', 'Mulai membaca': 'Start reading', 'Buka PDF': 'Open PDF', 'Baca buku': 'Read the book', 'Posisi baca tersimpan di peramban ini.': 'Your reading position is saved in this browser.', 'Sebelumnya': 'Previous', 'Berikutnya': 'Next', 'Halaman': 'Page', 'Buka': 'Go', 'Ukuran': 'Zoom', 'Sesuai layar': 'Fit to screen', 'Tampilan teks': 'Text view', 'Layar penuh': 'Full screen', 'Gunakan tombol Sebelumnya/Berikutnya atau panah kiri/kanan pada keyboard.': 'Use Previous/Next or the left and right arrow keys to turn pages.', 'Karya lainnya': 'Other works', 'Lihat daftar karya dan tautan Fizzo.': 'View published works and Fizzo links.', 'Forum Remaja Palang Merah Indonesia (FORPIS) PMI Kab. Ngawi': 'Indonesian Red Cross Youth Forum (FORPIS), Ngawi Regency', 'Dewan Kerja Cabang (DKC) Gerakan Pramuka Kab. Ngawi': 'Scout Rover Council (DKC), Ngawi Regency', 'Pimpinan Daerah Ikatan Pelajar Muhammadiyah (PD IPM) Kab. Ngawi': 'Muhammadiyah Student Association (PD IPM), Ngawi Regency'}
+ARCHIVE_TRANSLATIONS['Berita & Tulisan Pribadi | Khohar Rohman'] = 'Personal News & Writing | Khohar Rohman'
+
+def translate_archive_markup(source):
+    def leaf(match):
+        opening, text, closing = match.groups()
+        value = html.unescape(text).strip()
+        if value in ARCHIVE_TRANSLATIONS and 'data-id=' not in opening:
+            opening = opening[:-1] + f' data-id="{esc(value)}" data-en="{esc(ARCHIVE_TRANSLATIONS[value])}">'
+        return opening + text + closing
+    source = re.sub(r'(<(?:h1|h2|h3|p|span|a|title)\b[^>]*>)([^<>]+)(</(?:h1|h2|h3|p|span|a|title)>)', leaf, source)
+    def meta(match):
+        tag = match.group(0)
+        content = re.search(r'(?<![\w-])content="([^"]*)"', tag)
+        if content:
+            value = html.unescape(content.group(1))
+            en = ARCHIVE_TRANSLATIONS.get(value)
+            if not en and value.endswith(' | Khohar Rohman'):
+                title = value.removesuffix(' | Khohar Rohman')
+                if title in ARCHIVE_TRANSLATIONS: en = ARCHIVE_TRANSLATIONS[title] + ' | Khohar Rohman'
+            if en: tag = tag[:-1] + f' data-content-id="{esc(value)}" data-content-en="{esc(en)}">'
+        return tag
+    return re.sub(r'<meta\b[^>]*>', meta, source)
+
+
 def shell(title, description, canonical, content, robots='index,follow', schema=None, og_image=None, og_type='website'):
     structured = (
         '<script type="application/ld+json">'
@@ -151,7 +177,7 @@ def shell(title, description, canonical, content, robots='index,follow', schema=
     else:
         social_meta += '<meta name="twitter:card" content="summary">'
 
-    return (
+    return translate_archive_markup(
         '<!DOCTYPE html>\n'
         '<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n'
         f'<title>{esc(title)} | Khohar Rohman</title>'
@@ -161,9 +187,9 @@ def shell(title, description, canonical, content, robots='index,follow', schema=
         f'{social_meta}\n'
         '<link rel="icon" href="../favicon.png" type="image/png">\n'
         f'<link rel="stylesheet" href="../reader.css?v=1"><link rel="stylesheet" href="../artikel.css?v={CSS_VERSION}">{structured}\n'
-        '</head><body class="news-page"><a class="skip-link" href="#content">Lewati ke isi</a>\n'
+        '<script defer src="../language.js?v=1"></script></head><body class="news-page"><a class="skip-link" href="#content">Lewati ke isi</a>\n'
         f'<header class="masthead"><a class="author" href="../">{AUTHOR_NAME}<span>Laman resmi · Berita &amp; tulisan pribadi</span></a>'
-        '<a class="back-link" href="../#articles">Kembali ke beranda</a></header>\n'
+        '<a class="back-link" href="../#articles">Kembali ke beranda</a><button class="button" type="button" data-language-toggle aria-label="Ganti ke bahasa Inggris"><span data-language-label>ID / EN</span></button></header>\n'
         f'{content}\n'
         f'<footer>{AUTHOR_NAME}<span>Malang, Jawa Timur</span></footer></body></html>\n'
     )
@@ -238,7 +264,7 @@ def build(root=ROOT):
                     <p class="news-empty-label" data-id="Arsip Pribadi" data-en="Personal Archive">Arsip Pribadi</p>
                     <h3 data-id="Belum ada berita atau tulisan yang diterbitkan." data-en="No personal news or writing has been published yet.">Belum ada berita atau tulisan yang diterbitkan.</h3>
                     <p data-id="Kabar kegiatan, pembaruan karya, dan tulisan pribadi akan dimuat di sini setelah diterbitkan." data-en="Personal updates, new releases, and original writing will appear here once published.">Kabar kegiatan, pembaruan karya, dan tulisan pribadi akan dimuat di sini setelah diterbitkan.</p>
-                    <div class="news-empty-actions"><a href="artikel/" data-id="Buka halaman arsip" data-en="Open archive page">Buka halaman arsip</a></div>
+                    <div class="news-empty-actions"><a href="artikel/" data-id="Buka halaman arsip" data-en="View archive">Buka halaman arsip</a></div>
                 </div>'''
 
     section = f'''<!-- NEWS-SECTION:START -->
